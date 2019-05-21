@@ -1,0 +1,36 @@
+#player{
+    width: 45%; 
+    float:left; 
+    background-color: black;
+    border-style: solid;
+    margin-left: 2px;
+    margin-right: 2px;}
+
+#g{
+    background-color: darkgray;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+#imgtest{
+    padding: 0px;
+
+}
+img{-webkit-user-drag: none;
+    height: 125px;
+    width: 125px;
+}
+.page{
+    overflow:hidden;
+}
+
+/* .flex-container {
+    display: flex; 
+    flex-direction: row;
+  } */
+
+  select{
+    text-align-last:center;
+    
+}
