@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RandomService } from '../random.service';
+import { HttpClient} from '@angular/common/http';
+import {MatCheckbox} from '@angular/material/checkbox';
 @Component({
   selector: 'app-melee',
   templateUrl: './melee.component.html',
@@ -232,6 +234,8 @@ export class MeleeComponent implements OnInit {
     console.log(this.meleeChars);
   }
   randomFill() {
+
+    console.log();
 this.firstRoll = true;
     this.charCount = ((document.getElementById("charCount")) as HTMLSelectElement).selectedIndex + 1;
     this.playerCount = ((document.getElementById("playerCount")) as HTMLSelectElement).selectedIndex + 1;

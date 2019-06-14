@@ -1,5 +1,7 @@
 <html>
   <body> 
+   <!-- <div id="checkbox"><mat-checkbox>Hide Upcoming</mat-checkbox></div> -->
+ 
   <div id="body">
     <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
 <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
@@ -7,6 +9,9 @@
 
 <div id="players" *ngIf="firstRoll" >
     <mat-card id="player" >
+        <mat-card-header>
+            <mat-card-title style="color: red">Player 1</mat-card-title>
+            </mat-card-header>
     <div id="playerA">
         <div *ngFor="let i of playerAImages">
           <img src = {{i}} style="float: left"/>
@@ -19,6 +24,9 @@
     </div>
   </mat-card>
     <mat-card id="player"  *ngIf="playerCount >=2" >
+        <mat-card-header>
+            <mat-card-title style="color: mediumblue">Player 2</mat-card-title>
+            </mat-card-header>
     <div id="playerB">
         <div *ngFor="let i of playerBImages">
           <img src = {{i}} style="float: left"/>
@@ -29,6 +37,9 @@
     </div>
   </mat-card>
     <mat-card id="player"  *ngIf="playerCount >= 3" >
+        <mat-card-header>
+            <mat-card-title style="color: goldenrod">Player 3</mat-card-title>
+            </mat-card-header>
     <div id="playerC">
         <div *ngFor="let i of playerCImages">
           <img src = {{i}} style="float: left"/>
@@ -40,6 +51,9 @@
     </div>
   </mat-card>
     <mat-card id="player" *ngIf="playerCount == 4">
+        <mat-card-header>
+            <mat-card-title style="color: greenyellow">Player 4</mat-card-title>
+            </mat-card-header>
     <div id="playerD">
         <div *ngFor="let i of playerDImages">
           <img src = {{i}} style="float: left"/>

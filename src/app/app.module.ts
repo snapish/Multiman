@@ -15,6 +15,17 @@ import { UltimateComponent } from './ultimate/ultimate.component';
 // import { ImageMapComponent } from './image-map/image-map.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './about/about.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { ContactComponent } from './contact/contact.component';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule
+} from '@angular/material';
 
 
 @NgModule({
@@ -25,11 +36,14 @@ import { AboutComponent } from './about/about.component';
 //    ImageMapComponent,
     AboutComponent,
 
-
+ContactComponent,
   ],
   imports: [
+    NgxPayPalModule,
   //  NgbModule,
     BrowserModule,
+    MatCheckboxModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
