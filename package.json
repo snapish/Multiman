@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
-    "prod": "ng build && node server/server.js"
+    "prod": "prod.sh"
   },
   "private": true,
   "dependencies": {

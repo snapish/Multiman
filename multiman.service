@@ -1,0 +1,20 @@
+# This file is used for automatically running app on system startup.
+# Copy it to /etc/systemd/system/
+# To start it: sudo systemctl start multiman.service
+# To have it auto start on boot: sudo systemctl enable multiman.service
+# https://wiki.archlinux.org/index.php/systemd
+# https://www.freedesktop.org/software/systemd/man/systemd.service.html
+
+[Unit]
+Description=Multiman
+Requires=network.target
+After=network.target
+
+[Service]
+User=snapish
+ExecStart=/home/snapish/Multiman/prod.sh
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
