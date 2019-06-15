@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# don't need to track build folder anymore since we're not hosting from github
+/docs
+
 # compiled output
 /dist
 /tmp

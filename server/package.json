@@ -1,0 +1,26 @@
+{
+  "name": "multiman-server",
+  "version": "0.0.0",
+  "description": "Smash brothers ironman server",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0",
+    "standard": "^12.0.1"
+  },
+  "scripts": {
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snapish/Multiman"
+  },
+  "license": "MIT",
+  "optionalDependencies": {
+    "bufferutil": "^4.0.1",
+    "utf-8-validate": "^5.0.2"
+  }
+}
