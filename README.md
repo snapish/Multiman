@@ -2,7 +2,7 @@
 
 For development: `npm run serve`
 
-For production: `npm run prod`
+For production: `ssh -t snapish@ironman.gg '~/Multiman/deploy.sh'`
 
 --------------------------------------------------------------------------------
 

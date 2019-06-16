@@ -12,7 +12,7 @@ After=network.target
 
 [Service]
 User=snapish
-ExecStart=/home/snapish/Multiman/prod.sh
+ExecStart=/usr/bin/node /home/snapish/Multiman/server/server.js
 Restart=always
 RestartSec=30
 
