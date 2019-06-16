@@ -55,7 +55,8 @@ img{-webkit-user-drag: none;
 -moz-box-shadow:    0px 0px 30px 0px rgba(0, 255, 0, 0.67);
 box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67);
 } */
-img:last-of-type:hover{
+
+.charImg:last-of-type:hover{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
