@@ -1,6 +1,6 @@
 # Multiman
 
-For development: `npm run serve`
+For development: `./dev.sh`
 
 For production: `ssh -t snapish@ironman.gg '~/Multiman/deploy.sh'`
 

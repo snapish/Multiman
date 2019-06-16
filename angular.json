@@ -58,8 +58,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Multiman:build",
-	    "host": "0.0.0.0"
+            "browserTarget": "Multiman:build"
           },
           "configurations": {
             "production": {

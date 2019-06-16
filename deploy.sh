@@ -15,7 +15,7 @@ cd server
 npm install
 cd ..
 
-npm run build
+npm run ng build
 
 # symlink the service file
 sudo ln -sf "$(realpath multiman.service)" /etc/systemd/system/multiman.service
