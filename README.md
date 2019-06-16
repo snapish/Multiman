@@ -3,6 +3,7 @@
 For development: `./dev.sh`
 
 For production: `ssh -t snapish@ironman.gg '~/Multiman/deploy.sh'`
+This will tell the server to pull the latest code, build it, and restart the server.
 
 --------------------------------------------------------------------------------
 
