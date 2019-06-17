@@ -7,6 +7,8 @@ import {FormControl, Validators} from '@angular/forms';
 })
 
 export class ContactComponent implements OnInit {
+  body = "";
+  subj = "";
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -16,5 +18,4 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   
   }
-
 }

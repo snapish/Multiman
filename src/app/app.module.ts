@@ -26,6 +26,7 @@ import {
   MatIconModule,
   MatCardModule
 } from '@angular/material';
+import { PatreonComponent } from './patreon/patreon.component';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import {
     AboutComponent,
 
 ContactComponent,
+
+PatreonComponent,
   ],
   imports: [
     NgxPayPalModule,

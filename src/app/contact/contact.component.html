@@ -11,7 +11,7 @@
 
 <!-- end of sender email -->
 <!-- subject -->
-  <select id="subject">
+  <select id="subject" [(ngModel)] = "subj">
 <option>Bug</option>
 <option>Feedback</option>
 <option>Other</option>
@@ -22,11 +22,11 @@ Subject Line
 
 <!-- end subject -->
 <!-- body -->
-<textarea id="body" style="resize: none;"></textarea>
+<textarea id="body" style="resize: none;" [(ngModel)] = "body"></textarea>
 <!-- end body -->
   </mat-card-content>
   <mat-card-actions>
-    <a href="mailto:snapish@ironman.gg" >Send</a>
+    <a (click) = "mail()"  id="a">Send</a>
     <button mat-button  (click) = "sendEmail()">Send</button>
   
   </mat-card-actions>
