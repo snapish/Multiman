@@ -17,13 +17,6 @@ export class MeleeComponent implements OnInit {
   toomanychars = [];
   disabledArray = [];
   public isCollapsed = true;
-
-  // playerAChars = new Set();
-  // playerBChars = new Set();
-  // playerCChars = new Set();
-  // playerDChars = new Set();
-  // disabledChars = new Set();
-  // overCharCount: boolean = false;
    checked: boolean = false;
   playerAShowCount: number;
   playerBShowCount: number;
@@ -50,10 +43,14 @@ export class MeleeComponent implements OnInit {
   }
 
   ngOnInit() {
+this.state.disabledChars.add(26);
+ this.delay(400).then( f => {document.getElementById("Free Space").style.opacity = "0.3";})
 
   }
 
-  
+   delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
   randomFill() {
 
