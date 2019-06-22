@@ -160,6 +160,20 @@ this.state.disabledChars.add(26);
     var max = 27;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
+  exclusiveRandom (exclusions) { // exclusions is an array of numbers which we don't want
+    // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
+    // because we'd never find a satisfying random number.
+    if (exclusions.length >= 27) throw Error('WARNING: avoiding infinite loop')
+    let result
+    do {
+      result = this.random()
+    } while (!exclusions.includes(result))
+    return result
+  }
+  addUnique (array, number) { // adds the number to array if not already there
+    if (!array.includes(number)) array.push(number)
+  }
+
 
   toggleChar(s: string) {
     for (let x of this.meleeChars) {
