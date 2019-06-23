@@ -7,7 +7,7 @@
 <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
 <!-- 9 columns 3 rows -->
 
-<div id="players" *ngIf="firstRoll" >
+<div id="players" *ngIf="state.playerAChars.length != 0 && state.playerBChars.length != 0 && state.playerCChars.length != 0 && state.playerDChars.length != 0 " >
   <!-- PLAYER A -->
     <mat-card id="player" >
         <mat-card-header>
@@ -16,6 +16,7 @@
     <div id="playerA">
       <!-- *ngFor="let item of items; let i=index" -->
         <div *ngFor="let i of state.playerAChars;let ind= index">
+          
          <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}} style="float: left" /></div>
         </div>
         <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
@@ -142,54 +143,29 @@
 </div>
 <br>
 <div style="padding-left: 46%"> 
-    <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 125px">
+    <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
     
       <mat-label style="color:white">Character Count</mat-label><br>
-      <select  style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
-        <option value="1">1</option>
-        <option value="1">2</option>
-        <option value="1">3</option>
-        <option value="1" >4</option>
-        <option value="1">5</option>
-        <option value="1">6</option>
-        <option value="1">7</option>
-        <option value="1">8</option>
-        <option value="1">9</option>
-        <option value="1">10</option>
-        <option value="1">11</option>
-        <option value="1">12</option>
-        <option value="1">13</option>
-        <option value="1">14</option>
-        <option value="1">15</option>
-        <option value="1">16</option>
-        <option value="1">17</option>
-        <option value="1">18</option>
-        <option value="1">19</option>
-        <option value="1">20</option>
-        <option value="1">21</option>
-        <option value="1">22</option>
-        <option value="1">23</option>
-        <option value="1">24</option>
-        <option value="1">25</option>
-        <option value="1" selected>26</option>
-        <option value="1">27</option>
+     <select  [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
+       <option *ngFor="let n of charnums" [value]= "n"> {{n}}</option>
       </select>
+
+
     </mat-form-field>
     <br>
-     <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 125px"> <br>
+     <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
       <mat-label style="color:white">Player Count</mat-label>
-      <select style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
-        <option value="1">1</option>
-        <option value="1" selected>2</option>
-        <option value="1">3</option>
-        <option value="1">4</option>
+      <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
+      <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
       </select>
     </mat-form-field>
     </div>
     <br>
 <br>
 
-</div><!-- <div id ="ttt">
+</div>
+  <button (click) =" updateState(state2)">test state update</button>
+<!-- <div id ="ttt">
   <img src="assets/melee_menu.png" usemap="#menu" >
     <map name = "menu" >
       <area shape="rect" coords="3, 12, 110, 110" (click) = "logTest('doc')" id="doc">

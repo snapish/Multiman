@@ -7,6 +7,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
   templateUrl: './melee.component.html',
   styleUrls: ['./melee.component.css']
 })
+
 export class MeleeComponent implements OnInit {
   image: string = "../assets/melee_menu.png"
   meleeChars = this.randomService.getMeleeChars();
@@ -14,21 +15,21 @@ export class MeleeComponent implements OnInit {
   firstRoll = false;
   playerCount;
   charCount;
-  toomanychars = [];
-  disabledArray = [];
   public isCollapsed = true;
   checked: boolean = false;
   playerAShowCount: number;
   playerBShowCount: number;
   playerCShowCount: number;
   playerDShowCount: number;
+  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+  playernums = [1, 2, 3, 4]
   state = {
     playerAChars: [],
     playerBChars: [],
     playerCChars: [],
     playerDChars: [],
-    playerCount: 0,
-    charCount: 0,
+    playerCount: 2,
+    charCount: 4,
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,
@@ -36,6 +37,24 @@ export class MeleeComponent implements OnInit {
     disabledChars: [],
     checked: this.checked,
     overCharCount: false
+  }
+  state2 = {
+    playerAChars: [this.meleeChars[0]],
+    playerBChars: [this.meleeChars[2]],
+    playerCChars: [this.meleeChars[5]],
+    playerDChars: [this.meleeChars[2]],
+    playerCount: 4,
+    charCount: 1,
+    playerAShowCount: 30,
+    playerBShowCount: 30,
+    playerCShowCount: 30,
+    playerDShowCount: 30,
+    disabledChars: [6],
+    checked: true,
+    overCharCount: false
+  }
+  onOptionsSelected(event) {
+    this.state.charCount = event;
   }
 
   constructor(private randomService: RandomService) {
@@ -186,7 +205,7 @@ export class MeleeComponent implements OnInit {
           console.log('added ' + x.name + " " + x.id)
           document.getElementById(x.name).style.opacity = "0.3";
           // console.log(this.disabledChars);
-           console.log(this.state.disabledChars )
+          console.log(this.state.disabledChars)
         }
         else {
 
@@ -198,16 +217,54 @@ export class MeleeComponent implements OnInit {
         }
       }
     }
- 
+
   }
-  removeFromArray(arr : Array<any>, num){
-    
-    return arr.filter(v => {v !== num} );
-    
+  removeFromArray(arr: Array<any>, num) {
+
+    return arr.filter(v => { v !== num });
+
   }
- 
+
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
+  updateState(newState) {
+    this.firstRoll = true;
+
+    this.state.playerAChars = newState.playerAChars;
+    this.state.playerBChars = newState.playerBChars;
+    this.state.playerCChars = newState.playerCChars;
+    this.state.playerDChars = newState.playerDChars;
+    this.state.checked = newState.checked;
+    this.state.disabledChars = newState.disabledChars;
+    this.state.playerAShowCount = newState.playerAShowCount;
+    this.state.playerBShowCount = newState.playerBShowCount;
+    this.state.playerCShowCount = newState.playerCShowCount;
+    this.state.playerDShowCount = newState.playerDShowCount;
+    this.state.overCharCount = newState.overCharCount;
+    this.state.charCount = newState.charCount;
+    this.state.playerCount = newState.playerCount;
+
+    this.updateOpacity()
+    console.log(newState.disabledChars)
+    console.log(this.state.disabledChars)
+
+  }
+  updateOpacity() {
+    for (let i of this.state.disabledChars) {
+      for (let v of this.meleeChars) {
+        if (v.id == i && document.getElementById(v.name).style.opacity != ".3") { 
+console.log("chanigng")
+        document.getElementById(v.name).style.opacity = ".3";
+        }
+      }
+    }
+    for (let p of this.meleeChars) {
+      if (!this.state.disabledChars.includes(p.id)) {
+        document.getElementById(p.name).style.opacity = "1";
+      }
+    }
+  }
+
 
 }
