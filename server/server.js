@@ -1,9 +1,15 @@
 const express = require('express')
 const WebSocket = require('ws')
 const http = require('http')
+const path = require('path')
+const router = require('./router.js')
 
 const conf = require('./conf.js')
 const app = express()
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.use(router)
 
 const server = http.createServer(app)
 const wss = new WebSocket.Server({ server })
@@ -18,14 +24,6 @@ function onMessage (sender, message) {
     ws.send(message)
   })
 }
-
-// this is where angular is configured to put the built files
-let buildDir = __dirname + '/../docs'
-app.use(express.static(buildDir))
-console.log('Serving files from ' + buildDir)
-
-// websockets example frontend
-// app.use('/example', express.static(__dirname + '/example'))
 
 server.listen(conf.port)
 console.log('Listening on ' + conf.port)

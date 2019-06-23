@@ -35,5 +35,20 @@
     firebase.initializeApp(config);
   </script>
 
+  <script>
+    // keep the session alive
+    var PING_INTERVAL = 1000 * 60 // 1m
+
+    setInterval(function () {
+      console.log('ping...')
+      fetch('/ping' + window.location.search, { method: 'POST' })
+        .then(response => {
+          if (response.ok) console.log('pong')
+          else console.error('ping failed')
+        })
+        .catch(err => console.error('Ping failed', err))
+    }, PING_INTERVAL)
+  </script>
+
 </body>
 </html>
