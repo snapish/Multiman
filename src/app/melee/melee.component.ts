@@ -17,23 +17,23 @@ export class MeleeComponent implements OnInit {
   toomanychars = [];
   disabledArray = [];
   public isCollapsed = true;
-   checked: boolean = false;
+  checked: boolean = false;
   playerAShowCount: number;
   playerBShowCount: number;
   playerCShowCount: number;
   playerDShowCount: number;
   state = {
-    playerAChars: new Set(),
-    playerBChars: new Set(),
-    playerCChars: new Set(),
-    playerDChars: new Set(),
+    playerAChars: [],
+    playerBChars: [],
+    playerCChars: [],
+    playerDChars: [],
     playerCount: 0,
     charCount: 0,
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,
     playerDShowCount: this.playerDShowCount,
-    disabledChars: new Set(),
+    disabledChars: [],
     checked: this.checked,
     overCharCount: false
   }
@@ -43,70 +43,86 @@ export class MeleeComponent implements OnInit {
   }
 
   ngOnInit() {
-this.state.disabledChars.add(26);
- this.delay(400).then( f => {document.getElementById("Free Space").style.opacity = "0.3";})
+    this.addUnique(this.state.disabledChars, 26);
+    //this.state.disabledChars.add(26);
+    this.delay(400).then(f => { document.getElementById("Free Space").style.opacity = "0.3"; })
 
   }
 
-   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
+    // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
+    // because we'd never find a satisfying random number.
+    if (exclusions.length >= 27) throw Error('WARNING: avoiding infinite loop')
+    let result
+    do {
+      result = this.random()
+    } while (!exclusions.includes(result))
+    return result
+  }
+
+  addUnique(array, number) { // adds the number to array if not already there
+    if (!array.includes(number)) array.push(number)
+  }
 
   randomFill() {
 
-    console.log(this.checked)
-    //if(== true )  
     this.firstRoll = true;
     this.state.charCount = ((document.getElementById("charCount")) as HTMLSelectElement).selectedIndex + 1; //set char count
     this.state.playerCount = ((document.getElementById("playerCount")) as HTMLSelectElement).selectedIndex + 1; //set the player count
-    this.state.playerAChars.clear();
-    this.state.playerBChars.clear(); //clear they shits
-    this.state.playerCChars.clear();
-    this.state.playerDChars.clear();
+    this.state.playerAChars = [];
+    this.state.playerBChars = []; //clear they shits
+    this.state.playerCChars = [];
+    this.state.playerDChars = [];
     this.state.overCharCount = false;
 
 
-    if (this.meleeChars.length - this.state.disabledChars.size + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count
-      while (this.state.playerAChars.size < this.state.charCount) { // while the set is not filled
+
+
+
+    if (this.meleeChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count
+      while (this.state.playerAChars.length < this.state.charCount) { // while the set is not filled
         var n = this.random();
         this.shuffle(this.meleeChars);
         for (let l of this.meleeChars) {
-          if (l.id == n && !this.state.disabledChars.has(l.id)) {
-            this.state.playerAChars.add(l);
+          if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+            this.addUnique(this.state.playerAChars, l);
           }
         }
       }
 
       if (this.state.playerCount >= 2) {
-        while (this.state.playerBChars.size < this.state.charCount) {
+        while (this.state.playerBChars.length < this.state.charCount) {
           var n = this.random();
           this.shuffle(this.meleeChars);
           for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.has(l.id)) {
-              this.state.playerBChars.add(l);
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerBChars, l);
             }
           }
         }
       }
 
       if (this.state.playerCount >= 3) {
-        while (this.state.playerCChars.size < this.state.charCount) {
+        while (this.state.playerCChars.length < this.state.charCount) {
           var n = this.random();
           this.shuffle(this.meleeChars);
           for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.has(l.id)) {
-              this.state.playerCChars.add(l);
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerCChars, l);
             }
           }
         }
       }
       if (this.state.playerCount == 4) {
-        while (this.state.playerDChars.size < this.state.charCount) {
+        while (this.state.playerDChars.length < this.state.charCount) {
           var n = this.random();
           this.shuffle(this.meleeChars);
           for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.has(l.id)) {
-              this.state.playerDChars.add(l);
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerDChars, l);
             }
           }
         }
@@ -133,25 +149,25 @@ this.state.disabledChars.add(26);
   }
 
   advancePlayerA() {
-    if (this.state.playerAShowCount < this.state.playerAChars.size) {
+    if (this.state.playerAShowCount < this.state.playerAChars.length) {
       this.state.playerAShowCount += 1;
     }
   }
 
   advancePlayerB() {
-    if (this.state.playerBShowCount < this.state.playerBChars.size) {
+    if (this.state.playerBShowCount < this.state.playerBChars.length) {
       this.state.playerBShowCount += 1;
     }
   }
 
   advancePlayerC() {
-    if (this.state.playerCShowCount < this.state.playerCChars.size) {
+    if (this.state.playerCShowCount < this.state.playerCChars.length) {
       this.state.playerCShowCount += 1;
     }
   }
 
   advancePlayerD() {
-    if (this.state.playerDShowCount < this.state.playerDChars.size) {
+    if (this.state.playerDShowCount < this.state.playerDChars.length) {
       this.state.playerDShowCount += 1;
     }
   }
@@ -160,44 +176,36 @@ this.state.disabledChars.add(26);
     var max = 27;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
-  exclusiveRandom (exclusions) { // exclusions is an array of numbers which we don't want
-    // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
-    // because we'd never find a satisfying random number.
-    if (exclusions.length >= 27) throw Error('WARNING: avoiding infinite loop')
-    let result
-    do {
-      result = this.random()
-    } while (!exclusions.includes(result))
-    return result
-  }
-  addUnique (array, number) { // adds the number to array if not already there
-    if (!array.includes(number)) array.push(number)
-  }
 
 
   toggleChar(s: string) {
     for (let x of this.meleeChars) {
       if (s == x.name) {
-        if (!this.state.disabledChars.has(x.id)) { //x.name previously 
-          this.state.disabledChars.add(x.id);
+        if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
+          this.state.disabledChars.push(x.id);
           console.log('added ' + x.name + " " + x.id)
           document.getElementById(x.name).style.opacity = "0.3";
           // console.log(this.disabledChars);
-          // console.log(this.disabledArray)
+           console.log(this.state.disabledChars )
         }
         else {
 
           document.getElementById(x.name).style.opacity = "1";
-          this.state.disabledChars.delete(x.id);
+          this.state.disabledChars = this.removeFromArray(this.state.disabledChars, x.id);
+          //this.state.disabledChars.(x.id);
           console.log('removed ' + x.name)
           console.log(this.state.disabledChars);
         }
       }
     }
-
-
+ 
   }
-
+  removeFromArray(arr : Array<any>, num){
+    
+    return arr.filter(v => {v !== num} );
+    
+  }
+ 
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
