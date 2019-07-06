@@ -22,6 +22,7 @@ export class MeleeComponent implements OnInit {
   playerCShowCount: number;
   playerDShowCount: number;
   charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+
   playernums = [1, 2, 3, 4]
   state = {
     playerAChars: [],
@@ -201,11 +202,15 @@ export class MeleeComponent implements OnInit {
     for (let x of this.meleeChars) {
       if (s == x.name) {
         if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
+          if(this.state.charCount + 1 < this.state.disabledChars.length){
+          this.state.charCount -=1;
+          } 
           this.state.disabledChars.push(x.id);
           console.log('added ' + x.name + " " + x.id)
           document.getElementById(x.name).style.opacity = "0.3";
+
           // console.log(this.disabledChars);
-          console.log(this.state.disabledChars)
+         // console.log(this.state.disabledChars)
         }
         else {
 
@@ -254,7 +259,6 @@ export class MeleeComponent implements OnInit {
     for (let i of this.state.disabledChars) {
       for (let v of this.meleeChars) {
         if (v.id == i && document.getElementById(v.name).style.opacity != ".3") { 
-console.log("chanigng")
         document.getElementById(v.name).style.opacity = ".3";
         }
       }
@@ -265,6 +269,13 @@ console.log("chanigng")
       }
     }
   }
-
+ showToggle(){
+    if(!this.state.checked){
+      this.state.playerAShowCount= 30;
+      this.state.playerBShowCount= 30;
+      this.state.playerCShowCount= 30;
+      this.state.playerDShowCount= 30;
+    }
+}
 
 }

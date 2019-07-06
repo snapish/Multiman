@@ -1,13 +1,14 @@
 <html>
   <body> 
    <!-- <div id="checkbox"><mat-checkbox>Hide Upcoming</mat-checkbox></div> -->
- <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" >Hide Upcoming Characters</mat-checkbox>
+ <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
   <div id="body">
     <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
 <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
 <!-- 9 columns 3 rows -->
 
-<div id="players" *ngIf="state.playerAChars.length != 0 && state.playerBChars.length != 0 && state.playerCChars.length != 0 && state.playerDChars.length != 0 " >
+<div id="players" *ngIf="state.playerAChars.length != 0 " >
+    
   <!-- PLAYER A -->
     <mat-card id="player" >
         <mat-card-header>
@@ -147,9 +148,9 @@
     
       <mat-label style="color:white">Character Count</mat-label><br>
      <select  [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
-       <option *ngFor="let n of charnums" [value]= "n"> {{n}}</option>
+       <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
       </select>
-
+<!--  | slice:0:27-state.disabledChars.length -->
 
     </mat-form-field>
     <br>
