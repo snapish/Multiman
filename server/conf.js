@@ -1,3 +1,5 @@
 module.exports = {
-  port: 8080
+  httpPort: 8080,
+  httpsPort: 8081,
+  sslDir: '/etc/letsencrypt/live/ironman.gg'
 }

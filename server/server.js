@@ -3,6 +3,8 @@ const WebSocket = require('ws')
 const http = require('http')
 const path = require('path')
 const router = require('./router.js')
+const https = require('https')
+const fs = require('fs')
 
 const conf = require('./conf.js')
 const app = express()
@@ -11,8 +13,12 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(router)
 
-const server = http.createServer(app)
-const wss = new WebSocket.Server({ server })
+const httpServer = http.createServer(app)
+const httpsServer = https.createServer({
+  key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
+  cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
+}, app)
+const wss = new WebSocket.Server({ server: httpServer })
 
 wss.on('connection', (ws) => {
   ws.on('message', (message) => onMessage(ws, message))
@@ -25,6 +31,8 @@ function onMessage (sender, message) {
   })
 }
 
-server.listen(conf.port)
-console.log('Listening on ' + conf.port)
-console.log('(ufw has been set up to redirect port 80 -> 8080)')
+httpServer.listen(conf.httpPort)
+httpsServer.listen(conf.httpsPort)
+console.log('http on ' + conf.httpPort)
+console.log('https on ' + conf.httpsPort)
+console.log('(ufw has been set up to redirect 80 and 443)')
