@@ -1,26 +1,25 @@
 <html>
   <body> 
    <!-- <div id="checkbox"><mat-checkbox>Hide Upcoming</mat-checkbox></div> -->
- <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
-  <div id="body">
-    <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
-<!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
-<!-- 9 columns 3 rows -->
-
-<div id="players" *ngIf="state.playerAChars.length != 0 " >
-    
-  <!-- PLAYER A -->
-    <mat-card id="player" >
-        <mat-card-header>
-            <mat-card-title style="color: red">Player 1</mat-card-title>
-            </mat-card-header>
-    <div id="playerA">
-      <!-- *ngFor="let item of items; let i=index" -->
-        <div *ngFor="let i of state.playerAChars;let ind= index">
-          
-         <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}} style="float: left" /></div>
-        </div>
-        <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
+   <div id="body">
+     <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
+     <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
+     <!-- 9 columns 3 rows -->
+     
+     <div id="players" *ngIf="state.playerAChars.length != 0 " >
+       
+       <!-- PLAYER A -->
+       <mat-card id="player" >
+         <mat-card-header>
+           <mat-card-title style="color: red">Player 1</mat-card-title>
+          </mat-card-header>
+          <div id="playerA">
+            <!-- *ngFor="let item of items; let i=index" -->
+            <div *ngFor="let i of state.playerAChars;let ind= index">
+              
+              <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}} style="float: left" /></div>
+            </div>
+            <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
         <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
@@ -28,23 +27,23 @@
           </div>
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
-             {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
-             </div>
+                  {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
+                </div>
+              </div>
             </div>
-    </div>
-  </mat-card>
-    <mat-card id="player"  *ngIf="state.playerCount >=2" >
-        <mat-card-header>
-            <mat-card-title style="color: mediumblue">Player 2</mat-card-title>
+          </mat-card>
+          <mat-card id="player"  *ngIf="state.playerCount >=2" >
+            <mat-card-header>
+              <mat-card-title style="color: mediumblue">Player 2</mat-card-title>
             </mat-card-header>
-
-
+            
+            
             <!-- playerB  -->
-    <div id="playerB">
-        <div *ngFor="let i of state.playerBChars; let ind = index">
-            <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}} style="float: left" /></div>
-                  </div>
-        <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerB() " class="charImg" style="-webkit-border-radius: 10px;
+            <div id="playerB">
+              <div *ngFor="let i of state.playerBChars; let ind = index">
+                <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}} style="float: left" /></div>
+              </div>
+              <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerB() " class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
         <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
@@ -52,22 +51,22 @@
           </div>   
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
-                 {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
-                 </div>
-    </div>
-  </mat-card>
-    <mat-card id="player"  *ngIf="state.playerCount >= 3" >
-        <mat-card-header>
-            <mat-card-title style="color: goldenrod">Player 3</mat-card-title>
-            </mat-card-header>
-
-
-            <!-- PLAYER C -->
-    <div id="playerC">
-        <div *ngFor="let i of state.playerCChars; let ind = index">
-            <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} style="float: left" /></div>
-                  </div>        
-        <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerC()" class="charImg" style="-webkit-border-radius: 10px;
+                  {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card id="player"  *ngIf="state.playerCount >= 3" >
+              <mat-card-header>
+                <mat-card-title style="color: goldenrod">Player 3</mat-card-title>
+              </mat-card-header>
+              
+              
+              <!-- PLAYER C -->
+              <div id="playerC">
+                <div *ngFor="let i of state.playerCChars; let ind = index">
+                  <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                </div>        
+                <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerC()" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;"></div>
         <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
@@ -75,102 +74,103 @@
           </div>
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
-                 {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
-                 </div>
-    </div>
-  </mat-card>
-    <mat-card id="player" *ngIf="state.playerCount == 4">
-        <mat-card-header>
-            <mat-card-title style="color: greenyellow">Player 4</mat-card-title>
-            </mat-card-header>
-    <div id="playerD">
-        <div *ngFor="let i of state.playerDChars; let ind = index">
-            <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}} style="float: left" /></div>
-                  </div>   
-        <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerD()" class="charImg" style=" -webkit-border-radius: 10px;
+                  {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card id="player" *ngIf="state.playerCount == 4">
+              <mat-card-header>
+                <mat-card-title style="color: greenyellow">Player 4</mat-card-title>
+              </mat-card-header>
+              <div id="playerD">
+                <div *ngFor="let i of state.playerDChars; let ind = index">
+                  <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                </div>   
+                <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerD()" class="charImg" style=" -webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
         <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center; ">
-         Too many characters disabled
+            Too many characters disabled
+          </div>
+          <div *ngIf="state.checked" style="color: white"> 
+              <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
+                  {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          
         </div>
-        <div *ngIf="state.checked" style="color: white"> 
-            <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
-          {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
-        </div>
-        </div>
-    </div>
-  </mat-card>
-  
-</div>
-<div style="padding-left: 21%">
-<table style="clear: left"> 
-    
-    <tr  style = "padding-left: 20%"> 
-        
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Dr. Mario" >  <img src="assets/meleeIcons/1.png" (click) = "toggleChar('Dr. Mario')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mario" >  <img src="assets/meleeIcons/2.png" (click) = "toggleChar('Mario')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi" > <img src="assets/meleeIcons/3.png" (click) = "toggleChar('Luigi')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser" > <img src="assets/meleeIcons/4.png" (click) = "toggleChar('Bowser')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Peach" > <img src="assets/meleeIcons/5.png" (click) = "toggleChar('Peach')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Yoshi" > <img src="assets/meleeIcons/6.png" (click) = "toggleChar('Yoshi')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" > <img src="assets/meleeIcons/7.png" (click) = "toggleChar('Donkey Kong')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Captain Falcon" > <img src="assets/meleeIcons/8.png" (click) = "toggleChar('Captain Falcon')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ganondorf" > <img src="assets/meleeIcons/9.png" (click) = "toggleChar('Ganondorf')" class="charImg"></div>
-    </tr>
-    <tr>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Falco" > <img src="assets/meleeIcons/10.png" (click) = "toggleChar('Falco')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Fox" > <img src="assets/meleeIcons/11.png" (click) = "toggleChar('Fox')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ness" > <img src="assets/meleeIcons/12.png" (click) = "toggleChar('Ness')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ice Climbers" > <img src="assets/meleeIcons/13.png" (click) = "toggleChar('Ice Climbers')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Kirby" > <img src="assets/meleeIcons/14.png" (click) = "toggleChar('Kirby')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Samus" >  <img src="assets/meleeIcons/15.png" (click) = "toggleChar('Samus')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zelda" > <img src="assets/meleeIcons/16.png" (click) = "toggleChar('Zelda')"class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Link" > <img src="assets/meleeIcons/17.png" (click) = "toggleChar('Link')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Young Link" > <img src="assets/meleeIcons/18.png" (click) = "toggleChar('Young Link')" class="charImg"></div>
-    </tr>
-    <tr>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/meleeIcons/freespace.png" (click) = "toggleChar('Free Space')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pichu" > <img src="assets/meleeIcons/19.png" (click) = "toggleChar('Pichu')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pikachu" > <img src="assets/meleeIcons/20.png" (click) = "toggleChar('Pikachu')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Jigglypuff" > <img src="assets/meleeIcons/21.png" (click) = "toggleChar('Jigglypuff')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mewtwo" > <img src="assets/meleeIcons/22.png" (click) = "toggleChar('Mewtwo')" class="charImg" ></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mr. GNW" > <img src="assets/meleeIcons/23.png" (click) = "toggleChar('Mr. GNW')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Marth" >  <img src="assets/meleeIcons/24.png" (click) = "toggleChar('Marth')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Roy" ><img src="assets/meleeIcons/25.png" (click) = "toggleChar('Roy')" class="charImg"></div>
-      <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sheik" > <img src="assets/meleeIcons/26.png" (click) = "toggleChar('Sheik')" class="charImg" ></div>
-    </tr>
-    
-  </table>
-</div>
-<br>
-<div style="padding-left: 46%"> 
-    <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
-    
-      <mat-label style="color:white">Character Count</mat-label><br>
-     <select  [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
-       <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
-      </select>
-<!--  | slice:0:27-state.disabledChars.length -->
-
-    </mat-form-field>
-    <br>
-     <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
-      <mat-label style="color:white">Player Count</mat-label>
-      <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
-      <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
-      </select>
-    </mat-form-field>
-    </div>
-    <br>
-<br>
-
-</div>
-  <button (click) =" updateState(state2)">test state update</button>
-<!-- <div id ="ttt">
-  <img src="assets/melee_menu.png" usemap="#menu" >
-    <map name = "menu" >
-      <area shape="rect" coords="3, 12, 110, 110" (click) = "logTest('doc')" id="doc">
-    </map>
-  </div> -->
-</body>
-</html>
+        <div style="padding-left: 21%">
+            <table style="clear: left"> 
+                
+                <tr  style = "padding-left: 20%"> 
+                    
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Dr. Mario" >  <img src="assets/meleeIcons/1.png" (click) = "toggleChar('Dr. Mario')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mario" >  <img src="assets/meleeIcons/2.png" (click) = "toggleChar('Mario')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi" > <img src="assets/meleeIcons/3.png" (click) = "toggleChar('Luigi')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser" > <img src="assets/meleeIcons/4.png" (click) = "toggleChar('Bowser')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Peach" > <img src="assets/meleeIcons/5.png" (click) = "toggleChar('Peach')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Yoshi" > <img src="assets/meleeIcons/6.png" (click) = "toggleChar('Yoshi')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" > <img src="assets/meleeIcons/7.png" (click) = "toggleChar('Donkey Kong')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Captain Falcon" > <img src="assets/meleeIcons/8.png" (click) = "toggleChar('Captain Falcon')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ganondorf" > <img src="assets/meleeIcons/9.png" (click) = "toggleChar('Ganondorf')" class="charImg"></div>
+                  </tr>
+                  <tr>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Falco" > <img src="assets/meleeIcons/10.png" (click) = "toggleChar('Falco')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Fox" > <img src="assets/meleeIcons/11.png" (click) = "toggleChar('Fox')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ness" > <img src="assets/meleeIcons/12.png" (click) = "toggleChar('Ness')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ice Climbers" > <img src="assets/meleeIcons/13.png" (click) = "toggleChar('Ice Climbers')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Kirby" > <img src="assets/meleeIcons/14.png" (click) = "toggleChar('Kirby')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Samus" >  <img src="assets/meleeIcons/15.png" (click) = "toggleChar('Samus')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zelda" > <img src="assets/meleeIcons/16.png" (click) = "toggleChar('Zelda')"class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Link" > <img src="assets/meleeIcons/17.png" (click) = "toggleChar('Link')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Young Link" > <img src="assets/meleeIcons/18.png" (click) = "toggleChar('Young Link')" class="charImg"></div>
+                  </tr>
+                  <tr>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/meleeIcons/freespace.png" (click) = "toggleChar('Free Space')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pichu" > <img src="assets/meleeIcons/19.png" (click) = "toggleChar('Pichu')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pikachu" > <img src="assets/meleeIcons/20.png" (click) = "toggleChar('Pikachu')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Jigglypuff" > <img src="assets/meleeIcons/21.png" (click) = "toggleChar('Jigglypuff')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mewtwo" > <img src="assets/meleeIcons/22.png" (click) = "toggleChar('Mewtwo')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mr. GNW" > <img src="assets/meleeIcons/23.png" (click) = "toggleChar('Mr. GNW')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Marth" >  <img src="assets/meleeIcons/24.png" (click) = "toggleChar('Marth')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Roy" ><img src="assets/meleeIcons/25.png" (click) = "toggleChar('Roy')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sheik" > <img src="assets/meleeIcons/26.png" (click) = "toggleChar('Sheik')" class="charImg" ></div>
+                  </tr>
+                  
+                </table>
+              </div>
+              <br>
+              <div style="padding-left: 46%"> 
+                  <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
+                      
+                      <mat-label style="color:white">Character Count</mat-label><br>
+                      <select (change) ="updateAvailableChars()" [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
+                          <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
+                        </select>
+                        <!--  | slice:0:27-state.disabledChars.length -->
+                        
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
+                        <mat-label style="color:white">Player Count</mat-label>
+                        <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
+                            <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
+                          </select>
+                        </mat-form-field>
+                      </div>
+                      <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
+                      <br>
+                      <br>
+                      
+                    </div>
+                    <!-- <button (click) =" updateState(state2)">test state update</button> -->
+                    <!-- <div id ="ttt">
+                      <img src="assets/melee_menu.png" usemap="#menu" >
+                      <map name = "menu" >
+                        <area shape="rect" coords="3, 12, 110, 110" (click) = "logTest('doc')" id="doc">
+                      </map>
+                    </div> -->
+                  </body>
+                  </html>

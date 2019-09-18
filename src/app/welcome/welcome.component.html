@@ -1,0 +1,19 @@
+<body>
+<div id = "welcome">
+<h3>
+  Welcome to Ironman.gg
+</h3>
+</div>
+<div id = "home"> <h5>home of random ironmans</h5></div>
+<div id="features">
+<mat-accordion style="width: 50%">
+  <mat-expansion-panel style="width: 50%">
+    <mat-expansion-panel-header >
+      Feature List
+    </mat-expansion-panel-header>
+    <li *ngFor="let item of featureList">{{item}}</li>
+    All of this can also be found in the "About" tab
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+</body>

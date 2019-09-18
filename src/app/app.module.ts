@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {
+  MatExpansionModule,
   MatButtonModule,
   MatMenuModule,
   MatToolbarModule,
@@ -27,6 +28,7 @@ import {
   MatCardModule
 } from '@angular/material';
 import { PatreonComponent } from './patreon/patreon.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { PatreonComponent } from './patreon/patreon.component';
 ContactComponent,
 
 PatreonComponent,
+
+WelcomeComponent,
   ],
   imports: [
     NgxPayPalModule,
@@ -52,6 +56,8 @@ PatreonComponent,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule,
+    MatExpansionModule
     //AngularFireModule.initializeApp(environment.config, 'database-project'),
     //AngularFirestoreModule,
     //AngularFireStorageModule

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RandomService } from '../random.service';
 import { HttpClient } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
+declare var $: any;
+
 @Component({
   selector: 'app-melee',
   templateUrl: './melee.component.html',
@@ -9,6 +11,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 })
 
 export class MeleeComponent implements OnInit {
+  
   image: string = "../assets/melee_menu.png"
   meleeChars = this.randomService.getMeleeChars();
   Opacity = "0.5";
@@ -54,20 +57,20 @@ export class MeleeComponent implements OnInit {
     checked: true,
     overCharCount: false
   }
-  onOptionsSelected(event) {
-    this.state.charCount = event;
-  }
-
+  
   constructor(private randomService: RandomService) {
     this.meleeChars = this.randomService.getMeleeChars();
   }
-
+  
   ngOnInit() {
     this.addUnique(this.state.disabledChars, 26);
     //this.state.disabledChars.add(26);
     this.delay(400).then(f => { document.getElementById("Free Space").style.opacity = "0.3"; })
-
+    
   }
+      onOptionsSelected(event) {
+        this.state.charCount = event;
+      }
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -97,10 +100,6 @@ export class MeleeComponent implements OnInit {
     this.state.playerCChars = [];
     this.state.playerDChars = [];
     this.state.overCharCount = false;
-
-
-
-
 
     if (this.meleeChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count
       while (this.state.playerAChars.length < this.state.charCount) { // while the set is not filled
@@ -167,7 +166,12 @@ export class MeleeComponent implements OnInit {
       this.state.overCharCount = true;
     }
   }
-
+  updateAvailableChars(){
+    $('#charcount')
+    if(27- this.state.disabledChars.length < this.state.charCount){
+      console.log($('#charcount').val())
+    }
+  }
   advancePlayerA() {
     if (this.state.playerAShowCount < this.state.playerAChars.length) {
       this.state.playerAShowCount += 1;
@@ -198,35 +202,32 @@ export class MeleeComponent implements OnInit {
   }
 
 
-  toggleChar(s: string) {
+  toggleChar(charName: string) {
     for (let x of this.meleeChars) {
-      if (s == x.name) {
+      if (charName == x.name) {
         if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
           if(this.state.charCount + 1 < this.state.disabledChars.length){
           this.state.charCount -=1;
           } 
           this.state.disabledChars.push(x.id);
           console.log('added ' + x.name + " " + x.id)
+          console.log(this.state.disabledChars)
           document.getElementById(x.name).style.opacity = "0.3";
 
           // console.log(this.disabledChars);
          // console.log(this.state.disabledChars)
         }
         else {
-
           document.getElementById(x.name).style.opacity = "1";
           this.state.disabledChars = this.removeFromArray(this.state.disabledChars, x.id);
-          //this.state.disabledChars.(x.id);
-          console.log('removed ' + x.name)
-          console.log(this.state.disabledChars);
         }
       }
     }
-
   }
-  removeFromArray(arr: Array<any>, num) {
 
-    return arr.filter(v => { v !== num });
+  removeFromArray(arr: Array<number>, num:number) {
+    var newArr = arr.filter(element => element != num)
+    return newArr
 
   }
 
