@@ -4,6 +4,10 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140779081-1"></script>
 <script>
+   if(!(window.location.href.startsWith("https"))){
+    document.location.replace('https://ironman.gg')
+    return
+  }
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
