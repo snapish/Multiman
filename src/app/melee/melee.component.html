@@ -1,8 +1,45 @@
 <html>
   <body> 
+      <mat-toolbar color="primary">
+          <span style="text-align: center; width: 25%"> 
+            <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
+           </span>
+          <hr width="1" size="50" style="margin:0%">
+        <span style="text-align: center; width: 25%"> 
+          <div style="font-size: 15px; display: inline-block">
+              <label>
+                  Character Count
+              </label>
+            </div>
+            <br>
+            
+          <select (change) ="updateAvailableChars()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" id="charCount" matNativeControl  >
+              <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
+            </select>
+          </span>
+          <hr width="1" size="50" style="margin:0%">
+          <span style="text-align: center; width: 25%">  
+            <div style="font-size: 15px; display: inline-block">
+                <label>
+                    Player Count
+                </label>
+              </div>
+              <br>
+           <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" matNativeControl id="playerCount">
+              <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
+            </select>
+
+            
+          </span>
+          <hr width="1" size="50" style="margin:0%">
+          <span style="text-align: center; width: 25%">                      
+            <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
+          </span>
+        </mat-toolbar>
+        <br>
    <!-- <div id="checkbox"><mat-checkbox>Hide Upcoming</mat-checkbox></div> -->
    <div id="body">
-     <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
+     <!-- <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button> -->
      <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
      <!-- 9 columns 3 rows -->
      
@@ -143,24 +180,24 @@
               </div>
               <br>
               <div style="padding-left: 46%"> 
-                  <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
+                  <!-- <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
                       
                       <mat-label style="color:white">Character Count</mat-label><br>
                       <select (change) ="updateAvailableChars()" [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
                           <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
-                        </select>
+                        </select> -->
                         <!--  | slice:0:27-state.disabledChars.length -->
                         
-                      </mat-form-field>
+                      <!-- </mat-form-field>
                       <br>
                       <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
                         <mat-label style="color:white">Player Count</mat-label>
                         <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
                             <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
                           </select>
-                        </mat-form-field>
+                        </mat-form-field> -->
                       </div>
-                      <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
+                      <!-- <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox> -->
                       <br>
                       <br>
                       
