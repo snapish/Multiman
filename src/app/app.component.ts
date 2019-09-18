@@ -10,9 +10,12 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  constructor(){    
   
+  constructor(){    
+  // if(!(window.location.href.startsWith("https"))){
+  //   document.location.replace('https://ironman.gg')
+  // }
+
   }
   title = 'Random Ironmans!';
   idx = 0;
