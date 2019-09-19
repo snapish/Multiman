@@ -1,16 +1,19 @@
-<mat-toolbar color="primary">
+<body>
+  <mat-toolbar color="primary">
     <mat-toolbar-row >
       <span style="padding-left: 45%; padding-right: 20%">{{ title }}</span>
       <span class="spacer"></span>
       <i class="material-icons">sentiment_satisfied_alt</i>
     </mat-toolbar-row>
-</mat-toolbar>
-<mat-tab-group [(selectedIndex)] ="idx" style="background-color: white">
-    <mat-tab label="Melee" index = "0"><app-melee></app-melee></mat-tab>
-    <mat-tab label="Ultimate" index="1" [disabled] = true></mat-tab>
-    <mat-tab label="About" index="2" ><app-about></app-about> </mat-tab>
-    <!-- <mat-tab label="welcome" index="3" ><app-welcome></app-welcome> </mat-tab> -->
+  </mat-toolbar>
+  <mat-tab-group [(selectedIndex)] ="idx" style="background-color: rgb(241, 241, 241)" mat-align-tabs="center">
+      <mat-tab label="Melee" index = "0"><app-melee></app-melee></mat-tab>
+      <mat-tab label="Ultimate" index="1" [disabled] = true></mat-tab>
+      <mat-tab label="About" index="2" ><app-about></app-about> </mat-tab>
+      <!-- <mat-tab label="welcome" index="3" ><app-welcome></app-welcome> </mat-tab> -->
+      
+      <!-- <mat-tab label="Contact" index="3" ><app-contact></app-contact> </mat-tab> -->
+      
+    </mat-tab-group>
+  </body>
     
-    <!-- <mat-tab label="Contact" index="3" ><app-contact></app-contact> </mat-tab> -->
-
-  </mat-tab-group>
