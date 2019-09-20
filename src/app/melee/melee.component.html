@@ -13,7 +13,7 @@
             </div>
             <br>
             
-          <select (change) ="updateAvailableChars()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" id="charCount" matNativeControl  >
+          <select  [(ngModel)]='state.charCount' (change) ="updateAvailableChars()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" id="charCount" matNativeControl  >
               <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
             </select>
           </span>
@@ -202,7 +202,7 @@
                       <br>
                       
                     </div>
-                    <button style="opacity: 0" (click) =" updateState(state)">test state update</button>
+                    <button style="opacity: 0" (click) =" updateState(state2)">test state update</button>
                     <!-- <div id ="ttt">
                       <img src="assets/melee_menu.png" usemap="#menu" >
                       <map name = "menu" >

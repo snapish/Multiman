@@ -48,12 +48,12 @@ export class MeleeComponent implements OnInit {
     playerCChars: [this.meleeChars[5]],
     playerDChars: [this.meleeChars[2]],
     playerCount: 4,
-    charCount: 1,
+    charCount: 4,
     playerAShowCount: 30,
     playerBShowCount: 30,
     playerCShowCount: 30,
     playerDShowCount: 30,
-    disabledChars: [6],
+    disabledChars: [6,5],
     checked: true,
     overCharCount: false
   }
@@ -252,8 +252,8 @@ export class MeleeComponent implements OnInit {
     this.state.playerCount = newState.playerCount;
 
     this.updateOpacity()
-    console.log(newState.disabledChars)
-    console.log(this.state.disabledChars)
+    console.log(newState.charCount)
+    console.log(this.state.charCount)
 
   }
   updateOpacity() {
