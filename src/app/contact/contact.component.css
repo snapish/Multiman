@@ -23,3 +23,9 @@
       width: 150px;
 
   }
+
+  body{
+    background-color: rgb(54, 70, 80);
+    
+    overflow: hidden
+  }
