@@ -101,13 +101,14 @@ export class MeleeComponent implements OnInit {
     this.state.playerDChars = [];
     this.state.overCharCount = false;
 
-    if (this.meleeChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count
+    if (this.meleeChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count. Rewording: if disabled chars is over char count
       while (this.state.playerAChars.length < this.state.charCount) { // while the set is not filled
         var n = this.random();
         this.shuffle(this.meleeChars);
         for (let l of this.meleeChars) {
           if (l.id == n && !this.state.disabledChars.includes(l.id)) {
             this.addUnique(this.state.playerAChars, l);
+          
           }
         }
       }
@@ -162,8 +163,13 @@ export class MeleeComponent implements OnInit {
       console.log(this.state.playerBChars)
     }
     else {
+      
+      //set the char count to the maximum and roll again
+      this.state.charCount = 27 - this.state.disabledChars.length
+      $('#charCount').val(this.state.charCount)
+      this.randomFill()
 
-      this.state.overCharCount = true;
+      //this.state.overCharCount = true;
     }
   }
   updateAvailableChars(){
