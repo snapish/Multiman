@@ -14,20 +14,33 @@ export class UltimateComponent implements OnInit {
   playerBShowCount: number;
   playerCShowCount: number;
   playerDShowCount: number;
+  playerEShowCount: number;
+  playerFShowCount: number;
+  playerGShowCount: number;
+  playerHShowCount: number;
   state = {
     playerAChars: [],
     playerBChars: [],
     playerCChars: [],
     playerDChars: [],
+    playerEChars: [],
+    playerFChars: [],
+    playerGChars: [],
+    playerHChars: [],
     playerCount: 2,
     charCount: 4,
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,
     playerDShowCount: this.playerDShowCount,
+    playerEShowCount: this.playerEShowCount,
+    playerFShowCount: this.playerFShowCount,
+    playerGShowCount: this.playerGShowCount,
+    playerHShowCount: this.playerHShowCount,
     disabledChars: [],
     checked: this.checked,
-    overCharCount: false
+    overCharCount: false,
+    dlcDisabled: false
   }
   constructor() { }
 
