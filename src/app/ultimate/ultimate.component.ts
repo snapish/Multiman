@@ -6,10 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ultimate.component.css']
 })
 export class UltimateComponent implements OnInit {
+  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80];
 
+  playernums = [1, 2, 3, 4,5,6,7,8]
+  checked: boolean = false;
+  playerAShowCount: number;
+  playerBShowCount: number;
+  playerCShowCount: number;
+  playerDShowCount: number;
+  state = {
+    playerAChars: [],
+    playerBChars: [],
+    playerCChars: [],
+    playerDChars: [],
+    playerCount: 2,
+    charCount: 4,
+    playerAShowCount: this.playerAShowCount,
+    playerBShowCount: this.playerBShowCount,
+    playerCShowCount: this.playerCShowCount,
+    playerDShowCount: this.playerDShowCount,
+    disabledChars: [],
+    checked: this.checked,
+    overCharCount: false
+  }
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

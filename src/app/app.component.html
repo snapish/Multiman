@@ -7,8 +7,8 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <mat-tab-group [(selectedIndex)] ="idx" style="background-color: rgb(241, 241, 241)" mat-align-tabs="center">
+      <mat-tab label="Ultimate" index="1" [disabled] = false> <app-ultimate></app-ultimate></mat-tab>
       <mat-tab label="Melee" index = "0"><app-melee></app-melee></mat-tab>
-      <mat-tab label="Ultimate" index="1" [disabled] = true></mat-tab>
       <mat-tab label="About" index="2" ><app-about></app-about> </mat-tab>
       <!-- <mat-tab label="welcome" index="3" ><app-welcome></app-welcome> </mat-tab> -->
       

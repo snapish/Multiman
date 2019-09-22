@@ -1,3 +1,268 @@
-<p>
-  ultimate works!
-</p>
+<html>
+  <body> 
+      <mat-toolbar color="primary">
+          <span style="text-align: center; width: 25%"> 
+            <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
+           </span>
+          <hr width="1" size="50" style="margin:0%">
+        <span style="text-align: center; width: 25%"> 
+          <div style="font-size: 15px; display: inline-block">
+              <label>
+                  Character Count
+              </label>
+            </div>
+            <br>
+            
+          <select  [(ngModel)]='state.charCount' (change) ="updateAvailableChars()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" id="charCount" matNativeControl  >
+              <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
+            </select>
+          </span>
+          <hr width="1" size="50" style="margin:0%">
+          <span style="text-align: center; width: 25%">  
+            <div style="font-size: 15px; display: inline-block">
+                <label>
+                    Player Count
+                </label>
+              </div>
+              <br>
+           <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" matNativeControl id="playerCount">
+              <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
+            </select>
+
+            
+          </span>
+          <hr width="1" size="50" style="margin:0%">
+          <span style="text-align: center; width: 25%">                      
+            <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
+          </span>
+        </mat-toolbar>
+        <br>
+  
+   <div id="body">   
+     <div id="players" *ngIf="state.playerAChars.length != 0 " >
+       
+       <!-- PLAYER A -->
+       <mat-card id="player" >
+         <mat-card-header>
+           <mat-card-title style="color: red; font-size: 20px; font-weight: bold" > Player 1 </mat-card-title>
+          </mat-card-header>
+          <div id="playerA">
+            <!-- *ngFor="let item of items; let i=index" -->
+            <div *ngFor="let i of state.playerAChars; let ind= index">
+              
+              <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}} style="float: left" /></div>
+            </div>
+            <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;" ></div>
+        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
+            Too many characters disabled
+          </div>
+          <div *ngIf="state.checked" style="color: white">
+              <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
+                  {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          <mat-card id="player"  *ngIf="state.playerCount >=2" >
+            <mat-card-header>
+              <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
+            </mat-card-header>
+            
+            
+            <!-- playerB  -->
+            <div id="playerB">
+              <div *ngFor="let i of state.playerBChars; let ind = index">
+                <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}} style="float: left" /></div>
+              </div>
+              <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerB() " class="charImg" style="-webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;" ></div>
+        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
+            Too many characters disabled
+          </div>   
+          <div *ngIf="state.checked" style="color: white">
+              <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
+                  {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card id="player"  *ngIf="state.playerCount >= 3" >
+              <mat-card-header>
+                <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
+              </mat-card-header>
+              
+              
+              <!-- PLAYER C -->
+              <div id="playerC">
+                <div *ngFor="let i of state.playerCChars; let ind = index">
+                  <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                </div>        
+                <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerC()" class="charImg" style="-webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;"></div>
+        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
+            Too many characters disabled
+          </div>
+          <div *ngIf="state.checked" style="color: white">
+              <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
+                  {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
+                </div>
+              </div>
+            </mat-card>
+            <mat-card id="player" *ngIf="state.playerCount == 4">
+              <mat-card-header>
+                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+              </mat-card-header>
+              <div id="playerD">
+                <div *ngFor="let i of state.playerDChars; let ind = index">
+                  <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                </div>   
+                <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerD()" class="charImg" style=" -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;" ></div>
+        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center; ">
+            Too many characters disabled
+         
+          </div>
+          <div *ngIf="state.checked" style="color: white"> 
+              <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
+                  {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
+                </div>
+              </div>
+            </div>
+          </mat-card>
+          
+        </div>
+        <div style="padding-left: 16.5% ">
+            <table style="clear: left"> 
+                
+                <tr  style = "padding-left: 20%"> 
+                    <!-- 12 acorss 5 down, 7 on bottom -->
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }"id="Mario" >  <img src="assets/ultimateIcons/1.jpeg" (click) = "toggleChar('Mario')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" >  <img src="assets/ultimateIcons/2.jpeg" (click) = "toggleChar('Donkey Kong')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Link" > <img src="assets/ultimateIcons/3.jpeg" (click) = "toggleChar('Link')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Samus" > <img src="assets/ultimateIcons/4.jpeg" (click) = "toggleChar('Samus')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Dark Samus" > <img src="assets/ultimateIcons/5.jpeg" (click) = "toggleChar('Dark Samus')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Yoshi" > <img src="assets/ultimateIcons/6.jpeg" (click) = "toggleChar('Yoshi')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Kirby" > <img src="assets/ultimateIcons/7.jpeg" (click) = "toggleChar('Kirby')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Fox" > <img src="assets/ultimateIcons/8.jpeg" (click) = "toggleChar('Fox')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Pikachu" > <img src="assets/ultimateIcons/9.jpeg" (click) = "toggleChar('Pikachu')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi"> <img src="assets/ultimateIcons/10.jpeg" (click) = "toggleChar('Luigi')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ness"> <img src="assets/ultimateIcons/11.jpeg" (click) = "toggleChar('Ness')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Captain Falcon"> <img src="assets/ultimateIcons/12.jpeg" (click) = "toggleChar('Captain Falcon')" class="charImg"> </div>
+
+
+                    <!-- <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id=" "> <img src="assets/ultimateIcons/.jpeg" (click) = "toggleChar('')" class="charImg"> </div> -->
+                  </tr>
+                  <tr>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Jigglypuff"> <img src="assets/ultimateIcons/13.jpeg" (click) = "toggleChar('Jigglypuff')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Peach"> <img src="assets/ultimateIcons/14.jpeg" (click) = "toggleChar('Peach')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Daisy"> <img src="assets/ultimateIcons/15.jpeg" (click) = "toggleChar('Daisy')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser"> <img src="assets/ultimateIcons/16.jpeg" (click) = "toggleChar('Bowser')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ice Climbers"> <img src="assets/ultimateIcons/17.jpeg" (click) = "toggleChar('Ice Climbers')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Sheik"> <img src="assets/ultimateIcons/18.jpeg" (click) = "toggleChar('Sheik')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Zelda"> <img src="assets/ultimateIcons/19.jpeg" (click) = "toggleChar('Zelda')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Dr. Mario"> <img src="assets/ultimateIcons/20.jpeg" (click) = "toggleChar('Dr. Mario')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Pichu"> <img src="assets/ultimateIcons/21.jpeg" (click) = "toggleChar('Pichu')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Falco"> <img src="assets/ultimateIcons/22.jpeg" (click) = "toggleChar('Falco')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Marth"> <img src="assets/ultimateIcons/23.jpeg" (click) = "toggleChar('Marth')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Lucina"> <img src="assets/ultimateIcons/24.jpeg" (click) = "toggleChar('Lucina')" class="charImg"> </div>
+                  </tr>
+                  <tr>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Young Link"> <img src="assets/ultimateIcons/25.jpeg" (click) = "toggleChar('Young Link')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ganondorf"> <img src="assets/ultimateIcons/26.jpeg" (click) = "toggleChar('Ganondorf')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mewtwo"> <img src="assets/ultimateIcons/27.jpeg" (click) = "toggleChar('Mewtwo')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Roy"> <img src="assets/ultimateIcons/28.jpeg" (click) = "toggleChar('Roy')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Chrom"> <img src="assets/ultimateIcons/29.jpeg" (click) = "toggleChar('Chrom')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="GNW"> <img src="assets/ultimateIcons/30.jpeg" (click) = "toggleChar('GNW')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Meta Knight"> <img src="assets/ultimateIcons/31.jpeg" (click) = "toggleChar('Meta Knight')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Pit"> <img src="assets/ultimateIcons/32.jpeg" (click) = "toggleChar('Pit')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Dark Pit"> <img src="assets/ultimateIcons/33.jpeg" (click) = "toggleChar('Dark Pit')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Zero Suit Zamus"> <img src="assets/ultimateIcons/34.jpeg" (click) = "toggleChar('Zero Suit Samus')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Wario"> <img src="assets/ultimateIcons/35.jpeg" (click) = "toggleChar('Wario')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Snake"> <img src="assets/ultimateIcons/36.jpeg" (click) = "toggleChar('Snake')" class="charImg"> </div>
+                  </tr>
+                  <tr>
+                      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ike"> <img src="assets/ultimateIcons/37.jpeg" (click) = "toggleChar('Ike')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Pokemon Trainer"> <img src="assets/ultimateIcons/38.jpeg" (click) = "toggleChar('Pokemon Trainer')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Diddy Kong"> <img src="assets/ultimateIcons/39.jpeg" (click) = "toggleChar('Diddy Kong')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Lucas"> <img src="assets/ultimateIcons/40.jpeg" (click) = "toggleChar('Lucas')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Sonic"> <img src="assets/ultimateIcons/41.jpeg" (click) = "toggleChar('Sonic')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="King Dedede"> <img src="assets/ultimateIcons/42.jpeg" (click) = "toggleChar('King Dedede')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Olimar"> <img src="assets/ultimateIcons/43.jpeg" (click) = "toggleChar('Olimar')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Lucario"> <img src="assets/ultimateIcons/44.jpeg" (click) = "toggleChar('Lucario')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="ROB"> <img src="assets/ultimateIcons/45.jpeg" (click) = "toggleChar('ROB')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Toon Link"> <img src="assets/ultimateIcons/46.jpeg" (click) = "toggleChar('Toon Link')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Wolf"> <img src="assets/ultimateIcons/47.jpeg" (click) = "toggleChar('Wolf')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Villager"> <img src="assets/ultimateIcons/48.jpeg" (click) = "toggleChar('Villager')" class="charImg"> </div>
+                  </tr>
+                  <tr>
+                      <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mega Man"> <img src="assets/ultimateIcons/49.jpeg" (click) = "toggleChar('Mega Man')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Wii Fit Trainer"> <img src="assets/ultimateIcons/50.jpeg" (click) = "toggleChar('Wii Fit Trainer')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Rosalina"> <img src="assets/ultimateIcons/51.jpeg" (click) = "toggleChar('Rosalina')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Little Mac"> <img src="assets/ultimateIcons/52.jpeg" (click) = "toggleChar('Little Mac')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Greninja"> <img src="assets/ultimateIcons/53.jpeg" (click) = "toggleChar('Greninja')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Palutena"> <img src="assets/ultimateIcons/54.jpeg" (click) = "toggleChar('Palutena')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Pac-Man"> <img src="assets/ultimateIcons/55.jpeg" (click) = "toggleChar('Pac-Man')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Robin"> <img src="assets/ultimateIcons/56.jpeg" (click) = "toggleChar('Robin')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Shulk"> <img src="assets/ultimateIcons/57.jpeg" (click) = "toggleChar('Shulk')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser Jr."> <img src="assets/ultimateIcons/58.jpeg" (click) = "toggleChar('Bowser Jr.')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Duck Hunt"> <img src="assets/ultimateIcons/59.jpeg" (click) = "toggleChar('Duck Hunt')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ryu"> <img src="assets/ultimateIcons/60.jpeg" (click) = "toggleChar('Ryu')" class="charImg"> </div>
+                  </tr>
+                  <tr>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ken"> <img src="assets/ultimateIcons/61.jpeg" (click) = "toggleChar('Ken')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Cloud"> <img src="assets/ultimateIcons/62.jpeg" (click) = "toggleChar('Cloud')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Corrin"> <img src="assets/ultimateIcons/63.jpeg" (click) = "toggleChar('Corrin')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bayonetta"> <img src="assets/ultimateIcons/64.jpeg" (click) = "toggleChar('Bayonetta')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Inkling"> <img src="assets/ultimateIcons/65.jpeg" (click) = "toggleChar('Inkling')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Ridley"> <img src="assets/ultimateIcons/66.jpeg" (click) = "toggleChar('Ridley')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Simon"> <img src="assets/ultimateIcons/67.jpeg" (click) = "toggleChar('Simon')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Richter"> <img src="assets/ultimateIcons/68.jpeg" (click) = "toggleChar('Richter')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="King K. Rool"> <img src="assets/ultimateIcons/69.jpeg" (click) = "toggleChar('King K. Rool')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Isabelle"> <img src="assets/ultimateIcons/70.jpeg" (click) = "toggleChar('Isabelle')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Incineroar"> <img src="assets/ultimateIcons/71.jpeg" (click) = "toggleChar('Incineroar')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Piranha Plant"> <img src="assets/ultimateIcons/72.jpeg" (click) = "toggleChar('Piranha Plant')" class="charImg"> </div>
+                  </tr>
+                  <tr style="text-align: center">
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Joker"> <img src="assets/ultimateIcons/73.jpeg" (click) = "toggleChar('Joker')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Hero"> <img src="assets/ultimateIcons/74.jpeg" (click) = "toggleChar('Hero')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Banjo"> <img src="assets/ultimateIcons/75.jpeg" (click) = "toggleChar('Banjo')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Brawler"> <img src="assets/ultimateIcons/76.jpeg" (click) = "toggleChar('Mii Bralwer')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Swordfighter"> <img src="assets/ultimateIcons/77.jpeg" (click) = "toggleChar('Mii Swordfighter')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Gunner"> <img src="assets/ultimateIcons/78.jpeg" (click) = "toggleChar('Mii Gunner')" class="charImg"> </div>
+                    
+                  </tr>
+                  
+                </table>
+              </div>
+              <br>
+              <div style="padding-left: 50%"> 
+                  <!-- <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
+                      
+                      <mat-label style="color:white">Character Count</mat-label><br>
+                      <select (change) ="updateAvailableChars()" [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
+                          <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
+                        </select> -->
+                        <!--  | slice:0:27-state.disabledChars.length -->
+                        
+                      <!-- </mat-form-field>
+                      <br>
+                      <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
+                        <mat-label style="color:white">Player Count</mat-label>
+                        <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
+                            <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
+                          </select>
+                        </mat-form-field> -->
+                      </div>
+                      <!-- <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox> -->
+                      <br>
+                      <br>
+                      
+                    </div>
+                    <button style="opacity: 0" (click) =" updateState(state2)">test state update</button>
+                   
+                  </body>
+                  </html>

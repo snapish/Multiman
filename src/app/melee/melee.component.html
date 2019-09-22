@@ -48,7 +48,7 @@
        <!-- PLAYER A -->
        <mat-card id="player" >
          <mat-card-header>
-           <mat-card-title style="color: red">Player 1</mat-card-title>
+           <mat-card-title style="color: red; font-size: 20px; font-weight: bold" > Player 1 </mat-card-title>
           </mat-card-header>
           <div id="playerA">
             <!-- *ngFor="let item of items; let i=index" -->
@@ -71,7 +71,7 @@
           </mat-card>
           <mat-card id="player"  *ngIf="state.playerCount >=2" >
             <mat-card-header>
-              <mat-card-title style="color: mediumblue">Player 2</mat-card-title>
+              <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
             </mat-card-header>
             
             
@@ -94,7 +94,7 @@
             </mat-card>
             <mat-card id="player"  *ngIf="state.playerCount >= 3" >
               <mat-card-header>
-                <mat-card-title style="color: goldenrod">Player 3</mat-card-title>
+                <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
               </mat-card-header>
               
               
@@ -117,7 +117,7 @@
             </mat-card>
             <mat-card id="player" *ngIf="state.playerCount == 4">
               <mat-card-header>
-                <mat-card-title style="color: greenyellow">Player 4</mat-card-title>
+                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
               </mat-card-header>
               <div id="playerD">
                 <div *ngFor="let i of state.playerDChars; let ind = index">
