@@ -59,9 +59,6 @@
             <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
-            Too many characters disabled
-          </div>
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
                   {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
@@ -69,13 +66,14 @@
               </div>
             </div>
           </mat-card>
+
+
+
+          <!-- playerB  -->
           <mat-card id="player"  *ngIf="state.playerCount >=2" >
             <mat-card-header>
               <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
-            </mat-card-header>
-            
-            
-            <!-- playerB  -->
+            </mat-card-header>  
             <div id="playerB">
               <div *ngFor="let i of state.playerBChars; let ind = index">
                 <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}} style="float: left" /></div>
@@ -83,22 +81,20 @@
               <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerB() " class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
-            Too many characters disabled
-          </div>   
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
                   {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
                 </div>
               </div>
             </mat-card>
+
+
+
+            <!-- PLAYER C -->
             <mat-card id="player"  *ngIf="state.playerCount >= 3" >
               <mat-card-header>
                 <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
               </mat-card-header>
-              
-              
-              <!-- PLAYER C -->
               <div id="playerC">
                 <div *ngFor="let i of state.playerCChars; let ind = index">
                   <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} style="float: left" /></div>
@@ -106,15 +102,16 @@
                 <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerC()" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;"></div>
-        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center">
-            Too many characters disabled
-          </div>
           <div *ngIf="state.checked" style="color: white">
               <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
                   {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
                 </div>
               </div>
             </mat-card>
+
+
+
+            <!-- player D -->
             <mat-card id="player" *ngIf="state.playerCount == 4">
               <mat-card-header>
                 <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
@@ -126,10 +123,6 @@
                 <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerD()" class="charImg" style=" -webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-        <div *ngIf="state.overCharCount" style="color: white; display: inline-block; text-align: center; ">
-            Too many characters disabled
-         
-          </div>
           <div *ngIf="state.checked" style="color: white"> 
               <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
                   {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining

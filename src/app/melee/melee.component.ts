@@ -13,7 +13,7 @@ declare var $: any;
 export class MeleeComponent implements OnInit {
   
   image: string = "../assets/melee_menu.png"
-  meleeChars = this.randomService.getMeleeChars();
+  meleeChars = []
   Opacity = "0.5";
   firstRoll = false;
   playerCount;

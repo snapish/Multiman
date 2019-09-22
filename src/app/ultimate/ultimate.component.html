@@ -44,6 +44,177 @@
         <br>
   
    <div id="body">   
+     
+      <div id="players" *ngIf="state.playerAChars.length != 0 " >
+       
+          <!-- PLAYER A -->
+          <mat-card id="player" >
+            <mat-card-header>
+              <mat-card-title style="color: red; font-size: 20px; font-weight: bold" > Player 1 </mat-card-title>
+             </mat-card-header>
+             <div id="playerA">
+               <!-- *ngFor="let item of items; let i=index" -->
+               <div *ngFor="let i of state.playerAChars;let ind= index">
+                 
+                 <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}} style="float: left" /></div>
+               </div>
+               <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerA()" class="charImg" style="-webkit-border-radius: 10px;
+             -moz-border-radius: 10px;
+             border-radius: 10px;" ></div>
+             <div *ngIf="state.checked" style="color: white">
+                 <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
+                     {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
+                   </div>
+                 </div>
+               </div>
+             </mat-card>
+   
+   
+   
+             <!-- playerB  -->
+             <mat-card id="player"  *ngIf="state.playerCount >=2" >
+               <mat-card-header>
+                 <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
+               </mat-card-header>  
+               <div id="playerB">
+                 <div *ngFor="let i of state.playerBChars; let ind = index">
+                   <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                 </div>
+                 <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerB() " class="charImg" style="-webkit-border-radius: 10px;
+             -moz-border-radius: 10px;
+             border-radius: 10px;" ></div>
+             <div *ngIf="state.checked" style="color: white">
+                 <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
+                     {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
+                   </div>
+                 </div>
+               </mat-card>
+   
+   
+   
+               <!-- PLAYER C -->
+               <mat-card id="player"  *ngIf="state.playerCount >= 3" >
+                 <mat-card-header>
+                   <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
+                 </mat-card-header>
+                 <div id="playerC">
+                   <div *ngFor="let i of state.playerCChars; let ind = index">
+                     <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                   </div>        
+                   <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerC()" class="charImg" style="-webkit-border-radius: 10px;
+             -moz-border-radius: 10px;
+             border-radius: 10px;"></div>
+             <div *ngIf="state.checked" style="color: white">
+                 <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
+                     {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
+                   </div>
+                 </div>
+               </mat-card>
+   
+   
+   
+               <!-- player D -->
+               <mat-card id="player" *ngIf="state.playerCount >= 4">
+                 <mat-card-header>
+                   <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+                 </mat-card-header>
+                 <div id="playerD">
+                   <div *ngFor="let i of state.playerDChars; let ind = index">
+                     <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                   </div>   
+                   <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerD()" class="charImg" style=" -webkit-border-radius: 10px;
+             -moz-border-radius: 10px;
+             border-radius: 10px;" ></div>
+             <div *ngIf="state.checked" style="color: white"> 
+                 <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
+                     {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
+                   </div>
+                 </div>
+               </div>
+             </mat-card>
+             
+                            <!-- player E -->
+                            <mat-card id="player" *ngIf="state.playerCount >= 5">
+                              <mat-card-header>
+                                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+                              </mat-card-header>
+                              <div id="playerE">
+                                <div *ngFor="let i of state.playerEChars; let ind = index">
+                                  <div *ngIf="ind <= state.playerEShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                                </div>   
+                                <div *ngIf="state.checked && (state.playerEChars.length - state.playerEShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerE()" class="charImg" style=" -webkit-border-radius: 10px;
+                          -moz-border-radius: 10px;
+                          border-radius: 10px;" ></div>
+                          <div *ngIf="state.checked" style="color: white"> 
+                              <div *ngIf=" (state.playerEChars.length - state.playerEShowCount - 1)  >= 1" style="color: white">
+                                  {{state.playerEChars.length - state.playerEShowCount - 1}} Remaining
+                                </div>
+                              </div>
+                            </div>
+                          </mat-card>
+                          
+             
+                            <!-- player F -->
+                            <mat-card id="player" *ngIf="state.playerCount >= 6">
+                              <mat-card-header>
+                                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+                              </mat-card-header>
+                              <div id="playerF">
+                                <div *ngFor="let i of state.playerFChars; let ind = index">
+                                  <div *ngIf="ind <= state.playerFShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                                </div>   
+                                <div *ngIf="state.checked && (state.playerFChars.length - state.playerFShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerF()" class="charImg" style=" -webkit-border-radius: 10px;
+                          -moz-border-radius: 10px;
+                          border-radius: 10px;" ></div>
+                          <div *ngIf="state.checked" style="color: white"> 
+                              <div *ngIf=" (state.playerFChars.length - state.playerFShowCount - 1)  >= 1" style="color: white">
+                                  {{state.playerFChars.length - state.playerFShowCount - 1}} Remaining
+                                </div>
+                              </div>
+                            </div>
+                          </mat-card>
+
+                            <!-- player g -->
+                            <mat-card id="player" *ngIf="state.playerCount >= 7">
+                              <mat-card-header>
+                                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+                              </mat-card-header>
+                              <div id="playerG">
+                                <div *ngFor="let i of state.playerGChars; let ind = index">
+                                  <div *ngIf="ind <= state.playerGShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                                </div>   
+                                <div *ngIf="state.checked && (state.playerGChars.length - state.playerGShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerG()" class="charImg" style=" -webkit-border-radius: 10px;
+                          -moz-border-radius: 10px;
+                          border-radius: 10px;" ></div>
+                          <div *ngIf="state.checked" style="color: white"> 
+                              <div *ngIf=" (state.playerGChars.length - state.playerGShowCount - 1)  >= 1" style="color: white">
+                                  {{state.playerGChars.length - state.playerGShowCount - 1}} Remaining
+                                </div>
+                              </div>
+                            </div>
+                          </mat-card>
+
+                            <!-- player h -->
+                            <mat-card id="player" *ngIf="state.playerCount >= 8">
+                              <mat-card-header>
+                                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
+                              </mat-card-header>
+                              <div id="playerH">
+                                <div *ngFor="let i of state.playerHChars; let ind = index">
+                                  <div *ngIf="ind <= state.playerHShowCount"> <img src = {{i.img}} style="float: left" /></div>
+                                </div>   
+                                <div *ngIf="state.checked && (state.playerHChars.length - state.playerHShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayerH()" class="charImg" style=" -webkit-border-radius: 10px;
+                          -moz-border-radius: 10px;
+                          border-radius: 10px;" ></div>
+                          <div *ngIf="state.checked" style="color: white"> 
+                              <div *ngIf=" (state.playerHChars.length - state.playerHShowCount - 1)  >= 1" style="color: white">
+                                  {{state.playerHChars.length - state.playerHShowCount - 1}} Remaining
+                                </div>
+                              </div>
+                            </div>
+                          </mat-card>
+                          
+            </div>
 
         <div style="padding-left: 16.5% ">
             <table style="clear: left"> 
