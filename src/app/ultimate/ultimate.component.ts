@@ -7,7 +7,7 @@ declare var $: any;
   styleUrls: ['./ultimate.component.css']
 })
 export class UltimateComponent implements OnInit {
-  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80];
+  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78];
   firstRoll = false;
   playernums = [1, 2, 3, 4,5,6,7,8]
   checked: boolean = false;
@@ -56,12 +56,39 @@ export class UltimateComponent implements OnInit {
     this.state.charCount = event;
   }
   random() {
-    var min = 0;
-    var max = 79;
+    var min = 27;
+    var max = 105; //char ids are fucked
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
-  
+  removeFromArray(arr: Array<number>, num:number) {
+    var newArr = arr.filter(element => element != num)
+    return newArr
+
+  }
+  toggleChar(charName: string) {
+    for (let x of this.ultimateChars) {
+      if (charName == x.name) { // run thru ult chars until it hits the one passed
+        if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
+          if(this.state.charCount + 1 < this.state.disabledChars.length){
+          this.state.charCount -=1;
+          } 
+          this.state.disabledChars.push(x.id);
+          console.log('added ' + x.name + " " + x.id)
+          console.log(this.state.disabledChars)
+          document.getElementById(x.name).style.opacity = "0.3";
+
+          // console.log(this.disabledChars);
+         // console.log(this.state.disabledChars)
+        }
+        else {
+          document.getElementById(x.name).style.opacity = "1";
+          this.state.disabledChars = this.removeFromArray(this.state.disabledChars, x.id);
+        }
+      }
+    }
+  }
+
   updateAvailableChars(){
     $('#charcount')
     if(78- this.state.disabledChars.length < this.state.charCount){
@@ -261,8 +288,19 @@ export class UltimateComponent implements OnInit {
       //set the char count to the maximum and roll again
       this.state.charCount = 78 - this.state.disabledChars.length
       $('#charCount').val(this.state.charCount)
-      console.log('lkjfadslkj')
       this.randomFill()
  }
+  }
+  showToggle(){
+    if(!this.state.checked){
+      this.state.playerAShowCount= 80;
+      this.state.playerBShowCount= 80;
+      this.state.playerCShowCount= 80;
+      this.state.playerDShowCount= 80;
+      this.state.playerEShowCount= 80;
+      this.state.playerFShowCount= 80;
+      this.state.playerGShowCount= 80;
+      this.state.playerHShowCount= 80;
+    }
   }
 }

@@ -173,7 +173,7 @@ export class RandomService {
     this.uMewtwo = new Character("Mewtwo", 51, "./assets/ultimateIcons/27.jpeg");
     this.uRoy = new Character("Roy", 52, "./assets/ultimateIcons/28.jpeg");
     this.Chrom = new Character("Chrom", 53, "./assets/ultimateIcons/29.jpeg");
-    this.uGNW = new Character("Mr. Game & Watch", 54, "./assets/ultimateIcons/30.jpeg");
+    this.uGNW = new Character("GNW", 54, "./assets/ultimateIcons/30.jpeg");
     this.MetaKnight = new Character("Meta Knight",55 , "./assets/ultimateIcons/31.jpeg");
     this.Pit = new Character("Pit", 56, "./assets/ultimateIcons/32.jpeg");
     this.DarkPit = new Character("Dark Pit",57, "./assets/ultimateIcons/33.jpeg");
@@ -196,11 +196,11 @@ export class RandomService {
     this.Villager = new Character("Villager", 72, "./assets/ultimateIcons/48.jpeg");
     this.MegaMan = new Character("Mega Man", 73, "./assets/ultimateIcons/49.jpeg");
     this.WiiFitTrainer = new Character("Wii Fit Trainer", 74, "./assets/ultimateIcons/50.jpeg");
-    this.RosalinaLuma = new Character("Rosalina & Luma", 75, "./assets/ultimateIcons/51.jpeg");
+    this.RosalinaLuma = new Character("Rosalina", 75, "./assets/ultimateIcons/51.jpeg");
     this.LittleMac = new Character("Little Mac", 76, "./assets/ultimateIcons/52.jpeg");
     this.Greninja = new Character("Greninja", 77, "./assets/ultimateIcons/53.jpeg");
     this.Palutena = new Character("Palutena", 78, "./assets/ultimateIcons/54.jpeg");
-    this.PacMan = new Character("PacMan", 79, "./assets/ultimateIcons/55.jpeg");
+    this.PacMan = new Character("Pac-Man", 79, "./assets/ultimateIcons/55.jpeg");
     this.Robin = new Character("Robin", 80, "./assets/ultimateIcons/56.jpeg");
     this.Shulk = new Character("Shulk", 81, "./assets/ultimateIcons/57.jpeg");
     this.BowserJr = new Character("Bowser Jr.", 82, "./assets/ultimateIcons/58.jpeg");
@@ -220,10 +220,10 @@ export class RandomService {
     this.MiiBrawler = new Character("Mii Brawler", 96, "./assets/ultimateIcons/76.jpeg");
     this.MiiSwordfighter= new Character("Mii Swordfighter", 97, "./assets/ultimateIcons/77.jpeg");
     this.MiiGunner = new Character("Mii Gunner", 98, "./assets/ultimateIcons/78.jpeg");
-    this.PiranhaPlant = new Character("Piranha Plant", 99, "./assets/ultimateIcons/72.jpeg")
-    this.Joker = new Character("Joker", 100, "./assets/ultimateIcons/73.jpeg")
-    this.Banjo = new Character("Banjo", 101, "./assets/ultimateIcons/75.jpeg")
-    this.Hero = new Character("Hero", 102, "./assets/ultimateIcons/74.jpeg")
+    this.PiranhaPlant = new Character("Piranha Plant", 101, "./assets/ultimateIcons/72.jpeg")
+    this.Joker = new Character("Joker", 102, "./assets/ultimateIcons/73.jpeg")
+    this.Banjo = new Character("Banjo", 103, "./assets/ultimateIcons/75.jpeg")
+    this.Hero = new Character("Hero", 104, "./assets/ultimateIcons/74.jpeg")
 
     //end of ultimate 2:47am
 

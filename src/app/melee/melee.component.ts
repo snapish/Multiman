@@ -242,7 +242,6 @@ export class MeleeComponent implements OnInit {
   }
   updateState(newState) {
     this.firstRoll = true;
-
     this.state.playerAChars = newState.playerAChars;
     this.state.playerBChars = newState.playerBChars;
     this.state.playerCChars = newState.playerCChars;
@@ -256,7 +255,6 @@ export class MeleeComponent implements OnInit {
     this.state.overCharCount = newState.overCharCount;
     this.state.charCount = newState.charCount;
     this.state.playerCount = newState.playerCount;
-
     this.updateOpacity()
     console.log(newState.charCount)
     console.log(this.state.charCount)
