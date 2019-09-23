@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomService } from '../random.service';
-
+declare var $: any;
 @Component({
   selector: 'app-ultimate',
   templateUrl: './ultimate.component.html',
@@ -49,7 +49,7 @@ export class UltimateComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.addUnique(this.state.disabledChars, 26);
+    //this.addUnique(this.state.disabledChars, 26);
     
   }
   onOptionsSelected(event) {
@@ -62,10 +62,59 @@ export class UltimateComponent implements OnInit {
   }
 
   
+  updateAvailableChars(){
+    $('#charcount')
+    if(78- this.state.disabledChars.length < this.state.charCount){
+      console.log($('#charcount').val())
+    }
+  }
+  advancePlayerA() {
+    if (this.state.playerAShowCount < this.state.playerAChars.length) {
+      this.state.playerAShowCount += 1;
+    }
+  }
+
+  advancePlayerB() {
+    if (this.state.playerBShowCount < this.state.playerBChars.length) {
+      this.state.playerBShowCount += 1;
+    }
+  }
+
+  advancePlayerC() {
+    if (this.state.playerCShowCount < this.state.playerCChars.length) {
+      this.state.playerCShowCount += 1;
+    }
+  }
+
+  advancePlayerD() {
+    if (this.state.playerDShowCount < this.state.playerDChars.length) {
+      this.state.playerDShowCount += 1;
+    }
+  }
+  advancePlayerE() {
+    if (this.state.playerEShowCount < this.state.playerEChars.length) {
+      this.state.playerEShowCount += 1;
+    }
+  }
+  advancePlayerF() {
+    if (this.state.playerFShowCount < this.state.playerFChars.length) {
+      this.state.playerFShowCount += 1;
+    }
+  }
+  advancePlayerG() {
+    if (this.state.playerGShowCount < this.state.playerGChars.length) {
+      this.state.playerGShowCount += 1;
+    }
+  }
+  advancePlayerH() {
+    if (this.state.playerHShowCount < this.state.playerHChars.length) {
+      this.state.playerHShowCount += 1;
+    }
+  }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
     // because we'd never find a satisfying random number.
-    if (exclusions.length >= 27) throw Error('WARNING: avoiding infinite loop')
+    if (exclusions.length >= 78) throw Error('WARNING: avoiding infinite loop')
     let result
     do {
       result = this.random()
@@ -76,7 +125,9 @@ export class UltimateComponent implements OnInit {
   addUnique(array, number) { // adds the number to array if not already there
     if (!array.includes(number)) array.push(number)
   }
-  
+  shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
   randomFill() {
 
     this.firstRoll = true;
@@ -95,11 +146,14 @@ export class UltimateComponent implements OnInit {
     if (this.ultimateChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count. Rewording: if disabled chars is over char count
       while (this.state.playerAChars.length < this.state.charCount) { // while the set is not filled
         var n = this.random();
+        console.log(this.state.charCount)
+        console.log(this.state.playerAChars.length)
         this.shuffle(this.ultimateChars);
         for (let l of this.ultimateChars) {
-          if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+       
+          if (l.id == n && !this.state.disabledChars.includes(l.id)  ) {
+            
             this.addUnique(this.state.playerAChars, l);
-          
           }
         }
       }
@@ -107,8 +161,8 @@ export class UltimateComponent implements OnInit {
       if (this.state.playerCount >= 2) {
         while (this.state.playerBChars.length < this.state.charCount) {
           var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
             if (l.id == n && !this.state.disabledChars.includes(l.id)) {
               this.addUnique(this.state.playerBChars, l);
             }
@@ -119,21 +173,65 @@ export class UltimateComponent implements OnInit {
       if (this.state.playerCount >= 3) {
         while (this.state.playerCChars.length < this.state.charCount) {
           var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
             if (l.id == n && !this.state.disabledChars.includes(l.id)) {
               this.addUnique(this.state.playerCChars, l);
             }
           }
         }
       }
-      if (this.state.playerCount == 4) {
+      if (this.state.playerCount >= 4) {
         while (this.state.playerDChars.length < this.state.charCount) {
           var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
             if (l.id == n && !this.state.disabledChars.includes(l.id)) {
               this.addUnique(this.state.playerDChars, l);
+            }
+          }
+        }
+      }
+      if (this.state.playerCount >= 5) {
+        while (this.state.playerEChars.length < this.state.charCount) {
+          var n = this.random();
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerEChars, l);
+            }
+          }
+        }
+      }
+      if (this.state.playerCount >= 6) {
+        while (this.state.playerFChars.length < this.state.charCount) {
+          var n = this.random();
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerFChars, l);
+            }
+          }
+        }
+      }
+      if (this.state.playerCount >= 7) {
+        while (this.state.playerGChars.length < this.state.charCount) {
+          var n = this.random();
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerGChars, l);
+            }
+          }
+        }
+      }
+      if (this.state.playerCount == 8) {
+        while (this.state.playerHChars.length < this.state.charCount) {
+          var n = this.random();
+          this.shuffle(this.ultimateChars);
+          for (let l of this.ultimateChars) {
+            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
+              this.addUnique(this.state.playerHChars, l);
             }
           }
         }
@@ -161,8 +259,9 @@ export class UltimateComponent implements OnInit {
     }
     else {      
       //set the char count to the maximum and roll again
-      this.state.charCount = 27 - this.state.disabledChars.length
+      this.state.charCount = 78 - this.state.disabledChars.length
       $('#charCount').val(this.state.charCount)
+      console.log('lkjfadslkj')
       this.randomFill()
  }
   }
