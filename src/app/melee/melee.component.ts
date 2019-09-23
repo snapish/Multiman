@@ -178,27 +178,31 @@ export class MeleeComponent implements OnInit {
       console.log($('#charcount').val())
     }
   }
-  advancePlayerA() {
-    if (this.state.playerAShowCount < this.state.playerAChars.length) {
-      this.state.playerAShowCount += 1;
-    }
-  }
-
-  advancePlayerB() {
-    if (this.state.playerBShowCount < this.state.playerBChars.length) {
-      this.state.playerBShowCount += 1;
-    }
-  }
-
-  advancePlayerC() {
-    if (this.state.playerCShowCount < this.state.playerCChars.length) {
-      this.state.playerCShowCount += 1;
-    }
-  }
-
-  advancePlayerD() {
-    if (this.state.playerDShowCount < this.state.playerDChars.length) {
-      this.state.playerDShowCount += 1;
+  advancePlayer(player: string){
+    switch (player) {
+      case 'A':
+          if (this.state.playerAShowCount < this.state.playerAChars.length) {
+            this.state.playerAShowCount += 1;
+          }
+        break;
+    
+      case 'B':
+          if (this.state.playerBShowCount < this.state.playerBChars.length) {
+            this.state.playerBShowCount += 1;
+          }
+        break;
+    
+      case 'C':
+          if (this.state.playerCShowCount < this.state.playerCChars.length) {
+            this.state.playerCShowCount += 1;
+          }
+        break;
+    
+      case 'D':
+          if (this.state.playerDShowCount < this.state.playerDChars.length) {
+            this.state.playerDShowCount += 1;
+          }
+        break;
     }
   }
   random() {

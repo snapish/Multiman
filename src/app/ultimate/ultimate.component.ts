@@ -21,6 +21,7 @@ export class UltimateComponent implements OnInit {
   playerHShowCount: number;
   ultimateChars= []
   state = {
+    version: "u",
     playerAChars: [],
     playerBChars: [],
     playerCChars: [],
@@ -66,20 +67,67 @@ export class UltimateComponent implements OnInit {
     return newArr
 
   }
+  toggleDLC(){
+    
+    if(this.state.dlcDisabled){
+     // for (let i = 0; i < this.state.disabledChars.length; i++) {
+
+       //if(this.state.disabledChars[i] == 101 || this.state.disabledChars[i] == 102 || this.state.disabledChars[i] == 103 || this.state.disabledChars[i] == 104 ){
+          if(!this.state.disabledChars.includes(101)){
+            this.toggleChar("Piranha Plant")
+          }
+          if(!this.state.disabledChars.includes(102)){
+            this.toggleChar("Joker")
+          }
+          if(!this.state.disabledChars.includes(103)){
+            this.toggleChar("Banjo")
+          }
+          if(!this.state.disabledChars.includes(104)){
+            this.toggleChar("Hero")
+          }
+       // }
+      //}
+    }
+    else{
+      if(this.state.disabledChars.includes(101)){
+        this.toggleChar("Piranha Plant")
+      }
+      if(this.state.disabledChars.includes(102)){
+        this.toggleChar("Joker")
+      }
+      if(this.state.disabledChars.includes(103)){
+        this.toggleChar("Banjo")
+      }
+      if(this.state.disabledChars.includes(104)){
+        this.toggleChar("Hero")
+      }
+    }
+  }
   toggleChar(charName: string) {
+    console.log(this.state.disabledChars.length)
     for (let x of this.ultimateChars) {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
-        if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
-          if(this.state.charCount + 1 < this.state.disabledChars.length){
-          this.state.charCount -=1;
-          } 
-          this.state.disabledChars.push(x.id);
-          console.log('added ' + x.name + " " + x.id)
-          console.log(this.state.disabledChars)
-          document.getElementById(x.name).style.opacity = "0.3";
 
-          // console.log(this.disabledChars);
-         // console.log(this.state.disabledChars)
+
+
+
+        if (!this.state.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
+          // console.log(this.state.disabledChars.length)
+          // console.log(this.state.disabledChars)
+          // if(this.state.charCount + 1 < this.state.disabledChars.length){
+          // this.state.charCount -=1;
+          // console.log('dsffds')
+
+
+
+
+
+
+          // } 
+          this.state.disabledChars.push(x.id);
+          // console.log('added ' + x.name + " " + x.id)
+          // console.log(this.state.disabledChars)
+          document.getElementById(x.name).style.opacity = "0.3";
         }
         else {
           document.getElementById(x.name).style.opacity = "1";
@@ -90,54 +138,64 @@ export class UltimateComponent implements OnInit {
   }
 
   updateAvailableChars(){
-    $('#charcount')
+    $('#charCount')
+    console.log(this.state.charCount)
     if(78- this.state.disabledChars.length < this.state.charCount){
-      console.log($('#charcount').val())
+      console.log($('#charCount').val())
     }
   }
-  advancePlayerA() {
-    if (this.state.playerAShowCount < this.state.playerAChars.length) {
-      this.state.playerAShowCount += 1;
+  advancePlayer(player: string){
+    switch (player) {
+      case 'A':
+          if (this.state.playerAShowCount < this.state.playerAChars.length) {
+            this.state.playerAShowCount += 1;
+          }
+        break;
+    
+      case 'B':
+          if (this.state.playerBShowCount < this.state.playerBChars.length) {
+            this.state.playerBShowCount += 1;
+          }
+        break;
+    
+      case 'C':
+          if (this.state.playerCShowCount < this.state.playerCChars.length) {
+            this.state.playerCShowCount += 1;
+          }
+        break;
+    
+      case 'D':
+          if (this.state.playerDShowCount < this.state.playerDChars.length) {
+            this.state.playerDShowCount += 1;
+          }
+        break;
+    
+      case 'E':
+          if (this.state.playerEShowCount < this.state.playerEChars.length) {
+            this.state.playerEShowCount += 1;
+          }
+        break;
+    
+      case 'F':
+          if (this.state.playerFShowCount < this.state.playerFChars.length) {
+            this.state.playerFShowCount += 1;
+          }
+        break;
+    
+      case 'G':
+          if (this.state.playerGShowCount < this.state.playerGChars.length) {
+            this.state.playerGShowCount += 1;
+          }
+        break;
+    
+      case 'H':
+          if (this.state.playerHShowCount < this.state.playerHChars.length) {
+            this.state.playerHShowCount += 1;
+          }
+        break;
     }
   }
-
-  advancePlayerB() {
-    if (this.state.playerBShowCount < this.state.playerBChars.length) {
-      this.state.playerBShowCount += 1;
-    }
-  }
-
-  advancePlayerC() {
-    if (this.state.playerCShowCount < this.state.playerCChars.length) {
-      this.state.playerCShowCount += 1;
-    }
-  }
-
-  advancePlayerD() {
-    if (this.state.playerDShowCount < this.state.playerDChars.length) {
-      this.state.playerDShowCount += 1;
-    }
-  }
-  advancePlayerE() {
-    if (this.state.playerEShowCount < this.state.playerEChars.length) {
-      this.state.playerEShowCount += 1;
-    }
-  }
-  advancePlayerF() {
-    if (this.state.playerFShowCount < this.state.playerFChars.length) {
-      this.state.playerFShowCount += 1;
-    }
-  }
-  advancePlayerG() {
-    if (this.state.playerGShowCount < this.state.playerGChars.length) {
-      this.state.playerGShowCount += 1;
-    }
-  }
-  advancePlayerH() {
-    if (this.state.playerHShowCount < this.state.playerHChars.length) {
-      this.state.playerHShowCount += 1;
-    }
-  }
+ 
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
     // because we'd never find a satisfying random number.
