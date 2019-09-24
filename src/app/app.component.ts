@@ -19,7 +19,11 @@ export class AppComponent {
   }
   title = 'Random Ironmans!';
   idx = 0;
- 
+  switchToMelee(event){
+
+    console.log('cock')
+    console.log(event)
+  }
  
 
 
