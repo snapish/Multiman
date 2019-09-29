@@ -14,15 +14,23 @@ app.set('view engine', 'ejs')
 app.use(router)
 
 const httpServer = http.createServer(app)
-const httpsServer = https.createServer({
-  key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
-  cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
-}, app)
 const wss = new WebSocket.Server({ server: httpServer })
-
 wss.on('connection', (ws) => {
   ws.on('message', (message) => onMessage(ws, message))
 })
+httpServer.listen(conf.httpPort)
+console.log('http on ' + conf.httpPort)
+
+try {
+  const httpsServer = https.createServer({
+    key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
+    cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
+  }, app)
+  httpsServer.listen(conf.httpsPort)
+  console.log('https on ' + conf.httpsPort)
+} catch (err) {
+  console.warn('Unable to serve HTTPS', err.message)
+}
 
 function onMessage (sender, message) {
   wss.clients.forEach((ws) => {
@@ -31,8 +39,4 @@ function onMessage (sender, message) {
   })
 }
 
-httpServer.listen(conf.httpPort)
-httpsServer.listen(conf.httpsPort)
-console.log('http on ' + conf.httpPort)
-console.log('https on ' + conf.httpsPort)
 console.log('(ufw has been set up to redirect 80 and 443)')
