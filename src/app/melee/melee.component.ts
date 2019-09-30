@@ -3,6 +3,8 @@ import { RandomService } from '../random.service';
 import { HttpClient } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
 declare var $: any;
+declare var ON_STATE_CHANGED: any;
+declare var PUSH_STATE: any;
 
 @Component({
   selector: 'app-melee',
@@ -11,7 +13,6 @@ declare var $: any;
 })
 
 export class MeleeComponent implements OnInit {
-  
   image: string = "../assets/melee_menu.png"
   meleeChars = []
   Opacity = "0.5";
@@ -42,31 +43,16 @@ export class MeleeComponent implements OnInit {
     checked: this.checked,
     overCharCount: false
   }
-  state2 = {
-    playerAChars: [this.meleeChars[0]],
-    playerBChars: [this.meleeChars[2]],
-    playerCChars: [this.meleeChars[5]],
-    playerDChars: [this.meleeChars[2]],
-    playerCount: 4,
-    charCount: 4,
-    playerAShowCount: 30,
-    playerBShowCount: 30,
-    playerCShowCount: 30,
-    playerDShowCount: 30,
-    disabledChars: [6,5],
-    checked: true,
-    overCharCount: false
-  }
-  
+
   constructor(private randomService: RandomService) {
     this.meleeChars = this.randomService.getMeleeChars();
+    ON_STATE_CHANGED = (state) => this.updateState(state)
   }
-  
+
   ngOnInit() {
     this.addUnique(this.state.disabledChars, 26);
     //this.state.disabledChars.add(26);
     this.delay(400).then(f => { document.getElementById("Free Space").style.opacity = "0.3"; })
-    
   }
       onOptionsSelected(event) {
         this.state.charCount = event;
@@ -108,7 +94,6 @@ export class MeleeComponent implements OnInit {
         for (let l of this.meleeChars) {
           if (l.id == n && !this.state.disabledChars.includes(l.id)) {
             this.addUnique(this.state.playerAChars, l);
-          
           }
         }
       }
@@ -163,7 +148,6 @@ export class MeleeComponent implements OnInit {
       console.log(this.state.playerBChars)
     }
     else {
-      
       //set the char count to the maximum and roll again
       this.state.charCount = 27 - this.state.disabledChars.length
       $('#charCount').val(this.state.charCount)
@@ -185,19 +169,16 @@ export class MeleeComponent implements OnInit {
             this.state.playerAShowCount += 1;
           }
         break;
-    
       case 'B':
           if (this.state.playerBShowCount < this.state.playerBChars.length) {
             this.state.playerBShowCount += 1;
           }
         break;
-    
       case 'C':
           if (this.state.playerCShowCount < this.state.playerCChars.length) {
             this.state.playerCShowCount += 1;
           }
         break;
-    
       case 'D':
           if (this.state.playerDShowCount < this.state.playerDChars.length) {
             this.state.playerDShowCount += 1;
@@ -215,10 +196,10 @@ export class MeleeComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.meleeChars) {
       if (charName == x.name) {
-        if (!this.state.disabledChars.includes(x.id)) { //x.name previously 
+        if (!this.state.disabledChars.includes(x.id)) { //x.name previously
           if(this.state.charCount + 1 < this.state.disabledChars.length){
-          this.state.charCount -=1;
-          } 
+            this.state.charCount -=1;
+          }
           this.state.disabledChars.push(x.id);
           console.log('added ' + x.name + " " + x.id)
           console.log(this.state.disabledChars)
@@ -233,6 +214,7 @@ export class MeleeComponent implements OnInit {
         }
       }
     }
+    PUSH_STATE(this.state)
   }
 
   removeFromArray(arr: Array<number>, num:number) {
@@ -267,8 +249,8 @@ export class MeleeComponent implements OnInit {
   updateOpacity() {
     for (let i of this.state.disabledChars) {
       for (let v of this.meleeChars) {
-        if (v.id == i && document.getElementById(v.name).style.opacity != ".3") { 
-        document.getElementById(v.name).style.opacity = ".3";
+        if (v.id == i && document.getElementById(v.name).style.opacity != ".3") {
+          document.getElementById(v.name).style.opacity = ".3";
         }
       }
     }
@@ -278,13 +260,12 @@ export class MeleeComponent implements OnInit {
       }
     }
   }
- showToggle(){
+  showToggle(){
     if(!this.state.checked){
       this.state.playerAShowCount= 30;
       this.state.playerBShowCount= 30;
       this.state.playerCShowCount= 30;
       this.state.playerDShowCount= 30;
     }
-}
-
+  }
 }

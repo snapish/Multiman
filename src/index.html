@@ -25,24 +25,10 @@
 </head>
 <body>
   <app-root></app-root>
-  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyC0BkaXOW5TNSUD5uPn_cF1_nIXVQxs4jw",
-      authDomain: "project-8c8ee.firebaseapp.com",
-      databaseURL: "https://project-8c8ee.firebaseio.com",
-      projectId: "project-8c8ee",
-      storageBucket: "project-8c8ee.appspot.com",
-      messagingSenderId: "722447847265"
-    };
-    firebase.initializeApp(config);
-  </script>
 
   <script>
     // keep the session alive
     var PING_INTERVAL = 1000 * 60 // 1m
-
     setInterval(function () {
       console.log('ping...')
       fetch('/ping' + window.location.search, { method: 'POST' })
@@ -54,5 +40,25 @@
     }, PING_INTERVAL)
   </script>
 
+  <script>
+    // globals
+    //var SESSION
+    var PUSH_STATE
+    var ON_STATE_CHANGED
+
+    var _ws = new WebSocket('ws://' + window.location.host + window.location.search)
+    _ws.onmessage = function(event) {
+      if (typeof ON_STATE_CHANGED === 'function') {
+        ON_STATE_CHANGED(JSON.parse(event.data))
+      }
+    }
+
+    //SESSION = new URLSearchParams(window.location.search).get('session')
+    ON_STATE_CHANGED = function (state) { /* default no op */ }
+    PUSH_STATE = function(state) {
+      _ws.send(JSON.stringify(state))
+    }
+
+  </script>
 </body>
 </html>
