@@ -7,7 +7,7 @@ cd "$(dirname $0)"
 npm run ng serve &
 ngPID=$!
 
-node server/server.js &
+./server/node_modules/.bin/nodemon server/server.js &
 nodePID=$!
 
 wait $ngPID $nodePID
