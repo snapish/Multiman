@@ -3,7 +3,8 @@ import { RandomService } from '../random.service';
 import { HttpClient } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
 declare var $: any;
-declare var WS: any;
+declare var ON_STATE_CHANGED: any;
+declare var PUSH_STATE: any;
 
 @Component({
   selector: 'app-melee',
@@ -42,27 +43,10 @@ export class MeleeComponent implements OnInit {
     checked: this.checked,
     overCharCount: false
   }
-  state2 = {
-    playerAChars: [this.meleeChars[0]],
-    playerBChars: [this.meleeChars[2]],
-    playerCChars: [this.meleeChars[5]],
-    playerDChars: [this.meleeChars[2]],
-    playerCount: 4,
-    charCount: 4,
-    playerAShowCount: 30,
-    playerBShowCount: 30,
-    playerCShowCount: 30,
-    playerDShowCount: 30,
-    disabledChars: [6,5],
-    checked: true,
-    overCharCount: false
-  }
 
   constructor(private randomService: RandomService) {
     this.meleeChars = this.randomService.getMeleeChars();
-    WS.onmessage = (event) => {
-      this.updateState(JSON.parse(event.data))
-    }
+    ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 
   ngOnInit() {
@@ -230,7 +214,7 @@ export class MeleeComponent implements OnInit {
         }
       }
     }
-    this.pushState()
+    PUSH_STATE(this.state)
   }
 
   removeFromArray(arr: Array<number>, num:number) {
@@ -283,9 +267,5 @@ export class MeleeComponent implements OnInit {
       this.state.playerCShowCount= 30;
       this.state.playerDShowCount= 30;
     }
-  }
-
-  pushState() {
-    WS.send(JSON.stringify(this.state))
   }
 }

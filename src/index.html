@@ -41,7 +41,24 @@
   </script>
 
   <script>
-    var WS = new WebSocket('ws://' + window.location.host)
+    // globals
+    //var SESSION
+    var PUSH_STATE
+    var ON_STATE_CHANGED
+
+    var _ws = new WebSocket('ws://' + window.location.host + window.location.search)
+    _ws.onmessage = function(event) {
+      if (typeof ON_STATE_CHANGED === 'function') {
+        ON_STATE_CHANGED(JSON.parse(event.data))
+      }
+    }
+
+    //SESSION = new URLSearchParams(window.location.search).get('session')
+    ON_STATE_CHANGED = function (state) { /* default no op */ }
+    PUSH_STATE = function(state) {
+      _ws.send(JSON.stringify(state))
+    }
+
   </script>
 </body>
 </html>

@@ -5,6 +5,7 @@ const path = require('path')
 const router = require('./router.js')
 const https = require('https')
 const fs = require('fs')
+const url = require('url')
 
 const conf = require('./conf.js')
 const app = express()
@@ -15,9 +16,7 @@ app.use(router)
 
 const httpServer = http.createServer(app)
 const wss = new WebSocket.Server({ server: httpServer })
-wss.on('connection', (ws) => {
-  ws.on('message', (message) => onMessage(ws, message))
-})
+wss.on('connection', onConnect)
 httpServer.listen(conf.httpPort)
 console.log('http on ' + conf.httpPort)
 
@@ -33,10 +32,21 @@ try {
 }
 
 function onMessage (sender, message) {
+  //console.log('receieved message', message)
   wss.clients.forEach((ws) => {
     if (ws === sender) return
+    if (sender.multiman_session !== ws.multiman_session) return
     ws.send(message)
   })
+}
+
+function onConnect(ws, req) {
+  const session = url.parse(req.url, true, true).query.session
+  if (!session) {
+    return console.warn('No session on ws connection', req.url)
+  }
+  ws.multiman_session = session
+  ws.on('message', (message) => onMessage(ws, message))
 }
 
 console.log('(ufw has been set up to redirect 80 and 443)')
