@@ -9,7 +9,8 @@ declare var PUSH_STATE: any;
 @Component({
   selector: 'app-melee',
   templateUrl: './melee.component.html',
-  styleUrls: ['./melee.component.css']
+  styleUrls: ['./melee.component.css'],
+
 })
 
 export class MeleeComponent implements OnInit {
@@ -233,6 +234,7 @@ pushState(){
     array.sort(() => Math.random() - 0.5);
   }
   updateState(newState) {
+    console.log('got new state: ' , newState)
     this.firstRoll = true;
     this.state.playerAChars = newState.playerAChars;
     this.state.playerBChars = newState.playerBChars;
@@ -248,9 +250,8 @@ pushState(){
     this.state.charCount = newState.charCount;
     this.state.playerCount = newState.playerCount;
     this.updateOpacity()
-    console.log(newState.charCount)
-    console.log(this.state.charCount)
 
+    //repaint broswer 
   }
   updateOpacity() {
     for (let i of this.state.disabledChars) {

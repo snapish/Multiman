@@ -25,6 +25,8 @@ try {
     key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
     cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
   }, app)
+  const swss = new WebSocket.Server({ server: httpServer })
+  swss.on('connection', onConnect)
   httpsServer.listen(conf.httpsPort)
   console.log('https on ' + conf.httpsPort)
 } catch (err) {
