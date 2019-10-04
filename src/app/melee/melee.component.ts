@@ -49,7 +49,9 @@ export class MeleeComponent implements OnInit {
     this.meleeChars = this.randomService.getMeleeChars();
     ON_STATE_CHANGED = (state) => this.updateState(state)
   }
-
+pushState(){
+  PUSH_STATE(this.state)
+}
   ngOnInit() {
     this.addUnique(this.state.disabledChars, 26);
     //this.state.disabledChars.add(26);
