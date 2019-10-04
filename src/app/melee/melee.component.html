@@ -25,7 +25,7 @@
                 </label>
               </div>
               <br>
-           <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" matNativeControl id="playerCount">
+           <select  [(ngModel)]='state.playerCount' (change) = "PUSH_STATE(this.state)" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" matNativeControl id="playerCount">
               <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
             </select>
 

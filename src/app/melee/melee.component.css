@@ -20,6 +20,8 @@ table{
 img{-webkit-user-drag: none;
     height: 125px;
     width: 125px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 .page{
     overflow:hidden;
@@ -43,14 +45,6 @@ img{-webkit-user-drag: none;
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
-
-  img{
-
-	cursor: pointer;
-    /*padding: 10px;*/
-   /* border:1px solid #fff;*/
-  
-}
 
 /* img:hover{
     -webkit-border-radius: 10px;

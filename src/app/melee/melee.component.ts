@@ -29,6 +29,7 @@ export class MeleeComponent implements OnInit {
 
   playernums = [1, 2, 3, 4]
   state = {
+    version: "m",
     playerAChars: [],
     playerBChars: [],
     playerCChars: [],
@@ -77,7 +78,7 @@ export class MeleeComponent implements OnInit {
   }
 
   randomFill() {
-
+    PUSH_STATE(this.state)
     this.firstRoll = true;
     this.state.charCount = ((document.getElementById("charCount")) as HTMLSelectElement).selectedIndex + 1; //set char count
     this.state.playerCount = ((document.getElementById("playerCount")) as HTMLSelectElement).selectedIndex + 1; //set the player count
@@ -155,12 +156,14 @@ export class MeleeComponent implements OnInit {
 
       //this.state.overCharCount = true;
     }
+    PUSH_STATE(this.state)
   }
   updateAvailableChars(){
     $('#charcount')
     if(27- this.state.disabledChars.length < this.state.charCount){
       console.log($('#charcount').val())
     }
+    PUSH_STATE(this.state)
   }
   advancePlayer(player: string){
     switch (player) {
@@ -185,6 +188,7 @@ export class MeleeComponent implements OnInit {
           }
         break;
     }
+   PUSH_STATE(this.state)
   }
   random() {
     var min = 0;
@@ -197,9 +201,9 @@ export class MeleeComponent implements OnInit {
     for (let x of this.meleeChars) {
       if (charName == x.name) {
         if (!this.state.disabledChars.includes(x.id)) { //x.name previously
-          if(this.state.charCount + 1 < this.state.disabledChars.length){
-            this.state.charCount -=1;
-          }
+          // if(this.state.charCount + 1 < this.state.disabledChars.length){
+          //   this.state.charCount -=1;
+          // }
           this.state.disabledChars.push(x.id);
           console.log('added ' + x.name + " " + x.id)
           console.log(this.state.disabledChars)
@@ -267,5 +271,6 @@ export class MeleeComponent implements OnInit {
       this.state.playerCShowCount= 30;
       this.state.playerDShowCount= 30;
     }
+    PUSH_STATE(this.state)
   }
 }
