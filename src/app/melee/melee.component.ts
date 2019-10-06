@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { RandomService } from '../random.service';
 import { HttpClient } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -46,8 +46,9 @@ export class MeleeComponent implements OnInit {
     overCharCount: false
   }
 
-  constructor(private randomService: RandomService) {
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef) {
     this.meleeChars = this.randomService.getMeleeChars();
+    
     ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 pushState(){
@@ -208,8 +209,8 @@ pushState(){
           //   this.state.charCount -=1;
           // }
           this.state.disabledChars.push(x.id);
-          console.log('added ' + x.name + " " + x.id)
-          console.log(this.state.disabledChars)
+          //console.log('added ' + x.name + " " + x.id)
+          //console.log(this.state.disabledChars)
           document.getElementById(x.name).style.opacity = "0.3";
 
           // console.log(this.disabledChars);
@@ -250,7 +251,8 @@ pushState(){
     this.state.charCount = newState.charCount;
     this.state.playerCount = newState.playerCount;
     this.updateOpacity()
-
+    this.changeRef.tick();
+    console.log(this.changeRef.tick())
     //repaint broswer 
   }
   updateOpacity() {
