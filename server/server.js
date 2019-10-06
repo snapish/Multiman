@@ -1,7 +1,6 @@
-//10/5/19 - any lines with a // after them are lines i changed http to https
 const express = require('express')
 const WebSocket = require('ws')
-//const http = require('http')
+const http = require('http')
 const path = require('path')
 const router = require('./router.js')
 const https = require('https')
@@ -15,11 +14,11 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(router)
 
-const httpsServer = https.createServer(app) //
-const wss = new WebSocket.Server({ server: httpsServer })//
+const httpServer = http.createServer(app)
+const wss = new WebSocket.Server({ server: httpServer })
 wss.on('connection', onConnect)
-httpsServer.listen(conf.httpsPort)//
-console.log('https on ' + conf.httpsPort)//
+httpServer.listen(conf.httpPort)
+console.log('http on ' + conf.httpPort)
 
 try {
   const httpsServer = https.createServer({
