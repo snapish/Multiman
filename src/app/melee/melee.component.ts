@@ -52,7 +52,12 @@ export class MeleeComponent implements OnInit {
     ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 pushState(){
-  PUSH_STATE(this.state)
+  try{
+    PUSH_STATE(this.state)
+  }
+  catch{
+    console.log("uh oh stinky")
+  }
 }
   ngOnInit() {
     this.addUnique(this.state.disabledChars, 26);
@@ -82,7 +87,7 @@ pushState(){
   }
 
   randomFill() {
-    PUSH_STATE(this.state)
+  this.pushState()
     this.firstRoll = true;
     this.state.charCount = ((document.getElementById("charCount")) as HTMLSelectElement).selectedIndex + 1; //set char count
     this.state.playerCount = ((document.getElementById("playerCount")) as HTMLSelectElement).selectedIndex + 1; //set the player count
@@ -160,14 +165,14 @@ pushState(){
 
       //this.state.overCharCount = true;
     }
-    PUSH_STATE(this.state)
+    this.pushState()
   }
   updateAvailableChars(){
     $('#charcount')
     if(27- this.state.disabledChars.length < this.state.charCount){
       console.log($('#charcount').val())
     }
-    PUSH_STATE(this.state)
+    this.pushState()
   }
   advancePlayer(player: string){
     switch (player) {
@@ -192,7 +197,7 @@ pushState(){
           }
         break;
     }
-   PUSH_STATE(this.state)
+    this.pushState()
   }
   random() {
     var min = 0;
@@ -222,7 +227,7 @@ pushState(){
         }
       }
     }
-    PUSH_STATE(this.state)
+    this.pushState()
   }
 
   removeFromArray(arr: Array<number>, num:number) {
@@ -276,6 +281,6 @@ pushState(){
       this.state.playerCShowCount= 30;
       this.state.playerDShowCount= 30;
     }
-    PUSH_STATE(this.state)
+    this.pushState()
   }
 }
