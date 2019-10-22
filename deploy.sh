@@ -4,6 +4,9 @@ set -e
 # make sure we're executing commands from project directory
 cd "$(dirname $0)"
 
+#point to master
+#git checkout master
+
 # pull latest code
 git pull origin master
 

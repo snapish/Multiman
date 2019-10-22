@@ -1,7 +1,16 @@
 #players{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
+    justify-content: center; */
+}
+.container{
+    display: flex;
+    /* flex-direction: row; */
     justify-content: center;
+    flex-wrap: wrap;
+   
+    
+  
 }
 #player{
     width: 47%; 
