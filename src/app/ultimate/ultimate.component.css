@@ -27,10 +27,12 @@ img{-webkit-user-drag: none;
     overflow:hidden;
 }
 
-/* .flex-container {
-    display: flex; 
-    flex-direction: row;
-  } */
+.container{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
   select{
     text-align-last:center;

@@ -14,7 +14,7 @@ export class AppComponent {
   // }
 
   }
-  title = 'Random Ironmans!';
+
   idx = 0;
   switchToMelee(event){
 

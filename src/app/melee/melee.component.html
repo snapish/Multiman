@@ -1,8 +1,10 @@
 <html>
   <body> 
       <mat-toolbar color="primary">
-          <span style="text-align: center; width: 25%"> 
-            <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button>
+          <span style="text-align: center; width: 25%;"> 
+            <button mat-raised-button (click) = "randomFill()" style="display: inline; font-size: 18px">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll Characters&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            </button>
            </span>
           <hr width="1" size="50" style="margin:0%">
         <span style="text-align: center; width: 25%"> 
@@ -52,7 +54,7 @@
           </mat-card-header>
           <div id="playerA" >
             
-            <div  class="container" >
+            <div  class="container" > 
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of state.playerAChars;let ind= index" >
                 <!-- style="float: left" was in the div below -->
