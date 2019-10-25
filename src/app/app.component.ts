@@ -16,16 +16,12 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-   // localStorage.setItem("showAgain","y") //testing purposes
+  // localStorage.setItem("showAgain","y") //testing purposes
     if (localStorage.getItem("showAgain") != "n") { // if they havent been here before
       this.openPopup()
     }
   }
-  switchToMelee(event) {
-
-  }
   openPopup() {
-
     this.dialogRef = this.dialog.open(WelcomeComponent, {
       width: '95%',
       maxWidth: '100%',

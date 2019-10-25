@@ -29,6 +29,15 @@ body{
     background-color: rgb(54, 70, 80);
 }
 .btn{
-    width:100%;
-    height: 100%;
+display: flex;
+text-align: center;
+
+font-size: 20px;
+}
+.popupcard{
+    display: inline-block;
+    height: auto;
+    background-color: #F1F1F1;
+    border-color: #3E51B5;
+    border-radius: 10px;
 }
