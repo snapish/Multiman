@@ -28,3 +28,7 @@ mat-card-title{
 body{
     background-color: rgb(54, 70, 80);
 }
+.btn{
+    width:100%;
+    height: 100%;
+}
