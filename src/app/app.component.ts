@@ -1,24 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 //import {UsersComponent} from '../app/users/users.component';
-
+import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material'
+import { WelcomeComponent } from './welcome/welcome.component';
+import { MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  idx = 0;
+  private dialogRef: any;
+  constructor(public dialog: MatDialog) { }
 
-  constructor(){
-  // if(!(window.location.href.startsWith("https"))){
-  //   document.location.replace('https://ironman.gg')
-  // }
+
+
+  ngOnInit(): void {
+   // localStorage.setItem("showAgain","y") //testing purposes
+    if (localStorage.getItem("showAgain") != "n") { // if they havent been here before
+      this.openPopup()
+    }
+  }
+  switchToMelee(event) {
 
   }
+  openPopup() {
 
-  idx = 0;
-  switchToMelee(event){
-
-    console.log('cock')
-    console.log(event)
+    this.dialogRef = this.dialog.open(WelcomeComponent, {
+      width: '95%',
+      maxWidth: '100%',
+      height: '90%',
+      panelClass: 'dialog',
+      disableClose: true
+    });
   }
 }

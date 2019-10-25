@@ -25,3 +25,8 @@ html, body { height: 100%; }
     -webkit-user-drag: none;
 	cursor: pointer;
 }
+.dialog .mat-dialog-container{
+    padding: 5px;
+    background-color: rgb(29, 29, 29);
+    border-radius: 5px;
+    }

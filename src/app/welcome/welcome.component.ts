@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dref : MatDialogRef<WelcomeComponent>) { }
 
   ngOnInit() {
+ 
+
+  }
+  close(){
+    window.localStorage.setItem("showAgain","n")
+    this.dref.close()
   }
   featureList = [
     "Disable a character by clicking their icon in the character menu",

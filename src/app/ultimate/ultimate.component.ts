@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomService } from '../random.service';
 declare var $: any;
+declare var PUSH_STATE: any;
 @Component({
   selector: 'app-ultimate',
   templateUrl: './ultimate.component.html',
@@ -52,6 +53,10 @@ export class UltimateComponent implements OnInit {
   ngOnInit() {
     //this.addUnique(this.state.disabledChars, 26);
     
+  }
+  pushState(){
+    try{PUSH_STATE(this.state)}
+    catch{console.log("uh oh stinky")}
   }
   onOptionsSelected(event) {
     this.state.charCount = event;

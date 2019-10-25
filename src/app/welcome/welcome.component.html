@@ -1,19 +1,49 @@
 <body>
-<div id = "welcome">
-<h3>
-  Welcome to Ironman.gg
-</h3>
+<div class = "title">
+<div class="header">
+  Welcome to Ironman.gg!
 </div>
-<div id = "home"> <h5>home of random ironmans</h5></div>
-<div id="features">
-<mat-accordion style="width: 50%">
-  <mat-expansion-panel style="width: 50%">
-    <mat-expansion-panel-header >
-      Feature List
-    </mat-expansion-panel-header>
-    <li *ngFor="let item of featureList">{{item}}</li>
-    All of this can also be found in the "About" tab
-  </mat-expansion-panel>
-</mat-accordion>
 </div>
+<div class="title">
+
+  <div class = "home"> Home of random ironmans</div>
+</div>
+<hr>
+<div class="usage">
+  How to use the site
+</div>
+
+<div class="explainText">
+<!-- > Send the link to a friend to let them join your room/lobby<br> -->
+> Go the tab of the game you want to play<br>
+> Select the number of characters and players you want<br>
+> Click any characters to disable them. They won't be in the randomizer<br>
+> Enable the Free Space slot for whatever you want it to be<br>
+examples: Pick any character, let your opponent pick, skip, skip another character...<br>
+> Click the roll characters button and start playing!
+</div>
+
+<hr>
+<div class="usage">
+  Other quick things
+</div>
+
+<div class="explainText">
+    > You can see all this info again in the "About" tab<br>
+    > You can see what is currently under development here as well
+    > Feel free to contact me with feedback/suggestions/problems at <a style="color: cadetblue" href="mailto:snapish@ironman.gg">snapish@ironman.gg</a><br>
+    > Have fun!
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+  <button (click) = "close()" mat-button type>Close and don't show again</button>
+
+
 </body>

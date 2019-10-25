@@ -25,7 +25,10 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogRef,
+  MatDialog,
+  MatDialogModule
 } from '@angular/material';
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -46,6 +49,7 @@ PatreonComponent,
 WelcomeComponent,
   ],
   imports: [
+    MatDialogModule,
     NgxPayPalModule,
   //  NgbModule,
     BrowserModule,
@@ -62,7 +66,8 @@ WelcomeComponent,
     //AngularFirestoreModule,
     //AngularFireStorageModule
   ],
-  providers: [],
+  entryComponents:[WelcomeComponent],
+  providers: [WelcomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
