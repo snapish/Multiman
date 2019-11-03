@@ -14,11 +14,11 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(router)
 
-const httpServer = http.createServer(app)
-const wss = new WebSocket.Server({ server: httpServer })
-wss.on('connection', onConnect)
-httpServer.listen(conf.httpPort)
-console.log('http on ' + conf.httpPort)
+// const httpServer = http.createServer(app)
+// const wss = new WebSocket.Server({ server: httpServer })
+// wss.on('connection', onConnect)
+// httpServer.listen(conf.httpPort)
+// console.log('http on ' + conf.httpPort)
 
 try {
   const httpsServer = https.createServer({
