@@ -17,7 +17,7 @@ app.use(router)
 const httpServer = http.createServer(app)
 const wss = new WebSocket.Server({ server: httpServer })
 wss.on('connection', onConnect)
-//httpServer.listen(conf.httpPort)
+httpServer.listen(conf.httpPort)
 console.log('http on ' + conf.httpPort)
 
 try {
