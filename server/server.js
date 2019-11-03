@@ -15,8 +15,9 @@ app.set('view engine', 'ejs')
 app.use(router)
 
 const httpServer = http.createServer(app) //http.create...
-const wss = new WebSocket.Server({ server: httpServer }) 
-wss.on('connection', onConnect)
+const wsServerUnsecure = new WebSocket.Server({ server: httpServer })
+let wsServerSecure
+wsServerUnsecure.on('connection', onConnect)
 httpServer.listen(conf.httpPort) //httpServer, httpPort
 console.log('http on ' + conf.httpPort)
 
@@ -25,8 +26,8 @@ try {
     key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
     cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
   }, app)
-  const swss = new WebSocket.Server({ server: httpServer })
-  swss.on('connection', onConnect)
+  wsServerSecure = new WebSocket.Server({ server: httpsServer })
+  wsServerSecure.on('connection', onConnect)
   httpsServer.listen(conf.httpsPort)
   console.log('https on ' + conf.httpsPort)
 } catch (err) {
@@ -35,11 +36,13 @@ try {
 
 function onMessage (sender, message) {
   //console.log('receieved message', message)
-  wss.clients.forEach((ws) => {
+  const cb = (ws) => {
     if (ws === sender) return
     if (sender.multiman_session !== ws.multiman_session) return
     ws.send(message)
-  })
+  }
+  wsServerUnsecure.clients.forEach(cb)
+  if (wsServerSecure) wsServerSecure.clients.forEach(cb)
 }
 
 function onConnect(ws, req) {

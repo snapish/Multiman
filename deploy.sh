@@ -5,7 +5,7 @@ set -e
 cd "$(dirname $0)"
 
 #point to master
-#git checkout master
+git checkout master
 
 # pull latest code
 git pull origin master
