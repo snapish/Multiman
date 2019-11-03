@@ -12,10 +12,12 @@ git pull origin master
 
 # install dependencies
 npm install
+npm audit fix
 
 # also install server's dependencies
 cd server
 npm install
+npm audit fix
 cd ..
 
 npm run ng build -- --prod --buildOptimizer
