@@ -46,7 +46,9 @@
     var PUSH_STATE
     var ON_STATE_CHANGED
 
-    var _ws = new WebSocket('wss://' + window.location.host + window.location.search)
+    var protocol = 'wss'
+    if (window.location.href.includes('localhost')) protocol = 'ws'
+    var _ws = new WebSocket(protocol + '://' + window.location.host + window.location.search)
     _ws.onmessage = function(event) {
       if (typeof ON_STATE_CHANGED === 'function') {
         ON_STATE_CHANGED(JSON.parse(event.data))

@@ -48,7 +48,7 @@ export class MeleeComponent implements OnInit {
 
   constructor(private randomService: RandomService, private changeRef: ApplicationRef) {
     this.meleeChars = this.randomService.getMeleeChars();
-    
+
     ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 pushState(){
@@ -258,7 +258,7 @@ pushState(){
     this.updateOpacity()
     this.changeRef.tick();
     console.log(this.changeRef.tick())
-    //repaint broswer 
+    //repaint broswer
   }
   updateOpacity() {
     for (let i of this.state.disabledChars) {
