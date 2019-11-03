@@ -24,8 +24,11 @@
     /* flex-direction: column; */
     flex-wrap: wrap;
     flex-flow: column;
+}
 
-    
+.table{
+    display: flex;
+    justify-content: center;
 }
 
 #g{

@@ -2,8 +2,8 @@
   <body> 
       <mat-toolbar color="primary">
           <span style="text-align: center; width: 20%"> 
-              <button mat-raised-button (click) = "randomFill()" style="display: inline; font-size: 18px">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Roll Characters&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <button mat-raised-button (click) = "randomFill()" style="display: inline; font-size: 18px; padding-right: 15%; padding-left: 15%;">
+                  Roll Characters
                 </button>
            </span>
           <hr width="1" size="50" style="margin:0%">
@@ -142,6 +142,7 @@
                  </div>
                </div>
              </mat-card>
+             <br>
              
                             <!-- player E -->
                             <mat-card id="player" *ngIf="state.playerCount >= 5">
@@ -235,10 +236,10 @@
                           
             </div>
 
-        <div style="padding-left: 16.5% ">
-            <table style="clear: left"> 
+        <div class="table">
+            <table > 
                 
-                <tr  style = "padding-left: 20%"> 
+                <tr> 
                     <!-- 12 acorss 5 down, 7 on bottom -->
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }"id="Mario" >  <img src="assets/ultimateIcons/1.jpeg" (click) = "toggleChar('Mario')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" >  <img src="assets/ultimateIcons/2.jpeg" (click) = "toggleChar('Donkey Kong')" class="charImg"></div>
@@ -338,29 +339,7 @@
                   
                 </table>
               </div>
-              <br>
-              <div style="padding-left: 50%"> 
-                  <!-- <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25; width: 135px">
-                      
-                      <mat-label style="color:white">Character Count</mat-label><br>
-                      <select (change) ="updateAvailableChars()" [(ngModel)]='state.charCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px; padding-top: 7px ;padding-bottom: 7px" id="charCount" matNativeControl  >
-                          <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
-                        </select> -->
-                        <!--  | slice:0:27-state.disabledChars.length -->
-                        
-                      <!-- </mat-form-field>
-                      <br>
-                      <mat-form-field style="text-align: center; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder; font-size: 25 ; width: 135px"> <br>
-                        <mat-label style="color:white">Player Count</mat-label>
-                        <select  [(ngModel)]='state.playerCount' style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px" matNativeControl id="playerCount">
-                            <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
-                          </select>
-                        </mat-form-field> -->
-                      </div>
-                      <!-- <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox> -->
-                      <br>
-                      <br>
-                      
+             
                     </div>
                     <!-- <button style="opacity: 0" (click) =" updateState(state2)">test state update</button> -->
                    

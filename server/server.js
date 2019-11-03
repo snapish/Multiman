@@ -1,7 +1,8 @@
 const express = require('express')
 const WebSocket = require('ws')
-const http = require('http')
 const path = require('path')
+const https = require('https')
+const http = require('http')
 const router = require('./router.js')
 const https = require('https')
 const fs = require('fs')
@@ -25,9 +26,11 @@ try {
     key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
     cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
   }, app)
-  const swss = new WebSocket.Server({ server: httpServer })
-  swss.on('connection', onConnect)
+  
+  const wss = new WebSocket.Server({ server: httpsServer })
+  wss.on('connection', onConnectHTTPS) //should this be calling func onConnect() instead?
   httpsServer.listen(conf.httpsPort)
+
   console.log('https on ' + conf.httpsPort)
 } catch (err) {
   console.warn('Unable to serve HTTPS', err.message)
@@ -49,6 +52,15 @@ function onConnect(ws, req) {
   }
   ws.multiman_session = session
   ws.on('message', (message) => onMessage(ws, message))
+}
+
+function onConnectHTTPS(wss, req) {
+  const session = url.parse(req.url, true, true).query.session
+  if (!session) {
+    return console.warn('No session on ws connection', req.url)
+  }
+  wss.multiman_session = session
+  wss.on('message', (message) => onMessage(ws, message))
 }
 
 console.log('(ufw has been set up to redirect 80 and 443)')
