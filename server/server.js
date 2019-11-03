@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(router)
 
-const httpServer = https.createServer(app) //http.create...
+const httpsServer = https.createServer(app) //http.create...
 const wss = new WebSocket.Server({ server: httpServer }) 
 wss.on('connection', onConnect)
 httpsServer.listen(conf.httpsPort) //httpServer, httpPort
