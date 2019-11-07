@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material'
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MAT_DIALOG_DATA } from '@angular/material';
+declare var ON_STATE_CHANGED: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -32,6 +32,7 @@ import {
 } from '@angular/material';
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ModesComponent } from './modes/modes.component';
 
 
 @NgModule({
@@ -47,6 +48,8 @@ ContactComponent,
 PatreonComponent,
 
 WelcomeComponent,
+
+ModesComponent,
   ],
   imports: [
     MatDialogModule,

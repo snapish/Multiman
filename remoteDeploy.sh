@@ -1,0 +1,1 @@
+ssh -t snapish@ironman.gg '~/Multiman/deploy.sh'
