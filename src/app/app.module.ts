@@ -33,6 +33,7 @@ import {
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModesComponent } from './modes/modes.component';
+import { ProjectmComponent } from './projectm/projectm.component';
 
 
 @NgModule({
@@ -50,6 +51,8 @@ PatreonComponent,
 WelcomeComponent,
 
 ModesComponent,
+
+ProjectmComponent,
   ],
   imports: [
     MatDialogModule,
@@ -70,7 +73,7 @@ ModesComponent,
     //AngularFireStorageModule
   ],
   entryComponents:[WelcomeComponent],
-  providers: [WelcomeComponent],
+  providers: [WelcomeComponent, ProjectmComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

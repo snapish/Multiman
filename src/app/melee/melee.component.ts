@@ -14,7 +14,7 @@ declare var PUSH_STATE: any;
 })
 
 export class MeleeComponent implements OnInit {
-  image: string = "../assets/melee_menu.png"
+  // image: string = "../assets/melee_menu.png"
   meleeChars = []
   Opacity = "0.5";
   firstRoll = false;
@@ -36,7 +36,7 @@ export class MeleeComponent implements OnInit {
     playerCChars: [],
     playerDChars: [],
     playerCount: 2,
-    charCount: 4,
+    charCount: 26,
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,
@@ -210,9 +210,6 @@ pushState(){
     for (let x of this.meleeChars) {
       if (charName == x.name) {
         if (!this.state.disabledChars.includes(x.id)) { //x.name previously
-          // if(this.state.charCount + 1 < this.state.disabledChars.length){
-          //   this.state.charCount -=1;
-          // }
           this.state.disabledChars.push(x.id);
           //console.log('added ' + x.name + " " + x.id)
           //console.log(this.state.disabledChars)

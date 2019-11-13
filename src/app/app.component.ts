@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material'
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { ProjectmComponent } from './projectm/projectm.component';
 declare var ON_STATE_CHANGED: any;
 @Component({
   selector: 'app-root',
@@ -10,9 +11,9 @@ declare var ON_STATE_CHANGED: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  idx = 0;
+ selectedIndex = 0;
   private dialogRef: any;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private pm : ProjectmComponent) { }
 
 
 
@@ -30,5 +31,11 @@ export class AppComponent {
       panelClass: 'dialog',
       disableClose: true
     });
+  }
+  disableFreeSpaces(e){
+    this.selectedIndex = e.index
+    if(e.index == 2){
+      this.pm.disableFreeSpace()
+    }
   }
 }

@@ -110,9 +110,100 @@ export class RandomService {
   Joker;
   Banjo;
   Hero;
+  Terry;
   Palutena;
   FreeSpace;
+  uFreeSpace
+
+  pmFreeSpace
+  pmWario
+  pmMario
+  pmLuigi
+  pmPeach
+  pmBowser
+  pmYoshi
+  pmDonkeyKong
+  pmDiddyKong
+  pmCaptainFalcon
+  pmWolf
+  pmFox
+  pmFalco
+  pmIceClimbers
+  pmZelda
+  pmSheik
+  pmLink
+  pmToonLink
+  pmGanondorf
+  pmMewtwo
+  pmLucario
+  pmPikachu
+  pmJigglypuff
+  pmSquirtle
+  pmIvysaur
+  pmCharizard
+  pmSamus
+  pmZeroSuitSamus
+  pmLucas
+  pmNess
+  pmPit
+  pmKirby
+  pmMetaKnight
+  pmDedede
+  pmIke
+  pmMarth
+  pmRoy
+  pmOlimar
+  pmROB
+  pmGNW
+  pmSnake
+  pmSonic
   constructor() { //start of melee characters
+    this.pmFreeSpace  = new Character("Free Space", 42, "./assets/pmIcons/42.png")
+    this.pmWario  = new Character("Wario",1 , "./assets/pmIcons/1.png")
+    this.pmMario  = new Character("Mario",2 , "./assets/pmIcons/2.png")
+    this.pmLuigi  = new Character("Luigi", 3, "./assets/pmIcons/3.png")
+    this.pmPeach  = new Character("Peach", 4, "./assets/pmIcons/4.png")
+    this.pmBowser  = new Character("Bowser", 5, "./assets/pmIcons/5.png")
+    this.pmYoshi  = new Character("Yoshi", 6, "./assets/pmIcons/6.png")
+    this.pmDonkeyKong  = new Character("Donkey Kong", 7, "./assets/pmIcons/7.png")
+    this.pmDiddyKong  = new Character("Diddy Kong", 8, "./assets/pmIcons/8.png")
+    this.pmCaptainFalcon  = new Character("Captain Falcon", 9, "./assets/pmIcons/9.png")
+    this.pmWolf  = new Character("Wolf", 10, "./assets/pmIcons/10.png")
+    this.pmFox  = new Character("Fox", 11, "./assets/pmIcons/11.png")
+    this.pmFalco = new Character("Falco", 12, "./assets/pmIcons/12.png")
+    this.pmIceClimbers  = new Character("Ice Climbers", 13, "./assets/pmIcons/13.png")
+    this.pmZelda  = new Character("Zelda", 14, "./assets/pmIcons/14.png")
+    this.pmSheik  = new Character("Sheik",15 , "./assets/pmIcons/15.png")
+    this.pmLink  = new Character("Link", 16, "./assets/pmIcons/16.png")
+    this.pmToonLink  = new Character("Toon Link",17 , "./assets/pmIcons/17.png")
+    this.pmGanondorf  = new Character("Ganondorf",18 , "./assets/pmIcons/18.png")
+    this.pmMewtwo  = new Character("Mewtwo",19 , "./assets/pmIcons/19.png")
+    this.pmLucario  = new Character("Lucario",20 , "./assets/pmIcons/20.png")
+    this.pmPikachu  = new Character("Pikachu",21 , "./assets/pmIcons/21.png")
+    this.pmJigglypuff  = new Character("Jigglypuff",22 , "./assets/pmIcons/22.png")
+    this.pmSquirtle  = new Character("Squirtle",23 , "./assets/pmIcons/23.png")
+    this.pmIvysaur  = new Character("Ivysaur",24 , "./assets/pmIcons/24.png")
+    this.pmCharizard  = new Character("Charizard",25 , "./assets/pmIcons/25.png")
+    this.pmSamus  = new Character("Samus",26 , "./assets/pmIcons/26.png")
+    this.pmZeroSuitSamus  = new Character("Zero Suit Samus",27, "./assets/pmIcons/27.png")
+    this.pmLucas  = new Character("Lucas",28 , "./assets/pmIcons/28.png")
+    this.pmNess  = new Character("Ness",29 , "./assets/pmIcons/29.png")
+    this.pmPit = new Character("Pit",30 , "./assets/pmIcons/30.png")
+    this.pmKirby  = new Character("Kirby",31 , "./assets/pmIcons/31.png")
+    this.pmMetaKnight  = new Character("Meta Knight",32 , "./assets/pmIcons/32.png")
+    this.pmDedede  = new Character("Dedede",33 , "./assets/pmIcons/33.png")
+    this.pmIke  = new Character("Ike",34 , "./assets/pmIcons/34.png")
+    this.pmMarth  = new Character("Marth",35 , "./assets/pmIcons/35.png")
+    this.pmRoy  = new Character("Roy",36 , "./assets/pmIcons/36.png")
+    this.pmOlimar  = new Character("Olimar",37 , "./assets/pmIcons/37.png")
+    this.pmROB  = new Character("ROB",38 , "./assets/pmIcons/38.png")
+    this.pmGNW  = new Character("GNW",39 , "./assets/pmIcons/39.png")
+    this.pmSnake  = new Character("Snake",40 , "./assets/pmIcons/40.png")
+    this.pmSonic  = new Character("Sonic",41 , "./assets/pmIcons/41.png")
+
+
+
+
     this.FreeSpace = new Character("Free Space", 26, "./assets/meleeIcons/freespace.png");
     this.DoctorMario = new Character("Dr. Mario", 0, "./assets/meleeIcons/1.png");
     this.Mario = new Character("Mario", 1, "./assets/meleeIcons/2.png");
@@ -227,9 +318,15 @@ export class RandomService {
 
     //end of ultimate 2:47am
 
+    //its 2:56am a different night, no regrets tho that monster was taste
     
   }
-  
+  getPMChars(){
+    var z = [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
+    this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
+    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic,  this.pmFreeSpace]
+    return z;
+  }
 getMeleeChars(){
   var x = [this.DoctorMario,this.Mario,this.Luigi,this.Bowser,this.Peach,this.Yoshi,this.DonkeyKong,this.CaptainFalcon,this.Ganondorf,this.Falco,this.Fox,this.Ness,this.IceClimbers,this.Kirby,
   this.Samus, this.Zelda,this.Link, this.YoungLink,this.Pichu,this.Pikachu,this.Jigglypuff,this.Mewtwo,this.MrGNW, this.Marth,this.Roy,this.Sheik, this.FreeSpace];

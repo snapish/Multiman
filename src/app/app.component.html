@@ -12,10 +12,10 @@
       <!-- <i class="material-icons">sentiment_satisfied_alt</i> -->
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-tab-group [(selectedIndex)] ="idx" style="background-color: rgb(241, 241, 241)" mat-align-tabs="center">
+  <mat-tab-group [selectedIndex] = "selectedIndex" mat-stretch-tabs (selectedTabChange) = "disableFreeSpaces($event)" style="background-color: rgb(241, 241, 241)" mat-align-tabs="center">
     <mat-tab label="Melee" index = "0"><app-melee></app-melee></mat-tab>
       <mat-tab label="Ultimate" index="1" [disabled] = false> <app-ultimate></app-ultimate></mat-tab>
-      <!-- <mat-tab label="Extras" index="2" ><app-modes></app-modes> </mat-tab> -->
+      <mat-tab label="Project M" index="2" ><app-projectm></app-projectm> </mat-tab>
       <mat-tab label="About" index="3" ><app-about></app-about> </mat-tab>
       
       <mat-tab label="Contact" index="4" ><app-contact></app-contact> </mat-tab> 
