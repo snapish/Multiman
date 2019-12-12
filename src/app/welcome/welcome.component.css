@@ -1,7 +1,4 @@
-#features{
-    
 
-}
 body{
     font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif !important;
     background: rgb(54,70,79);
@@ -34,9 +31,6 @@ body{
     text-align: center;
    font-size: 20px;
 }
-br {
-  line-height: 2000%;
- }
  button{
      font-size: 40px;
      font-weight: bold;
