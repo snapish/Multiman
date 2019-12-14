@@ -28,6 +28,7 @@ export class AppComponent {
       width: '95%',
       maxWidth: '100%',
       height: '90%',
+      maxHeight: '90%',
       panelClass: 'dialog',
       disableClose: true
     });

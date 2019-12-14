@@ -18,13 +18,6 @@ export class WelcomeComponent implements OnInit {
     window.localStorage.setItem("showAgain","n")
     this.dref.close()
   }
-  featureList = [
-    "Disable a character by clicking their icon in the character menu",
-    "Send someone your URL or code to let them see your page", 
-    "Free Space slot for any character you (or your opponent) want",
-    "Play with up to 4 people",
-    "Toggle hiding upcoming characters",
-    "Play with any number of characters",
-  ]
+
 
 }

@@ -23,7 +23,10 @@
       width: 150px;
 
   }
-
+.contact{
+  display: flex;
+  justify-content: center;
+}
   body{
     background-color: rgb(54, 70, 80);
     

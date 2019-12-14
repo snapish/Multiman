@@ -51,8 +51,7 @@ export class UltimateComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.addUnique(this.state.disabledChars, 26);
-    
+    //update state here
   }
   pushState(){
     try{PUSH_STATE(this.state)}
@@ -60,6 +59,7 @@ export class UltimateComponent implements OnInit {
   }
   onOptionsSelected(event) {
     this.state.charCount = event;
+    //update state here
   }
   random() {
     var min = 27;
@@ -75,9 +75,7 @@ export class UltimateComponent implements OnInit {
   toggleDLC(){
     
     if(this.state.dlcDisabled){
-     // for (let i = 0; i < this.state.disabledChars.length; i++) {
-
-       //if(this.state.disabledChars[i] == 101 || this.state.disabledChars[i] == 102 || this.state.disabledChars[i] == 103 || this.state.disabledChars[i] == 104 ){
+     
           if(!this.state.disabledChars.includes(101)){
             this.toggleChar("Piranha Plant")
           }
@@ -90,9 +88,8 @@ export class UltimateComponent implements OnInit {
           if(!this.state.disabledChars.includes(104)){
             this.toggleChar("Hero")
           }
-       // }
-      //}
-    }
+          //update state here
+        }
     else{
       if(this.state.disabledChars.includes(101)){
         this.toggleChar("Piranha Plant")

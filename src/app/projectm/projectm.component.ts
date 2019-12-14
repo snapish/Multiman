@@ -47,6 +47,7 @@ export class ProjectmComponent implements OnInit {
 
   ngOnInit() {
     //when switched to tab, disable free space. Also should do this on melee tab :\
+    this.addUnique(this.state.disabledChars, 42)
   }
   pushState() {
     try {
