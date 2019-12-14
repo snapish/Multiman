@@ -9,7 +9,6 @@ declare var PUSH_STATE: any;
   styleUrls: ['./projectm.component.css']
 })
 export class ProjectmComponent implements OnInit {
-  // image: string = "../assets/melee_menu.png"
   pmChars = []
   Opacity = "0.5";
   firstRoll = false;
@@ -93,12 +92,10 @@ export class ProjectmComponent implements OnInit {
     }
   }
   disableFreeSpace(){
-     console.log('asdf')
      this.toggleChar("Free Space")
   //   this.state.disabledChars.push(42);
   //  document.getElementById("Free Space").style.opacity = "0.3";
-  //  $("[id='Free Space']").css("opacity", ".3") 
-     console.log(this.state.disabledChars)
+   $("[id='Free Space']").css("opacity", ".3") 
   }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 42

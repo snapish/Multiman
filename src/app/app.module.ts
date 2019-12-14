@@ -73,7 +73,7 @@ ProjectmComponent,
     //AngularFireStorageModule
   ],
   entryComponents:[WelcomeComponent],
-  providers: [WelcomeComponent, ProjectmComponent],
+  providers: [WelcomeComponent, ProjectmComponent, MeleeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

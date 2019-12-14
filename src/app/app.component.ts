@@ -4,6 +4,7 @@ import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angu
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectmComponent } from './projectm/projectm.component';
+import { MeleeComponent } from './melee/melee.component';
 declare var ON_STATE_CHANGED: any;
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
  selectedIndex = 0;
  disabledFrees: boolean = false;
   private dialogRef: any;
-  constructor(public dialog: MatDialog, private pm : ProjectmComponent) { }
+  constructor(public dialog: MatDialog, private pm : ProjectmComponent, private melee: MeleeComponent) { }
 
 
 
@@ -23,6 +24,15 @@ export class AppComponent {
     if (localStorage.getItem("showAgain") != "n") { // if they havent been here before
       this.openPopup()
     }
+  }
+  /**
+   * This runs after loading all child components. AKA do any kind of "needing to do after rendering things" here
+   */
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    console.log("ngafterviewinit")
+    this.pm.disableFreeSpace()
+    this.melee.disableFreeSpace()
   }
   openPopup() {
     this.dialogRef = this.dialog.open(WelcomeComponent, {

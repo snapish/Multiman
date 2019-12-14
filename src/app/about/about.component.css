@@ -31,7 +31,7 @@ body{
 .btn{
 display: flex;
 text-align: center;
-
+height: max-content;
 font-size: 20px;
 }
 .popupcard{

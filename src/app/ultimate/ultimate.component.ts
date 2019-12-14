@@ -48,6 +48,7 @@ export class UltimateComponent implements OnInit {
   }
   constructor(private randomService: RandomService) {
     this.ultimateChars = this.randomService.getUltimateChars();
+    console.log(this.ultimateChars)
    }
 
   ngOnInit() {
@@ -63,7 +64,7 @@ export class UltimateComponent implements OnInit {
   }
   random() {
     var min = 27;
-    var max = 105; //char ids are fucked
+    var max = 106; //char ids are fucked
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
@@ -88,6 +89,9 @@ export class UltimateComponent implements OnInit {
           if(!this.state.disabledChars.includes(104)){
             this.toggleChar("Hero")
           }
+          if(!this.state.disabledChars.includes(105)){
+            this.toggleChar("Terry")
+          }
           //update state here
         }
     else{
@@ -102,6 +106,9 @@ export class UltimateComponent implements OnInit {
       }
       if(this.state.disabledChars.includes(104)){
         this.toggleChar("Hero")
+      }
+      if(this.state.disabledChars.includes(105)){
+        this.toggleChar("Terry")
       }
     }
   }

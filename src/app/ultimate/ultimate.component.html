@@ -46,7 +46,6 @@
         <br>
   
    <div id="body">   
-     
       <div id="players" *ngIf="state.playerAChars.length != 0 " >
        
           <!-- PLAYER A -->
@@ -141,9 +140,8 @@
                    </div>
                  </div>
                </div>
-             </mat-card>
-             <br>
-             
+             </mat-card> 
+            
                             <!-- player E -->
                             <mat-card id="player" *ngIf="state.playerCount >= 5">
                               <mat-card-header>
@@ -233,9 +231,7 @@
                               </div>
                             </div>
                           </mat-card>
-                          
             </div>
-
         <div class="table">
             <table > 
                 
@@ -331,6 +327,7 @@
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Joker"> <img src="assets/ultimateIcons/73.jpeg" (click) = "toggleChar('Joker')" class="charImg"> </div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Hero"> <img src="assets/ultimateIcons/74.jpeg" (click) = "toggleChar('Hero')" class="charImg"> </div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Banjo"> <img src="assets/ultimateIcons/75.jpeg" (click) = "toggleChar('Banjo')" class="charImg"> </div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Terry"> <img src="assets/ultimateIcons/79.jpeg" (click) = "toggleChar('Terry')" class="charImg"> </div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Brawler"> <img src="assets/ultimateIcons/76.jpeg" (click) = "toggleChar('Mii Brawler')" class="charImg"> </div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Swordfighter"> <img src="assets/ultimateIcons/77.jpeg" (click) = "toggleChar('Mii Swordfighter')" class="charImg"> </div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mii Gunner"> <img src="assets/ultimateIcons/78.jpeg" (click) = "toggleChar('Mii Gunner')" class="charImg"> </div>

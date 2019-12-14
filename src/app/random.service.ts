@@ -315,6 +315,7 @@ export class RandomService {
     this.Joker = new Character("Joker", 102, "./assets/ultimateIcons/73.jpeg")
     this.Banjo = new Character("Banjo", 103, "./assets/ultimateIcons/75.jpeg")
     this.Hero = new Character("Hero", 104, "./assets/ultimateIcons/74.jpeg")
+    this.Terry = new Character("Terry", 105, "./assets/ultimateIcons/79.jpeg")
 
     //end of ultimate 2:47am
 
@@ -339,7 +340,7 @@ getUltimateChars(){
   this.Lucas, this.Sonic, this.KingDedede, this.Olimar, this.Lucario, this.ROB, this.ToonLink, this.Wolf, this.Villager, this.MegaMan, this.WiiFitTrainer, this.RosalinaLuma, this.LittleMac,
   this.Greninja, this.Palutena, this.PacMan, this.Robin, this.Shulk, this.BowserJr, this.DuckHunt, this.Ryu, this.Ken, this.Cloud, this.Corrin, this.Bayonetta, this.Inkling, 
   this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
-    ,this.PiranhaPlant, this.Joker, this.Hero, this.Banjo
+    ,this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry
 ]
   return y;
 }
