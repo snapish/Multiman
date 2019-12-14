@@ -12,6 +12,7 @@ declare var ON_STATE_CHANGED: any;
 })
 export class AppComponent {
  selectedIndex = 0;
+ disabledFrees: boolean = false;
   private dialogRef: any;
   constructor(public dialog: MatDialog, private pm : ProjectmComponent) { }
 
@@ -35,8 +36,9 @@ export class AppComponent {
   }
   disableFreeSpaces(e){
     this.selectedIndex = e.index
-    if(e.index == 2){
+    if(e.index == 2 && !this.disabledFrees){
       this.pm.disableFreeSpace()
+      this.disabledFrees = true
     }
   }
 }

@@ -18,7 +18,7 @@ export class UltimateComponent implements OnInit {
   playerDShowCount: number;
   playerEShowCount: number;
   playerFShowCount: number;
-  playerGShowCount: number;
+  playerGShowCount: number; 
   playerHShowCount: number;
   ultimateChars= []
   state = {

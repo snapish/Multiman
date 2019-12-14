@@ -93,10 +93,12 @@ export class ProjectmComponent implements OnInit {
     }
   }
   disableFreeSpace(){
-    // console.log('asdf')
-  //  this.state.disabledChars.push(42);
+     console.log('asdf')
+     this.toggleChar("Free Space")
+  //   this.state.disabledChars.push(42);
   //  document.getElementById("Free Space").style.opacity = "0.3";
-    // console.log(this.state.disabledChars)
+  //  $("[id='Free Space']").css("opacity", ".3") 
+     console.log(this.state.disabledChars)
   }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 42
