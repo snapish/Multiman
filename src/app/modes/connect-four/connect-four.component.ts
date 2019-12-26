@@ -1,0 +1,141 @@
+import { Component, OnInit } from '@angular/core';
+import { RandomService } from 'src/app/random.service';
+import * as $ from 'jquery';
+//declare var $: any;
+import { $$ } from 'protractor';
+@Component({
+  selector: 'app-connect-four',
+  templateUrl: './connect-four.component.html',
+  styleUrls: ['./connect-four.component.css']
+})
+export class ConnectFourComponent implements OnInit {
+
+  constructor(private randomService: RandomService) { 
+  }
+  ngOnInit() {
+    this.randomFill()
+  }
+   meleeChars = this.randomService.getMeleeChars();
+   ultimateChars = this.randomService.getUltimateChars();
+   pmChars = this.randomService.getPMChars();
+  
+  /*
+ ribbon to select game
+ each player gets random list for that game
+ show pic of current char
+
+  */
+state={
+  playerAChars: [],
+  playerBChars: [],
+  winner: "",
+}
+
+checkForWin(){
+
+}
+
+dropPreview(event):any{
+  //console.log((event.target.classList[0]))
+  //var columns = $($(event.target))
+  //var columnClass = event.target.classList[0]
+  //console.log( $("."+columnClass)[0] )
+  console.log("asdf")
+}
+removePreview(event):any{
+
+}
+selectWinner(event){
+  var column1 = ($('.col1'))
+  var winner = "#"+ event.target.id
+  $(winner).css('opacity','0.3')
+
+  $("td").mouseover((element) =>{
+ //get column
+ //get all the tds with that column into an array
+ //for each
+ //check their img elements
+ //if they're like empty or something go to next in column
+ //if it's not empty, go to next one back in array
+ //set its img to character img
+ //set opacity to low af boi
+
+    var column = $(element.currentTarget).attr('class')
+    var colArr = $("."+column).toArray()
+    var test = [];
+    colArr.forEach(a =>{
+      test.push( $(a).children().attr('src') )
+      console.log(test)
+
+      test.forEach((value, index) =>{
+        if(value != undefined && value.includes('assets')){
+          (test[index-1])
+        }
+      })
+      //$(a).children().attr('src','./assets/meleeIcons/1.png')
+    })
+    
+
+    $(element.currentTarget).css('background-color','blue')
+  }) //add mouse over functino to each of the columns
+
+
+//if id is not == previous id clicked
+//grab winners char img addr
+//change $event img src to next characters addr
+//change mode for c4 slots to like dropable
+//when hovered change it to winner charimg addr opacity low
+}
+
+addUnique(array, number) {
+  // adds the number to array if not already there
+  if (!array.includes(number)) array.push(number);
+}
+shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
+
+  randomFill() {
+    this.state.playerAChars = [];
+    this.state.playerBChars = []; //clear they shits
+
+      // if the whitelisted char count is under the allowed count. Rewording: if disabled chars is over char count
+      while (this.state.playerAChars.length < this.meleeChars.length) {
+        // while the set is not filled
+        var n = this.meleeRandom();
+        this.shuffle(this.meleeChars);
+        for (let l of this.meleeChars) {
+            this.addUnique(this.state.playerAChars, l);
+        }
+      }
+
+        while (this.state.playerBChars.length < this.meleeChars.length) {
+          var n = this.meleeRandom();
+          this.shuffle(this.meleeChars);
+          for (let l of this.meleeChars) {
+              this.addUnique(this.state.playerBChars, l);
+          }
+        }
+      
+  }
+
+ 
+
+  ultRandom(){
+    var min = 27;
+    var max = 106;
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+  meleeRandom(){
+    var min = 0;
+    var max = 27;
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+  pmRandom(){
+
+    var min = 1;
+    var max = 43;
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  
+  }
+}

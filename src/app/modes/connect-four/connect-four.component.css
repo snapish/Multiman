@@ -1,0 +1,30 @@
+td{
+    border: darkcyan;
+    background-color: red;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    padding-left: 70px;
+    padding-right: 70px;
+    border-radius: 100px;
+}
+.playerimg{
+    border: darkcyan;
+    background-color: crimson;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 7px;
+      padding-right: 7px;
+    border-radius: 100px;
+}
+.card{
+    width: 48%;
+    /* justify-content: center;
+    display:flex; */
+
+}
+.activePlayers{
+    box-shadow: 2px 0px 2px 0px red;
+    display: flex;
+    justify-content: center;
+    width: 45%;
+}

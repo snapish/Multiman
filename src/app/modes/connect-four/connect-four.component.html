@@ -1,0 +1,93 @@
+<ul>
+  <li>Pick game</li>
+  <li>pick mode</li>
+  <li>--if c4---</li>
+  <li>roll a die for first/second</li>
+  <li>make a 7x6 grid </li>
+  <li>show the char menus for disabling </li>
+  <li>start button </li>
+  <li>two players have their "active character"  </li>
+  <li>click active char to say who won </li>
+  <li>Click grid spot to place tile, make a distinction as to who won that round </li>
+  <li>check if someone connected 4  </li>
+  <li> </li>
+  <li> </li>
+  <li> </li>
+  <li> </li>
+</ul>
+
+<div class="activePlayers">
+<h2>Player 1</h2>
+<br>
+<img src={{state.playerAChars[0].img}} id="player1" (click)="selectWinner($event)" class="playerimg">
+</div>
+<div class="activePlayers">
+<h2>Player 2</h2>
+<br>
+<img src={{state.playerBChars[0].img}} id="player2"  (click)="selectWinner($event)" class="playerimg"> 
+</div>
+<button (click)="randomFill()">Roll Characters</button>
+
+<table>
+  <tr>
+    <td  class="col1"> <img> </td>
+    <td  class="col2"> <img> </td>
+    <td  class="col3"> <img> </td>
+    <td  class="col4"> <img> </td>
+    <td  class="col5"> <img> </td>
+    <td  class="col6"> <img> </td>
+    <td  class="col7"> <img> </td>
+  </tr>
+  
+  <tr>
+    <td  class="col1"> <img> </td>
+    <td  class="col2"> <img> </td>
+    <td  class="col3"> <img> </td>
+    <td  class="col4"> <img> </td>
+    <td  class="col5"> <img> </td>
+    <td  class="col6"> <img> </td>
+    <td  class="col7"> <img> </td>
+  </tr>
+  
+  <tr>
+    <td  class="col1"> <img> </td>
+    <td  class="col2"> <img> </td>
+    <td  class="col3"> <img> </td>
+    <td  class="col4"> <img> </td>
+    <td  class="col5"> <img> </td>
+    <td  class="col6"> <img> </td>
+    <td  class="col7"> <img> </td>
+  </tr>
+  
+  <tr>
+    <td  class="col1"> <img> </td>
+    <td  class="col2"> <img> </td>
+    <td  class="col3"> <img> </td>
+    <td  class="col4"> <img> </td>
+    <td  class="col5"> <img> </td>
+    <td  class="col6"> <img> </td>
+    <td  class="col7"> <img> </td>
+  </tr>
+  
+  <tr>
+    <td  class="col1"> <img> </td>
+    <td  class="col2"> <img> </td>
+    <td  class="col3"> <img> </td>
+    <td  class="col4"> <img> </td>
+    <td  class="col5"> <img> </td>
+    <td  class="col6"> <img> </td>
+    <td  class="col7"> <img> </td>
+  </tr>
+  
+  <tr>
+    <td class="col1"> <img src="./assets/meleeIcons/1.png" > </td>
+    <td class="col2"> <img > </td>
+    <td class="col3"> <img > </td>
+    <td class="col4"> <img > </td>
+    <td class="col5"> <img > </td>
+    <td class="col6"> <img > </td>
+    <td class="col7"> <img > </td>
+  </tr>
+  
+  
+</table>

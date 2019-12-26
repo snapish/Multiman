@@ -131,12 +131,8 @@ export class MeleeComponent implements OnInit {
   randomFill() {
     this.pushState();
     this.firstRoll = true;
-    this.state.charCount =
-      (document.getElementById("charCount") as HTMLSelectElement)
-        .selectedIndex + 1; //set char count
-    this.state.playerCount =
-      (document.getElementById("playerCount") as HTMLSelectElement)
-        .selectedIndex + 1; //set the player count
+    this.state.charCount = (document.getElementById("charCount") as HTMLSelectElement).selectedIndex + 1; //set char count
+    this.state.playerCount = (document.getElementById("playerCount") as HTMLSelectElement).selectedIndex + 1; //set the player count
     this.state.playerAChars = [];
     this.state.playerBChars = []; //clear they shits
     this.state.playerCChars = [];

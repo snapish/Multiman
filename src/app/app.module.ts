@@ -34,6 +34,8 @@ import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModesComponent } from './modes/modes.component';
 import { ProjectmComponent } from './projectm/projectm.component';
+import { ConnectFourComponent } from './modes/connect-four/connect-four.component';
+import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
 
 
 @NgModule({
@@ -53,6 +55,10 @@ WelcomeComponent,
 ModesComponent,
 
 ProjectmComponent,
+
+ConnectFourComponent,
+
+TictactoeComponent,
   ],
   imports: [
     MatDialogModule,

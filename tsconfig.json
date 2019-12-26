@@ -11,8 +11,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es5",
+    "types" :[
+      "jquery"
+    ],
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "jquery"
     ],
     "lib": [
       "es2018",
