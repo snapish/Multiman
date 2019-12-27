@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RandomService } from 'src/app/random.service';
 import * as $ from 'jquery';
 //declare var $: any;
-import { $$ } from 'protractor';
+
 @Component({
   selector: 'app-connect-four',
   templateUrl: './connect-four.component.html',
@@ -60,19 +60,25 @@ selectWinner(event){
  //set its img to character img
  //set opacity to low af boi
 
-    var column = $(element.currentTarget).attr('class')
-    var colArr = $("."+column).toArray()
-    var test = [];
+    var column = $(element.currentTarget).attr('class') //get the column class the mouse is in
+    var colArr = $("."+column).toArray() 
+    var imgSrc = [];  //for storing the elements inside that column
+    var images = [];
+    var indexToFill ;
     colArr.forEach(a =>{
-      test.push( $(a).children().attr('src') )
-      console.log(test)
+      images.push($(a).children())
+      imgSrc.push( $(a).children().attr('src') )
+      console.log(imgSrc)
+      console.log(images)
 
-      test.forEach((value, index) =>{
-        if(value != undefined && value.includes('assets')){
-          (test[index-1])
+      imgSrc.forEach((value, index) =>{
+        if(value != undefined && value.includes('assets')){ //if the slot is not empty, and the one above it is
+          indexToFill = index-1
+         //$(images[index-1]).attr('src','./assets/meleeIcons/1.png')
+      
         }
       })
-      //$(a).children().attr('src','./assets/meleeIcons/1.png')
+      console.log(indexToFill)
     })
     
 

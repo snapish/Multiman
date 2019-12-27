@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //import {UsersComponent} from '../app/users/users.component';
-import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material'
+import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectmComponent } from './projectm/projectm.component';
 import { MeleeComponent } from './melee/melee.component';
 declare var ON_STATE_CHANGED: any;

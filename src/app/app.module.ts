@@ -19,17 +19,13 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { ContactComponent } from './contact/contact.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {
-  MatExpansionModule,
-  MatButtonModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatCardModule,
-  MatDialogRef,
-  MatDialog,
-  MatDialogModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModesComponent } from './modes/modes.component';
