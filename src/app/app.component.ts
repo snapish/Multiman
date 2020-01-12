@@ -31,8 +31,7 @@ export class AppComponent {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     console.log("ngafterviewinit")
-    this.pm.disableFreeSpace()
-    this.melee.disableFreeSpace()
+ 
   }
   openPopup() {
     this.dialogRef = this.dialog.open(WelcomeComponent, {
@@ -44,11 +43,5 @@ export class AppComponent {
       disableClose: true
     });
   }
-  disableFreeSpaces(e){
-    this.selectedIndex = e.index
-    if(e.index == 2 && !this.disabledFrees){
-      this.pm.disableFreeSpace()
-      this.disabledFrees = true
-    }
-  }
+
 }

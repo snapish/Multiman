@@ -48,7 +48,7 @@ export class UltimateComponent implements OnInit {
   }
   constructor(private randomService: RandomService) {
     this.ultimateChars = this.randomService.getUltimateChars();
-    console.log(this.ultimateChars)
+    // console.log(this.ultimateChars)
    }
 
   ngOnInit() {

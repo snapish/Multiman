@@ -35,8 +35,13 @@
     background-color: darkgray;
 }
 table{
+    
     border-collapse: collapse;
     border-spacing: 0px;
+}
+.bottomRow{
+    display: flex;
+    justify-content: center;
 }
 #imgtest{
     padding: 0px;

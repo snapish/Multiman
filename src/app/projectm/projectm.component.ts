@@ -20,7 +20,7 @@ export class ProjectmComponent implements OnInit {
   playerBShowCount: number;
   playerCShowCount: number;
   playerDShowCount: number;
-  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
   playernums = [1, 2, 3, 4]
   state = {
     version: "p",
@@ -46,7 +46,7 @@ export class ProjectmComponent implements OnInit {
 
   ngOnInit() {
     //when switched to tab, disable free space. Also should do this on melee tab :\
-    this.addUnique(this.state.disabledChars, 42)
+  
   }
   pushState() {
     try {
@@ -91,12 +91,6 @@ export class ProjectmComponent implements OnInit {
       }
     }
   }
-  disableFreeSpace(){
-     this.toggleChar("Free Space")
-  //   this.state.disabledChars.push(42);
-  //  document.getElementById("Free Space").style.opacity = "0.3";
-   $("[id='Free Space']").css("opacity", ".3") 
-  }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 42
     // because we'd never find a satisfying random number.
@@ -116,8 +110,8 @@ export class ProjectmComponent implements OnInit {
     var max = 43;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
+
   toggleChar(charName: string) {
-    
     for (let x of this.pmChars) {
       if (charName == x.name) {
         if (!this.state.disabledChars.includes(x.id)) { 

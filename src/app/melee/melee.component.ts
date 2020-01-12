@@ -56,8 +56,7 @@ export class MeleeComponent implements OnInit {
     23,
     24,
     25,
-    26,
-    27
+    26
   ];
 
   playernums = [1, 2, 3, 4];
@@ -88,15 +87,7 @@ export class MeleeComponent implements OnInit {
   }
   ngOnInit() {
   }
-  disableFreeSpace(){
 
-    this.toggleChar("Free Space")
-    //this.addUnique(this.state.disabledChars, 26);
-    //this.delay(400).then(f => {
-     // document.getElementById("Free Space").style.opacity = "0.3";
-    //});
-    console.log("melee loaded")
-  }
   pushState() {
     try {
       PUSH_STATE(this.state);
@@ -254,14 +245,8 @@ export class MeleeComponent implements OnInit {
     for (let x of this.meleeChars) {
       if (charName == x.name) {
         if (!this.state.disabledChars.includes(x.id)) {
-          //x.name previously
           this.state.disabledChars.push(x.id);
-          //console.log('added ' + x.name + " " + x.id)
-          //console.log(this.state.disabledChars)
           document.getElementById(x.name).style.opacity = "0.3";
-
-          // console.log(this.disabledChars);
-          // console.log(this.state.disabledChars)
         } else {
           document.getElementById(x.name).style.opacity = "1";
           this.state.disabledChars = this.removeFromArray(
