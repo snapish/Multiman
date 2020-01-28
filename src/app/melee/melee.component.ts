@@ -106,7 +106,7 @@ export class MeleeComponent implements OnInit {
     // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
     // because we'd never find a satisfying random number.
-    if (exclusions.length >= 27) throw Error("WARNING: avoiding infinite loop");
+    if (exclusions.length >= 26) throw Error("WARNING: avoiding infinite loop");
     let result;
     do {
       result = this.random();
@@ -195,7 +195,7 @@ export class MeleeComponent implements OnInit {
       console.log(this.state.playerBChars);
     } else {
       //set the char count to the maximum and roll again
-      this.state.charCount = 27 - this.state.disabledChars.length;
+      this.state.charCount = 26 - this.state.disabledChars.length;
       $("#charCount").val(this.state.charCount);
       this.randomFill();
 
@@ -205,7 +205,7 @@ export class MeleeComponent implements OnInit {
   }
   updateAvailableChars() {
     $("#charcount");
-    if (27 - this.state.disabledChars.length < this.state.charCount) {
+    if (26 - this.state.disabledChars.length < this.state.charCount) {
       console.log($("#charcount").val());
     }
     this.pushState();
@@ -237,7 +237,7 @@ export class MeleeComponent implements OnInit {
   }
   random() {
     var min = 0;
-    var max = 27;
+    var max = 26;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
