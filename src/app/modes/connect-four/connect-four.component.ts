@@ -64,33 +64,30 @@ selectWinner(event){
     var colArr = $("."+column).toArray() 
     var imgSrc = [];  //for storing the elements inside that column
     var images = [];
-    var indexToFill ;
+    var indexToFill;
+
     colArr.forEach(a =>{
       images.push($(a).children())
       imgSrc.push( $(a).children().attr('src') )
       console.log(imgSrc)
       console.log(images)
-
       imgSrc.forEach((value, index) =>{
         if(value != undefined && value.includes('assets')){ //if the slot is not empty, and the one above it is
           indexToFill = index-1
          //$(images[index-1]).attr('src','./assets/meleeIcons/1.png')
-      
+         
+        }
+        else{ //if all the slots were empty
+          console.log("all slots empty")
+
+          $(images[images.length - 1]).css('src','./assets/meleeIcons/2.png') 
+          $(images[images.length - 1]).css('opacity','0.3') //set the last ones opacity to low
         }
       })
       console.log(indexToFill)
     })
-    
-
     $(element.currentTarget).css('background-color','blue')
   }) //add mouse over functino to each of the columns
-
-
-//if id is not == previous id clicked
-//grab winners char img addr
-//change $event img src to next characters addr
-//change mode for c4 slots to like dropable
-//when hovered change it to winner charimg addr opacity low
 }
 
 addUnique(array, number) {
