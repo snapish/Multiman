@@ -148,8 +148,10 @@ export class MeleeComponent implements OnInit {
       while (this.state.playerAChars.length < this.state.charCount) {
         // while the set is not filled
         var n = this.random();
+        console.log(n)
         this.shuffle(this.meleeChars); //randomize the organized char list for this player
         for (let l of this.meleeChars) { 
+          console.log(l.id)
           if (l.id == n && !this.state.disabledChars.includes(l.id)) { // if the character id matches the random character, and it's not disable
             this.addUnique(this.state.playerAChars, l); //add the random char to the players characters, assuming its not already in there
           }
@@ -213,6 +215,7 @@ export class MeleeComponent implements OnInit {
       //this.state.overCharCount = true;
     }
     this.pushState();
+     
   }
   /**
    * Refreshes the available character count 
@@ -223,6 +226,7 @@ export class MeleeComponent implements OnInit {
       console.log($("#charcount").val());
     }
     this.pushState();
+     
   }
   /**
    * Adds 1 to a players show count
@@ -252,6 +256,7 @@ export class MeleeComponent implements OnInit {
         break;
     }
     this.pushState();
+     
   }
   /**
    * Gives you a random number between 0 and 25
@@ -283,6 +288,7 @@ export class MeleeComponent implements OnInit {
       }
     }
     this.pushState();
+     
   }
   /**
    * Removes a number from an array and returns it
