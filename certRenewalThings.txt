@@ -1,0 +1,5 @@
+i made a few new lines in /etc/letsencrypt/rewnal/ironman.gg.conf
+basically just says to do webroot renewal, and gave it the webroot below that
+i had also commented out the redirecting code in client side stuff, idk if that has an effect or not
+
+to renew give er the ol "certbot renew" and it should be gucci flip flops

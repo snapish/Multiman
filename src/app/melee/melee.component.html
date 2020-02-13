@@ -35,7 +35,7 @@
           </span>
           <hr width="1" size="50" style="margin:0%">
           <span style="text-align: center; width: 25%">                      
-            <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
+            <mat-checkbox id="hideCheck" [(ngModel)] = "state.hideUpcoming" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
           </span>
         </mat-toolbar>
         <br>
@@ -61,10 +61,10 @@
                 <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}}/> </div>
               </div>
             </div>
-            <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('A')" class="charImg" style="-webkit-border-radius: 10px;
+            <div *ngIf="state.hideUpcoming && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('A')" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white">
+          <div *ngIf="state.hideUpcoming" style="color: white">
               <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
                   {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
                 </div>
@@ -85,10 +85,10 @@
                 <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}}  /></div>
               </div>
               </div>
-              <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('B') " class="charImg" style="-webkit-border-radius: 10px;
+              <div *ngIf="state.hideUpcoming && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('B') " class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white">
+          <div *ngIf="state.hideUpcoming" style="color: white">
               <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
                   {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
                 </div>
@@ -108,10 +108,10 @@
                   <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} /></div>
                 </div>        
                 </div>        
-                <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('C')" class="charImg" style="-webkit-border-radius: 10px;
+                <div *ngIf="state.hideUpcoming && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('C')" class="charImg" style="-webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;"></div>
-          <div *ngIf="state.checked" style="color: white">
+          <div *ngIf="state.hideUpcoming" style="color: white">
               <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
                   {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
                 </div>
@@ -131,10 +131,10 @@
                   <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}}  /></div>
                 </div>   
                 </div>   
-                <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('D')" class="charImg" style=" -webkit-border-radius: 10px;
+                <div *ngIf="state.hideUpcoming && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('D')" class="charImg" style=" -webkit-border-radius: 10px;
           -moz-border-radius: 10px;
           border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white"> 
+          <div *ngIf="state.hideUpcoming" style="color: white"> 
               <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
                   {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
                 </div>
