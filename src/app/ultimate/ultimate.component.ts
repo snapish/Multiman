@@ -92,6 +92,9 @@ export class UltimateComponent implements OnInit {
           if(!this.state.disabledChars.includes(105)){
             this.toggleChar("Terry")
           }
+          if(!this.state.disabledChars.includes(106)){
+            this.toggleChar("Byleth")
+          }
           //update state here
         }
     else{
@@ -116,23 +119,7 @@ export class UltimateComponent implements OnInit {
     console.log(this.state.disabledChars.length)
     for (let x of this.ultimateChars) {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
-
-
-
-
         if (!this.state.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
-          // console.log(this.state.disabledChars.length)
-          // console.log(this.state.disabledChars)
-          // if(this.state.charCount + 1 < this.state.disabledChars.length){
-          // this.state.charCount -=1;
-          // console.log('dsffds')
-
-
-
-
-
-
-          // } 
           this.state.disabledChars.push(x.id);
           // console.log('added ' + x.name + " " + x.id)
           // console.log(this.state.disabledChars)

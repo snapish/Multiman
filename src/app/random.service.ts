@@ -111,11 +111,9 @@ export class RandomService {
   Banjo;
   Hero;
   Terry;
+  Byleth;
   Palutena;
-  FreeSpace;
-  uFreeSpace
 
-  pmFreeSpace
   pmWario
   pmMario
   pmLuigi
@@ -158,7 +156,7 @@ export class RandomService {
   pmSnake
   pmSonic
   constructor() { //start of melee characters
-    this.pmFreeSpace  = new Character("Free Space", 42, "./assets/pmIcons/42.png")
+    
     this.pmWario  = new Character("Wario",1 , "./assets/pmIcons/1.png")
     this.pmMario  = new Character("Mario",2 , "./assets/pmIcons/2.png")
     this.pmLuigi  = new Character("Luigi", 3, "./assets/pmIcons/3.png")
@@ -204,7 +202,7 @@ export class RandomService {
 
 
 
-    this.FreeSpace = new Character("Free Space", 26, "./assets/meleeIcons/freespace.png");
+    
     this.DoctorMario = new Character("Dr. Mario", 0, "./assets/meleeIcons/1.png");
     this.Mario = new Character("Mario", 1, "./assets/meleeIcons/2.png");
     this.Luigi = new Character("Luigi", 2, "./assets/meleeIcons/3.png");
@@ -316,6 +314,7 @@ export class RandomService {
     this.Banjo = new Character("Banjo", 103, "./assets/ultimateIcons/75.jpeg")
     this.Hero = new Character("Hero", 104, "./assets/ultimateIcons/74.jpeg")
     this.Terry = new Character("Terry", 105, "./assets/ultimateIcons/79.jpeg")
+    this.Byleth = new Character("Byleth", 106, "./assets/ultimateIcons/80.jpeg")
 
     //end of ultimate 2:47am
 
@@ -325,12 +324,12 @@ export class RandomService {
   getPMChars(){
     var z = [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
     this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
-    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic,  this.pmFreeSpace]
+    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic]
     return z;
   }
 getMeleeChars(){
   var x = [this.DoctorMario,this.Mario,this.Luigi,this.Bowser,this.Peach,this.Yoshi,this.DonkeyKong,this.CaptainFalcon,this.Ganondorf,this.Falco,this.Fox,this.Ness,this.IceClimbers,this.Kirby,
-  this.Samus, this.Zelda,this.Link, this.YoungLink,this.Pichu,this.Pikachu,this.Jigglypuff,this.Mewtwo,this.MrGNW, this.Marth,this.Roy,this.Sheik, this.FreeSpace];
+  this.Samus, this.Zelda,this.Link, this.YoungLink,this.Pichu,this.Pikachu,this.Jigglypuff,this.Mewtwo,this.MrGNW, this.Marth,this.Roy,this.Sheik];
   return x;
 }
 getUltimateChars(){
@@ -340,7 +339,7 @@ getUltimateChars(){
   this.Lucas, this.Sonic, this.KingDedede, this.Olimar, this.Lucario, this.ROB, this.ToonLink, this.Wolf, this.Villager, this.MegaMan, this.WiiFitTrainer, this.RosalinaLuma, this.LittleMac,
   this.Greninja, this.Palutena, this.PacMan, this.Robin, this.Shulk, this.BowserJr, this.DuckHunt, this.Ryu, this.Ken, this.Cloud, this.Corrin, this.Bayonetta, this.Inkling, 
   this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
-    ,this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry
+    ,this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth
 ]
   return y;
 }
