@@ -53,7 +53,8 @@ export class MeleeComponent implements OnInit {
     22,
     23,
     24,
-    25
+    25,
+    26
   ];
 
   playernums = [1, 2, 3, 4]; //number of total possible players
