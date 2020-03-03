@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenav} from '@angular/material/sidenav'
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModesComponent } from './modes/modes.component';
@@ -41,7 +42,7 @@ import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
     UltimateComponent,
 //    ImageMapComponent,
     AboutComponent,
-
+MatSidenav,
 ContactComponent,
 
 PatreonComponent,
@@ -61,6 +62,7 @@ TictactoeComponent,
     NgxPayPalModule,
   //  NgbModule,
     BrowserModule,
+    
     MatCheckboxModule,
 
     AppRoutingModule,
