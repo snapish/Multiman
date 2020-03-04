@@ -53,7 +53,8 @@ export class MeleeComponent implements OnInit {
     22,
     23,
     24,
-    25
+    25,
+    26
   ];
 
   playernums = [1, 2, 3, 4]; //number of total possible players
@@ -64,7 +65,7 @@ export class MeleeComponent implements OnInit {
     playerCChars: [],
     playerDChars: [],
     playerCount: 2, //default player count
-    charCount: 26, //defualt char count
+    charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,

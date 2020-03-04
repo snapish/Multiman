@@ -32,6 +32,7 @@ import { ModesComponent } from './modes/modes.component';
 import { ProjectmComponent } from './projectm/projectm.component';
 import { ConnectFourComponent } from './modes/connect-four/connect-four.component';
 import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -57,6 +58,8 @@ ConnectFourComponent,
 TictactoeComponent,
   ],
   imports: [
+    MatCardModule,
+    //MatSidenavModule,
     MatDialogModule,
     NgxPayPalModule,
   //  NgbModule,
