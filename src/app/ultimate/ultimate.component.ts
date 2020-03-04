@@ -113,6 +113,12 @@ export class UltimateComponent implements OnInit {
       if(this.state.disabledChars.includes(105)){
         this.toggleChar("Terry")
       }
+      
+      
+      if(this.state.disabledChars.includes(106)){
+        this.toggleChar("Byleth")
+      }
+      
     }
   }
   toggleChar(charName: string) {
