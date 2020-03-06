@@ -12,7 +12,7 @@
         <img src="assets/pmIcons/pmlogo.png" class="pm" (click)="transition('pmv')">
       </div>
 <hr>
-<div class="room">
+<!-- <div class="room">
   <button mat-raised-button>
     Copy My Room Code
   </button>
@@ -22,10 +22,12 @@
   <button mat-raised-button>
     Paste & Join Room
   </button>
-</div>
+</div> -->
+New design is a work in progress :)<br>
+
 </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="background-color: rgb(54, 70, 80);">
     <mat-toolbar color="primary" *ngIf="isHandset$ | async">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">

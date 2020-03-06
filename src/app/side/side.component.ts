@@ -16,13 +16,15 @@ export class SideComponent {
       map(result => result.matches),
       shareReplay()
     );
+    
   ngOnInit(): void {
-$('.pmv').hide()
-$('.ultimate').hide()
-console.log(window.location.host + window.location.search)
+    $('.pmv').hide()
+    $('.ultimate').hide()
+    console.log(window.location.host + window.location.search)
   }
-  constructor(private breakpointObserver: BreakpointObserver) { 
- 
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+
   }
   /**
    * switches the main content to whatever they clicked
@@ -30,11 +32,11 @@ console.log(window.location.host + window.location.search)
    */
   transition(view: string) {
     if (this.currentView != view) {
-      
+
       $('.' + this.currentView).hide();
-      $('.'+view).toggle();
-      this.currentView=view;
+      $('.' + view).toggle();
+      this.currentView = view;
     }
-    
+
   }
 }
