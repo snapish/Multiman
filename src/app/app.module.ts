@@ -33,6 +33,9 @@ import { ProjectmComponent } from './projectm/projectm.component';
 import { ConnectFourComponent } from './modes/connect-four/connect-four.component';
 import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { SideComponent } from './side/side.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -56,6 +59,8 @@ ProjectmComponent,
 ConnectFourComponent,
 
 TictactoeComponent,
+
+SideComponent,
   ],
   imports: [
     MatCardModule,
@@ -72,7 +77,13 @@ TictactoeComponent,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatExpansionModule
+    MatExpansionModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
     //AngularFireModule.initializeApp(environment.config, 'database-project'),
     //AngularFirestoreModule,
     //AngularFireStorageModule

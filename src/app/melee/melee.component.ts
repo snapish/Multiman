@@ -81,6 +81,7 @@ export class MeleeComponent implements OnInit {
   }
   ngOnInit() {
   }
+ 
 /**
  * Tries to run the PUSH_STATE function, console logs if it fails
  */

@@ -25,6 +25,8 @@ export class AppComponent {
       this.openPopup()
     }
   }
+
+
   /**
    * This runs after loading all child components. AKA do any kind of "needing to do after rendering things" here
    */
