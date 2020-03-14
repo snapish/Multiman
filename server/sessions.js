@@ -12,8 +12,7 @@ module.exports = {
 
 function create () {
   ID = uuid()
-  const sessionId = ID.substring(5)
-  
+  const sessionId = ID.substring(0,5)
   startTimer(sessionId)
   log('Created session', sessionId)
 

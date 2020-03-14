@@ -51,6 +51,7 @@
     var _ws = new WebSocket(protocol + '://' + window.location.host + window.location.search)
     _ws.onmessage = function(event) {
       if (typeof ON_STATE_CHANGED === 'function') {
+        console.log(ON_STATE_CHANGED)
         ON_STATE_CHANGED(JSON.parse(event.data))
       }
     }
@@ -58,6 +59,7 @@
     //SESSION = new URLSearchParams(window.location.search).get('session')
     ON_STATE_CHANGED = function (state) { /* default no op */ }
     PUSH_STATE = function(state) {
+      console.log("pre send state",JSON.stringify(state))
       _ws.send(JSON.stringify(state))
     }
 
