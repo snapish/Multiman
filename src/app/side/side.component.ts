@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-side',
@@ -23,8 +24,9 @@ export class SideComponent {
     console.log(window.location.host + window.location.search)
   }
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-
+  constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig) {
+    config.placement = 'top-left';
+    config.autoClose = false;
   }
   /**
    * switches the main content to whatever they clicked
@@ -39,4 +41,32 @@ export class SideComponent {
     }
 
   }
+  charnums = [ //used in the dropdown for selecting character count
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ];
 }

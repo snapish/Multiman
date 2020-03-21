@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="title">
-      <div>Ironmans</div>
+      <div>Menu(?)</div>
     </mat-toolbar>
     <hr>
     <mat-nav-list>
@@ -12,18 +12,46 @@
         <img src="assets/pmIcons/pmlogo.png" class="pm" (click)="transition('pmv')">
       </div>
 <hr>
-<!-- <div class="room">
-  <button mat-raised-button>
+<div >
+  <div class="title">
+    Options
+  </div>
+    could move those from toolbar here, then make roll chars span across the entire top part<br><br>Also no clue what to color the background over there ---->
+
+
+  <ul>
+    
+    <li>
+      Character Count
+      <select  class="pull-right">
+        <option *ngFor="let n of charnums" [value] = "n">{{n}}</option>
+      </select>
+    </li>
+    <li>
+      Player Count(?)
+    </li>
+    <li>
+      Hide Upcoming(?)
+    </li>
+    <li>
+      Hide Character Menu(?)
+    </li>
+  </ul>
+  <hr>
+ <div class="room">
+  <button mat-raised-button class="copyButton">
     Copy My Room Code
   </button>
   
   <input type="text" placeholder="Room Code" style="text-align: center;">
 
-  <button mat-raised-button>
-    Paste & Join Room
+  <button mat-raised-button class="pasteButton">Paste & Join Room
   </button>
-</div> -->
-New design is a work in progress :)<br>
+</div> 
+
+<hr>
+
+</div>
 
 </mat-nav-list>
   </mat-sidenav>

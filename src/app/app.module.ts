@@ -36,6 +36,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -63,6 +64,8 @@ TictactoeComponent,
 SideComponent,
   ],
   imports: [
+
+    NgbModule,
     MatCardModule,
     //MatSidenavModule,
     MatDialogModule,
