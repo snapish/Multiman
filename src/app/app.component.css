@@ -5,4 +5,12 @@ button, input{
 ::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
   opacity : 1;
 }
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
 /* styling for the dialog box border n stuff are in styles.css */

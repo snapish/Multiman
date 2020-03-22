@@ -65,7 +65,7 @@ export class MeleeComponent implements OnInit {
     playerCChars: [],
     playerDChars: [],
     playerCount: 2, //default player count
-    charCount: 26, //defualt char count
+    charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
     playerAShowCount: this.playerAShowCount,
     playerBShowCount: this.playerBShowCount,
     playerCShowCount: this.playerCShowCount,
@@ -81,6 +81,7 @@ export class MeleeComponent implements OnInit {
   }
   ngOnInit() {
   }
+ 
 /**
  * Tries to run the PUSH_STATE function, console logs if it fails
  */
@@ -151,7 +152,7 @@ export class MeleeComponent implements OnInit {
         console.log(n)
         this.shuffle(this.meleeChars); //randomize the organized char list for this player
         for (let l of this.meleeChars) { 
-          console.log(l.id)
+         // console.log(l.id)
           if (l.id == n && !this.state.disabledChars.includes(l.id)) { // if the character id matches the random character, and it's not disable
             this.addUnique(this.state.playerAChars, l); //add the random char to the players characters, assuming its not already in there
           }
@@ -277,9 +278,11 @@ export class MeleeComponent implements OnInit {
       if (charName == x.name) { //find the character in meleeChars
         if (!this.state.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.state.disabledChars.push(x.id); //put it in 
+          
+         
           document.getElementById(x.name).style.opacity = "0.3";
         } else {
-          document.getElementById(x.name).style.opacity = "1";
+         document.getElementById(x.name).style.opacity = "1";
           this.state.disabledChars = this.removeFromArray(
             this.state.disabledChars,
             x.id

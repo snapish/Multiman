@@ -11,8 +11,8 @@ module.exports = {
 }
 
 function create () {
-  const sessionId = uuid()
-
+  ID = uuid()
+  const sessionId = ID.substring(0,5)
   startTimer(sessionId)
   log('Created session', sessionId)
 

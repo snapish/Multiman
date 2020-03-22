@@ -57,7 +57,9 @@ export class ProjectmComponent implements OnInit {
     }
   }
   updateState(newState) {
-    console.log('got new state: ', newState)
+    console.log("old state: ", this.state.disabledChars);
+    
+    console.log('got new state: ', newState.disabledChars)
     this.firstRoll = true;
     this.state.playerAChars = newState.playerAChars;
     this.state.playerBChars = newState.playerBChars;
