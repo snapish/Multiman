@@ -114,10 +114,12 @@
           <br>
           <div class="half-left">
             <button class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
-            <input type="text" class="form-control" placeholder="5 CHAR ROOM CODE"
+            <br>
+            <input (change) = "joinRoomCode()" [(ngmodel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE"
               aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>
           </div>
-          <mat-checkbox [disabled]="true">Lock room functions to others</mat-checkbox>
+          <mat-checkbox [color]="info" [disabled]="false">Lock room functions to others</mat-checkbox>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
           </div>

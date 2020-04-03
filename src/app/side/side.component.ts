@@ -50,10 +50,11 @@ export class SideComponent {
   if page is locked to others, make it so if your IP isn't the hosts, any clicks on the page do nothing / return before the click "goes thru" (document.on()...)
   add a better welcome popup
   possibly a tour
-  
+  make rows more than 1 char when shrinking page
   
 
   */
+  inputVal = ""
   roomCode = "";
   currentCharCount;
   meleeCharCount;
@@ -65,6 +66,13 @@ export class SideComponent {
   currentView = "melee"
   closeResult = '';
 
+/**
+  Checks room code entered if its 5 chars long, if theres an active sesh, join it, if not give err
+ */
+joinRoomCode(){
+  this.inputVal = "asdf"
+console.log(this.inputVal)
+}
 /**
  * came with the modal example that i yoinked, keeping it all here
  * @param content :shrug:
