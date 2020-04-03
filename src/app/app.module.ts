@@ -13,14 +13,14 @@ import {environment} from '../environments/environment';
 import { MeleeComponent } from './melee/melee.component';
 import { UltimateComponent } from './ultimate/ultimate.component';
 // import { ImageMapComponent } from './image-map/image-map.component';
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ContactComponent } from './contact/contact.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardModule, MatCardContent } from '@angular/material/card';
 import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,7 +36,7 @@ import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatListModule } from '@angular/material/list';
+import { MatListModule, MatNavList } from '@angular/material/list';
 
 
 @NgModule({
@@ -46,7 +46,6 @@ import { MatListModule } from '@angular/material/list';
     UltimateComponent,
 //    ImageMapComponent,
     AboutComponent,
-MatSidenav,
 ContactComponent,
 
 PatreonComponent,
@@ -67,8 +66,7 @@ SideComponent,
     MatCardModule,
     //MatSidenavModule,
     MatDialogModule,
-    NgxPayPalModule,
-  //  NgbModule,
+    NgbModule,
     BrowserModule,
     
     MatCheckboxModule,
