@@ -13,19 +13,20 @@ import {environment} from '../environments/environment';
 import { MeleeComponent } from './melee/melee.component';
 import { UltimateComponent } from './ultimate/ultimate.component';
 // import { ImageMapComponent } from './image-map/image-map.component';
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AboutComponent } from './about/about.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { ContactComponent } from './contact/contact.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardModule, MatCardContent } from '@angular/material/card';
 import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenav} from '@angular/material/sidenav'
 import { PatreonComponent } from './patreon/patreon.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ModesComponent } from './modes/modes.component';
@@ -35,8 +36,7 @@ import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatListModule } from '@angular/material/list';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatListModule, MatNavList } from '@angular/material/list';
 
 
 @NgModule({
@@ -46,7 +46,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UltimateComponent,
 //    ImageMapComponent,
     AboutComponent,
-
 ContactComponent,
 
 PatreonComponent,
@@ -69,9 +68,9 @@ SideComponent,
     MatCardModule,
     //MatSidenavModule,
     MatDialogModule,
-    NgxPayPalModule,
-  //  NgbModule,
+    NgbModule,
     BrowserModule,
+    
     MatCheckboxModule,
 
     AppRoutingModule,

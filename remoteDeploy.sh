@@ -1,1 +1,1 @@
-ssh -t snapish@ironman.gg '~/Multiman/deploy.sh'
+ssh -t snapish@ironman.gg '~/Multiman/server/deploy.sh'
