@@ -67,7 +67,7 @@
             <button *ngFor="let n of pmCharCount" ngbDropdownItem (click)="setCharacterCount(n)">{{n}}</button>
           </div>
         </div>
-      </div>
+      </div> 
       <br>
       <br>
       <div class="menuOption">
@@ -98,7 +98,12 @@
       <div class="roomOptionsButton">
         <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
       </div>
-
+      <div class = "battleShipButton">
+        <button type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
+          Battleship<br>
+          <i style="font-size: 12px;">coming eventually</i>
+        </button>
+      </div>
       <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Room Options</h4>
@@ -115,11 +120,11 @@
           <div class="half-left">
             <button class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
             <br>
-            <input (change) = "joinRoomCode()" [(ngmodel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE"
-              aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input  (input) = "joinRoomCode()" [(ngModel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE" maxlength="5">
               <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>
           </div>
-          <mat-checkbox [color]="info" [disabled]="false">Lock room functions to others</mat-checkbox>
+          <mat-checkbox color = "warn" [disabled]="false" (change) = "toggleRoomLock()">Lock room functions to others</mat-checkbox>
+          <div [hidden]= "noRoomFound">No room with the code " <strong>{{inputVal}}</strong>" could be found </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
           </div>

@@ -57,7 +57,10 @@ button:not(.f):not(.close){
 .copyButton{
   font-size: 21px;
 }
-
+.battleShipButton{
+  margin-top: 11px;
+  padding-left: 27px
+}
 .close{
   width: 33%;
   height:100%;

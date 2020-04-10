@@ -51,8 +51,9 @@ export class SideComponent {
   add a better welcome popup
   possibly a tour
   make rows more than 1 char when shrinking page
-  
-
+  add battleship, 8x8 grid
+  get a list of current session IDS for joining room code
+  get https to auto redirect in server and not in index.html
   */
   inputVal = ""
   roomCode = "";
@@ -65,13 +66,29 @@ export class SideComponent {
   dropdownOpen = false;
   currentView = "melee"
   closeResult = '';
-
+  activeRoomCodes : string[] =  []
+  noRoomFound = true
+  
 /**
   Checks room code entered if its 5 chars long, if theres an active sesh, join it, if not give err
  */
 joinRoomCode(){
-  this.inputVal = "asdf"
-console.log(this.inputVal)
+  var directed = false;
+  if(this.inputVal.length >= 5){ //if 5 chars...
+    this.activeRoomCodes.forEach(element => {// then for each room code...
+      if(element.includes(this.inputVal)){ //if the url of the room includes the code they typed
+        document.location.replace('https://ironman.gg/?session=' + this.inputVal) //redirect
+        directed = true
+      }
+      
+    });
+    if(!directed){
+      this.noRoomFound = false //show the msg that no room was found
+    }
+  }
+  else{
+    this.noRoomFound = true //for if they remove the text in the box after not finding a room, itll hide the message again
+  }
 }
 /**
  * came with the modal example that i yoinked, keeping it all here
