@@ -20,7 +20,7 @@ export class ProjectmComponent implements OnInit {
   playerBShowCount: number;
   playerCShowCount: number;
   playerDShowCount: number;
-  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
+  charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,42]
   playernums = [1, 2, 3, 4]
   state = {
     version: "p",
@@ -92,9 +92,9 @@ export class ProjectmComponent implements OnInit {
     }
   }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
-    // we would have an infinite loop if exclusions contained all the numbers between 0 - 42
+    // we would have an infinite loop if exclusions contained all the numbers between 0 - 43
     // because we'd never find a satisfying random number.
-    if (exclusions.length >= 42) throw Error('WARNING: avoiding infinite loop')
+    if (exclusions.length >= 43) throw Error('WARNING: avoiding infinite loop')
     let result
     do {
       result = this.random()

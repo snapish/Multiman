@@ -155,8 +155,8 @@ export class RandomService {
   pmGNW
   pmSnake
   pmSonic
+  pmKnuckles
   constructor() { //start of melee characters
-    
     this.pmWario  = new Character("Wario",1 , "./assets/pmIcons/1.png")
     this.pmMario  = new Character("Mario",2 , "./assets/pmIcons/2.png")
     this.pmLuigi  = new Character("Luigi", 3, "./assets/pmIcons/3.png")
@@ -198,6 +198,7 @@ export class RandomService {
     this.pmGNW  = new Character("GNW",39 , "./assets/pmIcons/39.png")
     this.pmSnake  = new Character("Snake",40 , "./assets/pmIcons/40.png")
     this.pmSonic  = new Character("Sonic",41 , "./assets/pmIcons/41.png")
+    this.pmKnuckles = new Character("Knuckles", 42, "./assets/pmIcons/43.png")
 
 
 
@@ -324,7 +325,7 @@ export class RandomService {
   getPMChars(){
     var z = [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
     this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
-    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic]
+    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic, this.pmKnuckles]
     return z;
   }
 getMeleeChars(){

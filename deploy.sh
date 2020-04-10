@@ -1,14 +1,14 @@
 #!/bin/bash
-set -e
+#set -e
 
 # make sure we're executing commands from project directory
 cd "$(dirname $0)"
 
-#point to master
-git checkout master
+#point to production
+git checkout production
 
 # pull latest code
-git pull origin master
+git pull origin production
 
 # install dependencies
 npm install
