@@ -4,13 +4,15 @@
   <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 
 </head>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+<mat-sidenav-container class="sidenav-container" > 
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [disableClose]="(isHandset$ | async) ? 'false' : 'true'"
+
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="title">
-      <div>Menu(?)</div>
+      <div style="font-size: 37px; margin-top: 10px;">Menu</div>
     </mat-toolbar>
-    <hr>
+    <hr color="white">
     <mat-nav-list>
 
 
@@ -20,21 +22,8 @@
         <img src="assets/ultimateIcons/ultimatelogo.png" (click)="transition('ultimate')" class="gameIcons">
         <img src="assets/pmIcons/pmlogo.png" class="pm" (click)="transition('pmv')" class="gameIcons">
       </div>
-      <hr>
-      <!-- <div class="room">
-  <button mat-raised-button>
-    Copy My Room Code
-  </button>
-  
-  <input type="text" placeholder="Room Code" style="text-align: center;">
-
-  <button mat-raised-button>s
-    Paste & Join Room
-  </button>
-</div> -->
-      <!-- Default dropright button -->
-      <!-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0 0 226 226" style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,226v-226h226v226z" fill="#000000"></path><g fill="#008000"><path d="M221.05625,0c-0.33547,0.05297 -0.67094,0.15891 -0.98875,0.2825l-50.14375,16.6675c-0.75922,0.24719 -1.44781,0.68859 -1.9775,1.27125l-105.79625,115.825l-22.45875,-15.67875c-0.86516,-0.61797 -1.90687,-0.91813 -2.96625,-0.8475c-1.05937,0.07063 -2.06578,0.52969 -2.825,1.27125l-11.3,10.87625c-1.74797,1.76563 -1.74797,4.59062 0,6.35625l20.0575,20.0575l-23.165,29.38c-10.78797,0.45906 -19.4925,9.30484 -19.4925,20.19875c0,11.17641 9.16359,20.34 20.34,20.34c10.89391,0 19.73969,-8.70453 20.19875,-19.4925l29.38,-23.165l20.0575,20.0575c1.76563,1.74797 4.59063,1.74797 6.35625,0l10.87625,-11.3c1.51844,-1.57141 1.71266,-4.00797 0.42375,-5.79125l-15.67875,-22.45875l115.825,-105.79625c0.58266,-0.52969 1.02406,-1.21828 1.27125,-1.9775l16.6675,-50.14375c0.47672,-1.44781 0.21187,-3.01922 -0.74156,-4.21984c-0.93578,-1.20062 -2.40125,-1.83625 -3.91969,-1.71266zM214.4175,11.5825l-13.70125,40.68l-114.13,104.10125l-6.4975,-9.3225c-0.30016,-0.44141 -0.68859,-0.82984 -1.13,-1.13l-9.3225,-6.4975l104.10125,-114.13zM37.5725,127.83125l21.89375,15.39625c0.49437,0.565 1.13,1.00641 1.83625,1.27125l11.865,8.33375l8.475,12.1475c0.26484,0.60031 0.65328,1.13 1.13,1.55375l15.39625,21.89375l-5.085,5.3675l-60.87875,-60.87875zM49.155,162.57875l14.26625,14.26625l-25.00125,19.775c-1.9775,-3.90203 -5.13797,-7.0625 -9.04,-9.04zM20.34,194.36c6.28563,0 11.3,5.01438 11.3,11.3c0,6.28563 -5.01438,11.3 -11.3,11.3c-6.28562,0 -11.3,-5.01438 -11.3,-11.3c0,-6.28562 5.01437,-11.3 11.3,-11.3z"></path></g><path d="" fill="none"></path><path d="" fill="none"></path><path d="" fill="none"></path></g></g></svg> -->
-      <div class="menuOption">
+      <hr color="white">
+       <div class="menuOption">
         Character Count
       </div>
 
@@ -98,12 +87,14 @@
       <div class="roomOptionsButton">
         <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
       </div>
+
       <div class = "battleShipButton">
-        <button type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
+        <button [disabled] = "true" type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
           Battleship<br>
           <i style="font-size: 12px;">coming eventually</i>
         </button>
       </div>
+
       <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Room Options</h4>
@@ -137,7 +128,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content style="background-color: rgb(54, 70, 80);">
+  <mat-sidenav-content>
     <mat-toolbar color="primary" *ngIf="isHandset$ | async">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
@@ -148,13 +139,13 @@
     </mat-toolbar>
 
 
-    <div class="melee">
+    <div *ngIf="currentView == 'melee' ">
       <app-melee></app-melee>
     </div>
-    <div class="ultimate">
+    <div *ngIf="currentView == 'ultimate'">
       <app-ultimate></app-ultimate>
     </div>
-    <div class="pmv">
+    <div *ngIf="currentView == 'pmv'">
       <app-projectm></app-projectm>
     </div>
 

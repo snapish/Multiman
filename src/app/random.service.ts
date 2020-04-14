@@ -157,6 +157,7 @@ export class RandomService {
   pmSonic
   constructor() { //start of melee characters
 
+
     this.pmWario = new Character("Wario", 1, "./assets/pmIcons/1.png")
     this.pmMario = new Character("Mario", 2, "./assets/pmIcons/2.png")
     this.pmLuigi = new Character("Luigi", 3, "./assets/pmIcons/3.png")
@@ -374,6 +375,42 @@ export class RandomService {
     if(game.toLocaleLowerCase() == "melee" || game.toLocaleLowerCase() == "pm")
       return [1,2,3,4]
     else if(game.toLocaleLowerCase() == "ultimate") return [1,2,3,4,5,6,7,8]
+  }
+  /**
+   * Shuffles an array
+   * @param array array to shuffle
+   */
+  shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  /**
+   * Return random list from melee
+   * @param disabled an array of numbers that are the IDs of chars you dont want
+   */
+  randomizeMelee(disabled: number[]) { 
+    var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    this.shuffle(characters) //makes it random
+    return characters
+  }
+  
+  /**
+   * Return random list from pm
+   * @param disabled an array of numbers that are the IDs of chars you dont want
+   */
+  randomizePM(disabled: number[]){
+    var characters = this.getPMChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    this.shuffle(characters) //makes it random
+    return characters
+  }
+  /**
+   * Return random list from ultimate
+   * @param disabled an array of numbers that are the IDs of chars you dont want
+   */
+  randomizeUltimate(disabled: number[]){
+    var characters = this.getUltimateChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    this.shuffle(characters) //makes it random
+    return characters
   }
 
 }

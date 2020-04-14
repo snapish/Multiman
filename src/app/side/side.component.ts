@@ -25,7 +25,7 @@ export class SideComponent {
   }
 
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal) {
-    config.placement = 'right';
+        config.placement = 'right';
     config.autoClose = true;
     this.meleeCharCount = randomService.getMeleeCharCount();
     this.ultimateCharCount = randomService.getUltimateCharCount();
@@ -46,14 +46,26 @@ export class SideComponent {
   plans/todo
   
   mark some IP as the host
+  get a list of current session IDS for joining room code
+  get https to auto redirect in server and not in index.html
+  
   room options checkbox should be disabled for all but host
   if page is locked to others, make it so if your IP isn't the hosts, any clicks on the page do nothing / return before the click "goes thru" (document.on()...)
   add a better welcome popup
-  possibly a tour
-  make rows more than 1 char when shrinking page
+      -possibly a tour
   add battleship, 8x8 grid
-  get a list of current session IDS for joining room code
-  get https to auto redirect in server and not in index.html
+  put everything into one state variable
+  get state service in full schwing
+  when someone connects, update component states from state service
+  
+  ---DONE---
+  fixed closing of sidenav
+  new color theme 
+  have ult pull char/player counts from side comp
+  have pm pull char/player counts from side comp
+  get rid of hide upcoming
+  have melee pull char/player counts from side comp
+  make randomservice return random sets of chars, given the disabled chars
   */
   inputVal = ""
   roomCode = "";
@@ -95,11 +107,7 @@ joinRoomCode(){
  * @param content :shrug:
  */
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    //
   }
 /**
  * * came with the modal example that i yoinked, keeping it all here

@@ -91,7 +91,7 @@ SideComponent,
     //AngularFireStorageModule
   ],
   entryComponents:[WelcomeComponent],
-  providers: [WelcomeComponent, ProjectmComponent, MeleeComponent],
+  providers: [WelcomeComponent, ProjectmComponent, MeleeComponent,SideComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

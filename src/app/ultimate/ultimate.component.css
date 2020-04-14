@@ -36,7 +36,10 @@ img{-webkit-user-drag: none;
 .page{
     overflow:hidden;
 }
-
+mat-toolbar{
+    padding:2px;
+    background-color: rgb(49, 49, 49);
+}
 .table{
     display: flex;
     justify-content: center;

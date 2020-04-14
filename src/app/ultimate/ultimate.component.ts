@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomService } from '../random.service';
+import { SideComponent } from '../side/side.component';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
@@ -22,7 +23,6 @@ export class UltimateComponent implements OnInit {
   playerHShowCount: number;
   ultimateChars= []
   state = {
-    version: "u",
     playerAChars: [],
     playerBChars: [],
     playerCChars: [],
@@ -46,7 +46,7 @@ export class UltimateComponent implements OnInit {
     overCharCount: false,
     dlcDisabled: false
   }
-  constructor(private randomService: RandomService) {
+  constructor(private randomService: RandomService, private side: SideComponent) {
     this.ultimateChars = this.randomService.getUltimateChars();
     // console.log(this.ultimateChars)
    }
@@ -113,8 +113,6 @@ export class UltimateComponent implements OnInit {
       if(this.state.disabledChars.includes(105)){
         this.toggleChar("Terry")
       }
-      
-      
       if(this.state.disabledChars.includes(106)){
         this.toggleChar("Byleth")
       }
@@ -129,9 +127,13 @@ export class UltimateComponent implements OnInit {
           this.state.disabledChars.push(x.id);
           // console.log('added ' + x.name + " " + x.id)
           // console.log(this.state.disabledChars)
+          this.side.setCharacterCount(this.side.currentCharCount - 1)
+
           document.getElementById(x.name).style.opacity = "0.3";
         }
         else {
+          this.side.setCharacterCount(this.side.currentCharCount + 1)
+          
           document.getElementById(x.name).style.opacity = "1";
           this.state.disabledChars = this.removeFromArray(this.state.disabledChars, x.id);
         }
@@ -139,65 +141,7 @@ export class UltimateComponent implements OnInit {
     }
   }
 
-  updateAvailableChars(){
-    $('#charCount')
-    console.log(this.state.charCount)
-    if(78- this.state.disabledChars.length < this.state.charCount){
-      console.log($('#charCount').val())
-    }
-  }
-  advancePlayer(player: string){
-    switch (player) {
-      case 'A':
-          if (this.state.playerAShowCount < this.state.playerAChars.length) {
-            this.state.playerAShowCount += 1;
-          }
-        break;
-    
-      case 'B':
-          if (this.state.playerBShowCount < this.state.playerBChars.length) {
-            this.state.playerBShowCount += 1;
-          }
-        break;
-    
-      case 'C':
-          if (this.state.playerCShowCount < this.state.playerCChars.length) {
-            this.state.playerCShowCount += 1;
-          }
-        break;
-    
-      case 'D':
-          if (this.state.playerDShowCount < this.state.playerDChars.length) {
-            this.state.playerDShowCount += 1;
-          }
-        break;
-    
-      case 'E':
-          if (this.state.playerEShowCount < this.state.playerEChars.length) {
-            this.state.playerEShowCount += 1;
-          }
-        break;
-    
-      case 'F':
-          if (this.state.playerFShowCount < this.state.playerFChars.length) {
-            this.state.playerFShowCount += 1;
-          }
-        break;
-    
-      case 'G':
-          if (this.state.playerGShowCount < this.state.playerGChars.length) {
-            this.state.playerGShowCount += 1;
-          }
-        break;
-    
-      case 'H':
-          if (this.state.playerHShowCount < this.state.playerHChars.length) {
-            this.state.playerHShowCount += 1;
-          }
-        break;
-    }
-  }
- 
+
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 26
     // because we'd never find a satisfying random number.
@@ -215,152 +159,19 @@ export class UltimateComponent implements OnInit {
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
-  randomFill() {
 
-    this.firstRoll = true;
-    this.state.charCount = ((document.getElementById("charCount")) as HTMLSelectElement).selectedIndex + 1; //set char count
-    this.state.playerCount = ((document.getElementById("playerCount")) as HTMLSelectElement).selectedIndex + 1; //set the player count
-    this.state.playerAChars = [];
-    this.state.playerBChars = []; //clear they shits
-    this.state.playerCChars = [];
-    this.state.playerDChars = [];
-    this.state.playerEChars = [];
-    this.state.playerFChars = [];
-    this.state.playerGChars = [];
-    this.state.playerHChars = [];
-    this.state.overCharCount = false;
-
-    if (this.ultimateChars.length - this.state.disabledChars.length + 1 > this.state.charCount) { // if the whitelisted char count is under the allowed count. Rewording: if disabled chars is over char count
-      while (this.state.playerAChars.length < this.state.charCount) { // while the set is not filled
-        var n = this.random();
-        console.log(this.state.charCount)
-        console.log(this.state.playerAChars.length)
-        this.shuffle(this.ultimateChars);
-        for (let l of this.ultimateChars) {
-       
-          if (l.id == n && !this.state.disabledChars.includes(l.id)  ) {
-            
-            this.addUnique(this.state.playerAChars, l);
-          }
-        }
-      }
-
-      if (this.state.playerCount >= 2) {
-        while (this.state.playerBChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerBChars, l);
-            }
-          }
-        }
-      }
-
-      if (this.state.playerCount >= 3) {
-        while (this.state.playerCChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerCChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount >= 4) {
-        while (this.state.playerDChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerDChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount >= 5) {
-        while (this.state.playerEChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerEChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount >= 6) {
-        while (this.state.playerFChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerFChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount >= 7) {
-        while (this.state.playerGChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerGChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount == 8) {
-        while (this.state.playerHChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.ultimateChars);
-          for (let l of this.ultimateChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerHChars, l);
-            }
-          }
-        }
-      }
-      if (!this.state.checked) {
-        this.state.playerAShowCount = 80;
-        this.state.playerBShowCount = 80;
-        this.state.playerCShowCount = 80;
-        this.state.playerDShowCount = 80;
-        this.state.playerEShowCount = 80;
-        this.state.playerFShowCount = 80;
-        this.state.playerGShowCount = 80;
-        this.state.playerHShowCount = 80;
-      }
-      else {
-        this.state.playerAShowCount = 0;
-        this.state.playerBShowCount = 0;
-        this.state.playerCShowCount = 0;
-        this.state.playerDShowCount = 0;
-        this.state.playerEShowCount = 0;
-        this.state.playerFShowCount = 0;
-        this.state.playerGShowCount = 0;
-        this.state.playerHShowCount = 0;
-      }
+    randomFill() {
+      this.state.charCount = this.side.currentCharCount
+      this.state.playerCount = this.side.currentPlayerCount
+      this.state.playerAChars = this.randomService.randomizeUltimate(this.state.disabledChars)
+      this.state.playerBChars = this.randomService.randomizeUltimate(this.state.disabledChars)
+      this.state.playerCChars = this.randomService.randomizeUltimate(this.state.disabledChars)
+      this.state.playerDChars = this.randomService.randomizeUltimate(this.state.disabledChars)  
+      this.state.playerEChars = this.randomService.randomizeUltimate(this.state.disabledChars)  
+      this.state.playerFChars = this.randomService.randomizeUltimate(this.state.disabledChars)  
+      this.state.playerGChars = this.randomService.randomizeUltimate(this.state.disabledChars)  
+      this.state.playerHChars = this.randomService.randomizeUltimate(this.state.disabledChars)  
+  
     }
-    else {      
-      //set the char count to the maximum and roll again
-      this.state.charCount = 78 - this.state.disabledChars.length
-      $('#charCount').val(this.state.charCount)
-      this.randomFill()
- }
-  }
-  showToggle(){
-    if(!this.state.checked){
-      this.state.playerAShowCount= 80;
-      this.state.playerBShowCount= 80;
-      this.state.playerCShowCount= 80;
-      this.state.playerDShowCount= 80;
-      this.state.playerEShowCount= 80;
-      this.state.playerFShowCount= 80;
-      this.state.playerGShowCount= 80;
-      this.state.playerHShowCount= 80;
-    }
-  }
+
 }

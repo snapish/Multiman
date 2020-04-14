@@ -3,6 +3,13 @@
     flex-direction: row;
     justify-content: center; 
 }
+mat-toolbar{
+    padding:2px;
+    background-color: rgb(49, 49, 49);
+}
+.mat-toolbar.mat-primary {
+    background: #007bff;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -72,7 +79,9 @@ img{-webkit-user-drag: none;
   }
 
 
-
+.mat-card{
+    padding: 4px
+}
 .charImg:last-of-type:hover{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;

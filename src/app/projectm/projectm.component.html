@@ -1,42 +1,12 @@
 <html>
   <body> 
-      <mat-toolbar color="primary">
-          <span style="text-align: center; width: 25%;"> 
-            <button mat-raised-button (click) = "randomFill()" style="display: inline; font-size: 18px; padding-left: 15%; padding-right: 15%;">
-              Roll Characters
-            </button>
-           </span>
-          <hr width="1" size="50" style="margin:0%">
-        <span style="text-align: center; width: 25%"> 
-          <div style="font-size: 15px; display: inline-block">
-              <label>
-                  Character Count
-              </label>
-            </div>
-            <br>
-            
-          <select  [(ngModel)]='state.charCount' (change) ="updateAvailableChars()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" id="charCount" matNativeControl  >
-              <option  *ngFor="let n of charnums"  [value]= "n"> {{n}}</option>
-            </select>
-          </span>
-          <hr width="1" size="50" style="margin:0%">
-          <span style="text-align: center; width: 25%">  
-            <div style="font-size: 15px; display: inline-block">
-                <label>
-                    Player Count
-                </label>
-              </div>
-              <br>
-           <select  [(ngModel)]='state.playerCount' (change) = "pushState()" style="color: white; background-color :black;  border: thick grey; height: 40; border-radius: 5%; text-align: center; line-height: 20px;  padding-top: 7px ;padding-bottom: 7px;width: 200px" matNativeControl id="playerCount">
-              <option *ngFor="let n of playernums" [value] = "n">{{n}}</option>
-            </select>
-
-            
-          </span>
-          <hr width="1" size="50" style="margin:0%">
-          <span style="text-align: center; width: 25%">                      
-            <mat-checkbox id="hideCheck" [(ngModel)] = "state.checked" (change) = "showToggle()">Hide Upcoming Characters</mat-checkbox>
-          </span>
+      <mat-toolbar>
+        <span style="text-align: center; width: 100%;">
+          <button mat-raised-button (click)="randomFill()"
+          style=" font-size: 24px; padding-left: 50%; padding-right: 50%; max-width: 100%; max-height: 100%; height: 100%;">
+          Roll Characters
+          </button>
+        </span>
         </mat-toolbar>
         <br>
    
@@ -58,17 +28,9 @@
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of state.playerAChars;let ind= index" >
                 <!-- style="float: left" was in the div below -->
-                <div *ngIf="ind <= state.playerAShowCount"> <img src = {{i.img}}/> </div>
+                <div *ngIf="ind < state.charCount"> <img src = {{i.img}}/> </div>
               </div>
             </div>
-            <div *ngIf="state.checked && (state.playerAChars.length - state.playerAShowCount - 1)  >= 1 "> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('A')" class="charImg" style="-webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white">
-              <div *ngIf=" (state.playerAChars.length - state.playerAShowCount - 1)  >= 1" style="color: white">
-                  {{state.playerAChars.length - state.playerAShowCount - 1}} Remaining
-                </div>
-              </div>
             </div>
           </mat-card>
 
@@ -82,16 +44,9 @@
             <div id="playerB">
                 <div  class="container" >
               <div *ngFor="let i of state.playerBChars; let ind = index">
-                <div *ngIf="ind <= state.playerBShowCount"> <img src = {{i.img}}  /></div>
+                <div *ngIf="ind < state.charCount"> <img src = {{i.img}}  /></div>
               </div>
               </div>
-              <div *ngIf="state.checked && (state.playerBChars.length - state.playerBShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('B') " class="charImg" style="-webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white">
-              <div *ngIf=" (state.playerBChars.length - state.playerBShowCount - 1)  >= 1" style="color: white">
-                  {{state.playerBChars.length - state.playerBShowCount - 1}} Remaining</div>
-                </div>
               </div>
             </mat-card>
 
@@ -105,16 +60,9 @@
               <div id="playerC">
                   <div  class="container" >
                 <div *ngFor="let i of state.playerCChars; let ind = index">
-                  <div *ngIf="ind <= state.playerCShowCount"> <img src = {{i.img}} /></div>
+                  <div *ngIf="ind < state.charCount"> <img src = {{i.img}} /></div>
                 </div>        
                 </div>        
-                <div *ngIf="state.checked && (state.playerCChars.length - state.playerCShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('C')" class="charImg" style="-webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;"></div>
-          <div *ngIf="state.checked" style="color: white">
-              <div *ngIf=" (state.playerCChars.length - state.playerCShowCount - 1)  >= 1" style="color: white">
-                  {{state.playerCChars.length - state.playerCShowCount - 1}} Remaining</div>
-                </div>
               </div>
             </mat-card>
 
@@ -128,17 +76,9 @@
               <div id="playerD">
                   <div  class="container" >
                 <div *ngFor="let i of state.playerDChars; let ind = index">
-                  <div *ngIf="ind <= state.playerDShowCount"> <img src = {{i.img}}  /></div>
+                  <div *ngIf="ind < state.charCount"> <img src = {{i.img}}  /></div>
                 </div>   
                 </div>   
-                <div *ngIf="state.checked && (state.playerDChars.length - state.playerDShowCount - 1)  >= 1"> <img src="./assets/meleeIcons/advance.png" (click) = "advancePlayer('D')" class="charImg" style=" -webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;" ></div>
-          <div *ngIf="state.checked" style="color: white"> 
-              <div *ngIf=" (state.playerDChars.length - state.playerDShowCount - 1)  >= 1" style="color: white">
-                  {{state.playerDChars.length - state.playerDShowCount - 1}} Remaining
-                </div>
-              </div>
             </div>
           </mat-card>
           
