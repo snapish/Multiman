@@ -12,32 +12,23 @@ declare var PUSH_STATE: any;
 export class ProjectmComponent implements OnInit {
   pmChars = []
   Opacity = "0.5";
-  firstRoll = false;
-  playerCount;
-  charCount;
-  public isCollapsed = true;
-  checked: boolean = false;
-  playerAShowCount: number;
-  playerBShowCount: number;
-  playerCShowCount: number;
-  playerDShowCount: number;
   charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41]
   playernums = [1, 2, 3, 4]
   state = {
-    version: "p",
-    playerAChars: [],
-    playerBChars: [],
-    playerCChars: [],
-    playerDChars: [],
-    playerCount: 2,
-    charCount: 4,
-    playerAShowCount: this.playerAShowCount,
-    playerBShowCount: this.playerBShowCount,
-    playerCShowCount: this.playerCShowCount,
-    playerDShowCount: this.playerDShowCount,
-    disabledChars: [],
-    checked: this.checked,
-    overCharCount: false
+    game:"projectm",
+    all:{
+      playerCount: 2,
+      charCount: 4,
+    },
+    projectm:{
+      playerAChars: [],
+      playerBChars: [],
+      playerCChars: [],
+      playerDChars: [],
+      disabledChars: [],
+    }
+
+
   }
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent) {
     this.pmChars = this.randomService.getPMChars();
@@ -58,30 +49,20 @@ export class ProjectmComponent implements OnInit {
     }
   }
   updateState(newState) {
-    console.log("old state: ", this.state.disabledChars);
-    
-    console.log('got new state: ', newState.disabledChars)
-    this.firstRoll = true;
-    this.state.playerAChars = newState.playerAChars;
-    this.state.playerBChars = newState.playerBChars;
-    this.state.playerCChars = newState.playerCChars;
-    this.state.playerDChars = newState.playerDChars;
-    this.state.checked = newState.checked;
-    this.state.disabledChars = newState.disabledChars;
-    this.state.playerAShowCount = newState.playerAShowCount;
-    this.state.playerBShowCount = newState.playerBShowCount;
-    this.state.playerCShowCount = newState.playerCShowCount;
-    this.state.playerDShowCount = newState.playerDShowCount;
-    this.state.overCharCount = newState.overCharCount;
-    this.state.charCount = newState.charCount;
-    this.state.playerCount = newState.playerCount;
+    this.state.projectm.playerAChars = newState.playerAChars;
+    this.state.projectm.playerBChars = newState.playerBChars;
+    this.state.projectm.playerCChars = newState.playerCChars;
+    this.state.projectm.playerDChars = newState.playerDChars;
+    this.state.projectm.disabledChars = newState.disabledChars;
+    this.state.all.charCount = newState.charCount;
+    this.state.all.playerCount = newState.playerCount;
     this.updateOpacity()
     this.changeRef.tick();
     console.log(this.changeRef.tick())
     //repaint broswer
   }
   updateOpacity() {
-    for (let i of this.state.disabledChars) {
+    for (let i of this.state.projectm.disabledChars) {
       for (let v of this.pmChars) {
         if (v.id == i && document.getElementById(v.name).style.opacity != ".3") {
           document.getElementById(v.name).style.opacity = ".3";
@@ -89,7 +70,7 @@ export class ProjectmComponent implements OnInit {
       }
     }
     for (let p of this.pmChars) {
-      if (!this.state.disabledChars.includes(p.id)) {
+      if (!this.state.projectm.disabledChars.includes(p.id)) {
         document.getElementById(p.name).style.opacity = "1";
       }
     }
@@ -117,8 +98,8 @@ export class ProjectmComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.pmChars) {
       if (charName == x.name) {
-        if (!this.state.disabledChars.includes(x.id)) { 
-          this.state.disabledChars.push(x.id);
+        if (!this.state.projectm.disabledChars.includes(x.id)) { 
+          this.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
           this.side.setCharacterCount(this.side.currentCharCount - 1)
 
@@ -127,11 +108,11 @@ export class ProjectmComponent implements OnInit {
           document.getElementById(x.name).style.opacity = "1";
           this.side.setCharacterCount(this.side.currentCharCount + 1)
 
-          this.state.disabledChars = this.removeFromArray(this.state.disabledChars, x.id);
+          this.state.projectm.disabledChars = this.removeFromArray(this.state.projectm.disabledChars, x.id);
         }
       }
     }
-    console.log(this.state.disabledChars)
+    console.log(this.state.projectm.disabledChars)
     this.pushState()
   }
   removeFromArray(arr: Array<number>, num:number) {
@@ -142,22 +123,14 @@ export class ProjectmComponent implements OnInit {
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
-  showToggle(){
-    if(!this.state.checked){
-      this.state.playerAShowCount= 50;
-      this.state.playerBShowCount=50;
-      this.state.playerCShowCount= 50;
-      this.state.playerDShowCount= 50;
-    }
-    this.pushState()
-  }
+
   randomFill() {
-    this.state.charCount = this.side.currentCharCount
-    this.state.playerCount = this.side.currentPlayerCount
-    this.state.playerAChars = this.randomService.randomizePM(this.state.disabledChars)
-    this.state.playerBChars = this.randomService.randomizePM(this.state.disabledChars)
-    this.state.playerCChars = this.randomService.randomizePM(this.state.disabledChars)
-    this.state.playerDChars = this.randomService.randomizePM(this.state.disabledChars)  
+    this.state.all.charCount = this.side.currentCharCount
+    this.state.all.playerCount = this.side.currentPlayerCount
+    this.state.projectm.playerAChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
+    this.state.projectm.playerBChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
+    this.state.projectm.playerCChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
+    this.state.projectm.playerDChars = this.randomService.randomizePM(this.state.projectm.disabledChars)  
 
     }
 }

@@ -23,7 +23,7 @@ export class StateService {
 
   updateState(obj){
     if(obj.game == "melee")
-    this.state.melee = obj//update the state
+    this.state.melee = obj.melee//update the state
     else if(obj.game == "ultimate")
     this.state.ultimate = obj
     else if(obj.game == "projectm")

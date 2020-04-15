@@ -7,6 +7,7 @@ import { RandomService } from "../random.service";
 import { HttpClient } from "@angular/common/http";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { SideComponent } from '../side/side.component';
+import { StateService } from '../state.service';
 declare var $: any;
 declare var ON_STATE_CHANGED: any;
 declare var PUSH_STATE: any;
@@ -19,14 +20,6 @@ declare var PUSH_STATE: any;
 export class MeleeComponent implements OnInit {
   
   meleeChars = []; //loaded later from randomservice
-  firstRoll = false; 
-  playerCount;
-  charCount;
-  hideUpcoming: boolean = false;
-  playerAShowCount: number;
-  playerBShowCount: number;
-  playerCShowCount: number;
-  playerDShowCount: number;
   charnums = [ //used in the dropdown for selecting character count
     1,
     2,
@@ -56,23 +49,27 @@ export class MeleeComponent implements OnInit {
     26
   ];
   playernums = [1, 2, 3, 4]; //number of total possible players
+
   state = { //state object start
-    playerAChars: [],
-    playerBChars: [],
-    playerCChars: [],
-    playerDChars: [],
-    playerCount: 2, //default player count
-    charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
-    playerAShowCount: this.playerAShowCount,
-    playerBShowCount: this.playerBShowCount,
-    playerCShowCount: this.playerCShowCount,
-    playerDShowCount: this.playerDShowCount,
-    disabledChars: [], 
-    hideUpcoming: this.hideUpcoming, 
-    overCharCount: false
+    game: "melee",
+    all:{
+      playerCount: 2, //default player count
+      charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
+
+    },
+    melee:{
+
+      playerAChars: [],
+      playerBChars: [],
+      playerCChars: [],
+      playerDChars: [],
+      disabledChars: [], 
+    },
+
   };
 
-  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent) {
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, private stateService: StateService) {
+    this.stateService.updateState(this.state)
     this.meleeChars = this.randomService.getMeleeChars(); 
     ON_STATE_CHANGED = state => this.updateState(state);
   }
@@ -123,12 +120,12 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.state.charCount = this.side.currentCharCount
-    this.state.playerCount = this.side.currentPlayerCount
-    this.state.playerAChars = this.randomService.randomizeMelee(this.state.disabledChars)
-    this.state.playerBChars = this.randomService.randomizeMelee(this.state.disabledChars)
-    this.state.playerCChars = this.randomService.randomizeMelee(this.state.disabledChars)
-    this.state.playerDChars = this.randomService.randomizeMelee(this.state.disabledChars)  
+    this.state.all.charCount = this.side.currentCharCount
+    this.state.all.playerCount = this.side.currentPlayerCount
+    this.state.melee.playerAChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
+    this.state.melee.playerBChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
+    this.state.melee.playerCChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
+    this.state.melee.playerDChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)  
 
   }
   /**
@@ -148,8 +145,8 @@ export class MeleeComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.meleeChars) {
       if (charName == x.name) { //find the character in meleeChars
-        if (!this.state.disabledChars.includes(x.id)) { //if its not in the disabled chars array
-          this.state.disabledChars.push(x.id); //put it in 
+        if (!this.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
+          this.state.melee.disabledChars.push(x.id); //put it in 
           
           this.side.setCharacterCount(this.side.currentCharCount - 1)
           document.getElementById(x.name).style.opacity = "0.3";
@@ -157,8 +154,8 @@ export class MeleeComponent implements OnInit {
           this.side.setCharacterCount(this.side.currentCharCount + 1)
 
          document.getElementById(x.name).style.opacity = "1";
-          this.state.disabledChars = this.removeFromArray(
-            this.state.disabledChars,
+          this.state.melee.disabledChars = this.removeFromArray(
+            this.state.melee.disabledChars,
             x.id
           );
         }
@@ -191,20 +188,13 @@ export class MeleeComponent implements OnInit {
    */
   updateState(newState) {
     console.log("got new state: ", newState);
-    this.firstRoll = true;
-    this.state.playerAChars = newState.playerAChars;
-    this.state.playerBChars = newState.playerBChars;
-    this.state.playerCChars = newState.playerCChars;
-    this.state.playerDChars = newState.playerDChars;
-    this.state.hideUpcoming = newState.hideUpcoming;
-    this.state.disabledChars = newState.disabledChars;
-    this.state.playerAShowCount = newState.playerAShowCount;
-    this.state.playerBShowCount = newState.playerBShowCount;
-    this.state.playerCShowCount = newState.playerCShowCount;
-    this.state.playerDShowCount = newState.playerDShowCount;
-    this.state.overCharCount = newState.overCharCount;
-    this.state.charCount = newState.charCount;
-    this.state.playerCount = newState.playerCount;
+    this.state.melee.playerAChars = newState.playerAChars;
+    this.state.melee.playerBChars = newState.playerBChars;
+    this.state.melee.playerCChars = newState.playerCChars;
+    this.state.melee.playerDChars = newState.playerDChars;
+    this.state.melee.disabledChars = newState.disabledChars;
+    this.state.all.charCount = newState.charCount;
+    this.state.all.playerCount = newState.playerCount;
     this.updateOpacity();
     this.changeRef.tick();
     console.log(this.changeRef.tick());
@@ -214,7 +204,7 @@ export class MeleeComponent implements OnInit {
    * Brute forces updates on what the opacity of a character should be.
    */
   updateOpacity() {
-    for (let i of this.state.disabledChars) {
+    for (let i of this.state.melee.disabledChars) {
       for (let v of this.meleeChars) {
         if (
           v.id == i &&
@@ -225,21 +215,10 @@ export class MeleeComponent implements OnInit {
       }
     }
     for (let p of this.meleeChars) {
-      if (!this.state.disabledChars.includes(p.id)) {
+      if (!this.state.melee.disabledChars.includes(p.id)) {
         document.getElementById(p.name).style.opacity = "1";
       }
     }
   }
-  /**
-   * Maxes out the number of players to show
-   */
-  showToggle() {
-    if (!this.state.hideUpcoming) {
-      this.state.playerAShowCount = 30; //could be 26 but i couldnt remember what number it was supposed to be so we just sent it 
-      this.state.playerBShowCount = 30;
-      this.state.playerCShowCount = 30;
-      this.state.playerDShowCount = 30;
-    }
-    this.pushState();
-  }
+  
 }
