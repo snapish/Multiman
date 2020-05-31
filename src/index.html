@@ -59,7 +59,7 @@
     //SESSION = new URLSearchParams(window.location.search).get('session')
     ON_STATE_CHANGED = function (state) { /* default no op */ }
     PUSH_STATE = function(state) {
-      console.log("pre send state",JSON.stringify(state))
+     // console.log("pre send state",JSON.stringify(state))
       _ws.send(JSON.stringify(state))
     }
 

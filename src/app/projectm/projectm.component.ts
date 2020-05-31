@@ -101,13 +101,13 @@ export class ProjectmComponent implements OnInit {
         if (!this.state.projectm.disabledChars.includes(x.id)) { 
           this.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
-          this.side.setCharacterCount(this.side.currentCharCount - 1)
+          if (this.pmChars.length - this.state.projectm.disabledChars.length  < this.side.state.all.currentCharCount ){
+            this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+           }
 
         }
         else {
           document.getElementById(x.name).style.opacity = "1";
-          this.side.setCharacterCount(this.side.currentCharCount + 1)
-
           this.state.projectm.disabledChars = this.removeFromArray(this.state.projectm.disabledChars, x.id);
         }
       }
@@ -125,8 +125,8 @@ export class ProjectmComponent implements OnInit {
   }
 
   randomFill() {
-    this.state.all.charCount = this.side.currentCharCount
-    this.state.all.playerCount = this.side.currentPlayerCount
+    this.state.all.charCount = this.side.state.all.currentCharCount
+    this.state.all.playerCount = this.side.state.all.currentPlayerCount
     this.state.projectm.playerAChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
     this.state.projectm.playerBChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
     this.state.projectm.playerCChars = this.randomService.randomizePM(this.state.projectm.disabledChars)

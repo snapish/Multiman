@@ -30,8 +30,8 @@ export class SideComponent {
     this.meleeCharCount = randomService.getMeleeCharCount();
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
-    this.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
-    this.playerCount = randomService.getPlayerCount("melee")
+    this.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+    this.state.all.playerCount = randomService.getPlayerCount("melee")
     var temp = window.location.href.replace(/\//g ,"")
     this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
     $(document).click(function (event) {
@@ -48,17 +48,17 @@ export class SideComponent {
   mark some IP as the host
   get a list of current session IDS for joining room code
   get https to auto redirect in server and not in index.html
+  when someone connects, update component states from state service
   
   room options checkbox should be disabled for all but host
   if page is locked to others, make it so if your IP isn't the hosts, any clicks on the page do nothing / return before the click "goes thru" (document.on()...)
   add a better welcome popup
       -possibly a tour
   add battleship, 8x8 grid
-  put everything into one state variable
   get state service in full schwing
-  when someone connects, update component states from state service
   
   ---DONE---
+  put everything into one state variable
   fixed closing of sidenav
   new color theme 
   have ult pull char/player counts from side comp
@@ -67,18 +67,26 @@ export class SideComponent {
   have melee pull char/player counts from side comp
   make randomservice return random sets of chars, given the disabled chars
   */
+  state = {
+    all:{
+      currentCharCount : 26,
+      currentPlayerCount : 2,
+      activeRoomCodes : [],
+      playerCount: []
+    },
+    side:{
+      
+    }
+  }
+  //all variables not in the state are not to be shared between people in a room
+  currentView ="melee"
   inputVal = ""
   roomCode = "";
-  currentCharCount;
   meleeCharCount;
   ultimateCharCount;
   pmCharCount;
-  playerCount;
-  currentPlayerCount = 2;
   dropdownOpen = false;
-  currentView = "melee"
   closeResult = '';
-  activeRoomCodes : string[] =  []
   noRoomFound = true
   
 /**
@@ -87,7 +95,7 @@ export class SideComponent {
 joinRoomCode(){
   var directed = false;
   if(this.inputVal.length >= 5){ //if 5 chars...
-    this.activeRoomCodes.forEach(element => {// then for each room code...
+    this.state.all.activeRoomCodes.forEach(element => {// then for each room code...
       if(element.includes(this.inputVal)){ //if the url of the room includes the code they typed
         document.location.replace('https://ironman.gg/?session=' + this.inputVal) //redirect
         directed = true
@@ -148,14 +156,14 @@ joinRoomCode(){
    * @param count What to set character count to
    */
   setCharacterCount(count: number) {
-    this.currentCharCount = count
+    this.state.all.currentCharCount = count
   }
   /**
    * sets current player count
    * @param count What to set player count to
    */
   setPlayerCount(count: number) {
-    this.currentPlayerCount = count
+    this.state.all.currentPlayerCount = count
   }
   /**
    * switches the main content to whatever they clicked, and adjusts variables accordingly
@@ -171,26 +179,26 @@ joinRoomCode(){
  //  char count stuff
  
     if (this.currentView == "ultimate") {
-      this.playerCount = this.randomService.getPlayerCount("ultimate")
+      this.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'visible')
-      this.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
+      this.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
     }
     if (this.currentView == "melee") {
-      this.playerCount = this.randomService.getPlayerCount("melee")
+      this.state.all.playerCount = this.randomService.getPlayerCount("melee")
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.meleeCharCount').css('visibility', 'visible')
-      this.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+      this.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
 
     }
     if (this.currentView == "pmv") {
-      this.playerCount = this.randomService.getPlayerCount("pm")
+      this.state.all.playerCount = this.randomService.getPlayerCount("pm")
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'visible')
-      this.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
+      this.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
     }
 
   }

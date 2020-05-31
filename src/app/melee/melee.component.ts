@@ -120,13 +120,13 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.state.all.charCount = this.side.currentCharCount
-    this.state.all.playerCount = this.side.currentPlayerCount
+    this.state.all.charCount = this.side.state.all.currentCharCount
+    this.state.all.playerCount = this.side.state.all.currentPlayerCount
     this.state.melee.playerAChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
     this.state.melee.playerBChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
     this.state.melee.playerCChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerDChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)  
-
+    this.state.melee.playerDChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
+    this.stateService.updateState(this.state)
   }
   /**
    * Gives you a random number between 0 and 25
@@ -147,12 +147,13 @@ export class MeleeComponent implements OnInit {
       if (charName == x.name) { //find the character in meleeChars
         if (!this.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.state.melee.disabledChars.push(x.id); //put it in 
-          
-          this.side.setCharacterCount(this.side.currentCharCount - 1)
+          //character count shouldnt be more than the available characters
+          if (this.meleeChars.length - this.state.melee.disabledChars.length  < this.side.state.all.currentCharCount ){
+           this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+          }
           document.getElementById(x.name).style.opacity = "0.3";
-        } else {
-          this.side.setCharacterCount(this.side.currentCharCount + 1)
 
+        } else {
          document.getElementById(x.name).style.opacity = "1";
           this.state.melee.disabledChars = this.removeFromArray(
             this.state.melee.disabledChars,

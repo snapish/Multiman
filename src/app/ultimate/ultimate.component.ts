@@ -112,15 +112,13 @@ export class UltimateComponent implements OnInit {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
         if (!this.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
           this.state.ultimate.disabledChars.push(x.id);
-          // console.log('added ' + x.name + " " + x.id)
-          // console.log(this.state.ultimate.disabledChars)
-          this.side.setCharacterCount(this.side.currentCharCount - 1)
+          if (this.ultimateChars.length - this.state.ultimate.disabledChars.length  < this.side.state.all.currentCharCount ){
+            this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+           }
 
           document.getElementById(x.name).style.opacity = "0.3";
         }
-        else {
-          this.side.setCharacterCount(this.side.currentCharCount + 1)
-          
+        else {    
           document.getElementById(x.name).style.opacity = "1";
           this.state.ultimate.disabledChars = this.removeFromArray(this.state.ultimate.disabledChars, x.id);
         }
@@ -148,8 +146,8 @@ export class UltimateComponent implements OnInit {
   }
 
     randomFill() {
-      this.state.all.charCount = this.side.currentCharCount
-      this.state.all.playerCount = this.side.currentPlayerCount
+      this.state.all.charCount = this.side.state.all.currentCharCount
+      this.state.all.playerCount = this.side.state.all.currentPlayerCount
       this.state.ultimate.playerAChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
       this.state.ultimate.playerBChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
       this.state.ultimate.playerCChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
