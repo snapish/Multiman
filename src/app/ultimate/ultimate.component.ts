@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
+import { StateService } from '../state.service';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
@@ -33,13 +34,15 @@ export class UltimateComponent implements OnInit {
       dlcDisabled: false
     },
   }
-  constructor(private randomService: RandomService, private side: SideComponent) {
+  constructor(private randomService: RandomService, private side: SideComponent, private stateService : StateService, private changeRef: ApplicationRef) {
     this.ultimateChars = this.randomService.getUltimateChars();
     // console.log(this.ultimateChars)
    }
 
   ngOnInit() {
     //update state here
+    this.stateService.updateState(this.state)
+
   }
   pushState(){
     try{PUSH_STATE(this.state)}
@@ -47,6 +50,7 @@ export class UltimateComponent implements OnInit {
   }
   onOptionsSelected(event) {
     this.state.all.charCount = event;
+    this.stateService.updateState(this.state)
     //update state here
   }
   random() {
@@ -105,9 +109,10 @@ export class UltimateComponent implements OnInit {
       }
       
     }
+    this.stateService.updateState(this.state)
+
   }
   toggleChar(charName: string) {
-    console.log(this.state.ultimate.disabledChars.length)
     for (let x of this.ultimateChars) {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
         if (!this.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
@@ -124,6 +129,8 @@ export class UltimateComponent implements OnInit {
         }
       }
     }
+    this.stateService.updateState(this.state)
+
   }
 
 
@@ -145,6 +152,43 @@ export class UltimateComponent implements OnInit {
     array.sort(() => Math.random() - 0.5);
   }
 
+    /**
+   * Takes a new state and updates the state object to match the given one
+   * @param newState New state to set to the "current" state
+   */
+  updateState(newState) {
+    console.log("got new state: ", newState);
+    this.state.ultimate.playerAChars = newState.playerAChars;
+    this.state.ultimate.playerBChars = newState.playerBChars;
+    this.state.ultimate.playerCChars = newState.playerCChars;
+    this.state.ultimate.playerDChars = newState.playerDChars;
+    this.state.ultimate.disabledChars = newState.disabledChars;
+    this.state.all.charCount = newState.charCount;    
+    this.state.all.playerCount = newState.playerCount;
+    this.updateOpacity();
+    this.changeRef.tick();
+    //repaint broswer
+  }
+  /**
+   * Brute forces updates on what the opacity of a character should be.
+   */
+  updateOpacity() {
+    for (let i of this.state.ultimate.disabledChars) {
+      for (let v of this.ultimateChars) {
+        if (
+          v.id == i &&
+          document.getElementById(v.name).style.opacity != ".3"
+        ) {
+          document.getElementById(v.name).style.opacity = ".3";
+        }
+      }
+    }
+    for (let p of this.ultimateChars) {
+      if (!this.state.ultimate.disabledChars.includes(p.id)) {
+        document.getElementById(p.name).style.opacity = "1";
+      }
+    }
+  }
     randomFill() {
       this.state.all.charCount = this.side.state.all.currentCharCount
       this.state.all.playerCount = this.side.state.all.currentPlayerCount
@@ -156,7 +200,7 @@ export class UltimateComponent implements OnInit {
       this.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
       this.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
       this.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-  
+      this.stateService.updateState(this.state)
     }
 
 }

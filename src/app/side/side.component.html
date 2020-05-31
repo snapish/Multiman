@@ -109,7 +109,7 @@
           <br>
           <br>
           <div class="half-left">
-            <button class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
+            <button (click)='joinRoomCode()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
             <br>
             <input  (input) = "joinRoomCode()" [(ngModel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE" maxlength="5">
               <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>

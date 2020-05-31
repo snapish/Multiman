@@ -58,7 +58,6 @@ export class MeleeComponent implements OnInit {
 
     },
     melee:{
-
       playerAChars: [],
       playerBChars: [],
       playerCChars: [],
@@ -162,7 +161,8 @@ export class MeleeComponent implements OnInit {
         }
       }
     }
-    
+    this.stateService.updateState(this.state)
+
     this.pushState();
      
   }
@@ -194,13 +194,13 @@ export class MeleeComponent implements OnInit {
     this.state.melee.playerCChars = newState.playerCChars;
     this.state.melee.playerDChars = newState.playerDChars;
     this.state.melee.disabledChars = newState.disabledChars;
-    this.state.all.charCount = newState.charCount;
+    this.state.all.charCount = newState.charCount;    
     this.state.all.playerCount = newState.playerCount;
     this.updateOpacity();
     this.changeRef.tick();
-    console.log(this.changeRef.tick());
     //repaint broswer
   }
+  
   /**
    * Brute forces updates on what the opacity of a character should be.
    */

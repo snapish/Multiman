@@ -48,6 +48,11 @@ export class ProjectmComponent implements OnInit {
       console.log("uh oh stinky")
     }
   }
+  
+  /**
+   * Takes a new state and updates the state object to match the given one
+   * @param newState New state to set to the "current" state
+   */
   updateState(newState) {
     this.state.projectm.playerAChars = newState.playerAChars;
     this.state.projectm.playerBChars = newState.playerBChars;
@@ -58,9 +63,11 @@ export class ProjectmComponent implements OnInit {
     this.state.all.playerCount = newState.playerCount;
     this.updateOpacity()
     this.changeRef.tick();
-    console.log(this.changeRef.tick())
     //repaint broswer
   }
+   /**
+   * Brute forces updates on what the opacity of a character should be.
+   */
   updateOpacity() {
     for (let i of this.state.projectm.disabledChars) {
       for (let v of this.pmChars) {
@@ -133,6 +140,7 @@ export class ProjectmComponent implements OnInit {
     this.state.projectm.playerDChars = this.randomService.randomizePM(this.state.projectm.disabledChars)  
 
     }
+    
 }
 
 
