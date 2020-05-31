@@ -6,6 +6,7 @@ const router = require('./router.js')
 const https = require('https')
 const fs = require('fs')
 const url = require('url')
+const sessions = require('./sessions.js')
 
 const conf = require('./conf.js')
 const app = express()
@@ -43,14 +44,27 @@ function onMessage (sender, message) {
   }
   wsServerUnsecure.clients.forEach(cb)
   if (wsServerSecure) wsServerSecure.clients.forEach(cb)
+  updateSessionState(sender.multiman_session, message)
 }
 
 function onConnect(ws, req) {
-  const session = url.parse(req.url, true, true).query.session
-  if (!session) {
+  console.log('onConnect')
+  const sessionId = url.parse(req.url, true, true).query.session
+  if (!sessionId) {
     return console.warn('No session on ws connection', req.url)
   }
-  ws.multiman_session = session
+  ws.multiman_session = sessionId
   ws.on('message', (message) => onMessage(ws, message))
+
+  // send the initial state
+  const session = sessions.get(sessionId)
+  if (session && session.state) ws.send(session.state)
 }
+
+function updateSessionState (sessionId, message) {
+  const session = sessions.get(sessionId)
+  if (!session) return console.error('Tried to update state but no session found:', sessionId)
+  session.state = message
+}
+
 console.log('(ufw has been set up to redirect 80 and 443)')

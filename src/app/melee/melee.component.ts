@@ -9,8 +9,6 @@ import { MatCheckbox } from "@angular/material/checkbox";
 import { SideComponent } from '../side/side.component';
 import { StateService } from '../state.service';
 declare var $: any;
-declare var ON_STATE_CHANGED: any;
-declare var PUSH_STATE: any;
 
 @Component({
   selector: "app-melee",
@@ -18,7 +16,7 @@ declare var PUSH_STATE: any;
   styleUrls: ["./melee.component.css"]
 })
 export class MeleeComponent implements OnInit {
-  
+
   meleeChars = []; //loaded later from randomservice
   charnums = [ //used in the dropdown for selecting character count
     1,
@@ -51,40 +49,32 @@ export class MeleeComponent implements OnInit {
   playernums = [1, 2, 3, 4]; //number of total possible players
 
   state = { //state object start
-    game: "melee",
     all:{
       playerCount: 2, //default player count
       charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
-
     },
     melee:{
-
       playerAChars: [],
       playerBChars: [],
       playerCChars: [],
       playerDChars: [],
-      disabledChars: [], 
+      disabledChars: [],
     },
 
   };
 
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, private stateService: StateService) {
-    this.stateService.updateState(this.state)
-    this.meleeChars = this.randomService.getMeleeChars(); 
-    ON_STATE_CHANGED = state => this.updateState(state);
+    //this.stateService.updateState(this.state)
+    this.meleeChars = this.randomService.getMeleeChars();
+    this.stateService.addListener(_ => this.onNewStateReceived())
   }
+
+  onNewStateReceived() {
+    this.updateOpacity();
+    this.changeRef.tick();
+  }
+
   ngOnInit() {
-  }
- 
-/**
- * Tries to run the PUSH_STATE function, console logs if it fails
- */
-  pushState() {
-    try {
-      PUSH_STATE(this.state);
-    } catch {
-      console.log("Failed to push state");
-    }
   }
 
 
@@ -101,7 +91,7 @@ export class MeleeComponent implements OnInit {
     if (exclusions.length >= 26) throw Error("WARNING: avoiding infinite loop");
     let result;
     do {
-      result = this.random(); 
+      result = this.random();
     } while (!exclusions.includes(result));
     return result;
   }
@@ -120,13 +110,13 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.state.all.charCount = this.side.state.all.currentCharCount
-    this.state.all.playerCount = this.side.state.all.currentPlayerCount
-    this.state.melee.playerAChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerBChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerCChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerDChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.stateService.updateState(this.state)
+    this.stateService.state.all.charCount = this.side.state.all.currentCharCount
+    this.stateService.state.all.playerCount = this.side.state.all.currentPlayerCount
+    this.stateService.state.melee.playerAChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    //this.stateService.updateState(this.state)
   }
   /**
    * Gives you a random number between 0 and 25
@@ -145,26 +135,26 @@ export class MeleeComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.meleeChars) {
       if (charName == x.name) { //find the character in meleeChars
-        if (!this.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
-          this.state.melee.disabledChars.push(x.id); //put it in 
+        if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
+          this.stateService.state.melee.disabledChars.push(x.id); //put it in
           //character count shouldnt be more than the available characters
-          if (this.meleeChars.length - this.state.melee.disabledChars.length  < this.side.state.all.currentCharCount ){
+          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.side.state.all.currentCharCount ){
            this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
           }
           document.getElementById(x.name).style.opacity = "0.3";
 
         } else {
          document.getElementById(x.name).style.opacity = "1";
-          this.state.melee.disabledChars = this.removeFromArray(
-            this.state.melee.disabledChars,
+          this.stateService.state.melee.disabledChars = this.removeFromArray(
+            this.stateService.state.melee.disabledChars,
             x.id
           );
         }
       }
     }
-    
-    this.pushState();
-     
+
+    this.stateService.pushState();
+
   }
   /**
    * Removes a number from an array and returns it
@@ -187,25 +177,23 @@ export class MeleeComponent implements OnInit {
    * Takes a new state and updates the state object to match the given one
    * @param newState New state to set to the "current" state
    */
-  updateState(newState) {
-    console.log("got new state: ", newState);
-    this.state.melee.playerAChars = newState.playerAChars;
-    this.state.melee.playerBChars = newState.playerBChars;
-    this.state.melee.playerCChars = newState.playerCChars;
-    this.state.melee.playerDChars = newState.playerDChars;
-    this.state.melee.disabledChars = newState.disabledChars;
-    this.state.all.charCount = newState.charCount;
-    this.state.all.playerCount = newState.playerCount;
-    this.updateOpacity();
-    this.changeRef.tick();
-    console.log(this.changeRef.tick());
-    //repaint broswer
-  }
+  /* updateState(newState) { */
+  /*   console.log("got new state: ", newState); */
+  /*   this.state.melee.playerAChars = newState.playerAChars; */
+  /*   this.state.melee.playerBChars = newState.playerBChars; */
+  /*   this.state.melee.playerCChars = newState.playerCChars; */
+  /*   this.state.melee.playerDChars = newState.playerDChars; */
+  /*   this.state.melee.disabledChars = newState.disabledChars; */
+  /*   this.state.all.charCount = newState.charCount; */
+  /*   this.state.all.playerCount = newState.playerCount; */
+  /*   console.log(this.changeRef.tick()); */
+  /*   //repaint broswer */
+  /* } */
   /**
    * Brute forces updates on what the opacity of a character should be.
    */
   updateOpacity() {
-    for (let i of this.state.melee.disabledChars) {
+    for (let i of this.stateService.state.melee.disabledChars) {
       for (let v of this.meleeChars) {
         if (
           v.id == i &&
@@ -216,10 +204,10 @@ export class MeleeComponent implements OnInit {
       }
     }
     for (let p of this.meleeChars) {
-      if (!this.state.melee.disabledChars.includes(p.id)) {
+      if (!this.stateService.state.melee.disabledChars.includes(p.id)) {
         document.getElementById(p.name).style.opacity = "1";
       }
     }
   }
-  
+
 }

@@ -6,14 +6,38 @@ import {ApplicationRef} from '@angular/core'
 export class StateService {
 //    $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {console.log(data["ip"])});
 
-  constructor(private appref: ApplicationRef) {}
+  constructor(private appref: ApplicationRef) {
+    // keep the session alive
+    var PING_INTERVAL = 1000 * 60 // 1m
+    setInterval(function () {
+      console.log('ping...')
+      fetch('/ping' + window.location.search, { method: 'POST' })
+        .then(response => {
+          if (response.ok) console.log('pong')
+          else console.error('ping failed')
+        })
+        .catch(err => console.error('Ping failed', err))
+    }, PING_INTERVAL)
+
+    var protocol = 'wss'
+    if (window.location.href.includes('localhost')) protocol = 'ws'
+    this.ws = new WebSocket(protocol + '://' + window.location.host + window.location.search)
+    this.ws.onmessage = (event) => {
+      this.state = JSON.parse(event.data)
+      this.listeners.forEach(callback => callback())
+    }
+  }
+
+  ws = null
+  listeners = []
+
   state = {
     melee: {
       playerAChars: [],
       playerBChars: [],
       playerCChars: [],
       playerDChars: [],
-      disabledChars: [], 
+      disabledChars: [],
     },
     ultimate:{
       playerAChars: [],
@@ -38,8 +62,19 @@ export class StateService {
       charCount: 0,
       playerCount: 0,
     },
-   
   }
+
+  // call this to send a state change to the server
+  pushState() {
+    this.ws.send(JSON.stringify(this.state))
+  }
+
+  // Each component's contructor should call this function to register themselves as listeners for state changes from server.
+  // callback should be a function that takes a state parameter
+  addListener(callback) {
+    this.listeners.push(callback)
+  }
+
 
   /**
    * Given a state object to update, matches the values from the state service
@@ -63,7 +98,7 @@ export class StateService {
     this.state.projectm = obj
     this.state.all = obj.all
     //send to server
-    
+
     this.componentStateUpdate(obj)
 
     //dont need to app.tick() when sending? only when recieveing

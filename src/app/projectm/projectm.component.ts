@@ -2,7 +2,6 @@ import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
 declare var $: any;
-declare var ON_STATE_CHANGED: any;
 declare var PUSH_STATE: any;
 @Component({
   selector: 'app-projectm',
@@ -33,12 +32,12 @@ export class ProjectmComponent implements OnInit {
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent) {
     this.pmChars = this.randomService.getPMChars();
 
-    ON_STATE_CHANGED = (state) => this.updateState(state)
+    //ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 
   ngOnInit() {
     //when switched to tab, disable free space. Also should do this on melee tab :\
-  
+
   }
   pushState() {
     try {
@@ -98,7 +97,7 @@ export class ProjectmComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.pmChars) {
       if (charName == x.name) {
-        if (!this.state.projectm.disabledChars.includes(x.id)) { 
+        if (!this.state.projectm.disabledChars.includes(x.id)) {
           this.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
           if (this.pmChars.length - this.state.projectm.disabledChars.length  < this.side.state.all.currentCharCount ){
@@ -130,7 +129,7 @@ export class ProjectmComponent implements OnInit {
     this.state.projectm.playerAChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
     this.state.projectm.playerBChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
     this.state.projectm.playerCChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
-    this.state.projectm.playerDChars = this.randomService.randomizePM(this.state.projectm.disabledChars)  
+    this.state.projectm.playerDChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
 
     }
 }
