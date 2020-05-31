@@ -36,9 +36,10 @@ export class StateService {
     },
     all:{ //universal things
       charCount: 0,
-      playerCount: 0,
+      playerCount: [],
       activeRoomCodes : [],
-
+      currentCharCount:0,
+      currentPlayerCount:4
     },
    
   }

@@ -370,6 +370,7 @@ export class RandomService {
   }
   /**
    * Give it ultimate melee or pm and itll return players
+   * @returns array of "1,2,3..." for
   */
   getPlayerCount(game:string){
     if(game.toLocaleLowerCase() == "melee" || game.toLocaleLowerCase() == "pm")

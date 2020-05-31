@@ -67,10 +67,10 @@ export class MeleeComponent implements OnInit {
 
   };
 
-  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, private stateService: StateService) {
-    this.stateService.updateState(this.state)
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
+  //  this.stateService.updateState(this.state)
     this.meleeChars = this.randomService.getMeleeChars(); 
-    ON_STATE_CHANGED = state => this.updateState(state);
+  //  ON_STATE_CHANGED = state => this.updateState(state);
   }
   ngOnInit() {
   }
@@ -119,13 +119,13 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.state.all.charCount = this.side.state.all.currentCharCount
-    this.state.all.playerCount = this.side.state.all.currentPlayerCount
-    this.state.melee.playerAChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerBChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerCChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.state.melee.playerDChars = this.randomService.randomizeMelee(this.state.melee.disabledChars)
-    this.stateService.updateState(this.state)
+    //this.stateService.state.all.charCount = this.side.state.all.currentCharCount
+    //this.stateService.state.all.playerCount = this.side.state.all.currentPlayerCount
+    this.stateService.state.melee.playerAChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    //this.stateService.updateState(this.state)
   }
   /**
    * Gives you a random number between 0 and 25
@@ -144,24 +144,24 @@ export class MeleeComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.meleeChars) {
       if (charName == x.name) { //find the character in meleeChars
-        if (!this.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
-          this.state.melee.disabledChars.push(x.id); //put it in 
+        if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
+          this.stateService.state.melee.disabledChars.push(x.id); //put it in 
           //character count shouldnt be more than the available characters
-          if (this.meleeChars.length - this.state.melee.disabledChars.length  < this.side.state.all.currentCharCount ){
-           this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.currentCharCount ){
+           this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
           }
           document.getElementById(x.name).style.opacity = "0.3";
 
         } else {
          document.getElementById(x.name).style.opacity = "1";
-          this.state.melee.disabledChars = this.removeFromArray(
-            this.state.melee.disabledChars,
+          this.stateService.state.melee.disabledChars = this.removeFromArray(
+            this.stateService.state.melee.disabledChars,
             x.id
           );
         }
       }
     }
-    this.stateService.updateState(this.state)
+   // this.stateService.updateState(this.state)
 
     this.pushState();
      
@@ -187,7 +187,7 @@ export class MeleeComponent implements OnInit {
    * Takes a new state and updates the state object to match the given one
    * @param newState New state to set to the "current" state
    */
-  updateState(newState) {
+/*  updateState(newState) {
     console.log("got new state: ", newState);
     this.state.melee.playerAChars = newState.playerAChars;
     this.state.melee.playerBChars = newState.playerBChars;
@@ -200,12 +200,12 @@ export class MeleeComponent implements OnInit {
     this.changeRef.tick();
     //repaint broswer
   }
-  
+  */
   /**
    * Brute forces updates on what the opacity of a character should be.
    */
   updateOpacity() {
-    for (let i of this.state.melee.disabledChars) {
+    for (let i of this.stateService.state.melee.disabledChars) {
       for (let v of this.meleeChars) {
         if (
           v.id == i &&
@@ -216,7 +216,7 @@ export class MeleeComponent implements OnInit {
       }
     }
     for (let p of this.meleeChars) {
-      if (!this.state.melee.disabledChars.includes(p.id)) {
+      if (!this.stateService.state.melee.disabledChars.includes(p.id)) {
         document.getElementById(p.name).style.opacity = "1";
       }
     }

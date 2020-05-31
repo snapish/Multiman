@@ -47,7 +47,7 @@
     <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
     <!-- 9 columns 3 rows -->
 
-    <div id="players" *ngIf="state.melee.playerAChars.length != 0 ">
+    <div id="players" *ngIf="stateService.state.melee.playerAChars.length != 0 ">
 
       <!-- PLAYER A -->
       <mat-card id="player">
@@ -58,9 +58,9 @@
 
           <div class="container">
             <!-- *ngFor="let item of items; let i=index" -->
-            <div class="charImages" *ngFor="let i of state.melee.playerAChars;let ind= index">
+            <div class="charImages" *ngFor="let i of stateService.state.melee.playerAChars;let ind= index">
               <!-- style="float: left" was in the div below -->
-              <div *ngIf="ind < state.all.charCount"> <img src={{i.img}} /> </div>
+              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /> </div>
             </div>
           </div>
 
@@ -70,14 +70,14 @@
 
 
       <!-- playerB  -->
-      <mat-card id="player" *ngIf="state.all.playerCount >=2">
+      <mat-card id="player" *ngIf="stateService.state.all.playerCount >=2">
         <mat-card-header>
           <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
         </mat-card-header>
         <div id="playerB">
           <div class="container">
-            <div *ngFor="let i of state.melee.playerBChars; let ind = index">
-              <div *ngIf="ind < state.all.charCount"> <img src={{i.img}} /></div>
+            <div *ngFor="let i of stateService.state.melee.playerBChars; let ind = index">
+              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -87,14 +87,14 @@
 
 
       <!-- PLAYER C -->
-      <mat-card id="player" *ngIf="state.all.playerCount >= 3">
+      <mat-card id="player" *ngIf="stateService.state.all.playerCount >= 3">
         <mat-card-header>
           <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
         </mat-card-header>
         <div id="playerC">
           <div class="container">
-            <div *ngFor="let i of state.melee.playerCChars; let ind = index">
-              <div *ngIf="ind < state.all.charCount"> <img src={{i.img}} /></div>
+            <div *ngFor="let i of stateService.state.melee.playerCChars; let ind = index">
+              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -104,14 +104,14 @@
 
 
       <!-- player D -->
-      <mat-card id="player" *ngIf="state.all.playerCount == 4">
+      <mat-card id="player" *ngIf="stateService.state.all.playerCount == 4">
         <mat-card-header>
           <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
         </mat-card-header>
         <div id="playerD">
           <div class="container">
-            <div *ngFor="let i of state.melee.playerDChars; let ind = index">
-              <div *ngIf="ind < state.all.charCount"> <img src={{i.img}} /></div>
+            <div *ngFor="let i of stateService.state.melee.playerDChars; let ind = index">
+              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
             </div>
           </div>
         </div>

@@ -1,10 +1,11 @@
-import { Component, ChangeDetectorRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ApplicationRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { NgbModule, NgbDropdownConfig, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { map, shareReplay } from 'rxjs/operators';
 import { RandomService } from '../random.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-side',
@@ -23,15 +24,25 @@ export class SideComponent {
     $('.pmv').hide()
     $('.ultimate').hide()
   }
+//all variables not in the state are not to be shared between people in a room
+currentView ="melee"
+inputVal = ""
+roomCode = "";
+meleeCharCount;
+ultimateCharCount;
+pmCharCount;
+dropdownOpen = false;
+closeResult = '';
+noRoomFound = true
 
-  constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal) {
+  constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
         config.placement = 'right';
     config.autoClose = true;
     this.meleeCharCount = randomService.getMeleeCharCount();
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
-    this.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
-    this.state.all.playerCount = randomService.getPlayerCount("melee")
+    this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+    this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
     var temp = window.location.href.replace(/\//g ,"")
     this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
     $(document).click(function (event) {
@@ -41,10 +52,11 @@ export class SideComponent {
         })
       }
     });
+    console.log(this.stateService.state)
   }
   /*
   plans/todo
-  
+   
   mark some IP as the host
   get a list of current session IDS for joining room code
   get https to auto redirect in server and not in index.html
@@ -67,27 +79,17 @@ export class SideComponent {
   have melee pull char/player counts from side comp
   make randomservice return random sets of chars, given the disabled chars
   */
-  state = {
-    all:{
-      currentCharCount : 26,
-      currentPlayerCount : 2,
-      activeRoomCodes : [],
-      playerCount: []
-    },
-    side:{
+  // state = {
+  //   all:{
+  //     currentCharCount : 26,
+  //     currentPlayerCount : 2,
+  //     activeRoomCodes : [],
+  //     playerCount: []
+  //   },
+  //   side:{
       
-    }
-  }
-  //all variables not in the state are not to be shared between people in a room
-  currentView ="melee"
-  inputVal = ""
-  roomCode = "";
-  meleeCharCount;
-  ultimateCharCount;
-  pmCharCount;
-  dropdownOpen = false;
-  closeResult = '';
-  noRoomFound = true
+  //   }
+  // }
   
 /**
   Checks room code entered if its 5 chars long, if theres an active sesh, join it, if not give err
@@ -95,7 +97,7 @@ export class SideComponent {
 joinRoomCode(){
   var directed = false;
   if(this.inputVal.length >= 5){ //if 5 chars...
-    this.state.all.activeRoomCodes.forEach(element => {// then for each room code...
+    this.stateService.state.all.activeRoomCodes.forEach(element => {// then for each room code...
       if(element.includes(this.inputVal)){ //if the url of the room includes the code they typed
         document.location.replace('https://ironman.gg/?session=' + this.inputVal) //redirect
         directed = true
@@ -160,14 +162,14 @@ joinRoomCode(){
    * @param count What to set character count to
    */
   setCharacterCount(count: number) {
-    this.state.all.currentCharCount = count
+    this.stateService.state.all.currentCharCount = count
   }
   /**
    * sets current player count
    * @param count What to set player count to
    */
   setPlayerCount(count: number) {
-    this.state.all.currentPlayerCount = count
+    this.stateService.state.all.currentPlayerCount = count
   }
   /**
    * switches the main content to whatever they clicked, and adjusts variables accordingly
@@ -175,36 +177,35 @@ joinRoomCode(){
    */
   transition(view: string) {
     $('.' + this.currentView).hide(); //hide old page
-    console.log('hiding: ', this.currentView)
     $('.' + view).show(); //display new viewed page
-    console.log("showing: ", view)
     this.currentView = view;//set active page reference to new page name
     
  //  char count stuff
  
     if (this.currentView == "ultimate") {
-      this.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
+      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
+
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'visible')
-      this.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
+      this.stateService.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
     }
     if (this.currentView == "melee") {
-      this.state.all.playerCount = this.randomService.getPlayerCount("melee")
+      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("melee")
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.meleeCharCount').css('visibility', 'visible')
-      this.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+      this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
 
     }
     if (this.currentView == "pmv") {
-      this.state.all.playerCount = this.randomService.getPlayerCount("pm")
+      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("pm")
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'visible')
-      this.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
+      this.stateService.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
     }
-
+    console.log(this.stateService.state)
   }
 
 
