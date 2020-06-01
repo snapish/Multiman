@@ -12,6 +12,7 @@ module.exports = {
   create,
   ping,
   get,
+  list,
 }
 
 function create () {
@@ -44,6 +45,10 @@ function ping (sessionId) {
 
 function get (sessionId) {
   return sessions[sessionId]
+}
+
+function list () {
+  return Object.keys(sessions)
 }
 
 function generateSessionId () {
