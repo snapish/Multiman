@@ -38,3 +38,6 @@ router.post('/ping', (req, res, next) => {
   res.send('pong')
 })
 
+router.get('/sessions', (req, res, next) => {
+  res.json(sessions.list())
+})
