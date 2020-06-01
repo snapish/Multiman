@@ -53,7 +53,7 @@ export class UltimateComponent implements OnInit {
     this.stateService.state.all.charCount = event;
  //   this.stateService.updateState(this.state)
   }
-  
+
   random() {
     var min = 27;
     var max = 106; //char ids are fucked
@@ -67,9 +67,9 @@ export class UltimateComponent implements OnInit {
   }
 
   toggleDLC(){
-    
+
     if(this.stateService.state.ultimate.dlcDisabled){
-     
+
           if(!this.stateService.state.ultimate.disabledChars.includes(101)){
             this.toggleChar("Piranha Plant")
           }
@@ -109,7 +109,7 @@ export class UltimateComponent implements OnInit {
       if(this.stateService.state.ultimate.disabledChars.includes(106)){
         this.toggleChar("Byleth")
       }
-      
+
     }
    // this.stateService.updateState(this.state)
 
@@ -125,7 +125,7 @@ export class UltimateComponent implements OnInit {
 
           document.getElementById(x.name).style.opacity = "0.3";
         }
-        else {    
+        else {
           document.getElementById(x.name).style.opacity = "1";
           this.stateService.state.ultimate.disabledChars = this.removeFromArray(this.stateService.state.ultimate.disabledChars, x.id);
         }
@@ -165,7 +165,7 @@ export class UltimateComponent implements OnInit {
     this.stateService.state.ultimate.playerCChars = newState.playerCChars;
     this.stateService.state.ultimate.playerDChars = newState.playerDChars;
     this.stateService.state.ultimate.disabledChars = newState.disabledChars;
-    this.stateService.state.all.charCount = newState.charCount;    
+    this.stateService.state.all.charCount = newState.charCount;
     this.stateService.state.all.playerCount = newState.playerCount;
     this.updateOpacity();
     this.changeRef.tick();
@@ -192,16 +192,14 @@ export class UltimateComponent implements OnInit {
     }
   }
     randomFill() {
-      //this.stateService.state.all.charCount = this.side.state.all.currentCharCount
-     // this.stateService.state.all.playerCount = this.side.state.all.currentPlayerCount
       this.stateService.state.ultimate.playerAChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
       this.stateService.state.ultimate.playerBChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
       this.stateService.state.ultimate.playerCChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
-      this.stateService.state.ultimate.playerDChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)  
-      this.stateService.state.ultimate.playerEChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)  
-      this.stateService.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)  
-      this.stateService.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)  
-      this.stateService.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)  
+      this.stateService.state.ultimate.playerDChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerEChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
     //  this.stateService.updateState(this.state)
     }
 

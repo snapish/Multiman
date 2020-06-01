@@ -3,7 +3,6 @@ import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
 import { StateService } from '../state.service';
 declare var $: any;
-declare var ON_STATE_CHANGED: any;
 declare var PUSH_STATE: any;
 @Component({
   selector: 'app-projectm',
@@ -33,13 +32,11 @@ export class ProjectmComponent implements OnInit {
   }
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.pmChars = this.randomService.getPMChars();
-
-  //  ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 
   ngOnInit() {
     //when switched to tab, disable free space. Also should do this on melee tab :\
-  
+
   }
   pushState() {
     try {
@@ -49,7 +46,7 @@ export class ProjectmComponent implements OnInit {
       console.log("uh oh stinky")
     }
   }
-  
+
   /**
    * Takes a new state and updates the state object to match the given one
    * @param newState New state to set to the "current" state
@@ -106,7 +103,7 @@ export class ProjectmComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.pmChars) {
       if (charName == x.name) {
-        if (!this.stateService.state.projectm.disabledChars.includes(x.id)) { 
+        if (!this.stateService.state.projectm.disabledChars.includes(x.id)) {
           this.stateService.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
           if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length  < this.stateService.state.all.currentCharCount ){
@@ -133,15 +130,10 @@ export class ProjectmComponent implements OnInit {
   }
 
   randomFill() {
-    // this.stateService.state.all.charCount = this.side.state.all.currentCharCount
-    // this.stateService.state.all.playerCount = this.side.state.all.currentPlayerCount
     this.stateService.state.projectm.playerAChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
     this.stateService.state.projectm.playerBChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
     this.stateService.state.projectm.playerCChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
-    this.stateService.state.projectm.playerDChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)  
+    this.stateService.state.projectm.playerDChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+  }
 
-    }
-    
 }
-
-
