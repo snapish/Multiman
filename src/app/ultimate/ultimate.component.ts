@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
+import { StateService } from '../state.service';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
@@ -33,22 +34,26 @@ export class UltimateComponent implements OnInit {
       dlcDisabled: false
     },
   }
-  constructor(private randomService: RandomService, private side: SideComponent) {
+  constructor(private randomService: RandomService, private side: SideComponent, private stateService : StateService, private changeRef: ApplicationRef) {
     this.ultimateChars = this.randomService.getUltimateChars();
     // console.log(this.ultimateChars)
    }
 
   ngOnInit() {
     //update state here
+  //  this.stateService.updateState(this.state)
+
   }
   pushState(){
     try{PUSH_STATE(this.state)}
     catch{console.log("uh oh stinky")}
   }
+
   onOptionsSelected(event) {
-    this.state.all.charCount = event;
-    //update state here
+    this.stateService.state.all.charCount = event;
+ //   this.stateService.updateState(this.state)
   }
+
   random() {
     var min = 27;
     var max = 106; //char ids are fucked
@@ -60,70 +65,74 @@ export class UltimateComponent implements OnInit {
     return newArr
 
   }
+
   toggleDLC(){
-    
-    if(this.state.ultimate.dlcDisabled){
-     
-          if(!this.state.ultimate.disabledChars.includes(101)){
+
+    if(this.stateService.state.ultimate.dlcDisabled){
+
+          if(!this.stateService.state.ultimate.disabledChars.includes(101)){
             this.toggleChar("Piranha Plant")
           }
-          if(!this.state.ultimate.disabledChars.includes(102)){
+          if(!this.stateService.state.ultimate.disabledChars.includes(102)){
             this.toggleChar("Joker")
           }
-          if(!this.state.ultimate.disabledChars.includes(103)){
+          if(!this.stateService.state.ultimate.disabledChars.includes(103)){
             this.toggleChar("Banjo")
           }
-          if(!this.state.ultimate.disabledChars.includes(104)){
+          if(!this.stateService.state.ultimate.disabledChars.includes(104)){
             this.toggleChar("Hero")
           }
-          if(!this.state.ultimate.disabledChars.includes(105)){
+          if(!this.stateService.state.ultimate.disabledChars.includes(105)){
             this.toggleChar("Terry")
           }
-          if(!this.state.ultimate.disabledChars.includes(106)){
+          if(!this.stateService.state.ultimate.disabledChars.includes(106)){
             this.toggleChar("Byleth")
           }
           //update state here
         }
     else{
-      if(this.state.ultimate.disabledChars.includes(101)){
+      if(this.stateService.state.ultimate.disabledChars.includes(101)){
         this.toggleChar("Piranha Plant")
       }
-      if(this.state.ultimate.disabledChars.includes(102)){
+      if(this.stateService.state.ultimate.disabledChars.includes(102)){
         this.toggleChar("Joker")
       }
-      if(this.state.ultimate.disabledChars.includes(103)){
+      if(this.stateService.state.ultimate.disabledChars.includes(103)){
         this.toggleChar("Banjo")
       }
-      if(this.state.ultimate.disabledChars.includes(104)){
+      if(this.stateService.state.ultimate.disabledChars.includes(104)){
         this.toggleChar("Hero")
       }
-      if(this.state.ultimate.disabledChars.includes(105)){
+      if(this.stateService.state.ultimate.disabledChars.includes(105)){
         this.toggleChar("Terry")
       }
-      if(this.state.ultimate.disabledChars.includes(106)){
+      if(this.stateService.state.ultimate.disabledChars.includes(106)){
         this.toggleChar("Byleth")
       }
-      
+
     }
+   // this.stateService.updateState(this.state)
+
   }
   toggleChar(charName: string) {
-    console.log(this.state.ultimate.disabledChars.length)
     for (let x of this.ultimateChars) {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
-        if (!this.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
-          this.state.ultimate.disabledChars.push(x.id);
-          if (this.ultimateChars.length - this.state.ultimate.disabledChars.length  < this.side.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+        if (!this.stateService.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
+          this.stateService.state.ultimate.disabledChars.push(x.id);
+          if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length  < this.stateService.state.all.currentCharCount ){
+            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
            }
 
           document.getElementById(x.name).style.opacity = "0.3";
         }
-        else {    
+        else {
           document.getElementById(x.name).style.opacity = "1";
-          this.state.ultimate.disabledChars = this.removeFromArray(this.state.ultimate.disabledChars, x.id);
+          this.stateService.state.ultimate.disabledChars = this.removeFromArray(this.stateService.state.ultimate.disabledChars, x.id);
         }
       }
     }
+  //  this.stateService.updateState(this.state)
+
   }
 
 
@@ -145,18 +154,53 @@ export class UltimateComponent implements OnInit {
     array.sort(() => Math.random() - 0.5);
   }
 
+    /**
+   * Takes a new state and updates the state object to match the given one
+   * @param newState New state to set to the "current" state
+   */
+  updateState(newState) {
+    console.log("got new state: ", newState);
+    this.stateService.state.ultimate.playerAChars = newState.playerAChars;
+    this.stateService.state.ultimate.playerBChars = newState.playerBChars;
+    this.stateService.state.ultimate.playerCChars = newState.playerCChars;
+    this.stateService.state.ultimate.playerDChars = newState.playerDChars;
+    this.stateService.state.ultimate.disabledChars = newState.disabledChars;
+    this.stateService.state.all.charCount = newState.charCount;
+    this.stateService.state.all.playerCount = newState.playerCount;
+    this.updateOpacity();
+    this.changeRef.tick();
+    //repaint broswer
+  }
+  /**
+   * Brute forces updates on what the opacity of a character should be.
+   */
+  updateOpacity() {
+    for (let i of this.stateService.state.ultimate.disabledChars) {
+      for (let v of this.ultimateChars) {
+        if (
+          v.id == i &&
+          document.getElementById(v.name).style.opacity != ".3"
+        ) {
+          document.getElementById(v.name).style.opacity = ".3";
+        }
+      }
+    }
+    for (let p of this.ultimateChars) {
+      if (!this.stateService.state.ultimate.disabledChars.includes(p.id)) {
+        document.getElementById(p.name).style.opacity = "1";
+      }
+    }
+  }
     randomFill() {
-      this.state.all.charCount = this.side.state.all.currentCharCount
-      this.state.all.playerCount = this.side.state.all.currentPlayerCount
-      this.state.ultimate.playerAChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
-      this.state.ultimate.playerBChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
-      this.state.ultimate.playerCChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)
-      this.state.ultimate.playerDChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-      this.state.ultimate.playerEChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-      this.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-      this.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-      this.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.state.ultimate.disabledChars)  
-  
+      this.stateService.state.ultimate.playerAChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerBChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerCChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerDChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerEChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+      this.stateService.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
+    //  this.stateService.updateState(this.state)
     }
 
 }

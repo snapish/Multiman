@@ -1,6 +1,7 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
+import { StateService } from '../state.service';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
@@ -29,10 +30,8 @@ export class ProjectmComponent implements OnInit {
 
 
   }
-  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent) {
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.pmChars = this.randomService.getPMChars();
-
-    //ON_STATE_CHANGED = (state) => this.updateState(state)
   }
 
   ngOnInit() {
@@ -47,21 +46,28 @@ export class ProjectmComponent implements OnInit {
       console.log("uh oh stinky")
     }
   }
+
+  /**
+   * Takes a new state and updates the state object to match the given one
+   * @param newState New state to set to the "current" state
+   */
   updateState(newState) {
-    this.state.projectm.playerAChars = newState.playerAChars;
-    this.state.projectm.playerBChars = newState.playerBChars;
-    this.state.projectm.playerCChars = newState.playerCChars;
-    this.state.projectm.playerDChars = newState.playerDChars;
-    this.state.projectm.disabledChars = newState.disabledChars;
-    this.state.all.charCount = newState.charCount;
-    this.state.all.playerCount = newState.playerCount;
+    this.stateService.state.projectm.playerAChars = newState.playerAChars;
+    this.stateService.state.projectm.playerBChars = newState.playerBChars;
+    this.stateService.state.projectm.playerCChars = newState.playerCChars;
+    this.stateService.state.projectm.playerDChars = newState.playerDChars;
+    this.stateService.state.projectm.disabledChars = newState.disabledChars;
+    this.stateService.state.all.charCount = newState.charCount;
+    this.stateService.state.all.playerCount = newState.playerCount;
     this.updateOpacity()
     this.changeRef.tick();
-    console.log(this.changeRef.tick())
     //repaint broswer
   }
+   /**
+   * Brute forces updates on what the opacity of a character should be.
+   */
   updateOpacity() {
-    for (let i of this.state.projectm.disabledChars) {
+    for (let i of this.stateService.state.projectm.disabledChars) {
       for (let v of this.pmChars) {
         if (v.id == i && document.getElementById(v.name).style.opacity != ".3") {
           document.getElementById(v.name).style.opacity = ".3";
@@ -69,7 +75,7 @@ export class ProjectmComponent implements OnInit {
       }
     }
     for (let p of this.pmChars) {
-      if (!this.state.projectm.disabledChars.includes(p.id)) {
+      if (!this.stateService.state.projectm.disabledChars.includes(p.id)) {
         document.getElementById(p.name).style.opacity = "1";
       }
     }
@@ -97,21 +103,21 @@ export class ProjectmComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.pmChars) {
       if (charName == x.name) {
-        if (!this.state.projectm.disabledChars.includes(x.id)) {
-          this.state.projectm.disabledChars.push(x.id);
+        if (!this.stateService.state.projectm.disabledChars.includes(x.id)) {
+          this.stateService.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
-          if (this.pmChars.length - this.state.projectm.disabledChars.length  < this.side.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+          if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length  < this.stateService.state.all.currentCharCount ){
+            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
            }
 
         }
         else {
           document.getElementById(x.name).style.opacity = "1";
-          this.state.projectm.disabledChars = this.removeFromArray(this.state.projectm.disabledChars, x.id);
+          this.stateService.state.projectm.disabledChars = this.removeFromArray(this.stateService.state.projectm.disabledChars, x.id);
         }
       }
     }
-    console.log(this.state.projectm.disabledChars)
+    console.log(this.stateService.state.projectm.disabledChars)
     this.pushState()
   }
   removeFromArray(arr: Array<number>, num:number) {
@@ -124,14 +130,10 @@ export class ProjectmComponent implements OnInit {
   }
 
   randomFill() {
-    this.state.all.charCount = this.side.state.all.currentCharCount
-    this.state.all.playerCount = this.side.state.all.currentPlayerCount
-    this.state.projectm.playerAChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
-    this.state.projectm.playerBChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
-    this.state.projectm.playerCChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
-    this.state.projectm.playerDChars = this.randomService.randomizePM(this.state.projectm.disabledChars)
+    this.stateService.state.projectm.playerAChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+    this.stateService.state.projectm.playerBChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+    this.stateService.state.projectm.playerCChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+    this.stateService.state.projectm.playerDChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+  }
 
-    }
 }
-
-

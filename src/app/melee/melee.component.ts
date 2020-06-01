@@ -48,23 +48,7 @@ export class MeleeComponent implements OnInit {
   ];
   playernums = [1, 2, 3, 4]; //number of total possible players
 
-  state = { //state object start
-    all:{
-      playerCount: 2, //default player count
-      charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
-    },
-    melee:{
-      playerAChars: [],
-      playerBChars: [],
-      playerCChars: [],
-      playerDChars: [],
-      disabledChars: [],
-    },
-
-  };
-
-  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, private stateService: StateService) {
-    //this.stateService.updateState(this.state)
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.meleeChars = this.randomService.getMeleeChars();
     this.stateService.addListener(_ => this.onNewStateReceived())
   }
@@ -110,8 +94,6 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.stateService.state.all.charCount = this.side.state.all.currentCharCount
-    this.stateService.state.all.playerCount = this.side.state.all.currentPlayerCount
     this.stateService.state.melee.playerAChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
@@ -138,8 +120,8 @@ export class MeleeComponent implements OnInit {
         if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.stateService.state.melee.disabledChars.push(x.id); //put it in
           //character count shouldnt be more than the available characters
-          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.side.state.all.currentCharCount ){
-           this.side.setCharacterCount(this.side.state.all.currentCharCount - 1)
+          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.currentCharCount ){
+           this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
           }
           document.getElementById(x.name).style.opacity = "0.3";
 
@@ -154,7 +136,6 @@ export class MeleeComponent implements OnInit {
     }
 
     this.stateService.pushState();
-
   }
   /**
    * Removes a number from an array and returns it
@@ -177,18 +158,20 @@ export class MeleeComponent implements OnInit {
    * Takes a new state and updates the state object to match the given one
    * @param newState New state to set to the "current" state
    */
-  /* updateState(newState) { */
-  /*   console.log("got new state: ", newState); */
-  /*   this.state.melee.playerAChars = newState.playerAChars; */
-  /*   this.state.melee.playerBChars = newState.playerBChars; */
-  /*   this.state.melee.playerCChars = newState.playerCChars; */
-  /*   this.state.melee.playerDChars = newState.playerDChars; */
-  /*   this.state.melee.disabledChars = newState.disabledChars; */
-  /*   this.state.all.charCount = newState.charCount; */
-  /*   this.state.all.playerCount = newState.playerCount; */
-  /*   console.log(this.changeRef.tick()); */
-  /*   //repaint broswer */
-  /* } */
+/*  updateState(newState) {
+    console.log("got new state: ", newState);
+    this.state.melee.playerAChars = newState.playerAChars;
+    this.state.melee.playerBChars = newState.playerBChars;
+    this.state.melee.playerCChars = newState.playerCChars;
+    this.state.melee.playerDChars = newState.playerDChars;
+    this.state.melee.disabledChars = newState.disabledChars;
+    this.state.all.charCount = newState.charCount;
+    this.state.all.playerCount = newState.playerCount;
+    this.updateOpacity();
+    this.changeRef.tick();
+    //repaint broswer
+  }
+  */
   /**
    * Brute forces updates on what the opacity of a character should be.
    */

@@ -60,7 +60,10 @@ export class StateService {
     },
     all:{ //universal things
       charCount: 0,
-      playerCount: 0,
+      playerCount: [],
+      activeRoomCodes : [],
+      currentCharCount:0,
+      currentPlayerCount:4
     },
   }
 
@@ -97,7 +100,7 @@ export class StateService {
     else if(obj.game == "projectm")
     this.state.projectm = obj
     this.state.all = obj.all
-    //send to server
+    //send to server here
 
     this.componentStateUpdate(obj)
 

@@ -48,7 +48,6 @@ function onMessage (sender, message) {
 }
 
 function onConnect(ws, req) {
-  console.log('onConnect')
   const sessionId = url.parse(req.url, true, true).query.session
   if (!sessionId) {
     return console.warn('No session on ws connection', req.url)
