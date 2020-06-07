@@ -60,7 +60,7 @@
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of stateService.state.melee.playerAChars;let ind= index">
               <!-- style="float: left" was in the div below -->
-              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /> </div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src="{{i.img}}" /> </div>
             </div>
           </div>
 
@@ -77,7 +77,7 @@
         <div id="playerB">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerBChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -94,7 +94,7 @@
         <div id="playerC">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerCChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -111,7 +111,7 @@
         <div id="playerD">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerDChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
             </div>
           </div>
         </div>
@@ -119,66 +119,67 @@
 
     </div>
     <div class="table">
+      
       <table>
 
         <tr>
 
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Dr. Mario"> <img src="assets/meleeIcons/1.png"
-              (click)="toggleChar('Dr. Mario')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Mario"> <img src="assets/meleeIcons/2.png"
-              (click)="toggleChar('Mario')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Luigi"> <img src="assets/meleeIcons/3.png"
-              (click)="toggleChar('Luigi')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Bowser"> <img src="assets/meleeIcons/4.png"
-              (click)="toggleChar('Bowser')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Peach"> <img src="assets/meleeIcons/5.png"
-              (click)="toggleChar('Peach')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Yoshi"> <img src="assets/meleeIcons/6.png"
-              (click)="toggleChar('Yoshi')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Donkey Kong"> <img src="assets/meleeIcons/7.png"
-              (click)="toggleChar('Donkey Kong')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Captain Falcon"> <img src="assets/meleeIcons/8.png"
-              (click)="toggleChar('Captain Falcon')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Ganondorf"> <img src="assets/meleeIcons/9.png"
-              (click)="toggleChar('Ganondorf')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Dr. Mario"> <img src="assets/meleeIcons/0.png"
+              (click)="toggle('0')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Mario"> <img src="assets/meleeIcons/1.png"
+              (click)="toggle('1')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Luigi"> <img src="assets/meleeIcons/2.png"
+              (click)="toggle('2')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Bowser"> <img src="assets/meleeIcons/3.png"
+              (click)="toggle('3')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Peach"> <img src="assets/meleeIcons/4.png"
+              (click)="toggle('4')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Yoshi"> <img src="assets/meleeIcons/5.png"
+              (click)="toggle('5')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Donkey Kong"> <img src="assets/meleeIcons/6.png"
+              (click)="toggle('6')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Captain Falcon"> <img src="assets/meleeIcons/7.png"
+              (click)="toggle('7')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Ganondorf"> <img src="assets/meleeIcons/8.png"
+              (click)="toggle('8')" class="charImg"></div>
         </tr>
         <tr>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Falco"> <img src="assets/meleeIcons/10.png"
-              (click)="toggleChar('Falco')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Fox"> <img src="assets/meleeIcons/11.png"
-              (click)="toggleChar('Fox')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ness"> <img src="assets/meleeIcons/12.png"
-              (click)="toggleChar('Ness')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ice Climbers"> <img src="assets/meleeIcons/13.png"
-              (click)="toggleChar('Ice Climbers')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Kirby"> <img src="assets/meleeIcons/14.png"
-              (click)="toggleChar('Kirby')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Samus"> <img src="assets/meleeIcons/15.png"
-              (click)="toggleChar('Samus')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Zelda"> <img src="assets/meleeIcons/16.png"
-              (click)="toggleChar('Zelda')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Link"> <img src="assets/meleeIcons/17.png"
-              (click)="toggleChar('Link')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Young Link"> <img src="assets/meleeIcons/18.png"
-              (click)="toggleChar('Young Link')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Falco"> <img src="assets/meleeIcons/9.png"
+              (click)="toggle('9')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Fox"> <img src="assets/meleeIcons/10.png"
+              (click)="toggle('10')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ness"> <img src="assets/meleeIcons/11.png"
+              (click)="toggle('11')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ice Climbers"> <img src="assets/meleeIcons/12.png"
+              (click)="toggle('12')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Kirby"> <img src="assets/meleeIcons/13.png"
+              (click)="toggle('13')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Samus"> <img src="assets/meleeIcons/14.png"
+              (click)="toggle('14')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Zelda"> <img src="assets/meleeIcons/15.png"
+              (click)="toggle('15')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Link"> <img src="assets/meleeIcons/16.png"
+              (click)="toggle('16')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Young Link"> <img src="assets/meleeIcons/17.png"
+              (click)="toggle('17')" class="charImg"></div>
         </tr>
         <tr class="bottomRow">
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Pichu"> <img src="assets/meleeIcons/19.png"
-              (click)="toggleChar('Pichu')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Pikachu"> <img src="assets/meleeIcons/20.png"
-              (click)="toggleChar('Pikachu')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Jigglypuff"> <img src="assets/meleeIcons/21.png"
-              (click)="toggleChar('Jigglypuff')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Mewtwo"> <img src="assets/meleeIcons/22.png"
-              (click)="toggleChar('Mewtwo')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Mr. GNW"> <img src="assets/meleeIcons/23.png"
-              (click)="toggleChar('Mr. GNW')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Marth"> <img src="assets/meleeIcons/24.png"
-              (click)="toggleChar('Marth')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Roy"><img src="assets/meleeIcons/25.png"
-              (click)="toggleChar('Roy')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Sheik"> <img src="assets/meleeIcons/26.png"
-              (click)="toggleChar('Sheik')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Pichu"> <img src="assets/meleeIcons/18.png"
+              (click)="toggle('18')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Pikachu"> <img src="assets/meleeIcons/19.png"
+              (click)="toggle('19')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Jigglypuff"> <img src="assets/meleeIcons/20.png"
+              (click)="toggle('20')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Mewtwo"> <img src="assets/meleeIcons/21.png"
+              (click)="toggle('21')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Mr. GNW"> <img src="assets/meleeIcons/22.png"
+              (click)="toggle('22')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Marth"> <img src="assets/meleeIcons/23.png"
+              (click)="toggle('23')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Roy"><img src="assets/meleeIcons/24.png"
+              (click)="toggle('24')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Sheik"> <img src="assets/meleeIcons/25.png"
+              (click)="toggle('25')" class="charImg"></div>
         </tr>
 
       </table>

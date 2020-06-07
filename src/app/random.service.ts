@@ -204,32 +204,32 @@ export class RandomService {
 
 
 
-    this.DoctorMario = new Character("Dr. Mario", 0, "./assets/meleeIcons/1.png");
-    this.Mario = new Character("Mario", 1, "./assets/meleeIcons/2.png");
-    this.Luigi = new Character("Luigi", 2, "./assets/meleeIcons/3.png");
-    this.Bowser = new Character("Bowser", 3, "./assets/meleeIcons/4.png");
-    this.Peach = new Character("Peach", 4, "./assets/meleeIcons/5.png");
-    this.Yoshi = new Character("Yoshi", 5, "./assets/meleeIcons/6.png");
-    this.DonkeyKong = new Character("Donkey Kong", 6, "./assets/meleeIcons/7.png");
-    this.CaptainFalcon = new Character("Captain Falcon", 7, "./assets/meleeIcons/8.png");
-    this.Ganondorf = new Character("Ganondorf", 8, "./assets/meleeIcons/9.png");
-    this.Falco = new Character("Falco", 9, "./assets/meleeIcons/10.png");
-    this.Fox = new Character("Fox", 10, "./assets/meleeIcons/11.png");
-    this.Ness = new Character("Ness", 11, "./assets/meleeIcons/12.png");
-    this.IceClimbers = new Character("Ice Climbers", 12, "./assets/meleeIcons/13.png");
-    this.Kirby = new Character("Kirby", 13, "./assets/meleeIcons/14.png");
-    this.Samus = new Character("Samus", 14, "./assets/meleeIcons/15.png");
-    this.Zelda = new Character("Zelda", 15, "./assets/meleeIcons/16.png");
-    this.Link = new Character("Link", 16, "./assets/meleeIcons/17.png");
-    this.YoungLink = new Character("Young Link", 17, "./assets/meleeIcons/18.png");
-    this.Pichu = new Character("Pichu", 18, "./assets/meleeIcons/19.png");
-    this.Pikachu = new Character("Pikachu", 19, "./assets/meleeIcons/20.png");
-    this.Jigglypuff = new Character("Jigglypuff", 20, "./assets/meleeIcons/21.png");
-    this.Mewtwo = new Character("Mewtwo", 21, "./assets/meleeIcons/22.png");
-    this.MrGNW = new Character("Mr. GNW", 22, "./assets/meleeIcons/23.png");
-    this.Marth = new Character("Marth", 23, "./assets/meleeIcons/24.png");
-    this.Roy = new Character("Roy", 24, "./assets/meleeIcons/25.png");
-    this.Sheik = new Character("Sheik", 25, "./assets/meleeIcons/26.png");
+    this.DoctorMario = new Character("Dr. Mario", 0, "./assets/meleeIcons/0.png");
+    this.Mario = new Character("Mario", 1, "./assets/meleeIcons/1.png");
+    this.Luigi = new Character("Luigi", 2, "./assets/meleeIcons/2.png");
+    this.Bowser = new Character("Bowser", 3, "./assets/meleeIcons/3.png");
+    this.Peach = new Character("Peach", 4, "./assets/meleeIcons/4.png");
+    this.Yoshi = new Character("Yoshi", 5, "./assets/meleeIcons/5.png");
+    this.DonkeyKong = new Character("Donkey Kong", 6, "./assets/meleeIcons/6.png");
+    this.CaptainFalcon = new Character("Captain Falcon", 7, "./assets/meleeIcons/7.png");
+    this.Ganondorf = new Character("Ganondorf", 8, "./assets/meleeIcons/8.png");
+    this.Falco = new Character("Falco", 9, "./assets/meleeIcons/9.png");
+    this.Fox = new Character("Fox", 10, "./assets/meleeIcons/10.png");
+    this.Ness = new Character("Ness", 11, "./assets/meleeIcons/11.png");
+    this.IceClimbers = new Character("Ice Climbers", 12, "./assets/meleeIcons/12.png");
+    this.Kirby = new Character("Kirby", 13, "./assets/meleeIcons/13.png");
+    this.Samus = new Character("Samus", 14, "./assets/meleeIcons/14.png");
+    this.Zelda = new Character("Zelda", 15, "./assets/meleeIcons/15.png");
+    this.Link = new Character("Link", 16, "./assets/meleeIcons/16.png");
+    this.YoungLink = new Character("Young Link", 17, "./assets/meleeIcons/17.png");
+    this.Pichu = new Character("Pichu", 18, "./assets/meleeIcons/18.png");
+    this.Pikachu = new Character("Pikachu", 19, "./assets/meleeIcons/19.png");
+    this.Jigglypuff = new Character("Jigglypuff", 20, "./assets/meleeIcons/20.png");
+    this.Mewtwo = new Character("Mewtwo", 21, "./assets/meleeIcons/21.png");
+    this.MrGNW = new Character("Mr. GNW", 22, "./assets/meleeIcons/22.png");
+    this.Marth = new Character("Marth", 23, "./assets/meleeIcons/23.png");
+    this.Roy = new Character("Roy", 24, "./assets/meleeIcons/24.png");
+    this.Sheik = new Character("Sheik", 25, "./assets/meleeIcons/25.png");
 
     //end of melee characters
     //start of ultimate 2:22 am

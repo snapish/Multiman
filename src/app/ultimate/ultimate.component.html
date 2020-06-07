@@ -23,7 +23,7 @@
                <!-- *ngFor="let item of items; let i=index" -->
                <div *ngFor="let i of state.ultimate.playerAChars;let ind= index">
                  
-                 <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                 <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                </div>
                </div>
    
@@ -40,7 +40,7 @@
                <div id="playerB">
                   <div  class="container" > 
                  <div *ngFor="let i of state.ultimate.playerBChars; let ind = index">
-                   <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                   <div *ngIf="ind < sstateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                  </div>
                  </div>
           
@@ -57,7 +57,7 @@
                  <div id="playerC">
                     <div  class="container" > 
                    <div *ngFor="let i of state.ultimate.playerCChars; let ind = index">
-                     <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                     <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                    </div>        
                    </div>        
                   
@@ -74,7 +74,7 @@
                  <div id="playerD">
                     <div  class="container" > 
                    <div *ngFor="let i of state.ultimate.playerDChars; let ind = index">
-                     <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                     <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                    </div>   
                    </div>   
            
@@ -90,7 +90,7 @@
                               <div id="playerE">
                                   <div  class="container" > 
                                 <div *ngFor="let i of state.ultimate.playerEChars; let ind = index">
-                                  <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                                 </div>   
                                 </div>   
                             
@@ -107,7 +107,7 @@
                               <div id="playerF">
                                   <div  class="container" > 
                                 <div *ngFor="let i of state.ultimate.playerFChars; let ind = index">
-                                  <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                                 </div>   
                                 </div>   
                           
@@ -123,7 +123,7 @@
                               <div id="playerG">
                                   <div  class="container" > 
                                 <div *ngFor="let i of state.ultimate.playerGChars; let ind = index">
-                                  <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                                 </div>   
                                 </div>   
                                
@@ -140,7 +140,7 @@
                               <div id="playerH">
                                   <div  class="container" > 
                                 <div *ngFor="let i of state.ultimate.playerHChars; let ind = index">
-                                  <div *ngIf="ind < state.all.charCount"> <img src = {{i.img}} style="float: left" /></div>
+                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
                                 </div>   
                                 </div>   
                                

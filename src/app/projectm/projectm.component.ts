@@ -63,22 +63,23 @@ export class ProjectmComponent implements OnInit {
     this.changeRef.tick();
     //repaint broswer
   }
-   /**
+
+/**
    * Brute forces updates on what the opacity of a character should be.
+   * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
    */
   updateOpacity() {
-    for (let i of this.stateService.state.projectm.disabledChars) {
-      for (let v of this.pmChars) {
-        if (v.id == i && document.getElementById(v.name).style.opacity != ".3") {
-          document.getElementById(v.name).style.opacity = ".3";
+    $('.charImg').each(ind =>{  //go through all the character images
+    for (let id of this.stateService.state.projectm.disabledChars) { //for every character disabled
+        if($('.charImg').eq(ind).attr('src').includes("pmIcons/" + id + ".png")){ //if the char image has "..../id.png" as its path
+          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
+          break
+        }
+        else{
+          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
       }
-    }
-    for (let p of this.pmChars) {
-      if (!this.stateService.state.projectm.disabledChars.includes(p.id)) {
-        document.getElementById(p.name).style.opacity = "1";
-      }
-    }
+    })
   }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
     // we would have an infinite loop if exclusions contained all the numbers between 0 - 42
@@ -98,6 +99,27 @@ export class ProjectmComponent implements OnInit {
     var min = 1;
     var max = 43;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
+    /**
+   * Checks this.stateService.state.melee.disabledChars to see if the ID exists, if not, adds it, if so, removes it
+   * calls side.setMeleeCharCount if needed
+   * then goes thru each charImg, finds the one of the ID passed,and changes opacity accordingly
+   * @param id character ID to disable
+   */
+  toggle(id) {
+    if (this.stateService.state.projectm.disabledChars.includes(id)) {
+      this.stateService.state.projectm.disabledChars = this.removeFromArray(this.stateService.state.projectm.disabledChars, id)
+    }
+    else {
+      this.stateService.state.projectm.disabledChars.push(id)
+    }
+    console.log(this.stateService.state.projectm.disabledChars)
+    if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length < this.stateService.state.all.currentCharCount) {
+      // this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
+    }
+    this.updateOpacity()
+    this.stateService.pushState()
   }
 
   toggleChar(charName: string) {

@@ -6,6 +6,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RandomService } from '../random.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { StateService } from '../state.service';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
 
 @Component({
   selector: 'app-side',
@@ -34,7 +36,7 @@ pmCharCount;
 dropdownOpen = false;
 closeResult = '';
 noRoomFound = true
-
+clipboardFailure = false
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
         config.placement = 'right';
     config.autoClose = true;
@@ -51,9 +53,7 @@ noRoomFound = true
           $(this).css('height', '1%')
         })
       }
-    });
-    console.log(this.stateService.state)
-  }
+    });  }
   /*
   plans/todo
    
@@ -96,6 +96,7 @@ noRoomFound = true
  */
 joinRoomCode(){
   var directed = false;
+  this.clipboardFailure = false //clears the error text if the clipboard room was bad and they start typing
   if(this.inputVal.length >= 5){ //if 5 chars...
     this.stateService.state.all.activeRoomCodes.forEach(element => {// then for each room code...
       if(element.includes(this.inputVal)){ //if the url of the room includes the code they typed
@@ -113,12 +114,25 @@ joinRoomCode(){
   }
 }
 /**
+ * gets clipboard text, if it's good, call joinRoomCode()
+ * if its bad say clipboard thing was bad
+ */
+joinClipboard(){  
+  navigator.clipboard.readText().then(text =>{
+    this.inputVal = text
+    this.joinRoomCode()
+  }).catch(err =>{
+    this.clipboardFailure = true
+  })
+}
+/**
  * came with the modal example that i yoinked, keeping it all here
  * @param content :shrug:
  */
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.clipboardFailure = false
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });

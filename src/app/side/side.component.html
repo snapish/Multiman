@@ -16,7 +16,6 @@
     <mat-nav-list>
 
 
-
       <div class="menu">
         <img src="assets/meleeIcons/meleelogo.png" (click)="transition('melee')" class="gameIcons">
         <img src="assets/ultimateIcons/ultimatelogo.png" (click)="transition('ultimate')" class="gameIcons">
@@ -33,7 +32,7 @@
             (click)=" checkDropDown(drop1)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.currentCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of meleeCharCount" ngbDropdownItem (click)="setCharacterCount(n)">{{n}}</button>
+            <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n +1)">{{ind - n +1}}</button>
           </div>
         </div>
       </div>
@@ -43,7 +42,7 @@
           <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.currentCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of ultimateCharCount" ngbDropdownItem (click)="setCharacterCount(n)">{{n}}</button>
+            <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n+1)">{{ind - n +1}}</button>
           </div>
         </div>
       </div>
@@ -53,7 +52,7 @@
           <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.currentCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of pmCharCount" ngbDropdownItem (click)="setCharacterCount(n)">{{n}}</button>
+            <button *ngFor="let n of pmCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
           </div>
         </div>
       </div> 
@@ -67,7 +66,7 @@
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" /> {{stateService.state.all.currentPlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-          <button *ngFor="let n of stateService.state.all.playerCount" ngbDropdownItem (click)="setPlayerCount(n)">{{n}}</button>
+          <button *ngFor="let n of stateService.state.all.playerCount; count as ind" ngbDropdownItem (click)="setPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
       <br><br><br>
@@ -84,18 +83,44 @@
         </button>
       </div>
       <br><br>
-      <div  class="roomOptionsButton">
-        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button><br>
-        <i style="font-size: 12px;">coming eventually</i>
 
-      </div>
-
-      <div class = "battleShipButton">
-        <button [disabled] = "true" type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
-          Battleship<br>
-          <i style="font-size: 12px;">coming eventually</i>
+      <div class="contact">
+        <ng-template #contributePop>You can view the <a style="color:blue"
+            href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
+            <br>
+            <br>
+            You may also contribute financially via <a style="color: blue;" href="https://www.patreon.com/ironman">Patreon</a> and help keep up server costs 
+          
+          </ng-template>
+        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="contributePop">
+          Contribute
         </button>
       </div>
+      <br><br>
+
+      <div class="contact">
+        <ng-template #communityPopup>There is a <a style="color:blue"
+            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. 
+          
+          </ng-template>
+        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="communityPopup">
+          Community
+        </button>
+      </div>
+      <br><br>
+
+
+      <div  class="roomOptionsButton">
+        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button><br>
+      </div>
+
+      
+      <!-- <div class = "battleShipButton">
+        <button [disabled] = "true" type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
+          Battleship<br>
+          <i style="font-size: 11px;">coming eventually...probably</i>
+        </button>
+      </div> -->
 
       <ng-template #content let-modal>
         <div class="modal-header">
@@ -107,17 +132,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <button class="btn btn-md btn-primary copyButton">Copy My Room Code: {{roomCode}}</button>
+          <button [cdkCopyToClipboard] = "roomCode" class="btn btn-md btn-primary copyButton">Copy My Room Code: {{roomCode}}</button>
           <br>
           <br>
           <div class="half-left">
-            <button (click)='joinRoomCode()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
+            <button (click)='joinClipboard()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
             <br>
             <input  (input) = "joinRoomCode()" [(ngModel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE" maxlength="5">
               <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>
           </div>
           <mat-checkbox color = "warn" [disabled]="false" (change) = "toggleRoomLock()">Lock room functions to others</mat-checkbox>
-          <div [hidden]= "noRoomFound">No room with the code " <strong>{{inputVal}}</strong>" could be found </div>
+          <div style="color: orangered" [hidden]= "noRoomFound">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          <div style="color: orangered" [hidden]= "!clipboardFailure">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
           </div>

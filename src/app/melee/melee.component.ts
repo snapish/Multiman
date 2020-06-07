@@ -120,13 +120,13 @@ export class MeleeComponent implements OnInit {
         if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.stateService.state.melee.disabledChars.push(x.id); //put it in
           //character count shouldnt be more than the available characters
-          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.currentCharCount ){
-           this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
+          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.currentCharCount) {
+            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
           }
           document.getElementById(x.name).style.opacity = "0.3";
 
         } else {
-         document.getElementById(x.name).style.opacity = "1";
+          document.getElementById(x.name).style.opacity = "1";
           this.stateService.state.melee.disabledChars = this.removeFromArray(
             this.stateService.state.melee.disabledChars,
             x.id
@@ -137,6 +137,29 @@ export class MeleeComponent implements OnInit {
 
     this.stateService.pushState();
   }
+  /**
+   * Checks this.stateService.state.melee.disabledChars to see if the ID exists, if not, adds it, if so, removes it
+   * calls side.setMeleeCharCount if needed
+   * then goes thru each charImg, finds the one of the ID passed,and changes opacity accordingly
+   * @param id character ID to disable
+   */
+  toggle(id) {
+    if (this.stateService.state.melee.disabledChars.includes(id)) {
+      this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, id)
+      this.updateOpacity()
+    }
+    else {
+      this.stateService.state.melee.disabledChars.push(id)
+      this.updateOpacity()
+    }
+    console.log(this.stateService.state.melee.disabledChars)
+    if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.currentCharCount) {
+      // this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
+    }
+    
+    this.stateService.pushState()
+  }
+
   /**
    * Removes a number from an array and returns it
    * @param arr array to remove from
@@ -153,44 +176,21 @@ export class MeleeComponent implements OnInit {
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
-
   /**
-   * Takes a new state and updates the state object to match the given one
-   * @param newState New state to set to the "current" state
-   */
-/*  updateState(newState) {
-    console.log("got new state: ", newState);
-    this.state.melee.playerAChars = newState.playerAChars;
-    this.state.melee.playerBChars = newState.playerBChars;
-    this.state.melee.playerCChars = newState.playerCChars;
-    this.state.melee.playerDChars = newState.playerDChars;
-    this.state.melee.disabledChars = newState.disabledChars;
-    this.state.all.charCount = newState.charCount;
-    this.state.all.playerCount = newState.playerCount;
-    this.updateOpacity();
-    this.changeRef.tick();
-    //repaint broswer
-  }
-  */
-  /**
-   * Brute forces updates on what the opacity of a character should be.
-   */
+     * Brute forces updates on what the opacity of a character should be.
+     * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
+     */
   updateOpacity() {
-    for (let i of this.stateService.state.melee.disabledChars) {
-      for (let v of this.meleeChars) {
-        if (
-          v.id == i &&
-          document.getElementById(v.name).style.opacity != ".3"
-        ) {
-          document.getElementById(v.name).style.opacity = ".3";
+    $('.charImg').each(ind => {  //go through all the character images
+      for (let id of this.stateService.state.melee.disabledChars) { //for every character disabled
+        if ($('.charImg').eq(ind).attr('src').includes("meleeIcons/" + id + ".png")) { //if the char image has "..../id.png" as its path
+          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
+          break//and move on to the next disabled character in the disabled chars array
+        }
+        else { //its not hitting this to reset the opacity when its just one character, dont know why
+          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
       }
-    }
-    for (let p of this.meleeChars) {
-      if (!this.stateService.state.melee.disabledChars.includes(p.id)) {
-        document.getElementById(p.name).style.opacity = "1";
-      }
-    }
+    })
   }
-
 }

@@ -28,7 +28,7 @@
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of stateService.state.projectm.playerAChars;let ind= index" >
                 <!-- style="float: left" was in the div below -->
-                <div *ngIf="ind < stateService.state.all.charCount"> <img src = {{i.img}}/> </div>
+                <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}/> </div>
               </div>
             </div>
             </div>
@@ -44,7 +44,7 @@
             <div id="playerB">
                 <div  class="container" >
               <div *ngFor="let i of stateService.state.projectm.playerBChars; let ind = index">
-                <div *ngIf="ind < stateService.state.all.charCount"> <img src = {{i.img}}  /></div>
+                <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}  /></div>
               </div>
               </div>
               </div>
@@ -60,7 +60,7 @@
               <div id="playerC">
                   <div  class="container" >
                 <div *ngFor="let i of stateService.state.projectm.playerCChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.charCount"> <img src = {{i.img}} /></div>
+                  <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}} /></div>
                 </div>        
                 </div>        
               </div>
@@ -76,7 +76,7 @@
               <div id="playerD">
                   <div  class="container" >
                 <div *ngFor="let i of stateService.state.projectm.playerDChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.charCount"> <img src = {{i.img}}  /></div>
+                  <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}  /></div>
                 </div>   
                 </div>   
             </div>
@@ -88,57 +88,57 @@
                 
                 <tr> 
                     
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Wario" >  <img src="assets/pmIcons/1.png" (click) = "toggleChar('Wario')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mario" >  <img src="assets/pmIcons/2.png" (click) = "toggleChar('Mario')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi" > <img src="assets/pmIcons/3.png" (click) = "toggleChar('Luigi')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Peach" > <img src="assets/pmIcons/4.png" (click) = "toggleChar('Peach')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser" > <img src="assets/pmIcons/5.png" (click) = "toggleChar('Bowser')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Yoshi" > <img src="assets/pmIcons/6.png" (click) = "toggleChar('Yoshi')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" > <img src="assets/pmIcons/7.png" (click) = "toggleChar('Donkey Kong')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Diddy Kong" > <img src="assets/pmIcons/8.png" (click) = "toggleChar('Diddy Kong')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Captain Falcon" > <img src="assets/pmIcons/9.png" (click) = "toggleChar('Captain Falcon')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Wario" >  <img src="assets/pmIcons/1.png" (click) = "toggle('1')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mario" >  <img src="assets/pmIcons/2.png" (click) = "toggle('Mario')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi" > <img src="assets/pmIcons/3.png" (click) = "toggle('Luigi')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Peach" > <img src="assets/pmIcons/4.png" (click) = "toggle('Peach')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Bowser" > <img src="assets/pmIcons/5.png" (click) = "toggle('Bowser')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Yoshi" > <img src="assets/pmIcons/6.png" (click) = "toggle('Yoshi')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Donkey Kong" > <img src="assets/pmIcons/7.png" (click) = "toggle('Donkey Kong')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Diddy Kong" > <img src="assets/pmIcons/8.png" (click) = "toggle('Diddy Kong')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Captain Falcon" > <img src="assets/pmIcons/9.png" (click) = "toggle('Captain Falcon')" class="charImg"></div>
                   </tr>
                   <tr>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Wolf" > <img src="assets/pmIcons/10.png" (click) = "toggleChar('Wolf')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Fox" > <img src="assets/pmIcons/11.png" (click) = "toggleChar('Fox')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Falco" > <img src="assets/pmIcons/12.png" (click) = "toggleChar('Falco')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ice Climbers" > <img src="assets/pmIcons/13.png" (click) = "toggleChar('Ice Climbers')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zelda" > <img src="assets/pmIcons/14.png" (click) = "toggleChar('Zelda')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sheik" >  <img src="assets/pmIcons/15.png" (click) = "toggleChar('Sheik')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Link" > <img src="assets/pmIcons/16.png" (click) = "toggleChar('Link')"class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Toon Link" > <img src="assets/pmIcons/17.png" (click) = "toggleChar('Toon Link')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ganondorf" > <img src="assets/pmIcons/18.png" (click) = "toggleChar('Ganondorf')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Wolf" > <img src="assets/pmIcons/10.png" (click) = "toggle('Wolf')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Fox" > <img src="assets/pmIcons/11.png" (click) = "toggle('Fox')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Falco" > <img src="assets/pmIcons/12.png" (click) = "toggle('Falco')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ice Climbers" > <img src="assets/pmIcons/13.png" (click) = "toggle('Ice Climbers')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zelda" > <img src="assets/pmIcons/14.png" (click) = "toggle('Zelda')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sheik" >  <img src="assets/pmIcons/15.png" (click) = "toggle('Sheik')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Link" > <img src="assets/pmIcons/16.png" (click) = "toggle('Link')"class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Toon Link" > <img src="assets/pmIcons/17.png" (click) = "toggle('Toon Link')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ganondorf" > <img src="assets/pmIcons/18.png" (click) = "toggle('Ganondorf')" class="charImg"></div>
                   </tr>
                   <tr>
                     
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mewtwo" > <img src="assets/pmIcons/19.png" (click) = "toggleChar('Mewtwo')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Lucario" > <img src="assets/pmIcons/20.png" (click) = "toggleChar('Lucario')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pikachu" > <img src="assets/pmIcons/21.png" (click) = "toggleChar('Pikachu')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Jigglypuff" > <img src="assets/pmIcons/22.png" (click) = "toggleChar('Jigglypuff')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Squirtle" > <img src="assets/pmIcons/23.png" (click) = "toggleChar('Squirtle')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ivysaur" >  <img src="assets/pmIcons/24.png" (click) = "toggleChar('Ivysaur')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Charizard" ><img src="assets/pmIcons/25.png" (click) = "toggleChar('Charizard')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Samus" > <img src="assets/pmIcons/26.png" (click) = "toggleChar('Samus')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zero Suit Samus" > <img src="assets/pmIcons/27.png" (click) = "toggleChar('Zero Suit Samus')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mewtwo" > <img src="assets/pmIcons/19.png" (click) = "toggle('Mewtwo')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Lucario" > <img src="assets/pmIcons/20.png" (click) = "toggle('Lucario')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pikachu" > <img src="assets/pmIcons/21.png" (click) = "toggle('Pikachu')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Jigglypuff" > <img src="assets/pmIcons/22.png" (click) = "toggle('Jigglypuff')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Squirtle" > <img src="assets/pmIcons/23.png" (click) = "toggle('Squirtle')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ivysaur" >  <img src="assets/pmIcons/24.png" (click) = "toggle('Ivysaur')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Charizard" ><img src="assets/pmIcons/25.png" (click) = "toggle('Charizard')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Samus" > <img src="assets/pmIcons/26.png" (click) = "toggle('Samus')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Zero Suit Samus" > <img src="assets/pmIcons/27.png" (click) = "toggle('Zero Suit Samus')" class="charImg" ></div>
                   </tr>
                   <tr>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Lucas" > <img src="assets/pmIcons/28.png" (click) = "toggleChar('Lucas')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ness" > <img src="assets/pmIcons/29.png" (click) = "toggleChar('Ness')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pit" > <img src="assets/pmIcons/30.png" (click) = "toggleChar('Pit')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Kirby" > <img src="assets/pmIcons/31.png" (click) = "toggleChar('Kirby')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Meta Knight" > <img src="assets/pmIcons/32.png" (click) = "toggleChar('Meta Knight')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Dedede" > <img src="assets/pmIcons/33.png" (click) = "toggleChar('Dedede')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ike" >  <img src="assets/pmIcons/34.png" (click) = "toggleChar('Ike')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Marth" ><img src="assets/pmIcons/35.png" (click) = "toggleChar('Marth')" class="charImg"></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Roy" > <img src="assets/pmIcons/36.png" (click) = "toggleChar('Roy')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Lucas" > <img src="assets/pmIcons/28.png" (click) = "toggle('Lucas')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ness" > <img src="assets/pmIcons/29.png" (click) = "toggle('Ness')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pit" > <img src="assets/pmIcons/30.png" (click) = "toggle('Pit')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Kirby" > <img src="assets/pmIcons/31.png" (click) = "toggle('Kirby')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Meta Knight" > <img src="assets/pmIcons/32.png" (click) = "toggle('Meta Knight')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Dedede" > <img src="assets/pmIcons/33.png" (click) = "toggle('Dedede')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ike" >  <img src="assets/pmIcons/34.png" (click) = "toggle('Ike')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Marth" ><img src="assets/pmIcons/35.png" (click) = "toggle('Marth')" class="charImg"></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Roy" > <img src="assets/pmIcons/36.png" (click) = "toggle('Roy')" class="charImg" ></div>
                   </tr>
                   <tr>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Olimar" > <img src="assets/pmIcons/37.png" (click) = "toggleChar('Olimar')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="ROB" > <img src="assets/pmIcons/38.png" (click) = "toggleChar('ROB')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="GNW" > <img src="assets/pmIcons/39.png" (click) = "toggleChar('GNW')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Snake" > <img src="assets/pmIcons/40.png" (click) = "toggleChar('Snake')" class="charImg" ></div>
-                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sonic" > <img src="assets/pmIcons/41.png" (click) = "toggleChar('Sonic')" class="charImg" ></div>
-                     <!-- <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/pmIcons/42.png" (click) = "toggleChar('Free Space')" class="charImg"></div> -->
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Olimar" > <img src="assets/pmIcons/37.png" (click) = "toggle('Olimar')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="ROB" > <img src="assets/pmIcons/38.png" (click) = "toggle('ROB')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="GNW" > <img src="assets/pmIcons/39.png" (click) = "toggle('GNW')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Snake" > <img src="assets/pmIcons/40.png" (click) = "toggle('Snake')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sonic" > <img src="assets/pmIcons/41.png" (click) = "toggle('Sonic')" class="charImg" ></div>
+                     <!-- <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/pmIcons/42.png" (click) = "toggle('Free Space')" class="charImg"></div> -->
                     </tr>
                   
                 </table>
