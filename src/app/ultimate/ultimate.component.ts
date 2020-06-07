@@ -182,7 +182,7 @@ export class UltimateComponent implements OnInit {
   updateOpacity() {
     $('.charImg').each(ind =>{  //go through all the character images
     for (let id of this.stateService.state.ultimate.disabledChars) { //for every character disabled
-        if($('.charImg').eq(ind).attr('src').includes("ultimateIcons/" + id + ".png")){ //if the char image has "..../id.png" as its path
+        if($('.charImg').eq(ind).attr('src').includes("ultimateIcons/" + id + ".jpeg")){ //if the char image has "..../id.jpeg" as its path, ult has a different file ext for some reason
           $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
           break
         }

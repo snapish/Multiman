@@ -191,6 +191,9 @@ export class MeleeComponent implements OnInit {
           $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
       }
+      if(this.stateService.state.melee.disabledChars.length ==0){ 
+        $('.charImg').eq(ind).css('opacity','1')
+      }
     })
   }
 }
