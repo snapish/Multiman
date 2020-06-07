@@ -154,7 +154,7 @@ export class MeleeComponent implements OnInit {
     }
     console.log(this.stateService.state.melee.disabledChars)
     if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.currentCharCount) {
-      // this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
+       this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
     }
     
     this.stateService.pushState()

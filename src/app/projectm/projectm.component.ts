@@ -46,24 +46,6 @@ export class ProjectmComponent implements OnInit {
       console.log("uh oh stinky")
     }
   }
-
-  /**
-   * Takes a new state and updates the state object to match the given one
-   * @param newState New state to set to the "current" state
-   */
-  updateState(newState) {
-    this.stateService.state.projectm.playerAChars = newState.playerAChars;
-    this.stateService.state.projectm.playerBChars = newState.playerBChars;
-    this.stateService.state.projectm.playerCChars = newState.playerCChars;
-    this.stateService.state.projectm.playerDChars = newState.playerDChars;
-    this.stateService.state.projectm.disabledChars = newState.disabledChars;
-    this.stateService.state.all.charCount = newState.charCount;
-    this.stateService.state.all.playerCount = newState.playerCount;
-    this.updateOpacity()
-    this.changeRef.tick();
-    //repaint broswer
-  }
-
 /**
    * Brute forces updates on what the opacity of a character should be.
    * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
@@ -78,6 +60,9 @@ export class ProjectmComponent implements OnInit {
         else{
           $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
+      }
+      if(this.stateService.state.projectm.disabledChars.length ==0){ 
+        $('.charImg').eq(ind).css('opacity','1')
       }
     })
   }
@@ -116,32 +101,12 @@ export class ProjectmComponent implements OnInit {
     }
     console.log(this.stateService.state.projectm.disabledChars)
     if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length < this.stateService.state.all.currentCharCount) {
-      // this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
+       this.side.setPMCharacterCount(this.stateService.state.all.currentCharCount - 1)
     }
     this.updateOpacity()
     this.stateService.pushState()
   }
 
-  toggleChar(charName: string) {
-    for (let x of this.pmChars) {
-      if (charName == x.name) {
-        if (!this.stateService.state.projectm.disabledChars.includes(x.id)) {
-          this.stateService.state.projectm.disabledChars.push(x.id);
-          document.getElementById(x.name).style.opacity = "0.3";
-          if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length  < this.stateService.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
-           }
-
-        }
-        else {
-          document.getElementById(x.name).style.opacity = "1";
-          this.stateService.state.projectm.disabledChars = this.removeFromArray(this.stateService.state.projectm.disabledChars, x.id);
-        }
-      }
-    }
-    console.log(this.stateService.state.projectm.disabledChars)
-    this.pushState()
-  }
   removeFromArray(arr: Array<number>, num:number) {
     var newArr = arr.filter(element => element != num)
     return newArr
@@ -156,6 +121,7 @@ export class ProjectmComponent implements OnInit {
     this.stateService.state.projectm.playerBChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
     this.stateService.state.projectm.playerCChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
     this.stateService.state.projectm.playerDChars = this.randomService.randomizePM(this.stateService.state.projectm.disabledChars)
+    this.stateService.pushState()
   }
 
 }

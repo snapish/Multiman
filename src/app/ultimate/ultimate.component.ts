@@ -13,7 +13,7 @@ export class UltimateComponent implements OnInit {
   charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78];
 
   playernums = [1, 2, 3, 4,5,6,7,8]
-
+  
   ultimateChars= []
   state = {
     game:"ultimate",
@@ -70,45 +70,46 @@ export class UltimateComponent implements OnInit {
 
     if(this.stateService.state.ultimate.dlcDisabled){
 
-          if(!this.stateService.state.ultimate.disabledChars.includes(101)){
-            this.toggleChar("Piranha Plant")
+          if(!this.stateService.state.ultimate.disabledChars.includes(141)){
+            this.toggle("141")
           }
-          if(!this.stateService.state.ultimate.disabledChars.includes(102)){
-            this.toggleChar("Joker")
+          if(!this.stateService.state.ultimate.disabledChars.includes(142)){
+            this.toggle("142")
           }
-          if(!this.stateService.state.ultimate.disabledChars.includes(103)){
-            this.toggleChar("Banjo")
+          if(!this.stateService.state.ultimate.disabledChars.includes(143)){
+            this.toggle("143")
           }
-          if(!this.stateService.state.ultimate.disabledChars.includes(104)){
-            this.toggleChar("Hero")
+          if(!this.stateService.state.ultimate.disabledChars.includes(144)){
+            this.toggle("144")
           }
-          if(!this.stateService.state.ultimate.disabledChars.includes(105)){
-            this.toggleChar("Terry")
+          if(!this.stateService.state.ultimate.disabledChars.includes(145)){
+            this.toggle("145")
           }
-          if(!this.stateService.state.ultimate.disabledChars.includes(106)){
-            this.toggleChar("Byleth")
+          if(!this.stateService.state.ultimate.disabledChars.includes(146)){
+            this.toggle("145")
           }
           //update state here
         }
     else{
-      if(this.stateService.state.ultimate.disabledChars.includes(101)){
-        this.toggleChar("Piranha Plant")
+      if(this.stateService.state.ultimate.disabledChars.includes(141)){
+        this.toggle("Piranha Plant")
       }
-      if(this.stateService.state.ultimate.disabledChars.includes(102)){
-        this.toggleChar("Joker")
+      if(this.stateService.state.ultimate.disabledChars.includes(142)){
+        this.toggle("Joker")
       }
-      if(this.stateService.state.ultimate.disabledChars.includes(103)){
-        this.toggleChar("Banjo")
+      if(this.stateService.state.ultimate.disabledChars.includes(143)){
+        this.toggle("Banjo")
       }
-      if(this.stateService.state.ultimate.disabledChars.includes(104)){
-        this.toggleChar("Hero")
+      if(this.stateService.state.ultimate.disabledChars.includes(144)){
+        this.toggle("Hero")
       }
-      if(this.stateService.state.ultimate.disabledChars.includes(105)){
-        this.toggleChar("Terry")
+      if(this.stateService.state.ultimate.disabledChars.includes(145)){
+        this.toggle("Terry")
       }
-      if(this.stateService.state.ultimate.disabledChars.includes(106)){
-        this.toggleChar("Byleth")
+      if(this.stateService.state.ultimate.disabledChars.includes(146)){
+        this.toggle("Byleth")
       }
+      this.stateService.pushState()
 
     }
    // this.stateService.updateState(this.state)
@@ -129,32 +130,12 @@ export class UltimateComponent implements OnInit {
     }
     console.log(this.stateService.state.ultimate.disabledChars)
     if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length < this.stateService.state.all.currentCharCount) {
-      // this.side.setMeleeCharacterCount(this.stateService.state.all.currentCharCount - 1)
+       this.side.setUltimateCharacterCount(this.stateService.state.all.currentCharCount - 1)
     }
     this.updateOpacity()
     this.stateService.pushState()
   }
 
-  toggleChar(charName: string) {
-    for (let x of this.ultimateChars) {
-      if (charName == x.name) { // run thru ult chars until it hits the one passed
-        if (!this.stateService.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
-          this.stateService.state.ultimate.disabledChars.push(x.id);
-          if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length  < this.stateService.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
-           }
-
-          document.getElementById(x.name).style.opacity = "0.3";
-        }
-        else {
-          document.getElementById(x.name).style.opacity = "1";
-          this.stateService.state.ultimate.disabledChars = this.removeFromArray(this.stateService.state.ultimate.disabledChars, x.id);
-        }
-      }
-    }
-  //  this.stateService.updateState(this.state)
-
-  }
 
 
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
@@ -190,6 +171,9 @@ export class UltimateComponent implements OnInit {
           $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
       }
+      if(this.stateService.state.ultimate.disabledChars.length ==0){ 
+        $('.charImg').eq(ind).css('opacity','1')
+      }
     })
   }
     randomFill() {
@@ -201,7 +185,7 @@ export class UltimateComponent implements OnInit {
       this.stateService.state.ultimate.playerFChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
       this.stateService.state.ultimate.playerGChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
       this.stateService.state.ultimate.playerHChars = this.randomService.randomizeUltimate(this.stateService.state.ultimate.disabledChars)
-    //  this.stateService.updateState(this.state)
+    this.stateService.pushState()
     }
 
 }
