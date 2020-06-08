@@ -37,6 +37,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule, MatNavList } from '@angular/material/list';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ TictactoeComponent,
 SideComponent,
   ],
   imports: [
-
+    ClipboardModule,
     NgbModule,
     MatCardModule,
     //MatSidenavModule,

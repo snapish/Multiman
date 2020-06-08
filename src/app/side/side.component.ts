@@ -6,7 +6,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RandomService } from '../random.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { StateService } from '../state.service';
-import { ClipboardModule } from '@angular/cdk/clipboard'
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
 
 @Component({
   selector: 'app-side',
@@ -35,7 +36,7 @@ pmCharCount;
 dropdownOpen = false;
 closeResult = '';
 noRoomFound = true
-
+clipboardFailure = false
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
         config.placement = 'right';
     config.autoClose = true;
@@ -52,9 +53,7 @@ noRoomFound = true
           $(this).css('height', '1%')
         })
       }
-    });
-    console.log(this.stateService.state)
-  }
+    });  }
   /*
   plans/todo
    
@@ -125,12 +124,25 @@ getRoomCode(){
   return this.roomCode
 }
 /**
+ * gets clipboard text, if it's good, call joinRoomCode()
+ * if its bad say clipboard thing was bad
+ */
+joinClipboard(){  
+  navigator.clipboard.readText().then(text =>{
+    this.inputVal = text
+    this.joinRoomCode()
+  }).catch(err =>{
+    this.clipboardFailure = true
+  })
+}
+/**
  * came with the modal example that i yoinked, keeping it all here
  * @param content :shrug:
  */
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.clipboardFailure = false
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
