@@ -392,6 +392,7 @@ export class RandomService {
   randomizeMelee(disabled: number[]) { 
     var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
     this.shuffle(characters) //makes it random
+    console.log(characters)
     return characters
   }
   

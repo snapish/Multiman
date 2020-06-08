@@ -36,9 +36,15 @@ export class UltimateComponent implements OnInit {
   }
   constructor(private randomService: RandomService, private side: SideComponent, private stateService : StateService, private changeRef: ApplicationRef) {
     this.ultimateChars = this.randomService.getUltimateChars();
+    this.stateService.addListener(_ => this.onNewStateReceived())
+
     // console.log(this.ultimateChars)
    }
 
+   onNewStateReceived() {
+    this.updateOpacity();
+    this.changeRef.tick();
+  }
   ngOnInit() {
     //update state here
   //  this.stateService.updateState(this.state)
@@ -119,8 +125,8 @@ export class UltimateComponent implements OnInit {
       if (charName == x.name) { // run thru ult chars until it hits the one passed
         if (!this.stateService.state.ultimate.disabledChars.includes(x.id)) { //if the character passed is not disabled yet
           this.stateService.state.ultimate.disabledChars.push(x.id);
-          if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length  < this.stateService.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
+          if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length  < this.stateService.state.all.ultimateCharCount ){
+            this.side.setUltimateCharacterCount(this.stateService.state.all.ultimateCharCount - 1)
            }
 
           document.getElementById(x.name).style.opacity = "0.3";

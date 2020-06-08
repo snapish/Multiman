@@ -62,7 +62,9 @@ export class StateService {
       charCount: 0,
       playerCount: [],
       activeRoomCodes : [],
-      currentCharCount:0,
+      meleeCharCount:0,
+      ultimateCharCount:0,
+      pmCharCount:0,
       currentPlayerCount:4
     },
   }

@@ -32,8 +32,14 @@ export class ProjectmComponent implements OnInit {
   }
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.pmChars = this.randomService.getPMChars();
+    this.stateService.addListener(_ => this.onNewStateReceived())
+
   }
 
+  onNewStateReceived() {
+    this.updateOpacity();
+    this.changeRef.tick();
+  }
   ngOnInit() {
     //when switched to tab, disable free space. Also should do this on melee tab :\
 
@@ -106,8 +112,8 @@ export class ProjectmComponent implements OnInit {
         if (!this.stateService.state.projectm.disabledChars.includes(x.id)) {
           this.stateService.state.projectm.disabledChars.push(x.id);
           document.getElementById(x.name).style.opacity = "0.3";
-          if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length  < this.stateService.state.all.currentCharCount ){
-            this.side.setCharacterCount(this.stateService.state.all.currentCharCount - 1)
+          if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length  < this.stateService.state.all.pmCharCount ){
+            this.side.setPMCharacterCount(this.stateService.state.all.pmCharCount - 1)
            }
 
         }

@@ -1,5 +1,5 @@
 <html>
-
+ 
 <body>
   <mat-toolbar >
     <span style="text-align: center; width: 100%;">
@@ -55,12 +55,11 @@
           <mat-card-title style="color: red; font-size: 20px; font-weight: bold;"> Player 1 </mat-card-title>
         </mat-card-header>
         <div id="playerA">
-
           <div class="container">
             <!-- *ngFor="let item of items; let i=index" -->
-            <div class="charImages" *ngFor="let i of stateService.state.melee.playerAChars;let ind= index">
-              <!-- style="float: left" was in the div below -->
-              <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /> </div>
+            <div class="charImages" *ngFor="let i of stateService.state.melee.playerAChars;let ind= index"> 
+              <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
+              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src="{{i.img}}" />  </div>
             </div>
           </div>
 
@@ -77,6 +76,7 @@
         <div id="playerB">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerBChars; let ind = index">
+              
               <div *ngIf="ind < stateService.state.all.charCount"> <img src={{i.img}} /></div>
             </div>
           </div>

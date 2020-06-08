@@ -6,6 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RandomService } from '../random.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { StateService } from '../state.service';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 @Component({
   selector: 'app-side',
@@ -41,7 +42,7 @@ noRoomFound = true
     this.meleeCharCount = randomService.getMeleeCharCount();
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
-    this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+    //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
     this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
     var temp = window.location.href.replace(/\//g ,"")
     this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
@@ -79,38 +80,49 @@ noRoomFound = true
   have melee pull char/player counts from side comp
   make randomservice return random sets of chars, given the disabled chars
   */
-  // state = {
-  //   all:{
-  //     currentCharCount : 26,
-  //     currentPlayerCount : 2,
-  //     activeRoomCodes : [],
-  //     playerCount: []
-  //   },
-  //   side:{
-      
-  //   }
-  // }
+
   
 /**
   Checks room code entered if its 5 chars long, if theres an active sesh, join it, if not give err
  */
 joinRoomCode(){
-  var directed = false;
-  if(this.inputVal.length >= 5){ //if 5 chars...
-    this.stateService.state.all.activeRoomCodes.forEach(element => {// then for each room code...
-      if(element.includes(this.inputVal)){ //if the url of the room includes the code they typed
-        document.location.replace('https://ironman.gg/?session=' + this.inputVal) //redirect
-        directed = true
-      }
+    fetch('/sessions')
+      .then(response => {
+        var directed = false;
+        this.noRoomFound = true
+        response.json().then(ids => {
+          if(this.inputVal.length >= 5 && ids.includes(this.inputVal)){ //if 5 chars...//if the url of the room includes the code they typed
+                document.location.replace(window.location.protocol + "//" + window.location.host + '?session=' + this.inputVal) //redirect
+                directed = true
+          }
+        })
+        if(!directed && this.inputVal.length >= 5){
+          this.noRoomFound = false; //for if they remove the text in the box after not finding a room, itll hide the message again 
+          console.log("a")
+        }
+      })
+      .catch(err => {
       
-    });
-    if(!directed){
-      this.noRoomFound = false //show the msg that no room was found
-    }
-  }
-  else{
-    this.noRoomFound = true //for if they remove the text in the box after not finding a room, itll hide the message again
-  }
+    }) 
+ 
+  
+}
+
+joinRoomWithCode(code){
+  fetch('/sessions')
+      .then(response => {
+        response.json().then(ids => {
+          var directed = false;
+          if(this.inputVal.length >= 5 && ids.includes(code)){ //if 5 chars...//if the url of the room includes the code they typed
+                document.location.replace(window.location.protocol + "//" + window.location.host + '?session=' + code) //redirect
+                directed = true
+          }
+        })
+      })
+      .catch(err => this.noRoomFound = true) //for if they remove the text in the box after not finding a room, itll hide the message again 
+}
+getRoomCode(){
+  return this.roomCode
 }
 /**
  * came with the modal example that i yoinked, keeping it all here
@@ -161,8 +173,14 @@ joinRoomCode(){
    * sets current character count
    * @param count What to set character count to
    */
-  setCharacterCount(count: number) {
-    this.stateService.state.all.currentCharCount = count
+  setMeleeCharacterCount(count: number) {
+    this.stateService.state.all.meleeCharCount = count
+  }
+  setPMCharacterCount(count: number){
+    this.stateService.state.all.ultimateCharCount = count
+  }
+  setUltimateCharacterCount(count: number){
+    this.stateService.state.all.pmCharCount = count
   }
   /**
    * sets current player count
@@ -188,14 +206,14 @@ joinRoomCode(){
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'visible')
-      this.stateService.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
+     // this.stateService.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
     }
     if (this.currentView == "melee") {
       this.stateService.state.all.playerCount = this.randomService.getPlayerCount("melee")
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.meleeCharCount').css('visibility', 'visible')
-      this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
+      //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
 
     }
     if (this.currentView == "pmv") {
@@ -203,9 +221,9 @@ joinRoomCode(){
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'visible')
-      this.stateService.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
+    //  this.stateService.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
     }
-    console.log(this.stateService.state)
+    //console.log(this.stateService.state)
   }
 
 
