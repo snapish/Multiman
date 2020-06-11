@@ -36,15 +36,22 @@ pmCharCount;
 dropdownOpen = false;
 closeResult = '';
 noRoomFound = true
-clipboardFailure = false
+clipboardFailure = false  
+mpc = [1,2,3,4]
+pmpc = [1,2,3,4]
+upc = [1,2,3,4,5,6,7,8]
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
         config.placement = 'right';
     config.autoClose = true;
-    this.meleeCharCount = randomService.getMeleeCharCount();
+    this.meleeCharCount = this.randomService.getMeleeCharCount()
+    
+    this.stateService.state.all.meleeCharCount = this.randomService.getMeleeCharCount().length
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
+
     //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
-    this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
+    //this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
+ 
     var temp = window.location.href.replace(/\//g ,"")
     this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
     $(document).click(function (event) {
@@ -189,17 +196,31 @@ joinClipboard(){
     this.stateService.state.all.meleeCharCount = count
   }
   setPMCharacterCount(count: number){
-    this.stateService.state.all.ultimateCharCount = count
+    this.stateService.state.all.pmCharCount = count
   }
   setUltimateCharacterCount(count: number){
-    this.stateService.state.all.pmCharCount = count
+    this.stateService.state.all.ultimateCharCount = count
   }
   /**
    * sets current player count
    * @param count What to set player count to
    */
-  setPlayerCount(count: number) {
-    this.stateService.state.all.currentPlayerCount = count
+  setMeleePlayerCount(count: number) {
+    this.stateService.state.all.meleePlayerCount = count
+  }
+  /**
+   * sets current player count
+   * @param count What to set player count to
+   */
+  setPMPlayerCount(count: number) {
+    this.stateService.state.all.pmPlayerCount = count
+  }
+  /**
+   * sets current player count
+   * @param count What to set player count to
+   */
+  setUltimatePlayerCount(count: number) {
+    this.stateService.state.all.ultimatePlayerCount = count
   }
   /**
    * switches the main content to whatever they clicked, and adjusts variables accordingly
@@ -213,26 +234,29 @@ joinClipboard(){
  //  char count stuff
  
     if (this.currentView == "ultimate") {
-      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
+     // this.stateService.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
 
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'visible')
+      $('.ultimatePlayerCount').css('visibility', 'visible')
      // this.stateService.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
     }
     if (this.currentView == "melee") {
-      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("melee")
+     // this.stateService.state.all.playerCount = this.randomService.getPlayerCount("melee")
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.meleeCharCount').css('visibility', 'visible')
+      $('.meleePlayerCount').css('visibility', 'visible')
       //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
 
     }
     if (this.currentView == "pmv") {
-      this.stateService.state.all.playerCount = this.randomService.getPlayerCount("pm")
+      //this.stateService.state.all.pmPlayerCount = this.randomService.getPlayerCount("pm")
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'visible')
+      $('.pmPlayerCount').css('visibility', 'visible')
     //  this.stateService.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
     }
     //console.log(this.stateService.state)

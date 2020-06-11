@@ -390,7 +390,8 @@ export class RandomService {
    * @param disabled an array of numbers that are the IDs of chars you dont want
    */
   randomizeMelee(disabled: number[]) { 
-    var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    
+    var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id.toString() )) //takes out disabled chars
     this.shuffle(characters) //makes it random
     console.log(characters)
     return characters
@@ -401,7 +402,7 @@ export class RandomService {
    * @param disabled an array of numbers that are the IDs of chars you dont want
    */
   randomizePM(disabled: number[]){
-    var characters = this.getPMChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    var characters = this.getPMChars().filter(element =>{!disabled.includes(element.id.toString()) }) //takes out disabled chars
     this.shuffle(characters) //makes it random
     return characters
   }
@@ -410,7 +411,7 @@ export class RandomService {
    * @param disabled an array of numbers that are the IDs of chars you dont want
    */
   randomizeUltimate(disabled: number[]){
-    var characters = this.getUltimateChars().filter(element => !disabled.includes(element.id)) //takes out disabled chars
+    var characters = this.getUltimateChars().filter(element => !disabled.includes(element.id.toString())) //takes out disabled chars. It's defaulting to a string or something im not sure i'm on work break doing this
     this.shuffle(characters) //makes it random
     return characters
   }

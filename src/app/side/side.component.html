@@ -32,7 +32,7 @@
             (click)=" checkDropDown(drop1)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.meleeCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n +1)">{{ind - n +1}}</button>
+            <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setMeleeCharacterCount(ind - n +1)">{{ind - n +1}}</button>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
           <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.ultimateCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n+1)">{{ind - n +1}}</button>
+            <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setUltimateCharacterCount(ind - n + 1)">{{ind - n +1}}</button>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
           <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.pmCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of pmCharCount; count as ind" ngbDropdownItem (click)="setCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
+            <button *ngFor="let n of pmCharCount; count as ind" ngbDropdownItem (click)="setPMCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
           </div>
         </div>
       </div> 
@@ -62,19 +62,43 @@
         Player Count
       </div>
 
-      <div class="charCount " #drop4 ngbDropdown>
+      <div *ngIf="currentView == 'melee'" class="charCount" #drop4 ngbDropdown>
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
-          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" /> {{stateService.state.all.currentPlayerCount}}</button>
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.meleePlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-          <button *ngFor="let n of stateService.state.all.playerCount; count as ind" ngbDropdownItem (click)="setPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+          <button *ngFor="let n of mpc; count as ind" ngbDropdownItem (click)="setMeleePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
+      <div *ngIf="currentView == 'pmv'" class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.pmPlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of pmpc; count as ind" ngbDropdownItem (click)="setPMPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+      <div *ngIf="currentView == 'ultimate'" class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.ultimatePlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of upc; count as ind" ngbDropdownItem (click)="setUltimatePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+
+
+
       <br><br><br>
       <div class="menuOption">
         Other Options
         <br>
 
       </div>
+      
+      <div  class="roomOptionsButton">
+        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
+      </div>
+      <br><br>
+
+
       <div class="contact">
         <ng-template #popTitle>You can email me with any questions or feedback at <a style="color:blue"
             href="mailto:snapish@ironman.gg">snapish@ironman.gg</a></ng-template>
@@ -84,7 +108,10 @@
       </div>
       <br><br>
 
-      <div class="contact">
+
+
+
+      <div class="contribute">
         <ng-template #contributePop>You can view the <a style="color:blue"
             href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
             <br>
@@ -100,7 +127,7 @@
 
       <div class="contact">
         <ng-template #communityPopup>There is a <a style="color:blue"
-            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. 
+            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. <br> <i>It's still under construction a little</i>
           
           </ng-template>
         <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="communityPopup">
@@ -110,9 +137,7 @@
       <br><br>
 
 
-      <div  class="roomOptionsButton">
-        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button><br>
-      </div>
+    
 
       
       <!-- <div class = "battleShipButton">

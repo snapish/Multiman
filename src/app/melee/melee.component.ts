@@ -94,13 +94,11 @@ export class MeleeComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-
     this.stateService.state.melee.playerAChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
-    //this.stateService.updateState(this.state)
-    console.log(this.stateService.state.melee.playerAChars)
+    this.stateService.pushState()
   }
   /**
    * Gives you a random number between 0 and 25
@@ -154,7 +152,6 @@ export class MeleeComponent implements OnInit {
       this.stateService.state.melee.disabledChars.push(id)
       this.updateOpacity()
     }
-    console.log(this.stateService.state.melee.disabledChars)
     if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.meleeCharCount) {
        this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
     }

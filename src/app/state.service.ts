@@ -59,13 +59,13 @@ export class StateService {
       disabledChars: [],
     },
     all:{ //universal things
-      charCount: 0,
-      playerCount: [],
       activeRoomCodes : [],
-      meleeCharCount:0,
-      ultimateCharCount:0,
-      pmCharCount:0,
-      currentPlayerCount:4
+      meleeCharCount:26,
+      ultimateCharCount:80,
+      pmCharCount:41,
+      ultimatePlayerCount:2,
+      meleePlayerCount:2,
+      pmPlayerCount:2
     },
   }
 

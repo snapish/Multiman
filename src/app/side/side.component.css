@@ -76,6 +76,7 @@ input{
 }
 .roomOptionsButton{
   padding-left: 36px;
+  position: fixed;
 }
 .half-button{
   font-size: 21px;
@@ -133,6 +134,11 @@ input{
   height: 100%; */
   width: 180x;
  padding-left: 46px;
+}
+.contribute{
+  position: fixed;
+  width: 155px;
+  padding-left: 46px
 }
 .roomCode{
   position: absolute;

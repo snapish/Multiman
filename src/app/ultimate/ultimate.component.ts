@@ -56,7 +56,7 @@ export class UltimateComponent implements OnInit {
   }
 
   onOptionsSelected(event) {
-    this.stateService.state.all.charCount = event;
+    this.stateService.state.all.ultimateCharCount = event;
  //   this.stateService.updateState(this.state)
   }
 
@@ -135,8 +135,8 @@ export class UltimateComponent implements OnInit {
       this.stateService.state.ultimate.disabledChars.push(id)
     }
     console.log(this.stateService.state.ultimate.disabledChars)
-    if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length < this.stateService.state.all.currentCharCount) {
-       this.side.setUltimateCharacterCount(this.stateService.state.all.currentCharCount - 1)
+    if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length < this.stateService.state.all.ultimateCharCount) {
+       this.side.setUltimateCharacterCount(this.stateService.state.all.ultimateCharCount - 1)
     }
     this.updateOpacity()
     this.stateService.pushState()
