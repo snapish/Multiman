@@ -3,6 +3,13 @@
     flex-direction: row;
     justify-content: center; 
 }
+mat-toolbar{
+    padding:2px;
+    background-color: rgb(49, 49, 49);
+}
+.mat-toolbar.mat-primary {
+    background: #007bff;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -26,10 +33,7 @@
     flex-flow: column;
 }
 
-.table{
-    display: flex;
-    justify-content: center;
-}
+
 
 #g{
     background-color: darkgray;
@@ -72,7 +76,9 @@ img{-webkit-user-drag: none;
   }
 
 
-
+.mat-card{
+    padding: 4px
+}
 .charImg:last-of-type:hover{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -80,4 +86,14 @@ img{-webkit-user-drag: none;
  -webkit-box-shadow: 0px 0px 30px 0px rgba(232, 0, 0, 0.67);
 -moz-box-shadow:    0px 0px 30px 0px rgba(232, 0, 0, 0.67);
 box-shadow:         0px 0px 30px 0px rgba(232, 0, 0, 0.67);
+}
+.mat-toolbar.mat-primary {
+    background: #085308;
+   
+  }
+
+
+  .table{
+    display: flex;
+    justify-content: center;
 }

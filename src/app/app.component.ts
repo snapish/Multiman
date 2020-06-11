@@ -5,7 +5,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectmComponent } from './projectm/projectm.component';
 import { MeleeComponent } from './melee/melee.component';
-declare var ON_STATE_CHANGED: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,13 +24,15 @@ export class AppComponent {
       this.openPopup()
     }
   }
+
+
   /**
    * This runs after loading all child components. AKA do any kind of "needing to do after rendering things" here
    */
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     console.log("ngafterviewinit")
- 
+
   }
   openPopup() {
     this.dialogRef = this.dialog.open(WelcomeComponent, {

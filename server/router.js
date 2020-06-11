@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     return res.redirect('/?session=' + sessionId)
   }
 
-  if (!sessions.exists(sessionId)) {
+  if (!sessions.get(sessionId)) {
     return res.status(400).render('nosession', { sessionId })
   }
 
@@ -32,9 +32,12 @@ console.log('Serving files from ' + buildDir)
 router.post('/ping', (req, res, next) => {
   const sessionId = req.query.session
   if (!sessionId) return res.status(400).send('Ping must include a ?session=')
-  if (!sessions.exists(sessionId)) return res.status(400).send('No session ' + sessionId)
+  if (!sessions.get(sessionId)) return res.status(400).send('No session ' + sessionId)
 
   sessions.ping(sessionId)
   res.send('pong')
 })
 
+router.get('/sessions', (req, res, next) => {
+  res.json(sessions.list())
+})

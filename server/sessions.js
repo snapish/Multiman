@@ -2,17 +2,22 @@ const uuid = require('uuid/v4')
 
 const SESSION_TIMEOUT = 1000 * 60 * 5 // 5min (in milliseconds)
 
-const sessions = {} // map of session ids to Timeout objects
+const sessions = {} // map of session ids to a session object with the following properties:
+// {
+//   timeout (Timeout object)
+//   state (the current state for that session
+// }
 
 module.exports = {
   create,
   ping,
-  exists,
+  get,
+  list,
 }
 
 function create () {
-  const sessionId = uuid()
-
+  const sessionId = generateSessionId()
+  sessions[sessionId] = { timeout: null, state: null }
   startTimer(sessionId)
   log('Created session', sessionId)
 
@@ -20,7 +25,7 @@ function create () {
 }
 
 function startTimer (sessionId) {
-  sessions[sessionId] = setTimeout(expire, SESSION_TIMEOUT, sessionId)
+  sessions[sessionId].timeout = setTimeout(expire, SESSION_TIMEOUT, sessionId)
 }
 
 function expire (sessionId) {
@@ -29,16 +34,30 @@ function expire (sessionId) {
 }
 
 function ping (sessionId) {
-  const timer = sessions[sessionId]
-  if (!timer) return log('ERROR: Tried to ping nonexistent session', sessionId)
+  const session = sessions[sessionId]
+  if (!session) return log('ERROR: Tried to ping nonexistent session', sessionId)
+  if (!session.timeout) return log('ERROR: no timeout object on session', sessionId)
 
   log('Received ping', sessionId)
-  clearTimeout(timer)
+  clearTimeout(session.timeout)
   startTimer(sessionId)
 }
 
-function exists (sessionId) {
-  return Boolean(sessions[sessionId])
+function get (sessionId) {
+  return sessions[sessionId]
+}
+
+function list () {
+  return Object.keys(sessions)
+}
+
+function generateSessionId () {
+  // TODO find a better way to get short ids
+  var id
+  do {
+    id = uuid().substring(0,5)
+  } while (get(id))
+  return id
 }
 
 function log (message, sessionId) {

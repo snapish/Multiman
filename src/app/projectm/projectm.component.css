@@ -14,7 +14,7 @@
    border-radius: 10%
   }
 #player{
-   width: 47%; 
+   width: 50%; 
    float:left; 
    background-color: black;
    border-style: solid;
@@ -25,7 +25,9 @@
    flex-wrap: wrap;
    flex-flow: column;
 } 
-
+.mat-card{
+   padding: 5px;
+}
 .table{
     display: flex;
    justify-content: center; 
@@ -53,6 +55,10 @@ img{-webkit-user-drag: none;
    width: 133px; /*167 */
    cursor: pointer;
    /* border-radius: 10px; */
+}
+mat-toolbar{
+   padding:2px;
+   background-color: rgb(49, 49, 49);
 }
 .page{
    overflow:hidden;

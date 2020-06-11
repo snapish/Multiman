@@ -1,0 +1,208 @@
+<head>
+  <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/2de95dc392.js" crossorigin="anonymous"></script> -->
+  <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
+
+</head>
+<mat-sidenav-container class="sidenav-container" > 
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [disableClose]="(isHandset$ | async) ? 'false' : 'true'"
+
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="title">
+      <div style="font-size: 37px; margin-top: 10px;">Menu</div>
+    </mat-toolbar>
+    <hr color="white">
+    <mat-nav-list>
+
+
+      <div class="menu">
+        <img src="assets/meleeIcons/meleelogo.png" (click)="transition('melee')" class="gameIcons">
+        <img src="assets/ultimateIcons/ultimatelogo.png" (click)="transition('ultimate')" class="gameIcons">
+        <img src="assets/pmIcons/pmlogo.png" class="pm" (click)="transition('pmv')" class="gameIcons">
+      </div>
+      <hr color="white">
+       <div class="menuOption">
+        Character Count
+      </div>
+
+      <div class="meleeCharCount">
+        <div class="charCount" #drop1 ngbDropdown>
+          <button class="btn btn-info" id="dropdownConfig" data-toggle="dropdown" ngbDropdownToggle
+            (click)=" checkDropDown(drop1)">
+            <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.meleeCharCount}}</button>
+          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+            <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setMeleeCharacterCount(ind - n +1)">{{ind - n +1}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ultimateCharCount">
+        <div class="charCount" #drop2 ngbDropdown>
+          <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
+            <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.ultimateCharCount}}</button>
+          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+            <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setUltimateCharacterCount(ind - n + 1)">{{ind - n +1}}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pmCharCount">
+        <div class="charCount" #drop3 ngbDropdown>
+          <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
+            <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.pmCharCount}}</button>
+          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+            <button *ngFor="let n of pmCharCount; count as ind" ngbDropdownItem (click)="setPMCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
+          </div>
+        </div>
+      </div> 
+      <br>
+      <br>
+      <div class="menuOption">
+        Player Count
+      </div>
+
+      <div *ngIf="currentView == 'melee'" class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.meleePlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of mpc; count as ind" ngbDropdownItem (click)="setMeleePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+      <div *ngIf="currentView == 'pmv'" class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.pmPlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of pmpc; count as ind" ngbDropdownItem (click)="setPMPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+      <div *ngIf="currentView == 'ultimate'" class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.ultimatePlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of upc; count as ind" ngbDropdownItem (click)="setUltimatePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+
+
+
+      <br><br><br>
+      <div class="menuOption">
+        Other Options
+        <br>
+
+      </div>
+      
+      <div  class="roomOptionsButton">
+        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
+      </div>
+      <br><br>
+
+
+      <div class="contact">
+        <ng-template #popTitle>You can email me with any questions or feedback at <a style="color:blue"
+            href="mailto:snapish@ironman.gg">snapish@ironman.gg</a></ng-template>
+        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'" [ngbPopover]="popTitle">
+          Contact Me
+        </button>
+      </div>
+      <br><br>
+
+
+
+
+      <div class="contribute">
+        <ng-template #contributePop>You can view the <a style="color:blue"
+            href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
+            <br>
+            <br>
+            You may also contribute financially via <a style="color: blue;" href="https://www.patreon.com/ironman">Patreon</a> and help keep up server costs 
+          
+          </ng-template>
+        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="contributePop">
+          Contribute
+        </button>
+      </div>
+      <br><br>
+
+      <div class="contact">
+        <ng-template #communityPopup>There is a <a style="color:blue"
+            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. <br> <i>It's still under construction a little</i>
+          
+          </ng-template>
+        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="communityPopup">
+          Community
+        </button>
+      </div>
+      <br><br>
+
+
+    
+
+      
+      <!-- <div class = "battleShipButton">
+        <button [disabled] = "true" type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
+          Battleship<br>
+          <i style="font-size: 11px;">coming eventually...probably</i>
+        </button>
+      </div> -->
+
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Room Options</h4>
+      
+         
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <button [cdkCopyToClipboard] = "roomCode" class="btn btn-md btn-primary copyButton">Copy My Room Code: {{roomCode}}</button>
+          <br>
+          <br>
+          <div class="half-left">
+            <button (click)='joinClipboard()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
+            <br>
+            <input  (input) = "joinRoomCode()" [(ngModel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE" maxlength="5">
+              <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>
+          </div>
+          <mat-checkbox color = "warn" [disabled]="false" (change) = "toggleRoomLock()">Lock room functions to others</mat-checkbox>
+          <div style="color: orangered" [hidden]= "noRoomFound">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          <div style="color: orangered" [hidden]= "!clipboardFailure">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Exit</button>
+          </div>
+
+        </div>
+      </ng-template>
+
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!-- <span>Multiman</span> -->
+
+    </mat-toolbar>
+
+
+    <div *ngIf="currentView == 'melee' ">
+      <app-melee></app-melee>
+    </div>
+    <div *ngIf="currentView == 'ultimate'">
+      <app-ultimate></app-ultimate>
+    </div>
+    <div *ngIf="currentView == 'pmv'">
+      <app-projectm></app-projectm>
+    </div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

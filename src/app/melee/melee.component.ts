@@ -1,16 +1,14 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  ChangeDetectorRef,
   ApplicationRef
 } from "@angular/core";
 import { RandomService } from "../random.service";
 import { HttpClient } from "@angular/common/http";
 import { MatCheckbox } from "@angular/material/checkbox";
+import { SideComponent } from '../side/side.component';
+import { StateService } from '../state.service';
 declare var $: any;
-declare var ON_STATE_CHANGED: any;
-declare var PUSH_STATE: any;
 
 @Component({
   selector: "app-melee",
@@ -18,16 +16,8 @@ declare var PUSH_STATE: any;
   styleUrls: ["./melee.component.css"]
 })
 export class MeleeComponent implements OnInit {
-  
+
   meleeChars = []; //loaded later from randomservice
-  firstRoll = false; 
-  playerCount;
-  charCount;
-  hideUpcoming: boolean = false;
-  playerAShowCount: number;
-  playerBShowCount: number;
-  playerCShowCount: number;
-  playerDShowCount: number;
   charnums = [ //used in the dropdown for selecting character count
     1,
     2,
@@ -56,49 +46,21 @@ export class MeleeComponent implements OnInit {
     25,
     26
   ];
-
   playernums = [1, 2, 3, 4]; //number of total possible players
-  state = { //state object start
-    version: "m", //for saying what game the state is from, m = melee
-    playerAChars: [],
-    playerBChars: [],
-    playerCChars: [],
-    playerDChars: [],
-    playerCount: 2, //default player count
-    charCount: this.charnums[this.charnums.length -1], //defualt char count, the last index of charnums, in case adding or removing a character
-    playerAShowCount: this.playerAShowCount,
-    playerBShowCount: this.playerBShowCount,
-    playerCShowCount: this.playerCShowCount,
-    playerDShowCount: this.playerDShowCount,
-    disabledChars: [], 
-    hideUpcoming: this.hideUpcoming, 
-    overCharCount: false
-  };
 
-  constructor(private randomService: RandomService, private changeRef: ApplicationRef) {
-    this.meleeChars = this.randomService.getMeleeChars(); 
-    ON_STATE_CHANGED = state => this.updateState(state);
+  constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
+    this.meleeChars = this.randomService.getMeleeChars();
+    this.stateService.addListener(_ => this.onNewStateReceived())
   }
+
+  onNewStateReceived() {
+    this.updateOpacity();
+    this.changeRef.tick();
+  }
+
   ngOnInit() {
   }
-/**
- * Tries to run the PUSH_STATE function, console logs if it fails
- */
-  pushState() {
-    try {
-      PUSH_STATE(this.state);
-    } catch {
-      console.log("Failed to push state");
-    }
-  }
 
-  /**
-   * Sets the state objects character count
-   * @param event The number to set the states charCount to
-   */
-  onOptionsSelected(event) {
-    this.state.charCount = event;
-  }
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -113,7 +75,7 @@ export class MeleeComponent implements OnInit {
     if (exclusions.length >= 26) throw Error("WARNING: avoiding infinite loop");
     let result;
     do {
-      result = this.random(); 
+      result = this.random();
     } while (!exclusions.includes(result));
     return result;
   }
@@ -130,133 +92,13 @@ export class MeleeComponent implements OnInit {
 
   /**
    * Fills players arrays with characters
-   * Only fills as many players as selected
    */
   randomFill() {
-    this.pushState(); //update the state real quick
-    this.firstRoll = true; 
-    this.state.charCount = (document.getElementById("charCount") as HTMLSelectElement).selectedIndex + 1; //set char count
-    this.state.playerCount = (document.getElementById("playerCount") as HTMLSelectElement).selectedIndex + 1; //set the player count
-    this.state.playerAChars = [];
-    this.state.playerBChars = []; //clear they shits
-    this.state.playerCChars = [];
-    this.state.playerDChars = [];
-    this.state.overCharCount = false;
-
-    if (this.meleeChars.length - this.state.disabledChars.length + 1 > this.state.charCount ) {
-      // if the whitelisted char count is under the allowed count. Rewording: if disabled chars is over char count
-      while (this.state.playerAChars.length < this.state.charCount) {
-        // while the set is not filled
-        var n = this.random();
-        console.log(n)
-        this.shuffle(this.meleeChars); //randomize the organized char list for this player
-        for (let l of this.meleeChars) { 
-          console.log(l.id)
-          if (l.id == n && !this.state.disabledChars.includes(l.id)) { // if the character id matches the random character, and it's not disable
-            this.addUnique(this.state.playerAChars, l); //add the random char to the players characters, assuming its not already in there
-          }
-        }
-      }
-      //the same process for above is done over all the other players as well
-      if (this.state.playerCount >= 2) {
-        while (this.state.playerBChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerBChars, l);
-            }
-          }
-        }
-      }
-
-      if (this.state.playerCount >= 3) {
-        while (this.state.playerCChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerCChars, l);
-            }
-          }
-        }
-      }
-      if (this.state.playerCount == 4) {
-        while (this.state.playerDChars.length < this.state.charCount) {
-          var n = this.random();
-          this.shuffle(this.meleeChars);
-          for (let l of this.meleeChars) {
-            if (l.id == n && !this.state.disabledChars.includes(l.id)) {
-              this.addUnique(this.state.playerDChars, l);
-            }
-          }
-        }
-      }
-      
-      if (!this.state.hideUpcoming) {
-        this.state.playerAShowCount = 30;
-        this.state.playerBShowCount = 30;
-        this.state.playerCShowCount = 30;
-        this.state.playerDShowCount = 30;
-      } else {
-        this.state.playerAShowCount = 0;
-        this.state.playerBShowCount = 0;
-        this.state.playerCShowCount = 0;
-        this.state.playerDShowCount = 0;
-      }
-      // console.log(this.state.playerAChars);
-      // console.log(this.state.playerBChars);
-    } else {
-      //set the char count to the maximum and roll again
-      this.state.charCount = 26 - this.state.disabledChars.length;
-      $("#charCount").val(this.state.charCount);
-      this.randomFill();
-
-      //this.state.overCharCount = true;
-    }
-    this.pushState();
-     
-  }
-  /**
-   * Refreshes the available character count 
-   */
-  updateAvailableChars() {
-    $("#charcount");
-    if (26 - this.state.disabledChars.length < this.state.charCount) {
-      console.log($("#charcount").val());
-    }
-    this.pushState();
-     
-  }
-  /**
-   * Adds 1 to a players show count
-   * @param player A,B,C, or D
-   */
-  advancePlayer(player: string) {
-    switch (player) {
-      case "A":
-        if (this.state.playerAShowCount < this.state.playerAChars.length) {
-          this.state.playerAShowCount += 1;
-        }
-        break;
-      case "B":
-        if (this.state.playerBShowCount < this.state.playerBChars.length) {
-          this.state.playerBShowCount += 1;
-        }
-        break;
-      case "C":
-        if (this.state.playerCShowCount < this.state.playerCChars.length) {
-          this.state.playerCShowCount += 1;
-        }
-        break;
-      case "D":
-        if (this.state.playerDShowCount < this.state.playerDChars.length) {
-          this.state.playerDShowCount += 1;
-        }
-        break;
-    }
-    this.pushState();
-     
+    this.stateService.state.melee.playerAChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.stateService.pushState()
   }
   /**
    * Gives you a random number between 0 and 25
@@ -275,21 +117,48 @@ export class MeleeComponent implements OnInit {
   toggleChar(charName: string) {
     for (let x of this.meleeChars) {
       if (charName == x.name) { //find the character in meleeChars
-        if (!this.state.disabledChars.includes(x.id)) { //if its not in the disabled chars array
-          this.state.disabledChars.push(x.id); //put it in 
+        if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
+          this.stateService.state.melee.disabledChars.push(x.id); //put it in
+          //character count shouldnt be more than the available characters
+          if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.meleeCharCount ){
+           this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
+          }
           document.getElementById(x.name).style.opacity = "0.3";
+
         } else {
           document.getElementById(x.name).style.opacity = "1";
-          this.state.disabledChars = this.removeFromArray(
-            this.state.disabledChars,
+          this.stateService.state.melee.disabledChars = this.removeFromArray(
+            this.stateService.state.melee.disabledChars,
             x.id
           );
         }
       }
     }
-    this.pushState();
-     
+
+    this.stateService.pushState();
   }
+  /**
+   * Checks this.stateService.state.melee.disabledChars to see if the ID exists, if not, adds it, if so, removes it
+   * calls side.setMeleeCharCount if needed
+   * then goes thru each charImg, finds the one of the ID passed,and changes opacity accordingly
+   * @param id character ID to disable
+   */
+  toggle(id) {
+    if (this.stateService.state.melee.disabledChars.includes(id)) {
+      this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, id)
+      this.updateOpacity()
+    }
+    else {
+      this.stateService.state.melee.disabledChars.push(id)
+      this.updateOpacity()
+    }
+    if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.meleeCharCount) {
+       this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
+    }
+    
+    this.stateService.pushState()
+  }
+
   /**
    * Removes a number from an array and returns it
    * @param arr array to remove from
@@ -306,62 +175,24 @@ export class MeleeComponent implements OnInit {
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
-
   /**
-   * Takes a new state and updates the state object to match the given one
-   * @param newState New state to set to the "current" state
-   */
-  updateState(newState) {
-    console.log("got new state: ", newState);
-    this.firstRoll = true;
-    this.state.playerAChars = newState.playerAChars;
-    this.state.playerBChars = newState.playerBChars;
-    this.state.playerCChars = newState.playerCChars;
-    this.state.playerDChars = newState.playerDChars;
-    this.state.hideUpcoming = newState.hideUpcoming;
-    this.state.disabledChars = newState.disabledChars;
-    this.state.playerAShowCount = newState.playerAShowCount;
-    this.state.playerBShowCount = newState.playerBShowCount;
-    this.state.playerCShowCount = newState.playerCShowCount;
-    this.state.playerDShowCount = newState.playerDShowCount;
-    this.state.overCharCount = newState.overCharCount;
-    this.state.charCount = newState.charCount;
-    this.state.playerCount = newState.playerCount;
-    this.updateOpacity();
-    this.changeRef.tick();
-    console.log(this.changeRef.tick());
-    //repaint broswer
-  }
-  /**
-   * Brute forces updates on what the opacity of a character should be.
-   */
+     * Brute forces updates on what the opacity of a character should be.
+     * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
+     */
   updateOpacity() {
-    for (let i of this.state.disabledChars) {
-      for (let v of this.meleeChars) {
-        if (
-          v.id == i &&
-          document.getElementById(v.name).style.opacity != ".3"
-        ) {
-          document.getElementById(v.name).style.opacity = ".3";
+    $('.charImg').each(ind => {  //go through all the character images
+      for (let id of this.stateService.state.melee.disabledChars) { //for every character disabled
+        if ($('.charImg').eq(ind).attr('src').includes("meleeIcons/" + id + ".png")) { //if the char image has "..../id.png" as its path
+          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
+          break//and move on to the next disabled character in the disabled chars array
+        }
+        else { //its not hitting this to reset the opacity when its just one character, dont know why
+          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
         }
       }
-    }
-    for (let p of this.meleeChars) {
-      if (!this.state.disabledChars.includes(p.id)) {
-        document.getElementById(p.name).style.opacity = "1";
+      if(this.stateService.state.melee.disabledChars.length ==0){ 
+        $('.charImg').eq(ind).css('opacity','1')
       }
-    }
-  }
-  /**
-   * Maxes out the number of players to show
-   */
-  showToggle() {
-    if (!this.state.hideUpcoming) {
-      this.state.playerAShowCount = 30; //could be 26 but i couldnt remember what number it was supposed to be so we just sent it 
-      this.state.playerBShowCount = 30;
-      this.state.playerCShowCount = 30;
-      this.state.playerDShowCount = 30;
-    }
-    this.pushState();
+    })
   }
 }
