@@ -103,6 +103,10 @@ export class ProjectmComponent implements OnInit {
       this.stateService.state.projectm.disabledChars = this.removeFromArray(this.stateService.state.projectm.disabledChars, id)
     }
     else {
+      this.stateService.state.projectm.playerAChars = this.stateService.state.projectm.playerAChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerBChars = this.stateService.state.projectm.playerBChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerCChars = this.stateService.state.projectm.playerCChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerDChars = this.stateService.state.projectm.playerDChars.filter( x=> {return x.id != id })
       this.stateService.state.projectm.disabledChars.push(id)
     }
     console.log(this.stateService.state.projectm.disabledChars)

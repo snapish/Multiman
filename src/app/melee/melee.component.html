@@ -59,7 +59,7 @@
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of stateService.state.melee.playerAChars;let ind= index"> 
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src="{{i.img}}" />  </div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount && stateService.state.melee.playerAChars[ind] != null"> <img src="{{i.img}}" />  </div>
             </div>
           </div>
 
@@ -76,7 +76,7 @@
         <div id="playerB">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerBChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount && stateService.state.melee.playerBChars[ind] != null"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -93,7 +93,7 @@
         <div id="playerC">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerCChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount && stateService.state.melee.playerCChars[ind] != null"> <img src={{i.img}} /></div>
             </div>
           </div>
 
@@ -110,7 +110,7 @@
         <div id="playerD">
           <div class="container">
             <div *ngFor="let i of stateService.state.melee.playerDChars; let ind = index">
-              <div *ngIf="ind < stateService.state.all.meleeCharCount"> <img src={{i.img}} /></div>
+              <div *ngIf="ind < stateService.state.all.meleeCharCount && stateService.state.melee.playerDChars[ind] != null"> <img src={{i.img}} /></div>
             </div>
           </div>
         </div>

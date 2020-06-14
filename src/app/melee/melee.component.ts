@@ -119,18 +119,17 @@ export class MeleeComponent implements OnInit {
       if (charName == x.name) { //find the character in meleeChars
         if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.stateService.state.melee.disabledChars.push(x.id); //put it in
+        
           //character count shouldnt be more than the available characters
           if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.meleeCharCount ){
            this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
           }
           document.getElementById(x.name).style.opacity = "0.3";
 
-        } else {
+        } else { //if char got removed from array
           document.getElementById(x.name).style.opacity = "1";
-          this.stateService.state.melee.disabledChars = this.removeFromArray(
-            this.stateService.state.melee.disabledChars,
-            x.id
-          );
+          this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, x.id);
+      
         }
       }
     }
@@ -146,9 +145,15 @@ export class MeleeComponent implements OnInit {
   toggle(id) {
     if (this.stateService.state.melee.disabledChars.includes(id)) {
       this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, id)
+      
       this.updateOpacity()
     }
-    else {
+    else { //reomve from array
+      
+      this.stateService.state.melee.playerAChars = this.stateService.state.melee.playerAChars.filter( x=> {return x.id != id })
+      this.stateService.state.melee.playerBChars = this.stateService.state.melee.playerBChars.filter( x=> {return x.id != id })
+      this.stateService.state.melee.playerCChars = this.stateService.state.melee.playerCChars.filter( x=> {return x.id != id })
+      this.stateService.state.melee.playerDChars = this.stateService.state.melee.playerDChars.filter( x=> {return x.id != id })
       this.stateService.state.melee.disabledChars.push(id)
       this.updateOpacity()
     }
