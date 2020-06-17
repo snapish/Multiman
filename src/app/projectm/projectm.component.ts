@@ -73,9 +73,9 @@ export class ProjectmComponent implements OnInit {
     })
   }
   exclusiveRandom(exclusions) { // exclusions is an array of numbers which we don't want
-    // we would have an infinite loop if exclusions contained all the numbers between 0 - 42
+    // we would have an infinite loop if exclusions contained all the numbers between 0 - 43
     // because we'd never find a satisfying random number.
-    if (exclusions.length >= 42) throw Error('WARNING: avoiding infinite loop')
+    if (exclusions.length >= 43) throw Error('WARNING: avoiding infinite loop')
     let result
     do {
       result = this.random()
@@ -103,6 +103,10 @@ export class ProjectmComponent implements OnInit {
       this.stateService.state.projectm.disabledChars = this.removeFromArray(this.stateService.state.projectm.disabledChars, id)
     }
     else {
+      this.stateService.state.projectm.playerAChars = this.stateService.state.projectm.playerAChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerBChars = this.stateService.state.projectm.playerBChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerCChars = this.stateService.state.projectm.playerCChars.filter( x=> {return x.id != id })
+      this.stateService.state.projectm.playerDChars = this.stateService.state.projectm.playerDChars.filter( x=> {return x.id != id })
       this.stateService.state.projectm.disabledChars.push(id)
     }
     console.log(this.stateService.state.projectm.disabledChars)

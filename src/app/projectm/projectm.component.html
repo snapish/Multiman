@@ -15,7 +15,7 @@
      <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
      <!-- 9 columns 3 rows -->
      
-     <div id="players" *ngIf="stateService.state.projectm.playerAChars.length != 0 " >
+     <div id="players" *ngIf="stateService.state.projectm.playerAChars.length > 0" >
        
        <!-- PLAYER A -->
        <mat-card id="player" >
@@ -28,7 +28,7 @@
             <!-- *ngFor="let item of items; let i=index" -->
             <div class="charImages" *ngFor="let i of stateService.state.projectm.playerAChars;let ind= index" >
                 <!-- style="float: left" was in the div below -->
-                <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}/> </div>
+                <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}/> </div>
               </div>
             </div>
             </div>
@@ -37,14 +37,14 @@
 
 
           <!-- playerB  -->
-          <mat-card id="player"  *ngIf="stateService.state.all.currentPlayerCount >=2" >
+          <mat-card id="player"  *ngIf="stateService.state.all.pmPlayerCount >=2" >
             <mat-card-header>
               <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
             </mat-card-header>  
             <div id="playerB">
                 <div  class="container" >
               <div *ngFor="let i of stateService.state.projectm.playerBChars; let ind = index">
-                <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}  /></div>
+                <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}  /></div>
               </div>
               </div>
               </div>
@@ -53,14 +53,14 @@
 
 
             <!-- PLAYER C -->
-            <mat-card id="player"  *ngIf="stateService.state.all.currentPlayerCount >= 3" >
+            <mat-card id="player"  *ngIf="stateService.state.all.pmPlayerCount >= 3" >
               <mat-card-header>
                 <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
               </mat-card-header>
               <div id="playerC">
                   <div  class="container" >
                 <div *ngFor="let i of stateService.state.projectm.playerCChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}} /></div>
+                  <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}} /></div>
                 </div>        
                 </div>        
               </div>
@@ -69,14 +69,14 @@
 
 
             <!-- player D -->
-            <mat-card id="player" *ngIf="stateService.state.all.currentPlayerCount == 4">
+            <mat-card id="player" *ngIf="stateService.state.all.pmPlayerCount == 4">
               <mat-card-header>
                 <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
               </mat-card-header>
               <div id="playerD">
                   <div  class="container" >
                 <div *ngFor="let i of stateService.state.projectm.playerDChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.PMCharCount"> <img src = {{i.img}}  /></div>
+                  <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}  /></div>
                 </div>   
                 </div>   
             </div>
@@ -138,6 +138,8 @@
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="GNW" > <img src="assets/pmIcons/64.png" (click) = "toggle('64')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Snake" > <img src="assets/pmIcons/65.png" (click) = "toggle('65')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Sonic" > <img src="assets/pmIcons/66.png" (click) = "toggle('66')" class="charImg" ></div>
+                    <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Knuckles" > <img src="assets/pmIcons/147.png" (click) = "toggle('147')" class="charImg" ></div>
+
                      <!-- <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/pmIcons/42.png" (click) = "toggle('Free Space')" class="charImg"></div> -->
                     </tr>
                   

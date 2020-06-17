@@ -34,7 +34,7 @@ export class UltimateComponent implements OnInit {
       dlcDisabled: false
     },
   }
-  constructor(private randomService: RandomService, private side: SideComponent, private stateService : StateService, private changeRef: ApplicationRef) {
+  constructor(private randomService: RandomService, private side: SideComponent, public stateService : StateService, private changeRef: ApplicationRef) {
     this.ultimateChars = this.randomService.getUltimateChars();
     this.stateService.addListener(_ => this.onNewStateReceived())
 
@@ -132,9 +132,16 @@ export class UltimateComponent implements OnInit {
       this.stateService.state.ultimate.disabledChars = this.removeFromArray(this.stateService.state.ultimate.disabledChars, id)
     }
     else {
+      this.stateService.state.ultimate.playerAChars = this.stateService.state.ultimate.playerAChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerBChars = this.stateService.state.ultimate.playerBChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerCChars = this.stateService.state.ultimate.playerCChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerDChars = this.stateService.state.ultimate.playerDChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerEChars = this.stateService.state.ultimate.playerEChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerFChars = this.stateService.state.ultimate.playerFChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerGChars = this.stateService.state.ultimate.playerGChars.filter( x=> {return x.id != id })
+      this.stateService.state.ultimate.playerHChars = this.stateService.state.ultimate.playerHChars.filter( x=> {return x.id != id })
       this.stateService.state.ultimate.disabledChars.push(id)
     }
-    console.log(this.stateService.state.ultimate.disabledChars)
     if (this.ultimateChars.length - this.stateService.state.ultimate.disabledChars.length < this.stateService.state.all.ultimateCharCount) {
        this.side.setUltimateCharacterCount(this.stateService.state.all.ultimateCharCount - 1)
     }

@@ -9,9 +9,7 @@
    flex-wrap: wrap;
 }
 ::ng-deep .mat-card{
-   border: 3px solid rgb(241, 241, 241)
-   ;
-   border-radius: 10%
+   border: 3px solid rgb(241, 241, 241);
   }
 #player{
    width: 50%; 

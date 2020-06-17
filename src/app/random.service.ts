@@ -155,6 +155,7 @@ export class RandomService {
   pmGNW
   pmSnake
   pmSonic
+  pmKnuckles
   constructor() { //start of melee characters
 
 
@@ -199,7 +200,7 @@ export class RandomService {
     this.pmGNW = new Character("GNW", 64, "./assets/pmIcons/64.png")
     this.pmSnake = new Character("Snake", 65, "./assets/pmIcons/65.png")
     this.pmSonic = new Character("Sonic", 66, "./assets/pmIcons/66.png")
-
+    this.pmKnuckles = new Character("Knuckles", 147, "./assets/pmIcons/147.png")
 
 
 
@@ -324,8 +325,8 @@ export class RandomService {
   }
   getPMChars() {
     var z = [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
-    this.pmSheik, this.pmLink, this.pmToonLink, this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
-      , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic]
+    this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
+    , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic, this.pmKnuckles]
     return z;
   }
   getMeleeChars() {
@@ -393,7 +394,6 @@ export class RandomService {
     
     var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id.toString() )) //takes out disabled chars
     this.shuffle(characters) //makes it random
-    console.log(characters)
     return characters
   }
   
@@ -402,7 +402,7 @@ export class RandomService {
    * @param disabled an array of numbers that are the IDs of chars you dont want
    */
   randomizePM(disabled: number[]){
-    var characters = this.getPMChars().filter(element =>{!disabled.includes(element.id.toString()) }) //takes out disabled chars
+    var characters = this.getPMChars().filter(element =>!disabled.includes(element.id.toString()) ) //takes out disabled chars
     this.shuffle(characters) //makes it random
     return characters
   }
