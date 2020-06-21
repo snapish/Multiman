@@ -26,38 +26,38 @@
         Character Count
       </div>
 
-      <div class="meleeCharCount">
+      <div *ngIf="currentView == 'melee'" class="meleeCharCount">
         <div class="charCount" #drop1 ngbDropdown>
           <button class="btn btn-info" id="dropdownConfig" data-toggle="dropdown" ngbDropdownToggle
             (click)=" checkDropDown(drop1)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.meleeCharCount}}</button>
-          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setMeleeCharacterCount(ind - n +1)">{{ind - n +1}}</button>
-          </div>
+              <div  class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+                <button *ngFor="let n of meleeCharCount; count as ind" ngbDropdownItem (click)="setMeleeCharacterCount(ind - n +1)">{{ind - n +1}}</button>
+            </div>
         </div>
       </div>
 
-      <div class="ultimateCharCount">
-        <div class="charCount" #drop2 ngbDropdown>
-          <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
-            <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.ultimateCharCount}}</button>
-          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
-            <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setUltimateCharacterCount(ind - n + 1)">{{ind - n +1}}</button>
-          </div>
+
+  <div *ngIf="currentView == 'ultimate'" class="ultimateCharCount">
+    <div class="charCount" #drop2 ngbDropdown>
+      <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
+        <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.ultimateCharCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of ultimateCharCount; count as ind" ngbDropdownItem (click)="setUltimateCharacterCount(ind - n + 1)">{{ind - n +1}}</button>
         </div>
       </div>
-
-      <div class="pmCharCount">
-        <div class="charCount" #drop3 ngbDropdown>
-          <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
-            <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.pmCharCount}}</button>
+    </div>
+    
+    <div *ngIf="currentView == 'pmv'"  class="pmCharCount">
+      <div class="charCount" #drop3 ngbDropdown>
+        <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
+          <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.pmCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
             <button *ngFor="let n of pmCharCount; count as ind" ngbDropdownItem (click)="setPMCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
           </div>
         </div>
-      </div> 
-      <br>
-      <br>
+      </div>
+
       <div class="menuOption">
         Player Count
       </div>
@@ -83,29 +83,27 @@
           <button *ngFor="let n of upc; count as ind" ngbDropdownItem (click)="setUltimatePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
-
-
-
-      <br><br><br>
+<br>
       <div class="menuOption">
         Other Options
         <br>
 
       </div>
       
-      <div  class="roomOptionsButton">
+      <div class="roomOptionsButton">
         <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
       </div>
       <br><br>
 
 
       <div class="contact">
-        <ng-template #popTitle>You can email me with any questions or feedback at <a style="color:blue"
-            href="mailto:snapish@ironman.gg">snapish@ironman.gg</a></ng-template>
+        <ng-template #popTitle>You can email me with any questions or feedback at <a style="color:blue" href="mailto:snapish@ironman.gg">snapish@ironman.gg</a></ng-template>
+      
         <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'" [ngbPopover]="popTitle">
           Contact Me
         </button>
       </div>
+
       <br><br>
 
 
