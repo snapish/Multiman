@@ -113,6 +113,7 @@ export class RandomService {
   Terry;
   Byleth;
   Palutena;
+Minmin;
 
   pmWario
   pmMario
@@ -317,6 +318,7 @@ export class RandomService {
     this.Hero = new Character("Hero", 144, "./assets/ultimateIcons/144.jpeg")
     this.Terry = new Character("Terry", 145, "./assets/ultimateIcons/145.jpeg")
     this.Byleth = new Character("Byleth", 146, "./assets/ultimateIcons/146.jpeg")
+    this.Minmin = new Character("Minmin", 147, "./assets/ultimateIcons/147.jpeg")
 
     //end of ultimate 2:47am
 
@@ -341,7 +343,7 @@ export class RandomService {
     this.Lucas, this.Sonic, this.KingDedede, this.Olimar, this.Lucario, this.ROB, this.ToonLink, this.Wolf, this.Villager, this.MegaMan, this.WiiFitTrainer, this.RosalinaLuma, this.LittleMac,
     this.Greninja, this.Palutena, this.PacMan, this.Robin, this.Shulk, this.BowserJr, this.DuckHunt, this.Ryu, this.Ken, this.Cloud, this.Corrin, this.Bayonetta, this.Inkling,
     this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
-      , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth
+      , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth, this.Minmin
     ]
     return y;
   }
@@ -357,7 +359,7 @@ export class RandomService {
    * returns ultimate character count (80 as of byleth)
    */
   getUltimateCharCount() {
-    var n = Array.from(Array(81).keys()) //has to be +1 cuz keys starts at 0
+    var n = Array.from(Array(82).keys()) //has to be +1 cuz keys starts at 0
     n.shift()
     return n
   }
@@ -365,7 +367,7 @@ export class RandomService {
    * returns PM char count (41 as of now, p+ just came out and dont konw if it changed)
    */
   getPMcharCount() {
-    var n = Array.from(Array(42).keys()) //has to be +1 cuz keys starts at 0
+    var n = Array.from(Array(43).keys()) //has to be +1 cuz keys starts at 0
     n.shift()
     return n
   }

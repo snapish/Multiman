@@ -82,7 +82,8 @@ mat-toolbar{
 box-shadow:         0px 0px 30px 0px rgba(0, 255, 0, 0.67);
 } */
 
-.charImg:last-of-type:hover{
+.charImg:last-of-type:hover{    position: relative;
+
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

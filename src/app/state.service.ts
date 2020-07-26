@@ -62,7 +62,7 @@ export class StateService {
       activeRoomCodes : [],
       meleeCharCount:26,
       ultimateCharCount:80,
-      pmCharCount:41,
+      pmCharCount:42,
       ultimatePlayerCount:2,
       meleePlayerCount:2,
       pmPlayerCount:2

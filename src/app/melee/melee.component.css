@@ -79,7 +79,9 @@ img{-webkit-user-drag: none;
 .mat-card{
     padding: 4px
 }
+
 .charImg:last-of-type:hover{
+    position: relative;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

@@ -76,7 +76,6 @@ SideComponent,
 
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
