@@ -100,23 +100,20 @@ input{
 }
 
 .charCount{
-  position: fixed;
+  
+
+  
   max-height: 100%;
   height: 1%;
   width: 150px;
   padding-left: 50px;
   z-index: 2; /*so dropdowns go over other things. Specifically the contact me button as of rn*/
   }
-.dropdownNumbers{
+.dropdownNumbers, .popupButton{
+  position: fixed !important;
+  top: 50% !important;
+  overflow: auto;
   max-height: 100%;
-  overflow-x: hidden; 
-  overflow-y: auto
-}
-.pmCharCount{
-  visibility: hidden;
-}
-.ultimateCharCount{
-  visibility: hidden;
 }
 .menuOption{
   display: flex;
@@ -129,9 +126,7 @@ input{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .contact{
-  position: fixed;
-  /* max-height: 100%;
-  height: 100%; */
+
   width: 180x;
  padding-left: 46px;
 }
