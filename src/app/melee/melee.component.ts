@@ -18,35 +18,7 @@ declare var $: any;
 export class MeleeComponent implements OnInit {
 
   meleeChars = []; //loaded later from randomservice
-  charnums = [ //used in the dropdown for selecting character count
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26
-  ];
-  playernums = [1, 2, 3, 4]; //number of total possible players
+
 
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.meleeChars = this.randomService.getMeleeChars();

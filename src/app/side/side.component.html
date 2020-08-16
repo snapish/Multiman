@@ -17,9 +17,10 @@
 
 
       <div class="menu">
-        <img src="assets/meleeIcons/meleelogo.png" (click)="transition('melee')" class="gameIcons">
-        <img src="assets/ultimateIcons/ultimatelogo.png" (click)="transition('ultimate')" class="gameIcons">
-        <img src="assets/pmIcons/pmlogo.png" class="pm" (click)="transition('pmv')" class="gameIcons">
+        <img src="assets/meleeIcons/meleelogo.png" routerLink="/melee" (click)="transition('melee')" class="gameIcons">
+        <img src="assets/ultimateIcons/ultimatelogo.png" routerLink="/ultimate" (click)="transition('ultimate')" class="gameIcons">
+        <img src="assets/pmIcons/pmlogo.png" routerLink="/pm" (click)="transition('pmv')" class="pm gameIcons">
+        <img src="assets/rivalsIcons/logo.png" routerLink="/rivals" (click)="transition('rivals')" class="gameIcons">
       </div>
       <hr color="white">
        <div class="menuOption">
@@ -190,7 +191,8 @@
 
     </mat-toolbar>
 
-
+    <router-outlet></router-outlet>
+<!--     
     <div *ngIf="currentView == 'melee' ">
       <app-melee></app-melee>
     </div>
@@ -199,7 +201,7 @@
     </div>
     <div *ngIf="currentView == 'pmv'">
       <app-projectm></app-projectm>
-    </div>
+    </div> -->
 
 
   </mat-sidenav-content>

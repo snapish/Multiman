@@ -58,14 +58,21 @@ export class StateService {
       playerDChars: [],
       disabledChars: [],
     },
+    rivals:{
+      playerAChars: [],
+      playerBChars: [],
+      disabledChars: [],
+    },
     all:{ //universal things
       activeRoomCodes : [],
       meleeCharCount:26,
-      ultimateCharCount:80,
+      ultimateCharCount:82,
       pmCharCount:42,
+      rivalsCharCount:14,
       ultimatePlayerCount:2,
       meleePlayerCount:2,
-      pmPlayerCount:2
+      pmPlayerCount:2,
+      rivalsPlayerCount:2
     },
   }
 

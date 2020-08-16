@@ -38,6 +38,7 @@ import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule, MatNavList } from '@angular/material/list';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { RivalsComponent } from './rivals/rivals.component';
 
 
 @NgModule({
@@ -62,6 +63,8 @@ ConnectFourComponent,
 TictactoeComponent,
 
 SideComponent,
+
+RivalsComponent,
   ],
   imports: [
     ClipboardModule,

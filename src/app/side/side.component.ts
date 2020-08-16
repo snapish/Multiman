@@ -40,6 +40,7 @@ clipboardFailure = false
 mpc = [1,2,3,4]
 pmpc = [1,2,3,4]
 upc = [1,2,3,4,5,6,7,8]
+rpc = [1,2]
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
         config.placement = 'right';
     config.autoClose = true;
@@ -74,9 +75,9 @@ upc = [1,2,3,4,5,6,7,8]
   add a better welcome popup
       -possibly a tour
   add battleship, 8x8 grid
-  get state service in full schwing
   
   ---DONE---
+  get state service in full schwing
   put everything into one state variable
   fixed closing of sidenav
   new color theme 
@@ -201,6 +202,9 @@ joinClipboard(){
   setUltimateCharacterCount(count: number){
     this.stateService.state.all.ultimateCharCount = count
   }
+  setRivalsCharacterCount(count:number){
+    this.stateService.state.all.rivalsCharCount = count
+  }
   /**
    * sets current player count
    * @param count What to set player count to
@@ -221,6 +225,9 @@ joinClipboard(){
    */
   setUltimatePlayerCount(count: number) {
     this.stateService.state.all.ultimatePlayerCount = count
+  }
+  setRivalsPlayerCount(count: number){
+    this.stateService.state.all.rivalsPlayerCount = count;
   }
   /**
    * switches the main content to whatever they clicked, and adjusts variables accordingly
