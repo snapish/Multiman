@@ -126,12 +126,13 @@ input{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .contact{
-
+  position: fixed;
   width: 180x;
  padding-left: 46px;
 }
+
 .contribute{
-  position: sticky;
+  position: fixed;
   width: 155px;
   padding-left: 46px
 }

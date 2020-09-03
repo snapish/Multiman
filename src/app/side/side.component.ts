@@ -33,6 +33,7 @@ roomCode = "";
 meleeCharCount;
 ultimateCharCount;
 pmCharCount;
+rivalsCharCount;
 dropdownOpen = false;
 closeResult = '';
 noRoomFound = true
@@ -49,7 +50,7 @@ rpc = [1,2]
     this.stateService.state.all.meleeCharCount = this.randomService.getMeleeCharCount().length
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
-
+    this.rivalsCharCount = randomService.getRivalsCharCount()
     //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
     //this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
  

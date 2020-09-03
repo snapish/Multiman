@@ -11,7 +11,7 @@ import { SideComponent } from '../side/side.component';
 export class RivalsComponent implements OnInit {
 
   rivalsChars = []
-  constructor(private side : SideComponent ,private stateService: StateService, private randomService: RandomService, private changeRef: ApplicationRef) {
+  constructor(private side : SideComponent ,public stateService: StateService, private randomService: RandomService, private changeRef: ApplicationRef) {
     this.rivalsChars = this.randomService.getRivalsChars()
     this.stateService.addListener(_ => this.onNewStateReceived())
 

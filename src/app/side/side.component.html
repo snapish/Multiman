@@ -17,10 +17,10 @@
 
 
       <div class="menu">
-        <img src="assets/meleeIcons/meleelogo.png" routerLink="/melee" (click)="transition('melee')" class="gameIcons">
-        <img src="assets/ultimateIcons/ultimatelogo.png" routerLink="/ultimate" (click)="transition('ultimate')" class="gameIcons">
-        <img src="assets/pmIcons/pmlogo.png" routerLink="/pm" (click)="transition('pmv')" class="pm gameIcons">
-        <img src="assets/rivalsIcons/logo.png" routerLink="/rivals" (click)="transition('rivals')" class="gameIcons">
+        <img src="assets/meleeIcons/meleelogo.png" routerLink="/melee" queryParamsHandling="preserve"  (click)="transition('melee')" class="gameIcons">
+        <img src="assets/ultimateIcons/ultimatelogo.png" routerLink="/ultimate" queryParamsHandling="preserve" (click)="transition('ultimate')" class="gameIcons">
+        <img src="assets/pmIcons/pmlogo.png" routerLink="/pm" queryParamsHandling="preserve"  (click)="transition('pmv')" class="pm gameIcons">
+        <img src="assets/rivalsIcons/logo.png" routerLink="/rivals" queryParamsHandling="preserve"  (click)="transition('rivals')" class="gameIcons">
       </div>
       <hr color="white">
        <div class="menuOption">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </div>
+    
+    <div *ngIf="currentView == 'rivals'"  class="pmCharCount">
+      <div class="charCount" #drop4 ngbDropdown>
+        <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
+          <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.rivalsCharCount}}</button>
+          <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+            <button *ngFor="let n of rivalsCharCount; count as ind" ngbDropdownItem (click)="setRivalsCharacterCount(ind - n+1)">{{ind - n + 1}}</button>
+          </div>
+        </div>
+      </div>
 
       <div class="menuOption">
         Player Count
@@ -77,6 +87,7 @@
           <button *ngFor="let n of pmpc; count as ind" ngbDropdownItem (click)="setPMPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
+
       <div *ngIf="currentView == 'ultimate'" class="charCount" #drop4 ngbDropdown>
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.ultimatePlayerCount}}</button>
@@ -84,6 +95,17 @@
           <button *ngFor="let n of upc; count as ind" ngbDropdownItem (click)="setUltimatePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
+     
+      <div *ngIf="currentView == 'rivals'" class="charCount" #drop5 ngbDropdown>
+        <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop5)">
+          <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.rivalsPlayerCount}}</button>
+        <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
+          <button *ngFor="let n of rpc; count as ind" ngbDropdownItem (click)="setRivalsPlayerCount(ind - n +1)">{{ind - n + 1}}</button>
+        </div>
+      </div>
+
+      
+
 <br>
       <div class="menuOption">
         Other Options
@@ -113,7 +135,6 @@
       <div class="contribute">
         <ng-template #contributePop>You can view the <a style="color:blue"
             href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
-            <br>
             <br>
             You may also contribute financially via <a style="color: blue;" href="https://www.patreon.com/ironman">Patreon</a> and help keep up server costs 
           
