@@ -1,0 +1,10 @@
+.logos{
+    width: 260px;
+    height: 130px;
+}
+.header{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    color: darkturquoise;
+}
