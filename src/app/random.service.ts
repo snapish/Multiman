@@ -174,21 +174,21 @@ ori
 shovelKnight
 
   constructor() { 
-
-    this.zetterburn = new Character("Zetterburn", 200, "./assets/rivalsIcons/200.png")
-    this.orcane = new Character("Orcane", 200, "./assets/rivalsIcons/200.png")
-    this.wrastor = new Character("Wrastor", 200, "./assets/rivalsIcons/200.png")
-    this.kragg = new Character("Kragg", 200, "./assets/rivalsIcons/200.png")
-    this.forsburn = new Character("Forsburn", 200, "./assets/rivalsIcons/200.png")
-    this.maypul = new Character("Maypul", 200, "./assets/rivalsIcons/200.png")
-    this.absa = new Character("Absa", 200, "./assets/rivalsIcons/200.png")
-    this.etalus = new Character("Etalus", 200, "./assets/rivalsIcons/200.png")
-    this.ranno = new Character("Ranno", 200, "./assets/rivalsIcons/200.png")
+    
     this.clairen = new Character("Clairen", 200, "./assets/rivalsIcons/200.png")
-    this.sylvanos = new Character("Sylvanos", 200, "./assets/rivalsIcons/200.png")
-    this.elliana = new Character("Elliana", 200, "./assets/rivalsIcons/200.png")
-    this.ori = new Character("Ori", 200, "./assets/rivalsIcons/200.png")
-    this.shovelKnight = new Character("Shovel Knight", 200, "./assets/rivalsIcons/200.png")
+    this.forsburn = new Character("Forsburn", 201, "./assets/rivalsIcons/201.png")
+    this.zetterburn = new Character("Zetterburn", 202, "./assets/rivalsIcons/202.png")
+    this.wrastor = new Character("Wrastor", 203, "./assets/rivalsIcons/203.png")
+    this.absa = new Character("Absa", 204, "./assets/rivalsIcons/204.png")
+    this.elliana = new Character("Elliana", 205, "./assets/rivalsIcons/205.png")
+    this.sylvanos = new Character("Sylvanos", 206, "./assets/rivalsIcons/206.png")
+    this.maypul = new Character("Maypul", 207, "./assets/rivalsIcons/207.png")
+    this.kragg = new Character("Kragg", 208, "./assets/rivalsIcons/208.png")
+    this.ori = new Character("Ori", 209, "./assets/rivalsIcons/209.png")
+    this.shovelKnight = new Character("Shovel Knight", 210, "./assets/rivalsIcons/210.png")
+    this.orcane = new Character("Orcane", 211, "./assets/rivalsIcons/211.png")
+    this.etalus = new Character("Etalus", 212, "./assets/rivalsIcons/212.png")
+    this.ranno = new Character("Ranno", 213, "./assets/rivalsIcons/213.png")
 
     this.pmWario = new Character("Wario", 26, "./assets/pmIcons/26.png")
     this.pmMario = new Character("Mario", 27, "./assets/pmIcons/27.png")

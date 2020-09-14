@@ -3,8 +3,24 @@
     height: 130px;
 }
 .header{
+    margin-top: 15%;
     font-size: 25px;
     display: flex;
     justify-content: center;
-    color: darkturquoise;
+    flex-wrap: wrap;
+    color: whitesmoke;
+    font-weight: 600;
+    background-color: rgb(0, 0, 0);
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 8px;
+}
+.item{
+    
+    
+}
+.break{
+    flex-basis: 100%;
+    padding-left: 40%;
+    padding-right: 40%
 }

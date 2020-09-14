@@ -28,6 +28,8 @@ export class RivalsComponent implements OnInit {
   randomFill() {
     this.stateService.state.rivals.playerAChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
     this.stateService.state.rivals.playerBChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
+    console.log(this.stateService.state.rivals.playerAChars)
+    console.log("asdf")
     this.stateService.pushState()
   }
     /**
@@ -44,6 +46,7 @@ export class RivalsComponent implements OnInit {
    * @param id character ID to disable
    */
   toggle(id) {
+ 
     if (this.stateService.state.rivals.disabledChars.includes(id)) {
       this.stateService.state.rivals.disabledChars = this.removeFromArray(this.stateService.state.rivals.disabledChars, id)
       
@@ -59,7 +62,6 @@ export class RivalsComponent implements OnInit {
     if (this.rivalsChars.length - this.stateService.state.rivals.disabledChars.length < this.stateService.state.all.rivalsCharCount) {
        this.side.setRivalsCharacterCount(this.stateService.state.all.rivalsCharCount - 1)
     }
-    
     this.stateService.pushState()
   }
   /**
