@@ -8,18 +8,7 @@ const router = express.Router()
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  let sessionId = req.query.session
-
-  if (!sessionId) {
-    sessionId = sessions.create()
-    return res.redirect('/?session=' + sessionId)
-  }
-
-  if (!sessions.get(sessionId)) {
-    return res.status(400).render('nosession', { sessionId })
-  }
-
-  next('route')
+  res.redirect('/melee')
 })
 
 // this is where angular is configured to put the built files
@@ -40,4 +29,19 @@ router.post('/ping', (req, res, next) => {
 
 router.get('/sessions', (req, res, next) => {
   res.json(sessions.list())
+})
+
+router.get('*', (req, res, next) => {
+  let sessionId = req.query.session
+
+  if (!sessionId) {
+    sessionId = sessions.create()
+    return res.redirect(`${req.path}?session=${sessionId}`)
+  }
+
+  if (!sessions.get(sessionId)) {
+    return res.status(400).render('nosession', { sessionId })
+  }
+
+  res.sendFile(buildDir + '/index.html')
 })

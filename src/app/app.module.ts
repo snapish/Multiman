@@ -38,6 +38,8 @@ import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule, MatNavList } from '@angular/material/list';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { RivalsComponent } from './rivals/rivals.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 @NgModule({
@@ -62,6 +64,10 @@ ConnectFourComponent,
 TictactoeComponent,
 
 SideComponent,
+
+RivalsComponent,
+
+ErrorPageComponent,
   ],
   imports: [
     ClipboardModule,

@@ -1,0 +1,104 @@
+<html>
+ 
+<body>
+  <mat-toolbar >
+    <span style="text-align: center; width: 100%;">
+      <button mat-raised-button (click)="randomFill()"
+        style=" font-size: 24px; padding-left: 50%; padding-right: 50%; max-width: 100%; max-height: 100%; height: 100%;">
+        Roll Characters
+      </button>
+    </span>
+   
+  </mat-toolbar>
+  <br>
+
+  <div id="body">
+
+    <div id="players" *ngIf="stateService.state.rivals.playerAChars.length != 0 ">
+
+      <!-- PLAYER A -->
+      <mat-card id="player">
+        <mat-card-header>
+          <mat-card-title style="color: red; font-size: 20px; font-weight: bold;"> Player 1 </mat-card-title>
+        </mat-card-header>
+        <div id="playerA">
+          <div class="container">
+            <!-- *ngFor="let item of items; let i=index" -->
+            <div class="charImages" *ngFor="let i of stateService.state.rivals.playerAChars;let ind= index"> 
+              <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
+              <div *ngIf="ind < stateService.state.all.rivalsCharCount && stateService.state.rivals.playerAChars[ind] != null"> <img src="{{i.img}}" />  </div>
+            </div>
+          </div>
+
+        </div>
+      </mat-card>
+
+
+
+      <!-- playerB  -->
+      <mat-card id="player" *ngIf="stateService.state.all.rivalsPlayerCount >=2">
+        <mat-card-header>
+          <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
+        </mat-card-header>
+        <div id="playerB">
+          <div class="container">
+            <div *ngFor="let i of stateService.state.rivals.playerBChars; let ind = index">
+              <div *ngIf="ind < stateService.state.all.rivalsCharCount && stateService.state.rivals.playerBChars[ind] != null"> <img src={{i.img}} /></div>
+            </div>
+          </div>
+
+        </div>
+      </mat-card>
+
+
+    </div>
+    <div class="table">
+      
+      <table>
+
+        <tr>
+
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Clairen"> <img src="assets/rivalsIcons/200.png"
+              (click)="toggle('200')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Forsburn"> <img src="assets/rivalsIcons/201.png"
+              (click)="toggle('201')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Zetterburn"> <img src="assets/rivalsIcons/202.png"
+              (click)="toggle('202')" class="charImg"></div>
+              
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src="" class="charImg" style="visibility: hidden;" ></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src=""class="charImg" style="visibility: hidden;" ></div>
+
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Wrastor"> <img src="assets/rivalsIcons/203.png"
+              (click)="toggle('203')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Absa"> <img src="assets/rivalsIcons/204.png"
+              (click)="toggle('204')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Elliana"> <img src="assets/rivalsIcons/205.png"
+              (click)="toggle('205')" class="charImg"></div>
+            </tr>
+            <tr>
+              <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Sylvanos"> <img src="assets/rivalsIcons/206.png"
+                (click)="toggle('206')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Maypul"> <img src="assets/rivalsIcons/207.png"
+              (click)="toggle('207')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Kragg"> <img src="assets/rivalsIcons/208.png"
+              (click)="toggle('208')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ori"> <img src="assets/rivalsIcons/209.png"
+              (click)="toggle('209')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Shovel Knight"> <img src="assets/rivalsIcons/210.png"
+              (click)="toggle('210')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Orcane"> <img src="assets/rivalsIcons/211.png"
+              (click)="toggle('211')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Etalus"> <img src="assets/rivalsIcons/212.png"
+              (click)="toggle('212')" class="charImg"></div>
+          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ranno"> <img src="assets/rivalsIcons/213.png"
+              (click)="toggle('213')" class="charImg"></div>
+        
+        </tr>
+
+      </table>
+    </div>
+    <br>
+  </div>
+</body>
+
+</html>

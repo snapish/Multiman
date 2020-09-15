@@ -157,8 +157,38 @@ Minmin;
   pmSnake
   pmSonic
   pmKnuckles
-  constructor() { //start of melee characters
 
+  zetterburn
+  orcane
+  wrastor
+  kragg
+  forsburn
+  maypul
+  absa
+  etalus
+  ranno
+clairen
+sylvanos
+elliana
+ori
+shovelKnight
+
+  constructor() { 
+    
+    this.clairen = new Character("Clairen", 200, "./assets/rivalsIcons/200.png")
+    this.forsburn = new Character("Forsburn", 201, "./assets/rivalsIcons/201.png")
+    this.zetterburn = new Character("Zetterburn", 202, "./assets/rivalsIcons/202.png")
+    this.wrastor = new Character("Wrastor", 203, "./assets/rivalsIcons/203.png")
+    this.absa = new Character("Absa", 204, "./assets/rivalsIcons/204.png")
+    this.elliana = new Character("Elliana", 205, "./assets/rivalsIcons/205.png")
+    this.sylvanos = new Character("Sylvanos", 206, "./assets/rivalsIcons/206.png")
+    this.maypul = new Character("Maypul", 207, "./assets/rivalsIcons/207.png")
+    this.kragg = new Character("Kragg", 208, "./assets/rivalsIcons/208.png")
+    this.ori = new Character("Ori", 209, "./assets/rivalsIcons/209.png")
+    this.shovelKnight = new Character("Shovel Knight", 210, "./assets/rivalsIcons/210.png")
+    this.orcane = new Character("Orcane", 211, "./assets/rivalsIcons/211.png")
+    this.etalus = new Character("Etalus", 212, "./assets/rivalsIcons/212.png")
+    this.ranno = new Character("Ranno", 213, "./assets/rivalsIcons/213.png")
 
     this.pmWario = new Character("Wario", 26, "./assets/pmIcons/26.png")
     this.pmMario = new Character("Mario", 27, "./assets/pmIcons/27.png")
@@ -325,19 +355,23 @@ Minmin;
     //its 2:56am a different night, no regrets tho that monster was taste
 
   }
+  getRivalsChars(){
+    return [this.zetterburn, this.wrastor, this.orcane,this.ori, this.ranno, this.maypul, this.kragg, this.shovelKnight, this.sylvanos, this.forsburn,this.absa, this.etalus, this.clairen, this.elliana]
+  }
+
   getPMChars() {
-    var z = [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
+     
+    return [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
     this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
     , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic, this.pmKnuckles]
-    return z;
   }
   getMeleeChars() {
-    var x = [this.DoctorMario, this.Mario, this.Luigi, this.Bowser, this.Peach, this.Yoshi, this.DonkeyKong, this.CaptainFalcon, this.Ganondorf, this.Falco, this.Fox, this.Ness, this.IceClimbers, this.Kirby,
+    return [this.DoctorMario, this.Mario, this.Luigi, this.Bowser, this.Peach, this.Yoshi, this.DonkeyKong, this.CaptainFalcon, this.Ganondorf, this.Falco, this.Fox, this.Ness, this.IceClimbers, this.Kirby,
     this.Samus, this.Zelda, this.Link, this.YoungLink, this.Pichu, this.Pikachu, this.Jigglypuff, this.Mewtwo, this.MrGNW, this.Marth, this.Roy, this.Sheik];
-    return x;
+    
   }
   getUltimateChars() {
-    var y = [this.uMario, this.uDonkeyKong, this.uLink, this.uSamus, this.DarkSamus, this.uYoshi, this.uKirby, this.uFox, this.uPikachu, this.uLuigi, this.uNess, this.uCaptainFalcon, this.uJigglypuff,
+    return [this.uMario, this.uDonkeyKong, this.uLink, this.uSamus, this.DarkSamus, this.uYoshi, this.uKirby, this.uFox, this.uPikachu, this.uLuigi, this.uNess, this.uCaptainFalcon, this.uJigglypuff,
     this.uPeach, this.Daisy, this.uBowser, this.uIceClimbers, this.uSheik, this.uZelda, this.uDoctorMario, this.uPichu, this.uFalco, this.uMarth, this.Lucina, this.uYoungLink, this.uGanondorf,
     this.uMewtwo, this.uRoy, this.Chrom, this.uGNW, this.MetaKnight, this.Pit, this.DarkPit, this.ZeroSuitSamus, this.Wario, this.Snake, this.Ike, this.PokemonTrainer, this.DiddyKong,
     this.Lucas, this.Sonic, this.KingDedede, this.Olimar, this.Lucario, this.ROB, this.ToonLink, this.Wolf, this.Villager, this.MegaMan, this.WiiFitTrainer, this.RosalinaLuma, this.LittleMac,
@@ -345,7 +379,7 @@ Minmin;
     this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
       , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth, this.Minmin
     ]
-    return y;
+  
   }
   /**
    * returns the melee character count (26 including sheik and no additional chars)
@@ -356,10 +390,10 @@ Minmin;
     return n
   }
   /**
-   * returns ultimate character count (80 as of byleth)
+   * returns ultimate character count (81 as of minmin)
    */
   getUltimateCharCount() {
-    var n = Array.from(Array(82).keys()) //has to be +1 cuz keys starts at 0
+    var n = Array.from(Array(this.getUltimateChars().length + 2).keys()) //has to be +1 cuz keys starts at 0
     n.shift()
     return n
   }
@@ -367,18 +401,24 @@ Minmin;
    * returns PM char count (41 as of now, p+ just came out and dont konw if it changed)
    */
   getPMcharCount() {
-    var n = Array.from(Array(43).keys()) //has to be +1 cuz keys starts at 0
+    var n = Array.from(Array(this.getPMChars().length + 2).keys()) //has to be +1 cuz keys starts at 0
+    n.shift()
+    return n
+  }
+  getRivalsCharCount(){
+    var n = Array.from(Array(this.getRivalsChars().length + 2).keys()) //has to be +1 cuz keys starts at 0
     n.shift()
     return n
   }
   /**
-   * Give it ultimate melee or pm and itll return players
+   * Give it ultimate melee or pm or rivals and itll return an array of ints
    * @returns array of "1,2,3..." for
   */
   getPlayerCount(game:string){
     if(game.toLocaleLowerCase() == "melee" || game.toLocaleLowerCase() == "pm")
       return [1,2,3,4]
     else if(game.toLocaleLowerCase() == "ultimate") return [1,2,3,4,5,6,7,8]
+    else if (game.toLocaleLowerCase() == "rivals") return [1,2]
   }
   /**
    * Shuffles an array
@@ -417,5 +457,15 @@ Minmin;
     this.shuffle(characters) //makes it random
     return characters
   }
-
+  
+  /**
+   * Return random list from rivals
+   * @param disabled an array of numbers that are the IDs of chars you dont want
+   */
+  randomizeRivals(disabled: number[]){
+    var characters = this.getRivalsChars().filter(element => !disabled.includes(element.id.toString())) //takes out disabled chars. It's defaulting to a string or something im not sure i'm on work break doing this
+    this.shuffle(characters) //makes it random
+    return characters
+  }
+  
 }

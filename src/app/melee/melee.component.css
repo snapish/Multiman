@@ -18,7 +18,6 @@ mat-toolbar{
 ::ng-deep .mat-card{
     border: 3px solid rgb(241, 241, 241)
     ;
-    border-radius: 10%
    }
 #player{
     width: 47%; 
