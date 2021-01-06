@@ -1,4 +1,5 @@
-#players{
+
+.playerRepeater{
      display: flex;
     flex-direction: row;
     justify-content: center; 
@@ -19,17 +20,17 @@ mat-toolbar{
     border: 3px solid rgb(241, 241, 241)
     ;
    }
-#player{
-    width: 47%; 
+.player{
+    /* width: 47%;  */
     float:left; 
     background-color: black;
     border-style: solid;
     margin-left: 2px;
     margin-right: 2px;
     display: flex;
-    /* flex-direction: column; */
     flex-wrap: wrap;
     flex-flow: column;
+    justify-content: center;
 }
 
 
@@ -98,3 +99,32 @@ box-shadow:         0px 0px 30px 0px rgba(232, 0, 0, 0.67);
     display: flex;
     justify-content: center;
 }
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  .example-custom-placeholder {
+    background: #ccc;
+    border: dotted 3px #999;
+    min-height: 60px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }

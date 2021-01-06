@@ -1,3 +1,4 @@
+import { CdkDragDrop, CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
 import {ApplicationRef} from '@angular/core'
 @Injectable({
@@ -75,7 +76,15 @@ export class StateService {
       rivalsPlayerCount:2
     },
   }
-
+  
+  entered(event: CdkDragEnter, arrayToEntered) {
+    moveItemInArray(arrayToEntered, event.item.data, event.container.data);
+    this.pushState()
+  }
+  drop(event: CdkDragDrop<string[]>, arrayToDrop) {
+    moveItemInArray(arrayToDrop, event.previousIndex, event.currentIndex);
+    this.pushState()
+  }
   // call this to send a state change to the server
   pushState() {
     this.ws.send(JSON.stringify(this.state))

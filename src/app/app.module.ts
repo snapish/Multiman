@@ -40,6 +40,8 @@ import { MatListModule, MatNavList } from '@angular/material/list';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { RivalsComponent } from './rivals/rivals.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { DevtestingComponent } from './devtesting/devtesting.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ SideComponent,
 RivalsComponent,
 
 ErrorPageComponent,
+
+DevtestingComponent,
   ],
   imports: [
     ClipboardModule,
@@ -91,7 +95,8 @@ ErrorPageComponent,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    DragDropModule
     //AngularFireModule.initializeApp(environment.config, 'database-project'),
     //AngularFirestoreModule,
     //AngularFireStorageModule

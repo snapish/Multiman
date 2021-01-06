@@ -9,10 +9,9 @@
 
   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="title">
+    <!-- <mat-toolbar class="title">
       <div style="font-size: 37px; margin-top: 10px;">Menu</div>
-    </mat-toolbar>
-    <hr color="white">
+    </mat-toolbar> -->
     <mat-nav-list>
 
 
@@ -212,16 +211,7 @@
 
     </mat-toolbar>
     <router-outlet></router-outlet>
-<!--     
-    <div *ngIf="currentView == 'melee' ">
-      <app-melee></app-melee>
-    </div>
-    <div *ngIf="currentView == 'ultimate'">
-      <app-ultimate></app-ultimate>
-    </div>
-    <div *ngIf="currentView == 'pmv'">
-      <app-projectm></app-projectm>
-    </div> -->
+
 
 
   </mat-sidenav-content>
