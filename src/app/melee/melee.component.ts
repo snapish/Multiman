@@ -61,7 +61,6 @@ export class MeleeComponent implements OnInit {
       case 2:
         return this.stateService.state.melee.playerCChars
         break;
-    
       case 3:
         return this.stateService.state.melee.playerDChars
         break;

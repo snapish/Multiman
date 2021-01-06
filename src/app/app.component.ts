@@ -20,9 +20,9 @@ export class AppComponent {
 
   ngOnInit(): void {
   // localStorage.setItem("showAgain","y") //testing purposes
-    if (localStorage.getItem("showAgain") != "n") { // if they havent been here before
-      this.openPopup()
-    }
+    // if (localStorage.getItem("showAgain") != "n") { // if they havent been here before
+    //   this.openPopup()
+    // }
   }
 
 

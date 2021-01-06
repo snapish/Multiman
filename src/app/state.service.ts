@@ -67,7 +67,7 @@ export class StateService {
     all:{ //universal things
       activeRoomCodes : [],
       meleeCharCount:26,
-      ultimateCharCount:82,
+      ultimateCharCount:84,
       pmCharCount:42,
       rivalsCharCount:14,
       ultimatePlayerCount:2,

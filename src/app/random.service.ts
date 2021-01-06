@@ -349,6 +349,8 @@ shovelKnight
     this.Terry = new Character("Terry", 145, "./assets/ultimateIcons/145.jpeg")
     this.Byleth = new Character("Byleth", 146, "./assets/ultimateIcons/146.jpeg")
     this.Minmin = new Character("Minmin", 147, "./assets/ultimateIcons/147.jpeg")
+    this.Minmin = new Character("Steve", 148, "./assets/ultimateIcons/148.jpeg")
+    this.Minmin = new Character("Sephiroth", 149, "./assets/ultimateIcons/149.jpeg")
 
     //end of ultimate 2:47am
 
