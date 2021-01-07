@@ -4,7 +4,7 @@
   <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 
 </head>
-<mat-sidenav-container class="sidenav-container" > 
+<mat-sidenav-container class="sidenav-container" >
   <mat-sidenav #drawer class="sidenav" fixedInViewport [disableClose]="(isHandset$ | async) ? 'false' : 'true'"
 
   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    
+
     <div *ngIf="currentView == 'pmv'"  class="pmCharCount">
       <div class="charCount" #drop3 ngbDropdown>
         <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-    
+
     <div *ngIf="currentView == 'rivals'"  class="pmCharCount">
       <div class="charCount" #drop4 ngbDropdown>
         <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
@@ -94,7 +94,7 @@
           <button *ngFor="let n of upc; count as ind" ngbDropdownItem (click)="setUltimatePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
-     
+
       <div *ngIf="currentView == 'rivals'" class="charCount" #drop5 ngbDropdown>
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop5)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.rivalsPlayerCount}}</button>
@@ -103,7 +103,7 @@
         </div>
       </div>
 
-      
+
 
 <br>
       <div class="menuOption">
@@ -111,54 +111,42 @@
         <br>
 
       </div>
-      
-      <div class="roomOptionsButton">
-        <button class="btn btn-md btn-info f" (click)="open(content)">Room Options</button>
+
+      <div class="center">
+        <button class="btn btn-md btn-info other-opts-btn" (click)="open(content)">Room Options</button>
       </div>
-      <br><br>
+
+      <div class="center">
+        <ng-template #contributePop>You can view the <a style="color:blue"
+            href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
+            <br>
+            You may also contribute financially via <a style="color: blue;" href="https://www.patreon.com/ironman">Patreon</a> and help keep up server costs
+
+          </ng-template>
+        <button type="button" class="btn btn-info other-opts-btn" placement="right" [autoClose]="'outside'"  [ngbPopover]="contributePop" container="body">
+          Contribute
+        </button>
+      </div>
+
+      <div class="center">
+        <ng-template #communityPopup>There is a <a style="color:blue"
+            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. <br> <i>It's still under construction a little</i>
+
+          </ng-template>
+        <button type="button" class="btn btn-info other-opts-btn" placement="right" [autoClose]="'outside'"  [ngbPopover]="communityPopup" container="body">
+          Community
+        </button>
+      </div>
 
 
-      <div class="contact">
+      <div class="center">
         <ng-template #popTitle>You can email me with any questions or feedback at <a style="color:blue" href="mailto:snapish@ironman.gg">snapish@ironman.gg</a></ng-template>
-      
-        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'" [ngbPopover]="popTitle" container="body">
+
+        <button type="button" class="btn btn-info other-opts-btn" placement="right" [autoClose]="'outside'" [ngbPopover]="popTitle" container="body">
           Contact Me
         </button>
       </div>
 
-      <br><br>
-
-
-
-
-      <div class="contribute">
-        <ng-template #contributePop>You can view the <a style="color:blue"
-            href="https://github.com/snapish/multiman">git repository </a> and contribute with coding, and get in the developers discord.
-            <br>
-            You may also contribute financially via <a style="color: blue;" href="https://www.patreon.com/ironman">Patreon</a> and help keep up server costs 
-          
-          </ng-template>
-        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="contributePop" container="body">
-          Contribute
-        </button>
-      </div>
-      <br><br>
-
-      <div class="contact">
-        <ng-template #communityPopup>There is a <a style="color:blue"
-            href="https://discord.gg/YN5RBky">discord server</a> for anyone to join. You can find games, share clips, make suggestions for the site, etc. <br> <i>It's still under construction a little</i>
-          
-          </ng-template>
-        <button type="button" class="btn btn-info" placement="right" [autoClose]="'outside'"  [ngbPopover]="communityPopup" container="body">
-          Community
-        </button>
-      </div>
-      <br><br>
-
-
-     
-
-      
       <!-- <div class = "battleShipButton">
         <button [disabled] = "true" type="button" class="btn btn-md btn-warning f" [ngbPopover]="popTitle">
           Battleship<br>
@@ -169,8 +157,8 @@
       <ng-template #content let-modal>
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Room Options</h4>
-      
-         
+
+
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -188,7 +176,7 @@
           <mat-checkbox color = "warn" [disabled]="false" (change) = "toggleRoomLock()">Lock room functions to others</mat-checkbox>
           <div style="color: orangered" [hidden]= "noRoomFound">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
           <div style="color: orangered" [hidden]= "!clipboardFailure">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
-          
+
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Exit</button>
           </div>
@@ -211,7 +199,16 @@
 
     </mat-toolbar>
     <router-outlet></router-outlet>
-
+<!--
+    <div *ngIf="currentView == 'melee' ">
+      <app-melee></app-melee>
+    </div>
+    <div *ngIf="currentView == 'ultimate'">
+      <app-ultimate></app-ultimate>
+    </div>
+    <div *ngIf="currentView == 'pmv'">
+      <app-projectm></app-projectm>
+    </div> -->
 
 
   </mat-sidenav-content>
