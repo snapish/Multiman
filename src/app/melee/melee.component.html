@@ -24,7 +24,7 @@
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'melee'))">
             <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'melee');let ind= index"  [cdkDropListData]="ind" > 
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, melee))" *ngIf="ind < stateService.state.all.meleeCharCount" src="{{i.img}}" /> 
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'melee'))" *ngIf="ind < stateService.state.all.meleeCharCount" src="{{i.img}}" /> 
             </div>
           </div>
         </div>
