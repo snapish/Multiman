@@ -114,6 +114,8 @@ export class RandomService {
   Byleth;
   Palutena;
 Minmin;
+Steve;
+Sephiroth;
 
   pmWario
   pmMario
@@ -349,8 +351,8 @@ shovelKnight
     this.Terry = new Character("Terry", 145, "./assets/ultimateIcons/145.jpeg")
     this.Byleth = new Character("Byleth", 146, "./assets/ultimateIcons/146.jpeg")
     this.Minmin = new Character("Minmin", 147, "./assets/ultimateIcons/147.jpeg")
-    this.Minmin = new Character("Steve", 148, "./assets/ultimateIcons/148.jpeg")
-    this.Minmin = new Character("Sephiroth", 149, "./assets/ultimateIcons/149.jpeg")
+    this.Steve = new Character("Steve", 148, "./assets/ultimateIcons/148.jpeg")
+    this.Sephiroth = new Character("Sephiroth", 149, "./assets/ultimateIcons/149.jpeg")
 
     //end of ultimate 2:47am
 
@@ -379,7 +381,7 @@ shovelKnight
     this.Lucas, this.Sonic, this.KingDedede, this.Olimar, this.Lucario, this.ROB, this.ToonLink, this.Wolf, this.Villager, this.MegaMan, this.WiiFitTrainer, this.RosalinaLuma, this.LittleMac,
     this.Greninja, this.Palutena, this.PacMan, this.Robin, this.Shulk, this.BowserJr, this.DuckHunt, this.Ryu, this.Ken, this.Cloud, this.Corrin, this.Bayonetta, this.Inkling,
     this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
-      , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth, this.Minmin
+      , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth, this.Minmin, this.Steve, this.Sephiroth
     ]
   
   }

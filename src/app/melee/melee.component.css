@@ -1,9 +1,4 @@
 
-.playerRepeater{
-     display: flex;
-    flex-direction: row;
-    justify-content: center; 
-}
 mat-toolbar{
     padding:2px;
     background-color: rgb(49, 49, 49);
@@ -20,18 +15,7 @@ mat-toolbar{
     border: 3px solid rgb(241, 241, 241)
     ;
    }
-.player{
-    /* width: 47%;  */
-    float:left; 
-    background-color: black;
-    border-style: solid;
-    margin-left: 2px;
-    margin-right: 2px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-flow: column;
-    justify-content: center;
-}
+
 
 
 

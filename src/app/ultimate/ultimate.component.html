@@ -11,143 +11,22 @@
         <br>
   
    <div id="body">   
-      <div id="players" *ngIf="stateService.state.ultimate.playerAChars.length > 0   " >
-       
-          <!-- PLAYER A -->
-          <mat-card id="player" >
-            <mat-card-header>
-              <mat-card-title style="color: red; font-size: 20px; font-weight: bold" > Player 1 </mat-card-title>
-             </mat-card-header>
-             <div id="playerA">
-                <div  class="container">
-               <!-- *ngFor="let item of items; let i=index" -->
-               <div *ngFor="let i of stateService.state.ultimate.playerAChars;let ind= index">
-                 
-                 <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-               </div>
-               </div>
-   
-               </div>
-             </mat-card>
-   
-   
-   
-             <!-- playerB  -->
-             <mat-card id="player"  *ngIf="stateService.state.all.ultimatePlayerCount >=2" >
-               <mat-card-header>
-                 <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
-               </mat-card-header>  
-               <div id="playerB">
-                  <div  class="container" > 
-                 <div *ngFor="let i of stateService.state.ultimate.playerBChars; let ind = index">
-                   <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                 </div>
-                 </div>
-          
-                 </div>
-               </mat-card>
-   
-   
-   
-               <!-- PLAYER C -->
-               <mat-card id="player"  *ngIf="stateService.state.all.ultimatePlayerCount >= 3" >
-                 <mat-card-header>
-                   <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
-                 </mat-card-header>
-                 <div id="playerC">
-                    <div  class="container" > 
-                   <div *ngFor="let i of stateService.state.ultimate.playerCChars; let ind = index">
-                     <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                   </div>        
-                   </div>        
-                  
-                 </div>
-               </mat-card>
-   
-   
-   
-               <!-- player D -->
-               <mat-card id="player" *ngIf="stateService.state.all.ultimatePlayerCount >= 4">
-                 <mat-card-header>
-                   <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
-                 </mat-card-header>
-                 <div id="playerD">
-                    <div  class="container" > 
-                   <div *ngFor="let i of stateService.state.ultimate.playerDChars; let ind = index">
-                     <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                   </div>   
-                   </div>   
-           
-                 </div>
-            
-             </mat-card> 
-            
-                            <!-- player E -->
-                            <mat-card id="player" *ngIf="stateService.state.all.ultimatePlayerCount >= 5">
-                              <mat-card-header>
-                                <mat-card-title style="color: brown; font-size: 20px; font-weight: bold">Player 5</mat-card-title>
-                              </mat-card-header>
-                              <div id="playerE">
-                                  <div  class="container" > 
-                                <div *ngFor="let i of stateService.state.ultimate.playerEChars; let ind = index">
-                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                                </div>   
-                                </div>   
-                            
-                              </div>
-                        
-                          </mat-card>
-                          
-             
-                            <!-- player F -->
-                            <mat-card id="player" *ngIf="stateService.state.all.ultimatePlayerCount >= 6">
-                              <mat-card-header>
-                                <mat-card-title style="color: olive; font-size: 20px; font-weight: bold">Player 6</mat-card-title>
-                              </mat-card-header>
-                              <div id="playerF">
-                                  <div  class="container" > 
-                                <div *ngFor="let i of stateService.state.ultimate.playerFChars; let ind = index">
-                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                                </div>   
-                                </div>   
-                          
-                              </div>
-                         
-                          </mat-card>
 
-                            <!-- player g -->
-                            <mat-card id="player" *ngIf="stateService.state.all.ultimatePlayerCount >= 7">
-                              <mat-card-header>
-                                <mat-card-title style="color:forestgreen; font-size: 20px; font-weight: bold">Player 7</mat-card-title>
-                              </mat-card-header>
-                              <div id="playerG">
-                                  <div  class="container" > 
-                                <div *ngFor="let i of stateService.state.ultimate.playerGChars; let ind = index">
-                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                                </div>   
-                                </div>   
-                               
-                              </div>
-                         
-                          </mat-card>
-
-                            <!-- player h -->
-                            <mat-card id="player" *ngIf="stateService.state.all.ultimatePlayerCount >= 8">
-                              <mat-card-header>
-                                <mat-card-title style="color: darkmagenta; font-size: 20px; font-weight: bold">Player 8</mat-card-title>
-                              </mat-card-header>
-
-                              <div id="playerH">
-                                  <div  class="container" > 
-                                <div *ngFor="let i of stateService.state.ultimate.playerGChars; let ind = index">
-                                  <div *ngIf="ind < stateService.state.all.ultimateCharCount"> <img src = {{i.img}} style="float: left" /></div>
-                                </div>   
-                                </div>   
-                               
-                           
-                            </div>
-                          </mat-card>
+    <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.ultimatePlayerCount)">
+      <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.ultimatePlayerCount && stateService.numberToPlayersChars(pInd, 'ultimate').length > 0">
+        <mat-card-header>
+          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Player {{pInd + 1}} </mat-card-title>
+        </mat-card-header>
+        <div cdkDropListGroup>
+          <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'ultimate'))">
+            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'ultimate');let ind= index"  [cdkDropListData]="ind" > 
+              <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, ultimate))" *ngIf="ind < stateService.state.all.ultimateCharCount" src="{{i.img}}" /> 
             </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
         <div class="table">
             <table > 
                 

@@ -72,55 +72,9 @@ export class UltimateComponent implements OnInit {
 
   }
 
-  toggleDLC(){
+ 
 
-    if(this.stateService.state.ultimate.dlcDisabled){
-
-          if(!this.stateService.state.ultimate.disabledChars.includes(141)){
-            this.toggle("141")
-          }
-          if(!this.stateService.state.ultimate.disabledChars.includes(142)){
-            this.toggle("142")
-          }
-          if(!this.stateService.state.ultimate.disabledChars.includes(143)){
-            this.toggle("143")
-          }
-          if(!this.stateService.state.ultimate.disabledChars.includes(144)){
-            this.toggle("144")
-          }
-          if(!this.stateService.state.ultimate.disabledChars.includes(145)){
-            this.toggle("145")
-          }
-          if(!this.stateService.state.ultimate.disabledChars.includes(146)){
-            this.toggle("145")
-          }
-          //update state here
-        }
-    else{
-      if(this.stateService.state.ultimate.disabledChars.includes(141)){
-        this.toggle("Piranha Plant")
-      }
-      if(this.stateService.state.ultimate.disabledChars.includes(142)){
-        this.toggle("Joker")
-      }
-      if(this.stateService.state.ultimate.disabledChars.includes(143)){
-        this.toggle("Banjo")
-      }
-      if(this.stateService.state.ultimate.disabledChars.includes(144)){
-        this.toggle("Hero")
-      }
-      if(this.stateService.state.ultimate.disabledChars.includes(145)){
-        this.toggle("Terry")
-      }
-      if(this.stateService.state.ultimate.disabledChars.includes(146)){
-        this.toggle("Byleth")
-      }
-      this.stateService.pushState()
-
-    }
-   // this.stateService.updateState(this.state)
-
-  }
+  
     /**
    * Checks this.stateService.state.melee.disabledChars to see if the ID exists, if not, adds it, if so, removes it
    * calls side.setMeleeCharCount if needed

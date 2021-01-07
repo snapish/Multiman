@@ -7,6 +7,7 @@ import { RandomService } from '../random.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { StateService } from '../state.service';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,28 +23,28 @@ export class SideComponent {
 
 
 
+  //all variables not in the state are not to be shared between people in a room
+  currentView ="melee"
+  inputVal = ""
+  roomCode = "";
+  meleeCharCount;
+  ultimateCharCount;
+  pmCharCount;
+  rivalsCharCount;
+  dropdownOpen = false;
+  closeResult = '';
+  noRoomFound = true
+  clipboardFailure = false  
+  mpc = [1,2,3,4]
+  pmpc = [1,2,3,4]
+  upc = [1,2,3,4,5,6,7,8]
+  rpc = [1,2]
   ngOnInit(): void {
     $('.pmv').hide()
     $('.ultimate').hide()
   }
-//all variables not in the state are not to be shared between people in a room
-currentView ="melee"
-inputVal = ""
-roomCode = "";
-meleeCharCount;
-ultimateCharCount;
-pmCharCount;
-rivalsCharCount;
-dropdownOpen = false;
-closeResult = '';
-noRoomFound = true
-clipboardFailure = false  
-mpc = [1,2,3,4]
-pmpc = [1,2,3,4]
-upc = [1,2,3,4,5,6,7,8]
-rpc = [1,2]
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
-        config.placement = 'right';
+    config.placement = 'right';
     config.autoClose = true;
     this.meleeCharCount = this.randomService.getMeleeCharCount()
     
@@ -53,7 +54,7 @@ rpc = [1,2]
     this.rivalsCharCount = randomService.getRivalsCharCount()
     //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
     //this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
- 
+    
     var temp = window.location.href.replace(/\//g ,"")
     this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
     $(document).click(function (event) {
@@ -63,12 +64,26 @@ rpc = [1,2]
         })
       }
     });  }
-  /*
-  plans/todo
-   
-  mark some IP as the host
-  get a list of current session IDS for joining room code
-  get https to auto redirect in server and not in index.html
+    ngAfterViewInit(): void {
+      //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+      //Add 'implements AfterViewInit' to the class.
+      console.log(window.location.pathname)
+      if(window.location.pathname.includes('rivals')){
+        this.currentView = 'rivals'
+      }
+      else if(window.location.pathname.includes('ultimate')){
+        this.currentView = 'ultimate'
+      }
+      else if(window.location.pathname.includes('pm')){
+        this.currentView = 'pmv'
+      }
+    }
+    /*
+    plans/todo
+    
+    mark some IP as the host
+    get a list of current session IDS for joining room code
+    get https to auto redirect in server and not in index.html
   when someone connects, update component states from state service
   
   room options checkbox should be disabled for all but host
@@ -242,45 +257,25 @@ joinClipboard(){
  //  char count stuff
  
     if (this.currentView == "ultimate") {
-     // this.stateService.state.all.playerCount = this.randomService.getPlayerCount("ultimate")
-
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'visible')
       $('.ultimatePlayerCount').css('visibility', 'visible')
-     // this.stateService.state.all.currentCharCount = this.ultimateCharCount[this.ultimateCharCount.length - 1];
     }
     if (this.currentView == "melee") {
-     // this.stateService.state.all.playerCount = this.randomService.getPlayerCount("melee")
       $('.pmCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.meleeCharCount').css('visibility', 'visible')
       $('.meleePlayerCount').css('visibility', 'visible')
-      //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
 
     }
     if (this.currentView == "pmv") {
-      //this.stateService.state.all.pmPlayerCount = this.randomService.getPlayerCount("pm")
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.ultimateCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'visible')
       $('.pmPlayerCount').css('visibility', 'visible')
-    //  this.stateService.state.all.currentCharCount = this.pmCharCount[this.pmCharCount.length - 1];
     }
-    //console.log(this.stateService.state)
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   //came with sidebar stuff for if on mobile

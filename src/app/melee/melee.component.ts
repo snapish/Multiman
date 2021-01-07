@@ -33,41 +33,7 @@ export class MeleeComponent implements OnInit {
 
   ngOnInit() {
   }
-/**
- * returns an empty array for interating purposes
- * @param num how big array should be
- */
-  createEmptyArray(num){
-    var temp = []
-    for (let index = 0; index < num; index++) {
-      temp.push(index);
-    }
-    return temp
-  }
-  /**
-   * Takes an index and returns an array for player a,b,c, or d based on the index
-   * @param index the number/index to map to player a,b,c, or d
-   */
-  numberToPlayersChars(index){
-    switch (index) {
-      case 0:
-        return this.stateService.state.melee.playerAChars
-        break;
-    
-      case 1:
-        return this.stateService.state.melee.playerBChars
-        break;
-    
-      case 2:
-        return this.stateService.state.melee.playerCChars
-        break;
-      case 3:
-        return this.stateService.state.melee.playerDChars
-        break;
-      default:
-        break;
-    }
-  }
+
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

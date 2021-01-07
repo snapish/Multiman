@@ -1,11 +1,11 @@
 import { CdkDragDrop, CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
-import {ApplicationRef} from '@angular/core'
+import { ApplicationRef } from '@angular/core'
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-//    $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {console.log(data["ip"])});
+  //    $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {console.log(data["ip"])});
 
   constructor(private appref: ApplicationRef) {
     // keep the session alive
@@ -40,7 +40,7 @@ export class StateService {
       playerDChars: [],
       disabledChars: [],
     },
-    ultimate:{
+    ultimate: {
       playerAChars: [],
       playerBChars: [],
       playerCChars: [],
@@ -52,31 +52,31 @@ export class StateService {
       disabledChars: [],
       dlcDisabled: false
     },
-    projectm:{
+    projectm: {
       playerAChars: [],
       playerBChars: [],
       playerCChars: [],
       playerDChars: [],
       disabledChars: [],
     },
-    rivals:{
+    rivals: {
       playerAChars: [],
       playerBChars: [],
       disabledChars: [],
     },
-    all:{ //universal things
-      activeRoomCodes : [],
-      meleeCharCount:26,
-      ultimateCharCount:84,
-      pmCharCount:42,
-      rivalsCharCount:14,
-      ultimatePlayerCount:2,
-      meleePlayerCount:2,
-      pmPlayerCount:2,
-      rivalsPlayerCount:2
+    all: { //universal things
+      activeRoomCodes: [],
+      meleeCharCount: 26,
+      ultimateCharCount: 83,
+      pmCharCount: 42,
+      rivalsCharCount: 14,
+      ultimatePlayerCount: 2,
+      meleePlayerCount: 2,
+      pmPlayerCount: 2,
+      rivalsPlayerCount: 2
     },
   }
-  
+
   entered(event: CdkDragEnter, arrayToEntered) {
     moveItemInArray(arrayToEntered, event.item.data, event.container.data);
     this.pushState()
@@ -98,11 +98,50 @@ export class StateService {
 
 
   /**
+   * Takes an index and returns an array for player a,b,c, or d based on the index
+   * @param index the number/index to map to player a,b,c, or d
+   * @param game which game it should return
+   */
+  numberToPlayersChars(index: number, game: string) {
+
+    if (game == 'melee') {
+      var playerChars = Object.keys(this.state.melee);
+      return this.state.melee[playerChars[index]]
+    }
+    else if(game =="ultimate"){
+      var playerChars = Object.keys(this.state.ultimate);
+      console.log(this.state.ultimate[playerChars[index]])
+      return this.state.ultimate[playerChars[index]]
+    }
+    else if(game =="rivals"){
+      var playerChars = Object.keys(this.state.rivals);
+      return this.state.rivals[playerChars[index]]
+    }
+    else if(game =="pm"){
+      var playerChars = Object.keys(this.state.projectm);
+      return this.state.projectm[playerChars[index]]
+    }
+
+    return []
+  }
+
+  /**
+ * returns an empty array for interating purposes
+ * @param num how big array should be
+ */
+  createEmptyArray(num) {
+    var temp = []
+    for (let index = 0; index < num; index++) {
+      temp.push(index);
+    }
+    return temp
+  }
+  /**
    * Given a state object to update, matches the values from the state service
    * @returns a state object mirroring whats on the service
    * @param state the object to update the values of
    */
-  componentStateUpdate(updatingState){
+  componentStateUpdate(updatingState) {
     for (const val in Object.keys(this.state).filter(element => Object.keys(updatingState).includes(element))) {
       updatingState[val] = this.state[val]
     }
@@ -110,13 +149,13 @@ export class StateService {
   }
 
 
-  updateState(obj){
-    if(obj.game == "melee")
-    this.state.melee = obj.melee//update the state
-    else if(obj.game == "ultimate")
-    this.state.ultimate = obj
-    else if(obj.game == "projectm")
-    this.state.projectm = obj
+  updateState(obj) {
+    if (obj.game == "melee")
+      this.state.melee = obj.melee//update the state
+    else if (obj.game == "ultimate")
+      this.state.ultimate = obj
+    else if (obj.game == "projectm")
+      this.state.projectm = obj
     this.state.all = obj.all
     //send to server here
 
