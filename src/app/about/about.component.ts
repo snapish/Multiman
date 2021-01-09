@@ -16,9 +16,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
   
   }
-  test(){
-    console.log('asdf')
-  }
+
   openPopup() {
     this.dialogRef = this.dialog.open(WelcomeComponent, {
       width: '95%',

@@ -80,7 +80,6 @@ export class StateService {
   entered(event: CdkDragEnter, arrayToEntered) {
     moveItemInArray(arrayToEntered, event.item.data, event.container.data);
     this.pushState()
-    console.log(arrayToEntered)
   }
   drop(event: CdkDragDrop<string[]>, arrayToDrop) {
     moveItemInArray(arrayToDrop, event.previousIndex, event.currentIndex);
@@ -120,7 +119,6 @@ export class StateService {
       var playerChars = Object.keys(this.state.projectm);
       return this.state.projectm[playerChars[index]]
     }
-    console.log('f')
     return []
   }
 

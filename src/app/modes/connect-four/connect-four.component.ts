@@ -35,13 +35,7 @@ checkForWin(){
 
 }
 
-dropPreview(event):any{
-  //console.log((event.target.classList[0]))
-  //var columns = $($(event.target))
-  //var columnClass = event.target.classList[0]
-  //console.log( $("."+columnClass)[0] )
-  console.log("asdf")
-}
+
 removePreview(event):any{
 
 }

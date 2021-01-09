@@ -28,7 +28,6 @@ export class RivalsComponent implements OnInit {
   randomFill() {
     this.stateService.state.rivals.playerAChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
     this.stateService.state.rivals.playerBChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
-    console.log(this.stateService.state.rivals.playerAChars)
     this.stateService.pushState()
   }
     /**

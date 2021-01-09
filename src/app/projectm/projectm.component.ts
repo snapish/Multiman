@@ -109,7 +109,6 @@ export class ProjectmComponent implements OnInit {
       this.stateService.state.projectm.playerDChars = this.stateService.state.projectm.playerDChars.filter( x=> {return x.id != id })
       this.stateService.state.projectm.disabledChars.push(id)
     }
-    console.log(this.stateService.state.projectm.disabledChars)
     if (this.pmChars.length - this.stateService.state.projectm.disabledChars.length < this.stateService.state.all.pmCharCount) {
        this.side.setPMCharacterCount(this.stateService.state.all.pmCharCount - 1)
     }

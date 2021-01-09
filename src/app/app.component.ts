@@ -31,7 +31,6 @@ export class AppComponent {
    */
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    console.log("ngafterviewinit")
 
   }
   openPopup() {

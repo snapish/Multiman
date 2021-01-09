@@ -67,7 +67,6 @@ export class SideComponent {
     ngAfterViewInit(): void {
       //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
       //Add 'implements AfterViewInit' to the class.
-      console.log(window.location.pathname)
       if(window.location.pathname.includes('rivals')){
         this.currentView = 'rivals'
       }
@@ -121,7 +120,6 @@ joinRoomCode(){
         })
         if(!directed && this.inputVal.length >= 5){
           this.noRoomFound = false; //for if they remove the text in the box after not finding a room, itll hide the message again 
-          console.log("a")
         }
       })
       .catch(err => {
