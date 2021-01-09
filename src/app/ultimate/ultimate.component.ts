@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ApplicationRef } from '@angular/core';
+import {CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
+
 import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
 import { StateService } from '../state.service';

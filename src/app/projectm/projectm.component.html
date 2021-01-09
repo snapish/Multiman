@@ -15,74 +15,22 @@
      <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
      <!-- 9 columns 3 rows -->
      
-     <div id="players" *ngIf="stateService.state.projectm.playerAChars.length > 0" >
-       
-       <!-- PLAYER A -->
-       <mat-card id="player" >
-         <mat-card-header>
-           <mat-card-title style="color: red; font-size: 20px; font-weight: bold;" > Player 1 </mat-card-title>
-          </mat-card-header>
-          <div id="playerA" >
-            
-            <div  class="container" > 
-            <!-- *ngFor="let item of items; let i=index" -->
-            <div class="charImages" *ngFor="let i of stateService.state.projectm.playerAChars;let ind= index" >
-                <!-- style="float: left" was in the div below -->
-                <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}/> </div>
-              </div>
+
+     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.pmPlayerCount)">
+      <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.pmPlayerCount && stateService.numberToPlayersChars(pInd, 'pm').length > 0">
+        <mat-card-header>
+          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Player {{pInd + 1}} </mat-card-title>
+        </mat-card-header>
+        <div cdkDropListGroup>
+          <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'pm'))">
+            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'pm');let ind= index"  [cdkDropListData]="ind" > 
+              <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'pm'))" *ngIf="ind < stateService.state.all.pmCharCount" src="{{i.img}}" /> 
             </div>
-            </div>
-          </mat-card>
-
-
-
-          <!-- playerB  -->
-          <mat-card id="player"  *ngIf="stateService.state.all.pmPlayerCount >=2" >
-            <mat-card-header>
-              <mat-card-title style="color: mediumblue; font-size: 20px; font-weight: bold">Player 2</mat-card-title>
-            </mat-card-header>  
-            <div id="playerB">
-                <div  class="container" >
-              <div *ngFor="let i of stateService.state.projectm.playerBChars; let ind = index">
-                <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}  /></div>
-              </div>
-              </div>
-              </div>
-            </mat-card>
-
-
-
-            <!-- PLAYER C -->
-            <mat-card id="player"  *ngIf="stateService.state.all.pmPlayerCount >= 3" >
-              <mat-card-header>
-                <mat-card-title style="color: goldenrod; font-size: 20px; font-weight: bold">Player 3</mat-card-title>
-              </mat-card-header>
-              <div id="playerC">
-                  <div  class="container" >
-                <div *ngFor="let i of stateService.state.projectm.playerCChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}} /></div>
-                </div>        
-                </div>        
-              </div>
-            </mat-card>
-
-
-
-            <!-- player D -->
-            <mat-card id="player" *ngIf="stateService.state.all.pmPlayerCount == 4">
-              <mat-card-header>
-                <mat-card-title style="color: greenyellow; font-size: 20px; font-weight: bold">Player 4</mat-card-title>
-              </mat-card-header>
-              <div id="playerD">
-                  <div  class="container" >
-                <div *ngFor="let i of stateService.state.projectm.playerDChars; let ind = index">
-                  <div *ngIf="ind < stateService.state.all.pmCharCount"> <img src = {{i.img}}  /></div>
-                </div>   
-                </div>   
-            </div>
-          </mat-card>
-          
+          </div>
         </div>
+      </mat-card>
+    </div>
         <div class="table">
             <table > 
                 

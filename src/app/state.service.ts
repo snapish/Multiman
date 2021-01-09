@@ -80,6 +80,7 @@ export class StateService {
   entered(event: CdkDragEnter, arrayToEntered) {
     moveItemInArray(arrayToEntered, event.item.data, event.container.data);
     this.pushState()
+    console.log(arrayToEntered)
   }
   drop(event: CdkDragDrop<string[]>, arrayToDrop) {
     moveItemInArray(arrayToDrop, event.previousIndex, event.currentIndex);
@@ -103,14 +104,12 @@ export class StateService {
    * @param game which game it should return
    */
   numberToPlayersChars(index: number, game: string) {
-
     if (game == 'melee') {
       var playerChars = Object.keys(this.state.melee);
       return this.state.melee[playerChars[index]]
     }
     else if(game =="ultimate"){
       var playerChars = Object.keys(this.state.ultimate);
-      console.log(this.state.ultimate[playerChars[index]])
       return this.state.ultimate[playerChars[index]]
     }
     else if(game =="rivals"){
@@ -121,7 +120,7 @@ export class StateService {
       var playerChars = Object.keys(this.state.projectm);
       return this.state.projectm[playerChars[index]]
     }
-
+    console.log('f')
     return []
   }
 

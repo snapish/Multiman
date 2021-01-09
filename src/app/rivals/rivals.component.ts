@@ -14,7 +14,7 @@ export class RivalsComponent implements OnInit {
   constructor(private side : SideComponent ,public stateService: StateService, private randomService: RandomService, private changeRef: ApplicationRef) {
     this.rivalsChars = this.randomService.getRivalsChars()
     this.stateService.addListener(_ => this.onNewStateReceived())
-
+    
    }
   ngOnInit(): void {
   }
@@ -29,7 +29,6 @@ export class RivalsComponent implements OnInit {
     this.stateService.state.rivals.playerAChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
     this.stateService.state.rivals.playerBChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
     console.log(this.stateService.state.rivals.playerAChars)
-    console.log("asdf")
     this.stateService.pushState()
   }
     /**
