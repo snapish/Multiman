@@ -58,11 +58,13 @@ export class StateService {
       playerCChars: [],
       playerDChars: [],
       disabledChars: [],
+
     },
     rivals: {
       playerAChars: [],
       playerBChars: [],
       disabledChars: [],
+
     },
     all: { //universal things
       activeRoomCodes: [],
@@ -75,6 +77,17 @@ export class StateService {
       pmPlayerCount: 2,
       rivalsPlayerCount: 2
     },
+  }
+  /**
+   * toggles the class that changes opacity 
+   * @param $event event variable
+   */
+  toggleClass($event){
+    if($($event.target).hasClass('finishedChar')){
+      $($event.target).removeClass('finishedChar')
+      return
+    }
+    $($event.target).addClass('finishedChar')
   }
 
   entered(event: CdkDragEnter, arrayToEntered) {

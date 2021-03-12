@@ -14,7 +14,8 @@
      <!-- <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button> -->
      <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
      <!-- 9 columns 3 rows -->
-     
+     <div style="display: inline-flex ;">
+
 
      <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.pmPlayerCount)">
       <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.pmPlayerCount && stateService.numberToPlayersChars(pInd, 'pm').length > 0">
@@ -25,12 +26,14 @@
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'pm'))">
             <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'pm');let ind= index"  [cdkDropListData]="ind" > 
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'pm'))" *ngIf="ind < stateService.state.all.pmCharCount" src="{{i.img}}" /> 
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'pm'))" 
+              *ngIf="ind < stateService.state.all.pmCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  /> 
             </div>
           </div>
         </div>
       </mat-card>
     </div>
+     </div>
         <div class="table">
             <table > 
                 

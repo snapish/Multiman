@@ -11,6 +11,7 @@
         <br>
   
    <div id="body">   
+    <div style="display: inline-flex ;">
 
     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.ultimatePlayerCount)">
       <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.ultimatePlayerCount && stateService.numberToPlayersChars(pInd, 'ultimate').length > 0">
@@ -21,13 +22,14 @@
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'ultimate'))">
             <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'ultimate');let ind= index"  [cdkDropListData]="ind" > 
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'ultimate'))" *ngIf="ind < stateService.state.all.ultimateCharCount" src="{{i.img}}" /> 
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'ultimate'))" 
+              *ngIf="ind < stateService.state.all.ultimateCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)" /> 
             </div>
           </div>
         </div>
       </mat-card>
     </div>
-    
+    </div>    
         <div class="table">
             <table > 
                 

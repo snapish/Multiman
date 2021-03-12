@@ -20,10 +20,11 @@ export class MeleeComponent implements OnInit {
 
   meleeChars = []; //loaded later from randomservice
 
-
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.meleeChars = this.randomService.getMeleeChars();
     this.stateService.addListener(_ => this.onNewStateReceived())
+    
+
   }
 
   onNewStateReceived() {

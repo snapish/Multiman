@@ -237,7 +237,7 @@ shovelKnight
 
 
 
-
+    //melee chars
     this.DoctorMario = new Character("Dr. Mario", 0, "./assets/meleeIcons/0.png");
     this.Mario = new Character("Mario", 1, "./assets/meleeIcons/1.png");
     this.Luigi = new Character("Luigi", 2, "./assets/meleeIcons/2.png");
