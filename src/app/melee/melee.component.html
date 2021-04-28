@@ -1,5 +1,5 @@
 <html>
- 
+
 <body>
   <mat-toolbar >
     <span style="text-align: center; width: 100%;">
@@ -8,9 +8,9 @@
         Roll Characters
       </button>
     </span>
-   
+
   </mat-toolbar>
-  <br>    
+  <br>
   <div id="body">
 
   <div style="display: inline-flex ;">
@@ -23,11 +23,11 @@
         </mat-card-header>
         <div cdkDropListGroup>
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'melee'))">
-            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'melee');let ind= index"  [cdkDropListData]="ind" > 
+            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'melee');let ind= index"  [cdkDropListData]="ind" >
 
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'melee'))" 
-              *ngIf="ind < stateService.state.all.meleeCharCount" src="{{i.img}}" (click) = "stateService.toggleClass($event)"  /> 
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'melee'))"
+              *ngIf="ind < stateService.state.all.meleeCharCount" src="{{i.img}}" (click) = "stateService.toggleClass($event)" class="scalable" />
 
             </div>
           </div>
@@ -37,7 +37,7 @@
   </div>
 
     <div class="table">
-      
+
       <table>
 
         <tr>

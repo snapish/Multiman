@@ -27,14 +27,14 @@ export class SideComponent {
   currentView ="melee"
   inputVal = ""
   roomCode = "";
-  meleeCharCount;
+  meleeCharCount : number[];
   ultimateCharCount;
   pmCharCount;
   rivalsCharCount;
   dropdownOpen = false;
   closeResult = '';
   noRoomFound = true
-  clipboardFailure = false  
+  clipboardFailure = false
   mpc = [1,2,3,4]
   pmpc = [1,2,3,4]
   upc = [1,2,3,4,5,6,7,8]
@@ -46,24 +46,23 @@ export class SideComponent {
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
     config.placement = 'right';
     config.autoClose = true;
-    this.meleeCharCount = this.randomService.getMeleeCharCount()
-    
+    this.meleeCharCount  = this.randomService.getMeleeCharCount()
+
     this.stateService.state.all.meleeCharCount = this.randomService.getMeleeCharCount().length
     this.ultimateCharCount = randomService.getUltimateCharCount();
     this.pmCharCount = randomService.getPMcharCount();
     this.rivalsCharCount = randomService.getRivalsCharCount()
-    //this.stateService.state.all.currentCharCount = this.meleeCharCount[this.meleeCharCount.length - 1];
-    //this.stateService.state.all.playerCount = randomService.getPlayerCount("melee")
-    
+
     var temp = window.location.href.replace(/\//g ,"")
-    this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars    
+    this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars
     $(document).click(function (event) {
       if ($(event.target).attr('class') != undefined && !$(event.target).attr('class').includes('dropdown-toggle')) { //clicked on something other than a dropdown (or other things that shouldnt close dropdowns)
         $('.charCount').each(function () {
           $(this).css('height', '1%')
         })
       }
-    });  }
+    });
+  }
     ngAfterViewInit(): void {
       //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
       //Add 'implements AfterViewInit' to the class.
@@ -79,23 +78,24 @@ export class SideComponent {
     }
     /*
     plans/todo
-    
+
+    --use localstorage to mark the last page they were at and go to that one--
     mark some IP as the host
     get a list of current session IDS for joining room code
+    room options checkbox should be disabled for all but host
+
     get https to auto redirect in server and not in index.html
-  when someone connects, update component states from state service
-  
-  room options checkbox should be disabled for all but host
-  if page is locked to others, make it so if your IP isn't the hosts, any clicks on the page do nothing / return before the click "goes thru" (document.on()...)
+    if page is locked to others, make it so if your IP isn't the hosts, any clicks on the page do nothing / return before the click "goes thru" (document.on()...)
+
   add a better welcome popup
       -possibly a tour
   add battleship, 8x8 grid
-  
+
   ---DONE---
   get state service in full schwing
   put everything into one state variable
   fixed closing of sidenav
-  new color theme 
+  new color theme
   have ult pull char/player counts from side comp
   have pm pull char/player counts from side comp
   get rid of hide upcoming
@@ -103,7 +103,7 @@ export class SideComponent {
   make randomservice return random sets of chars, given the disabled chars
   */
 
-  
+
 /**
   Checks room code entered if its 5 chars long, if theres an active sesh, join it, if not give err
  */
@@ -119,14 +119,14 @@ joinRoomCode(){
           }
         })
         if(!directed && this.inputVal.length >= 5){
-          this.noRoomFound = false; //for if they remove the text in the box after not finding a room, itll hide the message again 
+          this.noRoomFound = false; //for if they remove the text in the box after not finding a room, itll hide the message again
         }
       })
       .catch(err => {
-      
-    }) 
- 
-  
+
+    })
+
+
 }
 
 joinRoomWithCode(code){
@@ -140,7 +140,7 @@ joinRoomWithCode(code){
           }
         })
       })
-      .catch(err => this.noRoomFound = true) //for if they remove the text in the box after not finding a room, itll hide the message again 
+      .catch(err => this.noRoomFound = true) //for if they remove the text in the box after not finding a room, itll hide the message again
 }
 getRoomCode(){
   return this.roomCode
@@ -149,7 +149,7 @@ getRoomCode(){
  * gets clipboard text, if it's good, call joinRoomCode()
  * if its bad say clipboard thing was bad
  */
-joinClipboard(){  
+joinClipboard(){
   navigator.clipboard.readText().then(text =>{
     this.inputVal = text
     this.joinRoomCode()
@@ -251,9 +251,9 @@ joinClipboard(){
     $('.' + this.currentView).hide(); //hide old page
     $('.' + view).show(); //display new viewed page
     this.currentView = view;//set active page reference to new page name
-    
+
  //  char count stuff
- 
+
     if (this.currentView == "ultimate") {
       $('.meleeCharCount').css('visibility', 'hidden')
       $('.pmCharCount').css('visibility', 'hidden')

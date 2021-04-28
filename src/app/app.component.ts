@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import {UsersComponent} from '../app/users/users.component';
 import { MatDialogRef, MatDialogConfig, MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectmComponent } from './projectm/projectm.component';
 import { MeleeComponent } from './melee/melee.component';
@@ -33,15 +32,6 @@ export class AppComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
 
   }
-  openPopup() {
-    this.dialogRef = this.dialog.open(WelcomeComponent, {
-      width: '95%',
-      maxWidth: '100%',
-      height: '90%',
-      maxHeight: '90%',
-      panelClass: 'dialog',
-      disableClose: true
-    });
-  }
+
 
 }

@@ -1,0 +1,15 @@
+.parent-grid{
+  display: grid;
+  grid-template-rows: 20px 20px 40px 20px 40px; /*defines row height*/
+  grid-template-columns: 120px; /*defines column width*/
+}
+.grid-item{
+  background-color: red;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  }
+div::nth-child(4){
+  margin: 23498px;
+  background-color: yellow;
+
+}
