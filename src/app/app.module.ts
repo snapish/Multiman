@@ -38,6 +38,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { DevtestingComponent } from './devtesting/devtesting.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TablemakerComponent } from './tablemaker/tablemaker.component';
+import { RushdownComponent } from './rushdown/rushdown.component';
 
 
 @NgModule({
@@ -69,6 +70,8 @@ ErrorPageComponent,
 DevtestingComponent,
 
 TablemakerComponent,
+
+RushdownComponent,
   ],
   imports: [
     ClipboardModule,

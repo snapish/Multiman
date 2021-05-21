@@ -5,10 +5,11 @@
 <div class="parent-grid">
   <div class="grid-item"
   *ngFor="let x of gamesChars; let ind = index"
-  [ngStyle]="{'opacity': '', 'display': 'inline' }"
+  [ngStyle]="{'opacity': '' }"
   id="{{x.name}}">
 
     <img src = {{stringPaths[ind]}} class="charImg">
+    
   </div>
 
 </div>
