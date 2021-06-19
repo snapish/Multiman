@@ -429,7 +429,16 @@ shovelKnight
    * @param array array to shuffle
    */
   shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
+    // https://stackoverflow.com/a/2450976
+    var currentIndex = array.length, randomIndex
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex--
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]]
+    }
+    return array
   }
 
   /**
