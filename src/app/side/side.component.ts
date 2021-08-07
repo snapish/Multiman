@@ -132,6 +132,7 @@ joinRoomCode(){
 joinRoomWithCode(code){
   fetch('/sessions')
       .then(response => {
+        console.log(response)
         response.json().then(ids => {
           var directed = false;
           if(this.inputVal.length >= 5 && ids.includes(code)){ //if 5 chars...//if the url of the room includes the code they typed
