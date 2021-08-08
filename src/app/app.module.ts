@@ -96,7 +96,8 @@ RushdownComponent,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    DragDropModule
+    DragDropModule,
+    MatSidenavModule,
     //AngularFireModule.initializeApp(environment.config, 'database-project'),
     //AngularFirestoreModule,
     //AngularFireStorageModule

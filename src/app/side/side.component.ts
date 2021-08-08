@@ -9,7 +9,6 @@ import { StateService } from '../state.service';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-side',
   templateUrl: './side.component.html',
@@ -33,7 +32,7 @@ export class SideComponent {
   rivalsCharCount;
   dropdownOpen = false;
   closeResult = '';
-  noRoomFound = true
+  noRoomFound = false
   clipboardFailure = false
   mpc = [1,2,3,4]
   pmpc = [1,2,3,4]
@@ -92,15 +91,7 @@ export class SideComponent {
   add battleship, 8x8 grid
 
   ---DONE---
-  get state service in full schwing
-  put everything into one state variable
-  fixed closing of sidenav
-  new color theme
-  have ult pull char/player counts from side comp
-  have pm pull char/player counts from side comp
-  get rid of hide upcoming
-  have melee pull char/player counts from side comp
-  make randomservice return random sets of chars, given the disabled chars
+
   */
 
 
@@ -110,12 +101,11 @@ export class SideComponent {
 joinRoomCode(){
     fetch('/sessions')
       .then(response => {
-        var directed = false;
-        this.noRoomFound = true
+        let directed = false;
         response.json().then(ids => {
           if(this.inputVal.length >= 5 && ids.includes(this.inputVal)){ //if 5 chars...//if the url of the room includes the code they typed
-                document.location.replace(window.location.protocol + "//" + window.location.host + '?session=' + this.inputVal) //redirect
-                directed = true
+            document.location.replace(window.location.protocol + "//" + window.location.host + window.location.pathname +'?session=' + this.inputVal) //redirect, window.location.protocol = http(s) +//
+            directed = true
           }
         })
         if(!directed && this.inputVal.length >= 5){
@@ -123,26 +113,30 @@ joinRoomCode(){
         }
       })
       .catch(err => {
-
+        this.noRoomFound = true
     })
 
 
 }
-
-joinRoomWithCode(code){
-  fetch('/sessions')
-      .then(response => {
-        console.log(response)
-        response.json().then(ids => {
-          var directed = false;
-          if(this.inputVal.length >= 5 && ids.includes(code)){ //if 5 chars...//if the url of the room includes the code they typed
-                document.location.replace(window.location.protocol + "//" + window.location.host + '?session=' + code) //redirect
-                directed = true
-          }
-        })
-      })
-      .catch(err => this.noRoomFound = true) //for if they remove the text in the box after not finding a room, itll hide the message again
-}
+/**
+ * I'm not entirely sure but i think this is for joining rooms via clipboard
+ * @param code room code
+ */
+// joinRoomWithCode(code){
+//   fetch('/sessions')
+//       .then(response => {
+//         console.log(response)
+//          response.json().then(ids => {
+//           var directed = false;
+//           if(this.inputVal.length >= 5 && ids.includes(code)){ //if 5 chars...//if the url of the room includes the code they typed
+//                 document.location.replace(window.location.protocol + "//" + window.location.host + '?session=' + code) //redirect
+//                 directed = true
+//           }
+//         })
+//       })
+//      .catch(err => this.noRoomFound = true) //for if they remove the text in the box after not finding a room, itll hide the message again
+//       })
+// }
 getRoomCode(){
   return this.roomCode
 }
@@ -151,12 +145,18 @@ getRoomCode(){
  * if its bad say clipboard thing was bad
  */
 joinClipboard(){
-  navigator.clipboard.readText().then(text =>{
-    this.inputVal = text
-    this.joinRoomCode()
-  }).catch(err =>{
-    this.clipboardFailure = true
-  })
+  try{
+    navigator.clipboard.readText().then(text =>{
+      this.inputVal = text
+      this.joinRoomCode()
+    }).catch(err =>{
+      this.clipboardFailure = true
+    })
+  }
+  catch{
+      let test = document.execCommand("paste")
+      console.log(test)
+  }
 }
 /**
  * came with the modal example that i yoinked, keeping it all here
