@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ConnectFourComponent } from './connect-four.component';
+import { TablemakerComponent } from './tablemaker.component';
 
-describe('ConnectFourComponent', () => {
-  let component: ConnectFourComponent;
-  let fixture: ComponentFixture<ConnectFourComponent>;
+describe('TablemakerComponent', () => {
+  let component: TablemakerComponent;
+  let fixture: ComponentFixture<TablemakerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnectFourComponent ]
+      declarations: [ TablemakerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnectFourComponent);
+    fixture = TestBed.createComponent(TablemakerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

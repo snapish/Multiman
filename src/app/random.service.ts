@@ -175,8 +175,8 @@ elliana
 ori
 shovelKnight
 
-  constructor() { 
-    
+  constructor() {
+
     this.clairen = new Character("Clairen", 200, "./assets/rivalsIcons/200.png")
     this.forsburn = new Character("Forsburn", 201, "./assets/rivalsIcons/201.png")
     this.zetterburn = new Character("Zetterburn", 202, "./assets/rivalsIcons/202.png")
@@ -364,7 +364,7 @@ shovelKnight
   }
 
   getPMChars() {
-     
+
     return [this.pmBowser, this.pmWario, this.pmMario, this.pmLuigi, this.pmPeach, this.pmYoshi, this.pmDonkeyKong, this.pmDiddyKong, this.pmCaptainFalcon, this.pmWolf, this.pmFox, this.pmFalco, this.pmIceClimbers, this.pmZelda,
     this.pmSheik, this.pmLink, this.pmToonLink,this.pmGanondorf, this.pmMewtwo, this.pmLucario, this.pmPikachu, this.pmJigglypuff, this.pmSquirtle, this.pmIvysaur, this.pmCharizard, this.pmSamus, this.pmZeroSuitSamus, this.pmLucas
     , this.pmNess, this.pmPit, this.pmKirby, this.pmMetaKnight, this.pmDedede, this.pmIke, this.pmMarth, this.pmRoy, this.pmOlimar, this.pmROB, this.pmGNW, this.pmSnake, this.pmSonic, this.pmKnuckles]
@@ -372,7 +372,7 @@ shovelKnight
   getMeleeChars() {
     return [this.DoctorMario, this.Mario, this.Luigi, this.Bowser, this.Peach, this.Yoshi, this.DonkeyKong, this.CaptainFalcon, this.Ganondorf, this.Falco, this.Fox, this.Ness, this.IceClimbers, this.Kirby,
     this.Samus, this.Zelda, this.Link, this.YoungLink, this.Pichu, this.Pikachu, this.Jigglypuff, this.Mewtwo, this.MrGNW, this.Marth, this.Roy, this.Sheik];
-    
+
   }
   getUltimateChars() {
     return [this.uMario, this.uDonkeyKong, this.uLink, this.uSamus, this.DarkSamus, this.uYoshi, this.uKirby, this.uFox, this.uPikachu, this.uLuigi, this.uNess, this.uCaptainFalcon, this.uJigglypuff,
@@ -383,7 +383,7 @@ shovelKnight
     this.Ridley, this.Simon, this.Richter, this.KingKRool, this.Isabelle, this.Incineroar, this.MiiBrawler, this.MiiSwordfighter, this.MiiGunner
       , this.PiranhaPlant, this.Joker, this.Hero, this.Banjo, this.Terry, this.Byleth, this.Minmin, this.Steve, this.Sephiroth
     ]
-  
+
   }
   /**
    * returns the melee character count (26 including sheik and no additional chars)
@@ -436,13 +436,13 @@ shovelKnight
    * Return random list from melee
    * @param disabled an array of numbers that are the IDs of chars you dont want
    */
-  randomizeMelee(disabled: number[]) { 
-    
+  randomizeMelee(disabled: number[]) {
+
     var characters = this.getMeleeChars().filter(element => !disabled.includes(element.id.toString() )) //takes out disabled chars
     this.shuffle(characters) //makes it random
     return characters
   }
-  
+
   /**
    * Return random list from pm
    * @param disabled an array of numbers that are the IDs of chars you dont want
@@ -461,7 +461,7 @@ shovelKnight
     this.shuffle(characters) //makes it random
     return characters
   }
-  
+
   /**
    * Return random list from rivals
    * @param disabled an array of numbers that are the IDs of chars you dont want
@@ -471,5 +471,5 @@ shovelKnight
     this.shuffle(characters) //makes it random
     return characters
   }
-  
+
 }

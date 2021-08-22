@@ -1,0 +1,17 @@
+<!-- iterate over char list from randomservice.getmeleechars() with index
+    create string for image src
+-->
+
+<div class="parent-grid">
+  <div class="grid-item"
+  *ngFor="let x of gamesChars; let ind = index"
+  [ngStyle]="{'opacity': '' }"
+  id="{{x.name}}">
+
+    <img src = {{stringPaths[ind]}} class="charImg">
+    
+  </div>
+
+</div>
+
+

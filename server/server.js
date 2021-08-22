@@ -15,17 +15,17 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(router)
 
-const httpServer = http.createServer(app) //http.create...
+const httpServer = http.createServer(app) // http.create...
 const wsServerUnsecure = new WebSocket.Server({ server: httpServer })
 let wsServerSecure
 wsServerUnsecure.on('connection', onConnect)
-httpServer.listen(conf.httpPort) //httpServer, httpPort
+httpServer.listen(conf.httpPort) // httpServer, httpPort
 console.log('http on ' + conf.httpPort)
 
 try {
   const httpsServer = https.createServer({
     key: fs.readFileSync(conf.sslDir + '/privkey.pem'),
-    cert: fs.readFileSync(conf.sslDir + '/cert.pem'),
+    cert: fs.readFileSync(conf.sslDir + '/cert.pem')
   }, app)
   wsServerSecure = new WebSocket.Server({ server: httpsServer })
   wsServerSecure.on('connection', onConnect)
@@ -36,7 +36,7 @@ try {
 }
 
 function onMessage (sender, message) {
-  //console.log('receieved message', message)
+  // console.log('receieved message', message)
   const cb = (ws) => {
     if (ws === sender) return
     if (sender.multiman_session !== ws.multiman_session) return
@@ -47,7 +47,7 @@ function onMessage (sender, message) {
   updateSessionState(sender.multiman_session, message)
 }
 
-function onConnect(ws, req) {
+function onConnect (ws, req) {
   const sessionId = url.parse(req.url, true, true).query.session
   if (!sessionId) {
     return console.warn('No session on ws connection', req.url)

@@ -5,13 +5,10 @@
 
 </head>
 <mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [disableClose]="(isHandset$ | async) ? 'false' : 'true'"
-
-  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <!-- <mat-toolbar class="title">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [disableClose]="(isHandset$ | async) ? 'false' : 'true'" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode] = "(isHandset$ | async) ? 'over' : 'side' " [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="title">
       <div style="font-size: 37px; margin-top: 10px;">Menu</div>
-    </mat-toolbar> -->
+    </mat-toolbar>
     <mat-nav-list>
 
 
@@ -165,17 +162,17 @@
         </div>
         <div class="modal-body">
           <button [cdkCopyToClipboard] = "roomCode" class="btn btn-md btn-primary copyButton">Copy My Room Code: {{roomCode}}</button>
-          <br>
+          <i style="font-size: 12px;">sorry fellas i had to remove the "join from clipboard" option<br>browsers decided they didnt like that for security reasons<br>if it was near and dear to you let me know and i can try get something working lol</i>
           <br>
           <div class="half-left">
-            <button (click)='joinClipboard()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button>
+            <!-- <button (click)='joinClipboard()' class="btn btn-md btn-primary half-button">Join Clipboard Room</button> -->
             <br>
             <input  (input) = "joinRoomCode()" [(ngModel)] = "inputVal" type="text" class="form-control" placeholder="5 CHAR ROOM CODE" maxlength="5">
               <label style="font-style: italic; color: darkgray;">Type in a 5 letter room code and you'll join that room</label>
           </div>
           <mat-checkbox color = "warn" [disabled]="false" (change) = "toggleRoomLock()">Lock room functions to others</mat-checkbox>
-          <div style="color: orangered" [hidden]= "noRoomFound">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
-          <div style="color: orangered" [hidden]= "!clipboardFailure">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          <div style="color: orangered" [hidden]= "!noRoomFound">No room with the code "<strong>{{inputVal}}</strong>" could be found </div>
+          <div style="color: orangered" [hidden]= "!clipboardFailure">Clipboard code was wrong/doesn't exist: "<strong>{{inputVal}}</strong>"</div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Exit</button>
@@ -191,8 +188,7 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary" *ngIf="isHandset$ | async">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <!-- <span>Multiman</span> -->

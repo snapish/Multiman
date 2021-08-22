@@ -8,6 +8,7 @@ import { MeleeComponent } from '../melee/melee.component';
   styleUrls: ['./devtesting.component.css']
 })
 export class DevtestingComponent implements OnInit {
+  melee = "melee"
   items = [
     '/assets/meleeIcons/1.png ',
     '/assets/meleeIcons/2.png ',

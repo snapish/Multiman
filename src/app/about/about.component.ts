@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { WelcomeComponent } from '../welcome/welcome.component';
 declare var $: any;
 @Component({
   selector: 'app-about',
@@ -9,22 +8,13 @@ declare var $: any;
 })
 export class AboutComponent implements OnInit {
 
-  
+
   private dialogRef: any;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-  
+
   }
 
-  openPopup() {
-    this.dialogRef = this.dialog.open(WelcomeComponent, {
-      width: '95%',
-      maxWidth: '100%',
-      height: '90%',
-      panelClass: 'dialog',
-      disableClose: true
-    });
-  }
 
 }

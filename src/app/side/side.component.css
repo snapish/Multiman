@@ -67,6 +67,7 @@ button:not(.f):not(.close):not(.other-opts-btn) {
 
 .copyButton{
   font-size: 21px;
+  background-color: rgb(36, 36, 36);
 }
 
 .battleShipButton{
@@ -94,6 +95,7 @@ input{
   height: 50px;
   width: 50%;
   margin-top: -10px;
+  background-color: black;
 }
 
 .half-right{

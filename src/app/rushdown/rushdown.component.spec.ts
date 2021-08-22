@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ConnectFourComponent } from './connect-four.component';
+import { RushdownComponent } from './rushdown.component';
 
-describe('ConnectFourComponent', () => {
-  let component: ConnectFourComponent;
-  let fixture: ComponentFixture<ConnectFourComponent>;
+describe('RushdownComponent', () => {
+  let component: RushdownComponent;
+  let fixture: ComponentFixture<RushdownComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnectFourComponent ]
+      declarations: [ RushdownComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnectFourComponent);
+    fixture = TestBed.createComponent(RushdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
