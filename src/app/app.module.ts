@@ -39,6 +39,7 @@ import { DevtestingComponent } from './devtesting/devtesting.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TablemakerComponent } from './tablemaker/tablemaker.component';
 import { RushdownComponent } from './rushdown/rushdown.component';
+import { NickComponent } from './nick/nick.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ DevtestingComponent,
 TablemakerComponent,
 
 RushdownComponent,
+  NickComponent,
   ],
   imports: [
     ClipboardModule,
