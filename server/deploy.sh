@@ -2,7 +2,7 @@
 #set -e
 
 # make sure we're executing commands from project directory
-cd "$(dirname $0)"
+cd "$(dirname $0)/.."
 
 #point to production
 git checkout production
