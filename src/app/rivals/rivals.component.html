@@ -1,5 +1,5 @@
 <html>
- 
+
 <body>
   <mat-toolbar >
     <span style="text-align: center; width: 100%;">
@@ -8,7 +8,7 @@
         Roll Characters
       </button>
     </span>
-   
+
   </mat-toolbar>
   <br>
 
@@ -18,14 +18,14 @@
     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.rivalsPlayerCount)">
       <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.rivalsPlayerCount && stateService.numberToPlayersChars(pInd, 'rivals').length > 0">
         <mat-card-header>
-          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Player {{pInd + 1}} </mat-card-title>
+          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Roster {{pInd + 1}} </mat-card-title>
         </mat-card-header>
         <div cdkDropListGroup>
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'rivals'))">
-            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'rivals');let ind= index"  [cdkDropListData]="ind" > 
+            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'rivals');let ind= index"  [cdkDropListData]="ind" >
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
               <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'rivals'))"
-               *ngIf="ind < stateService.state.all.rivalsCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  /> 
+               *ngIf="ind < stateService.state.all.rivalsCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  />
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
     </div>
     </div>
     <div class="table">
-      
+
       <table>
 
         <tr>
@@ -44,7 +44,7 @@
               (click)="toggle('201')" class="charImg"></div>
           <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Zetterburn"> <img src="assets/rivalsIcons/202.png"
               (click)="toggle('202')" class="charImg"></div>
-              
+
           <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src="" class="charImg" style="visibility: hidden;" ></div>
           <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src=""class="charImg" style="visibility: hidden;" ></div>
 
@@ -72,7 +72,7 @@
               (click)="toggle('212')" class="charImg"></div>
           <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ranno"> <img src="assets/rivalsIcons/213.png"
               (click)="toggle('213')" class="charImg"></div>
-        
+
         </tr>
 
       </table>

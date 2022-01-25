@@ -34,6 +34,16 @@ export class SideComponent {
   closeResult = '';
   noRoomFound = false
   clipboardFailure = false
+  helpPageSteps = [
+  "The last 5 letters of the URL is your \"room code\". People with your URL can see what you see, and interact with the same page as you.",
+  "Adjust the number of players, and number of characters to your liking.",
+  "Click any character in the game's menu to ban them (this will also remove the character from the current rosters).",
+  "Drag characters around in rosters to change their position in the roster.",
+  "Click characters in rosters to gray them out.",
+  "Roll your characters with the button at the top.",
+  "Copy your URL and send it to a pal.",
+  "Game your lil thumbs off."
+];
   mpc = [1,2,3,4]
   pmpc = [1,2,3,4]
   upc = [1,2,3,4,5,6,7,8]
@@ -52,8 +62,9 @@ export class SideComponent {
     this.pmCharCount = randomService.getPMcharCount();
     this.rivalsCharCount = randomService.getRivalsCharCount()
 
-    var temp = window.location.href.replace(/\//g ,"")
-    this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars
+    //var temp = window.location.href.replace(/\//g ,"");
+    //this.roomCode =  temp.slice(temp.length - 5, temp.length) //gets rid of the slashes and gets last 5 chars
+    this.roomCode = window.location.href;
     $(document).click(function (event) {
       if ($(event.target).attr('class') != undefined && !$(event.target).attr('class').includes('dropdown-toggle')) { //clicked on something other than a dropdown (or other things that shouldnt close dropdowns)
         $('.charCount').each(function () {

@@ -1,6 +1,7 @@
 import { CdkDragDrop, CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
 import { ApplicationRef } from '@angular/core'
+import { RandomService } from './random.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,7 +70,7 @@ export class StateService {
     all: { //universal things
       activeRoomCodes: [],
       meleeCharCount: 26,
-      ultimateCharCount: 83,
+      ultimateCharCount: 86,
       pmCharCount: 42,
       rivalsCharCount: 14,
       ultimatePlayerCount: 2,
@@ -79,7 +80,7 @@ export class StateService {
     },
   }
   /**
-   * toggles the class that changes opacity 
+   * toggles the class that changes opacity
    * @param $event event variable
    */
   toggleClass($event){

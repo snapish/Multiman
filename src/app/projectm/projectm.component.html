@@ -1,5 +1,5 @@
 <html>
-  <body> 
+  <body>
       <mat-toolbar>
         <span style="text-align: center; width: 100%;">
           <button mat-raised-button (click)="randomFill()"
@@ -9,7 +9,7 @@
         </span>
         </mat-toolbar>
         <br>
-   
+
    <div id="body">
      <!-- <button mat-raised-button (click) = "randomFill()" style="display: inline">Roll Characters</button> -->
      <!-- <button mat-raised-button (click) = "clearDisabled()" style="display: inline">Enable All</button> -->
@@ -17,28 +17,29 @@
      <div style="display: inline-flex ;">
 
 
-     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.pmPlayerCount)">
+     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.pmPlayerCount); index as ind">
       <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.pmPlayerCount && stateService.numberToPlayersChars(pInd, 'pm').length > 0">
         <mat-card-header>
-          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Player {{pInd + 1}} </mat-card-title>
+          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Roster {{pInd + 1}} </mat-card-title>
         </mat-card-header>
         <div cdkDropListGroup>
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'pm'))">
-            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'pm');let ind= index"  [cdkDropListData]="ind" > 
+            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'pm');let ind= index"  [cdkDropListData]="ind" >
               <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'pm'))" 
-              *ngIf="ind < stateService.state.all.pmCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  /> 
+              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'pm'))"
+              *ngIf="ind < stateService.state.all.pmCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  />
             </div>
           </div>
         </div>
       </mat-card>
+      <br *ngIf="ind % 2 == 0">
     </div>
      </div>
         <div class="table">
-            <table > 
-                
-                <tr> 
-                    
+            <table >
+
+                <tr>
+
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Wario" >  <img src="assets/pmIcons/26.png" (click) = "toggle('26')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Mario" >  <img src="assets/pmIcons/27.png" (click) = "toggle('27')" class="charImg"></div>
                     <div [ngStyle] = "{'opacity': 1, 'display': 'inline' }" id="Luigi" > <img src="assets/pmIcons/28.png" (click) = "toggle('28')" class="charImg"></div>
@@ -61,7 +62,7 @@
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Ganondorf" > <img src="assets/pmIcons/43.png" (click) = "toggle('43')" class="charImg"></div>
                   </tr>
                   <tr>
-                    
+
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Mewtwo" > <img src="assets/pmIcons/44.png" (click) = "toggle('44')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Lucario" > <img src="assets/pmIcons/45.png" (click) = "toggle('45')" class="charImg" ></div>
                     <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Pikachu" > <img src="assets/pmIcons/46.png" (click) = "toggle('46')" class="charImg" ></div>
@@ -93,10 +94,10 @@
 
                      <!-- <div [ngStyle] = "{'opacity': '', 'display': 'inline' }" id="Free Space" > <img src="assets/pmIcons/42.png" (click) = "toggle('Free Space')" class="charImg"></div> -->
                     </tr>
-                  
+
                 </table>
               </div>
-              <br>                    
+              <br>
                     </div>
                   </body>
                   </html>

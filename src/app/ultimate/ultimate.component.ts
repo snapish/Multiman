@@ -15,7 +15,7 @@ export class UltimateComponent implements OnInit {
   charnums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78];
 
   playernums = [1, 2, 3, 4,5,6,7,8]
-  
+
   ultimateChars= []
   state = {
     game:"ultimate",
@@ -74,9 +74,9 @@ export class UltimateComponent implements OnInit {
 
   }
 
- 
 
-  
+
+
     /**
    * Checks this.stateService.state.melee.disabledChars to see if the ID exists, if not, adds it, if so, removes it
    * calls side.setMeleeCharCount if needed
@@ -132,15 +132,15 @@ export class UltimateComponent implements OnInit {
   updateOpacity() {
     $('.charImg').each(ind =>{  //go through all the character images
     for (let id of this.stateService.state.ultimate.disabledChars) { //for every character disabled
-        if($('.charImg').eq(ind).attr('src').includes("ultimateIcons/" + id + ".jpeg")){ //if the char image has "..../id.jpeg" as its path, ult has a different file ext for some reason
-          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
+        if($('.charImg').eq(ind).attr('src').includes("ultimateIcons/" + id + ".jpeg") || $('.charImg').eq(ind).attr('src').includes("ultimateIcons/" + id + ".jpg") ){ //if the char image has "..../id.jpeg" as its path, ult has a different file ext for some reason
+          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity
           break
         }
         else{
-          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
+          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity
         }
       }
-      if(this.stateService.state.ultimate.disabledChars.length ==0){ 
+      if(this.stateService.state.ultimate.disabledChars.length ==0){
         $('.charImg').eq(ind).css('opacity','1')
       }
     })

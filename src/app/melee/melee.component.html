@@ -16,10 +16,10 @@
   <div style="display: inline-flex ;">
 
     <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.meleePlayerCount)">
-
+        <br *ngIf="pInd % 2 !=0">
       <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.meleePlayerCount && stateService.numberToPlayersChars(pInd, 'melee').length > 0">
         <mat-card-header>
-          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Player {{pInd + 1}} </mat-card-title>
+          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Roster {{pInd + 1}} </mat-card-title>
         </mat-card-header>
         <div cdkDropListGroup>
           <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'melee'))">
