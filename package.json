@@ -34,7 +34,7 @@
     "ngx-cookie-service": "^2.4.0",
     "ngx-device-detector": "^1.5.2",
     "rxjs": "^6.6.7",
-    "socket.io": "^2.4.1",
+    "socket.io": "^2.5.0",
     "tslib": "^1.14.1",
     "zone.js": "^0.11.4"
   },
