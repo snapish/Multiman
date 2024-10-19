@@ -17,7 +17,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            
+
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -33,7 +33,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
             ]
-            
+
           },
           "configurations": {
             "production": {
@@ -46,7 +46,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
