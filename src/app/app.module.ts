@@ -41,7 +41,6 @@ import { TablemakerComponent } from './tablemaker/tablemaker.component';
 import { RushdownComponent } from './rushdown/rushdown.component';
 import { NickComponent } from './nick/nick.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +103,6 @@ RushdownComponent,
     //AngularFirestoreModule,
     //AngularFireStorageModule
   ],
-  entryComponents:[],
   providers: [ProjectmComponent, MeleeComponent,SideComponent],
   bootstrap: [AppComponent]
 })

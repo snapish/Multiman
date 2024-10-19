@@ -2,27 +2,14 @@ import { Component, OnInit, ApplicationRef } from "@angular/core";
 import { StateService } from "../state.service";
 import { RandomService } from "../random.service";
 import { SideComponent } from "../side/side.component";
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @Component({
   selector: "app-rivals",
   templateUrl: "./rivals.component.html",
   styleUrls: ["./rivals.component.css"],
 })
-class RivalsTwoComponent implements OnInit {
-  public rivalsChars = [];
-  public Player1 = "";
-  public Player2 = "";
-  constructor(
-    private side: SideComponent,
-    public stateService: StateService,
-    private randomService: RandomService,
-    private changeRef: ApplicationRef
-  ) {
-    this.rivalsChars = this.randomService.getRivalsChars();
-   // this.stateService.addListener((_) => this.onNewStateReceived()); dunno wtf this was commenting it lmaaaaoooo
-  }
-  ngOnInit(): void {}
-}
 
 export class RivalsComponent implements OnInit {
   characters = [

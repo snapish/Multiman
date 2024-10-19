@@ -71,7 +71,9 @@ export class MeleeComponent implements OnInit {
     this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
-    this.updateOpacity()
+    $('.scalable').each((index, element) => {
+      $(element).css('opacity', '1');
+    });
     this.stateService.pushState()
   }
   /**
