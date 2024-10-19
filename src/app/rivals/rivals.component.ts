@@ -1,23 +1,48 @@
-import { Component, OnInit, ApplicationRef } from '@angular/core';
-import { StateService } from '../state.service';
-import { RandomService } from '../random.service';
-import { SideComponent } from '../side/side.component';
+import { Component, OnInit, ApplicationRef } from "@angular/core";
+import { StateService } from "../state.service";
+import { RandomService } from "../random.service";
+import { SideComponent } from "../side/side.component";
 
 @Component({
-  selector: 'app-rivals',
-  templateUrl: './rivals.component.html',
-  styleUrls: ['./rivals.component.css']
+  selector: "app-rivals",
+  templateUrl: "./rivals.component.html",
+  styleUrls: ["./rivals.component.css"],
 })
-export class RivalsComponent implements OnInit {
-
-  rivalsChars = []
-  constructor(private side : SideComponent ,public stateService: StateService, private randomService: RandomService, private changeRef: ApplicationRef) {
-    this.rivalsChars = this.randomService.getRivalsChars()
-    this.stateService.addListener(_ => this.onNewStateReceived())
-    
-   }
-  ngOnInit(): void {
+class RivalsTwoComponent implements OnInit {
+  public rivalsChars = [];
+  public Player1 = "";
+  public Player2 = "";
+  constructor(
+    private side: SideComponent,
+    public stateService: StateService,
+    private randomService: RandomService,
+    private changeRef: ApplicationRef
+  ) {
+    this.rivalsChars = this.randomService.getRivalsChars();
+   // this.stateService.addListener((_) => this.onNewStateReceived()); dunno wtf this was commenting it lmaaaaoooo
   }
+  ngOnInit(): void {}
+}
+
+export class RivalsComponent implements OnInit {
+  characters = [
+    { id: "Clairen", src: "assets/rivalsIcons/200.png", code: "200" },
+    { id: "Forsburn", src: "assets/rivalsIcons/201.png", code: "201" },
+    { id: "Zetterburn", src: "assets/rivalsIcons/202.png", code: "202" },
+    { id: "Orcane", src: "assets/rivalsIcons/203.png", code: "203" },
+    { id: "Wrastor", src: "assets/rivalsIcons/204.png", code: "204" },
+  ];
+  rivalsChars = [];
+  constructor(
+    private side: SideComponent,
+    public stateService: StateService,
+    private randomService: RandomService,
+    private changeRef: ApplicationRef
+  ) {
+    this.rivalsChars = this.randomService.getRivalsChars();
+    this.stateService.addListener((_) => this.onNewStateReceived());
+  }
+  ngOnInit(): void {}
   onNewStateReceived() {
     this.updateOpacity();
     this.changeRef.tick();
@@ -26,11 +51,17 @@ export class RivalsComponent implements OnInit {
    * Fills players arrays with characters
    */
   randomFill() {
-    this.stateService.state.rivals.playerAChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
-    this.stateService.state.rivals.playerBChars = this.randomService.randomizeRivals(this.stateService.state.rivals.disabledChars)
-    this.stateService.pushState()
+    this.stateService.state.rivals.playerAChars =
+      this.randomService.randomizeRivals(
+        this.stateService.state.rivals.disabledChars
+      );
+    this.stateService.state.rivals.playerBChars =
+      this.randomService.randomizeRivals(
+        this.stateService.state.rivals.disabledChars
+      );
+    this.stateService.pushState();
   }
-    /**
+  /**
    * Shuffles an array
    * @param array array to shuffle
    */
@@ -44,23 +75,37 @@ export class RivalsComponent implements OnInit {
    * @param id character ID to disable
    */
   toggle(id) {
- 
     if (this.stateService.state.rivals.disabledChars.includes(id)) {
-      this.stateService.state.rivals.disabledChars = this.removeFromArray(this.stateService.state.rivals.disabledChars, id)
-      
-      this.updateOpacity()
+      this.stateService.state.rivals.disabledChars = this.removeFromArray(
+        this.stateService.state.rivals.disabledChars,
+        id
+      );
+
+      this.updateOpacity();
+    } else {
+      //reomve from array
+
+      this.stateService.state.rivals.playerAChars =
+        this.stateService.state.rivals.playerAChars.filter((x) => {
+          return x.id != id;
+        });
+      this.stateService.state.rivals.playerBChars =
+        this.stateService.state.rivals.playerBChars.filter((x) => {
+          return x.id != id;
+        });
+      this.stateService.state.rivals.disabledChars.push(id);
+      this.updateOpacity();
     }
-    else { //reomve from array
-      
-      this.stateService.state.rivals.playerAChars = this.stateService.state.rivals.playerAChars.filter( x=> {return x.id != id })
-      this.stateService.state.rivals.playerBChars = this.stateService.state.rivals.playerBChars.filter( x=> {return x.id != id })
-      this.stateService.state.rivals.disabledChars.push(id)
-      this.updateOpacity()
+    if (
+      this.rivalsChars.length -
+        this.stateService.state.rivals.disabledChars.length <
+      this.stateService.state.all.rivalsCharCount
+    ) {
+      this.side.setRivalsCharacterCount(
+        this.stateService.state.all.rivalsCharCount - 1
+      );
     }
-    if (this.rivalsChars.length - this.stateService.state.rivals.disabledChars.length < this.stateService.state.all.rivalsCharCount) {
-       this.side.setRivalsCharacterCount(this.stateService.state.all.rivalsCharCount - 1)
-    }
-    this.stateService.pushState()
+    this.stateService.pushState();
   }
   /**
    * Removes a number from an array and returns it
@@ -68,27 +113,35 @@ export class RivalsComponent implements OnInit {
    * @param num the number to remove
    */
   removeFromArray(arr: Array<number>, num: number) {
-    var newArr = arr.filter(element => element != num);
+    var newArr = arr.filter((element) => element != num);
     return newArr;
   }
-   /**
-     * Brute forces updates on what the opacity of a character should be.
-     * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
-     */
-    updateOpacity() {
-      $('.charImg').each(ind => {  //go through all the character images
-        for (let id of this.stateService.state.rivals.disabledChars) { //for every character disabled
-          if ($('.charImg').eq(ind).attr('src').includes("rivalsIcons/" + id + ".png")) { //if the char image has "..../id.png" as its path
-            $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
-            break//and move on to the next disabled character in the disabled chars array
-          }
-          else { //its not hitting this to reset the opacity when its just one character, dont know why
-            $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
-          }
+  /**
+   * Brute forces updates on what the opacity of a character should be.
+   * Goes thru every character img, for each img, goes thru the disabled chars array, and if the image id is in the disabled chars array, set opacity to 0.3 and then go to next char
+   */
+  updateOpacity() {
+    $(".charImg").each((ind) => {
+      //go through all the character images
+      for (let id of this.stateService.state.rivals.disabledChars) {
+        //for every character disabled
+        if (
+          $(".charImg")
+            .eq(ind)
+            .attr("src")
+            .includes("rivalsIcons/" + id + ".png")
+        ) {
+          //if the char image has "..../id.png" as its path
+          $(".charImg").eq(ind).css("opacity", "0.3"); //set the opacity
+          break; //and move on to the next disabled character in the disabled chars array
+        } else {
+          //its not hitting this to reset the opacity when its just one character, dont know why
+          $(".charImg").eq(ind).css("opacity", "1"); //set the opacity
         }
-        if(this.stateService.state.rivals.disabledChars.length ==0){ 
-          $('.charImg').eq(ind).css('opacity','1')
-        }
-      })
-    }
+      }
+      if (this.stateService.state.rivals.disabledChars.length == 0) {
+        $(".charImg").eq(ind).css("opacity", "1");
+      }
+    });
+  }
 }

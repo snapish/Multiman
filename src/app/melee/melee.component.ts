@@ -23,7 +23,7 @@ export class MeleeComponent implements OnInit {
   constructor(private randomService: RandomService, private changeRef: ApplicationRef, private side: SideComponent, public stateService: StateService) {
     this.meleeChars = this.randomService.getMeleeChars();
     this.stateService.addListener(_ => this.onNewStateReceived())
-    
+
 
   }
 
@@ -71,6 +71,7 @@ export class MeleeComponent implements OnInit {
     this.stateService.state.melee.playerBChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerCChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
     this.stateService.state.melee.playerDChars = this.randomService.randomizeMelee(this.stateService.state.melee.disabledChars)
+    this.updateOpacity()
     this.stateService.pushState()
   }
   /**
@@ -92,7 +93,7 @@ export class MeleeComponent implements OnInit {
       if (charName == x.name) { //find the character in meleeChars
         if (!this.stateService.state.melee.disabledChars.includes(x.id)) { //if its not in the disabled chars array
           this.stateService.state.melee.disabledChars.push(x.id); //put it in
-        
+
           //character count shouldnt be more than the available characters
           if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length  < this.stateService.state.all.meleeCharCount ){
            this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
@@ -102,7 +103,7 @@ export class MeleeComponent implements OnInit {
         } else { //if char got removed from array
           document.getElementById(x.name).style.opacity = "1";
           this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, x.id);
-      
+
         }
       }
     }
@@ -118,11 +119,11 @@ export class MeleeComponent implements OnInit {
   toggle(id) {
     if (this.stateService.state.melee.disabledChars.includes(id)) {
       this.stateService.state.melee.disabledChars = this.removeFromArray(this.stateService.state.melee.disabledChars, id)
-      
+
       this.updateOpacity()
     }
     else { //reomve from array
-      
+
       this.stateService.state.melee.playerAChars = this.stateService.state.melee.playerAChars.filter( x=> {return x.id != id })
       this.stateService.state.melee.playerBChars = this.stateService.state.melee.playerBChars.filter( x=> {return x.id != id })
       this.stateService.state.melee.playerCChars = this.stateService.state.melee.playerCChars.filter( x=> {return x.id != id })
@@ -133,7 +134,7 @@ export class MeleeComponent implements OnInit {
     if (this.meleeChars.length - this.stateService.state.melee.disabledChars.length < this.stateService.state.all.meleeCharCount) {
        this.side.setMeleeCharacterCount(this.stateService.state.all.meleeCharCount - 1)
     }
-    
+
     this.stateService.pushState()
   }
 
@@ -161,14 +162,14 @@ export class MeleeComponent implements OnInit {
     $('.charImg').each(ind => {  //go through all the character images
       for (let id of this.stateService.state.melee.disabledChars) { //for every character disabled
         if ($('.charImg').eq(ind).attr('src').includes("meleeIcons/" + id + ".png")) { //if the char image has "..../id.png" as its path
-          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity 
+          $('.charImg').eq(ind).css('opacity', "0.3")  //set the opacity
           break//and move on to the next disabled character in the disabled chars array
         }
         else { //its not hitting this to reset the opacity when its just one character, dont know why
-          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity 
+          $('.charImg').eq(ind).css('opacity', "1")  //set the opacity
         }
       }
-      if(this.stateService.state.melee.disabledChars.length ==0){ 
+      if(this.stateService.state.melee.disabledChars.length ==0){
         $('.charImg').eq(ind).css('opacity','1')
       }
     })

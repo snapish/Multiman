@@ -1,84 +1,106 @@
 <html>
+  <body>
+    <mat-toolbar>
+      <span style="text-align: center; width: 100%">
+        <button
+          mat-raised-button
+          (click)="randomFill()"
+          style="
+            font-size: 24px;
+            padding-left: 50%;
+            padding-right: 50%;
+            max-width: 100%;
+            max-height: 100%;
+            height: 100%;
+          "
+        >
+          Roll Characters
+        </button>
+      </span>
+    </mat-toolbar>
+    <br />
 
-<body>
-  <mat-toolbar >
-    <span style="text-align: center; width: 100%;">
-      <button mat-raised-button (click)="randomFill()"
-        style=" font-size: 24px; padding-left: 50%; padding-right: 50%; max-width: 100%; max-height: 100%; height: 100%;">
-        Roll Characters
-      </button>
-    </span>
-
-  </mat-toolbar>
-  <br>
-
-  <div id="body">
-    <div style="display: inline-flex ;">
-
-    <div class="playerRepeater" style="margin: 8px;" *ngFor="let pInd of stateService.createEmptyArray(stateService.state.all.rivalsPlayerCount)">
-      <mat-card  class="player" *ngIf=" pInd + 1 <= stateService.state.all.rivalsPlayerCount && stateService.numberToPlayersChars(pInd, 'rivals').length > 0">
-        <mat-card-header>
-          <mat-card-title style="color: cadetblue; font-size: 20px; font-weight: bold;"> Roster {{pInd + 1}} </mat-card-title>
-        </mat-card-header>
-        <div cdkDropListGroup>
-          <div class="container" (cdkDropListDropped)="stateService.drop($event, stateService.numberToPlayersChars(pInd, 'rivals'))">
-            <div cdkDropList class="charImages" *ngFor="let i of stateService.numberToPlayersChars(pInd, 'rivals');let ind= index"  [cdkDropListData]="ind" >
-              <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
-              <img cdkDrag [cdkDragData]="ind" (cdkDragEntered)="stateService.entered($event, stateService.numberToPlayersChars(pInd, 'rivals'))"
-               *ngIf="ind < stateService.state.all.rivalsCharCount" src="{{i.img}}"  (click) = "stateService.toggleClass($event)"  />
+    <div id="body">
+      <div style="display: inline-flex">
+        <div
+          class="playerRepeater"
+          style="margin: 8px"
+          *ngFor="
+            let pInd of stateService.createEmptyArray(
+              stateService.state.all.rivalsPlayerCount
+            )
+          "
+        >
+          <mat-card
+            class="player"
+            *ngIf="
+              pInd + 1 <= stateService.state.all.rivalsPlayerCount &&
+              stateService.numberToPlayersChars(pInd, 'rivals').length > 0
+            "
+          >
+            <mat-card-header>
+              <mat-card-title
+                style="color: cadetblue; font-size: 20px; font-weight: bold"
+              >
+                Roster {{ pInd + 1 }}
+              </mat-card-title>
+            </mat-card-header>
+            <div cdkDropListGroup>
+              <div
+                class="container"
+                (cdkDropListDropped)="
+                  stateService.drop(
+                    $event,
+                    stateService.numberToPlayersChars(pInd, 'rivals')
+                  )
+                "
+              >
+                <div
+                  cdkDropList
+                  class="charImages"
+                  *ngFor="
+                    let i of stateService.numberToPlayersChars(pInd, 'rivals');
+                    let ind = index
+                  "
+                  [cdkDropListData]="ind"
+                >
+                  <!-- for each character in the persons roster, if the loop iteration # is less than the number of chars, grab the src from a characters object  -->
+                  <img
+                    cdkDrag
+                    [cdkDragData]="ind"
+                    (cdkDragEntered)="
+                      stateService.entered(
+                        $event,
+                        stateService.numberToPlayersChars(pInd, 'rivals')
+                      )
+                    "
+                    *ngIf="ind < stateService.state.all.rivalsCharCount"
+                    src="{{ i.img }}"
+                    (click)="stateService.toggleClass($event)"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+          </mat-card>
         </div>
-      </mat-card>
+      </div>
+      <div class="table">
+        <table>
+          <tr *ngFor="let character of characters">
+            <div
+              [ngStyle]="{ opacity: 1, display: 'inline' }"
+              [id]="character.id"
+            >
+              <img
+                [src]="character.src"
+                (click)="toggle(character.code)"
+                class="charImg"
+              />
+            </div>
+          </tr>
+        </table>
+      </div>
+      <br />
     </div>
-    </div>
-    <div class="table">
-
-      <table>
-
-        <tr>
-
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Clairen"> <img src="assets/rivalsIcons/200.png"
-              (click)="toggle('200')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Forsburn"> <img src="assets/rivalsIcons/201.png"
-              (click)="toggle('201')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Zetterburn"> <img src="assets/rivalsIcons/202.png"
-              (click)="toggle('202')" class="charImg"></div>
-
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src="" class="charImg" style="visibility: hidden;" ></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="sp"> <img src=""class="charImg" style="visibility: hidden;" ></div>
-
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Wrastor"> <img src="assets/rivalsIcons/203.png"
-              (click)="toggle('203')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Absa"> <img src="assets/rivalsIcons/204.png"
-              (click)="toggle('204')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Elliana"> <img src="assets/rivalsIcons/205.png"
-              (click)="toggle('205')" class="charImg"></div>
-            </tr>
-            <tr>
-              <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Sylvanos"> <img src="assets/rivalsIcons/206.png"
-                (click)="toggle('206')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Maypul"> <img src="assets/rivalsIcons/207.png"
-              (click)="toggle('207')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': 1, 'display': 'inline' }" id="Kragg"> <img src="assets/rivalsIcons/208.png"
-              (click)="toggle('208')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ori"> <img src="assets/rivalsIcons/209.png"
-              (click)="toggle('209')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Shovel Knight"> <img src="assets/rivalsIcons/210.png"
-              (click)="toggle('210')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Orcane"> <img src="assets/rivalsIcons/211.png"
-              (click)="toggle('211')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Etalus"> <img src="assets/rivalsIcons/212.png"
-              (click)="toggle('212')" class="charImg"></div>
-          <div [ngStyle]="{'opacity': '', 'display': 'inline' }" id="Ranno"> <img src="assets/rivalsIcons/213.png"
-              (click)="toggle('213')" class="charImg"></div>
-
-        </tr>
-
-      </table>
-    </div>
-    <br>
-  </div>
-</body>
-
+  </body>
 </html>
