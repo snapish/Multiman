@@ -24,7 +24,7 @@
       </div>
 
       <div *ngIf="currentView == 'melee'" class="meleeCharCount">
-        <div class="charCount" #drop1 ngbDropdown>
+        <div class="charCount" #drop1 ngbDropdown container="body" placement="bottom-end">
           <button class="btn btn-info" id="dropdownConfig" data-toggle="dropdown" ngbDropdownToggle
             (click)=" checkDropDown(drop1)">
             <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.meleeCharCount}}</button>
@@ -36,7 +36,7 @@
 
 
   <div *ngIf="currentView == 'ultimate'" class="ultimateCharCount">
-    <div class="charCount" #drop2 ngbDropdown>
+    <div class="charCount" #drop2 ngbDropdown container="body" placement="bottom-end">
       <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop2)">
         <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.ultimateCharCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
@@ -46,7 +46,7 @@
     </div>
 
     <div *ngIf="currentView == 'pmv'"  class="pmCharCount">
-      <div class="charCount" #drop3 ngbDropdown>
+      <div class="charCount" #drop3 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop3)">
           <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.pmCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
@@ -56,7 +56,7 @@
       </div>
 
     <div *ngIf="currentView == 'rivals'"  class="pmCharCount">
-      <div class="charCount" #drop4 ngbDropdown>
+      <div class="charCount" #drop4 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/sword.png" /> {{stateService.state.all.rivalsCharCount}}</button>
           <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
@@ -69,14 +69,14 @@
         Player Count
       </div>
 
-      <div *ngIf="currentView == 'melee'" class="charCount" #drop4 ngbDropdown>
+      <div *ngIf="currentView == 'melee'" class="charCount" #drop4 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.meleePlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
           <button *ngFor="let n of mpc; count as ind" ngbDropdownItem (click)="setMeleePlayerCount(ind - n +1)">{{ind - n + 1}}</button>
         </div>
       </div>
-      <div *ngIf="currentView == 'pmv'" class="charCount" #drop4 ngbDropdown>
+      <div *ngIf="currentView == 'pmv'" class="charCount" #drop4 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.pmPlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
@@ -84,7 +84,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentView == 'ultimate'" class="charCount" #drop4 ngbDropdown>
+      <div *ngIf="currentView == 'ultimate'" class="charCount" #drop4 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop4)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.ultimatePlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">
@@ -92,7 +92,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentView == 'rivals'" class="charCount" #drop5 ngbDropdown>
+      <div *ngIf="currentView == 'rivals'" class="charCount" #drop5 ngbDropdown container="body" placement="bottom-end">
         <button class="btn btn-info playerdrop" id="dropdownConfig" ngbDropdownToggle (click)=" checkDropDown(drop5)">
           <img src="https://img.icons8.com/ios/30/000000/head-to-head.png" />{{stateService.state.all.rivalsPlayerCount}}</button>
         <div class="dropdownNumbers" ngbDropdownMenu aria-labelledby="dropdownConfig">

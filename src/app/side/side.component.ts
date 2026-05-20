@@ -10,6 +10,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-side',
   templateUrl: './side.component.html',
   styleUrls: ['./side.component.css']
@@ -296,3 +297,4 @@ joinClipboard(){
     );
 
 }
+

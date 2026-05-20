@@ -4,6 +4,7 @@ import { RandomService } from '../random.service';
 import { SideComponent } from '../side/side.component';
 
 @Component({
+  standalone: false,
   selector: 'app-rivals',
   templateUrl: './rivals.component.html',
   styleUrls: ['./rivals.component.css']
@@ -92,3 +93,4 @@ export class RivalsComponent implements OnInit {
       })
     }
 }
+

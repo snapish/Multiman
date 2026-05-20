@@ -3,6 +3,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { StateService } from '../state.service';
 import { MeleeComponent } from '../melee/melee.component';
 @Component({
+  standalone: false,
   selector: 'app-devtesting',
   templateUrl: './devtesting.component.html',
   styleUrls: ['./devtesting.component.css']
@@ -28,3 +29,4 @@ export class DevtestingComponent implements OnInit {
   }
 
 }
+

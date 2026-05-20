@@ -1,6 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "~bootstrap/dist/css/bootstrap.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import "bootstrap/dist/css/bootstrap.css";
+
+/* -----------------------------------------------------------------------
+   Bootstrap 5 .table class conflicts with the app's custom .table flex
+   wrapper. These overrides prevent Bootstrap from adding padding,
+   background-color, and box-shadow to the character icon table cells.
+   ----------------------------------------------------------------------- */
+div.table {
+  width: auto;
+  margin-bottom: 0;
+}
+
+div.table > :not(caption) > * > * {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom-width: 0;
+}
+
+div.table table,
+div.table tbody,
+div.table thead,
+div.table tr,
+div.table td,
+div.table th {
+  background-color: transparent;
+}
+/* ----------------------------------------------------------------------- */
 
 
 .spacer {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 declare var $: any;
 @Component({
+  standalone: false,
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
@@ -18,3 +19,4 @@ export class AboutComponent implements OnInit {
 
 
 }
+

@@ -3,6 +3,7 @@ import { Character } from '../character';
 import { RandomService } from '../random.service';
 
 @Component({
+  standalone: false,
   selector: 'app-tablemaker',
   templateUrl: './tablemaker.component.html',
   styleUrls: ['./tablemaker.component.css']
@@ -72,3 +73,4 @@ export class TablemakerComponent implements OnInit {
   }
 
 }
+

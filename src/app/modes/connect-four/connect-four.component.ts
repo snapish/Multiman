@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RandomService } from 'src/app/random.service';
-import * as $ from 'jquery';
+import $ from 'jquery';
 //declare var $: any;
 
 @Component({
+  standalone: false,
   selector: 'app-connect-four',
   templateUrl: './connect-four.component.html',
   styleUrls: ['./connect-four.component.css']
@@ -136,3 +137,4 @@ shuffle(array) {
   
   }
 }
+

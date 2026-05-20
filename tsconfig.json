@@ -2,25 +2,24 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "es2015",
-    "types" :[
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "types": [
       "jquery"
     ],
     "typeRoots": [
-      "node_modules/@types",
-      "jquery"
+      "node_modules/@types"
     ],
     "lib": [
-      "es2018",
+      "ES2022",
       "dom"
     ]
   }

@@ -8,7 +8,7 @@
    justify-content: center;
    flex-wrap: wrap;
 }
-::ng-deep .mat-card{
+::ng-deep .mat-card, ::ng-deep .mat-mdc-card{
    border: 3px solid rgb(241, 241, 241);
   }
 #player{
@@ -23,7 +23,7 @@
    flex-wrap: wrap;
    flex-flow: column;
 } 
-.mat-card{
+.mat-card, .mat-mdc-card{
    padding: 5px;
 }
 .table{

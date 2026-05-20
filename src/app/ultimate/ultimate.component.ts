@@ -7,6 +7,7 @@ import { StateService } from '../state.service';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
+  standalone: false,
   selector: 'app-ultimate',
   templateUrl: './ultimate.component.html',
   styleUrls: ['./ultimate.component.css']
@@ -158,3 +159,4 @@ export class UltimateComponent implements OnInit {
     }
 
 }
+
