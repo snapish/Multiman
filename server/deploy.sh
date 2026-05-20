@@ -18,7 +18,7 @@ cd server
 npm install
 cd ..
 
-npm run ng build -- --prod --buildOptimizer
+npm run ng build
 # -aot -vc -cc -dop
 # symlink the service file
 sudo ln -sf "$(realpath multiman.service)" /etc/systemd/system/multiman.service
