@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectmComponent } from './projectm/projectm.component';
 import { MeleeComponent } from './melee/melee.component';
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -35,3 +36,4 @@ export class AppComponent {
 
 
 }
+

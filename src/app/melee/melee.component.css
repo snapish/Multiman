@@ -11,7 +11,7 @@ mat-toolbar{
     justify-content: center;
     flex-wrap: wrap;
 }
-::ng-deep .mat-card{
+::ng-deep .mat-card, ::ng-deep .mat-mdc-card{
     border: 3px solid rgb(241, 241, 241)
     ;
    }
@@ -56,7 +56,7 @@ img{-webkit-user-drag: none;
   }
 
 
-.mat-card{
+.mat-card, .mat-mdc-card{
     padding: 4px
 }
 

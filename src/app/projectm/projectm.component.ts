@@ -5,6 +5,7 @@ import { StateService } from '../state.service';
 declare var $: any;
 declare var PUSH_STATE: any;
 @Component({
+  standalone: false,
   selector: 'app-projectm',
   templateUrl: './projectm.component.html',
   styleUrls: ['./projectm.component.css']
@@ -134,3 +135,4 @@ export class ProjectmComponent implements OnInit {
   }
 
 }
+

@@ -12,6 +12,7 @@ import { StateService } from '../state.service';
 declare var $: any;
 
 @Component({
+  standalone: false,
   selector: "app-melee",
   templateUrl: "./melee.component.html",
   styleUrls: ["./melee.component.css"]
@@ -177,3 +178,4 @@ export class MeleeComponent implements OnInit {
     })
   }
 }
+

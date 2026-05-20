@@ -66,7 +66,7 @@ button:not(.f):not(.close):not(.other-opts-btn) {
 }
 
 .copyButton{
-  weight: bold;
+  font-weight: bold;
   background-color: rgb(137, 153, 49);
   max-width: 30%;
 }
@@ -133,17 +133,17 @@ input{
 
 .charCount{
   max-height: 100%;
-  height: 1%;
+  height: auto;
   width: 150px;
   padding-left: 50px;
   z-index: 2; /*so dropdowns go over other things. Specifically the contact me button as of rn*/
+  position: relative;
 }
 
 .dropdownNumbers, .popupButton{
-  position: fixed !important;
-  top: 50% !important;
-  overflow: auto;
-  max-height: 100%;
+  overflow-y: auto;
+  max-height: min(50vh, 320px);
+  z-index: 1000;
 }
 
 .menuOption{
