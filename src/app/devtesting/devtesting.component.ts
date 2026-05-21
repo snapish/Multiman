@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { StateService } from '../state.service';
-import { MeleeComponent } from '../melee/melee.component';
 @Component({
   standalone: false,
   selector: 'app-devtesting',
@@ -20,7 +19,7 @@ export class DevtestingComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.items, event.previousIndex, event.currentIndex);
   }
-  constructor(public stateService: StateService, public meleeComp: MeleeComponent) { }
+  constructor(public stateService: StateService) { }
 
   ping(){
     console.log(Object.keys(this.stateService.state.melee)[1])

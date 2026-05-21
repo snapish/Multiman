@@ -3,6 +3,7 @@ import { StateService } from "../state.service";
 import { RandomService } from "../random.service";
 import { SideComponent } from "../side/side.component";
 import { MatToolbarModule } from '@angular/material/toolbar';
+declare var $: any;
 
 
 @Component({

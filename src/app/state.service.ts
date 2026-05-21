@@ -2,6 +2,7 @@ import { CdkDragDrop, CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-dr
 import { Injectable } from '@angular/core';
 import { ApplicationRef } from '@angular/core'
 import { RandomService } from './random.service';
+declare var $: any;
 @Injectable({
   providedIn: 'root'
 })

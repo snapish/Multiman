@@ -12,22 +12,15 @@ import { MeleeComponent } from './melee/melee.component';
 import { UltimateComponent } from './ultimate/ultimate.component';
 // import { ImageMapComponent } from './image-map/image-map.component';
  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogRef, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenav } from '@angular/material/sidenav'
-import { PatreonComponent } from './patreon/patreon.component';
-import { ModesComponent } from './modes/modes.component';
 import { ProjectmComponent } from './projectm/projectm.component';
-import { ConnectFourComponent } from './modes/connect-four/connect-four.component';
-import { TictactoeComponent } from './modes/tictactoe/tictactoe.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideComponent } from './side/side.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -38,8 +31,6 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { DevtestingComponent } from './devtesting/devtesting.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { TablemakerComponent } from './tablemaker/tablemaker.component';
-import { RushdownComponent } from './rushdown/rushdown.component';
-import { NickComponent } from './nick/nick.component';
 
 @NgModule({
   declarations: [
@@ -47,19 +38,7 @@ import { NickComponent } from './nick/nick.component';
     MeleeComponent,
     UltimateComponent,
 //    ImageMapComponent,
-    AboutComponent,
-ContactComponent,
-
-PatreonComponent,
-
-
-ModesComponent,
-
 ProjectmComponent,
-
-ConnectFourComponent,
-
-TictactoeComponent,
 
 SideComponent,
 
@@ -70,17 +49,12 @@ ErrorPageComponent,
 DevtestingComponent,
 
 TablemakerComponent,
-
-RushdownComponent,
-  NickComponent,
   ],
   imports: [
     ClipboardModule,
     NgbModule,
     MatCardModule,
-    //MatSidenavModule,
     MatDialogModule,
-    NgbModule,
     BrowserModule,
 
     MatCheckboxModule,
@@ -98,12 +72,11 @@ RushdownComponent,
     MatIconModule,
     MatListModule,
     DragDropModule,
-    MatSidenavModule,
     //AngularFireModule.initializeApp(environment.config, 'database-project'),
     //AngularFirestoreModule,
     //AngularFireStorageModule
   ],
-  providers: [ProjectmComponent, MeleeComponent,SideComponent],
+  providers: [SideComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

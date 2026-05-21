@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { StateService } from '../state.service';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   standalone: false,
@@ -35,15 +36,16 @@ export class SideComponent {
   closeResult = '';
   noRoomFound = false
   clipboardFailure = false
+  showQuickTip = true
   helpPageSteps = [
-  "The last 5 letters of the URL is your \"room code\". People with your URL can see what you see, and interact with the same page as you.",
-  "Adjust the number of players, and number of characters to your liking.",
-  "Click any character in the game's menu to ban them (this will also remove the character from the current rosters).",
-  "Drag characters around in rosters to change their position in the roster.",
-  "Click characters in rosters to gray them out.",
-  "Roll your characters with the button at the top.",
-  "Copy your URL and send it to a pal.",
-  "Game your lil thumbs off."
+  "Your room code is the last 5 characters in the URL. Anyone with your URL can join the same live session.",
+  "Set your player count and characters per roster from the sidebar.",
+  "Tap any character icon to ban it. Banned characters are removed from current rosters.",
+  "Drag and drop character icons inside a roster to reorder picks.",
+  "Tap roster icons to mark completed picks.",
+  "Use Generate Rosters at the top to reroll.",
+  "Share your URL to play with friends in sync.",
+  "Have fun and run your set."
 ];
   mpc = [1,2,3,4]
   pmpc = [1,2,3,4]
@@ -52,6 +54,7 @@ export class SideComponent {
   ngOnInit(): void {
     $('.pmv').hide()
     $('.ultimate').hide()
+    this.showQuickTip = localStorage.getItem('multimanQuickTipDismissed') !== '1'
   }
   constructor(private breakpointObserver: BreakpointObserver, config: NgbDropdownConfig, private randomService: RandomService, private modalService : NgbModal, public stateService: StateService, private appRef : ApplicationRef) {
     config.placement = 'right';
@@ -181,6 +184,11 @@ joinClipboard(){
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  dismissQuickTip() {
+    this.showQuickTip = false
+    localStorage.setItem('multimanQuickTipDismissed', '1')
   }
 /**
  * * came with the modal example that i yoinked, keeping it all here

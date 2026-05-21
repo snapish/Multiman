@@ -14,7 +14,8 @@
 
 .sidenav {
   width: 200px;
-  background-color: rgb(49, 49, 49);
+  background: linear-gradient(180deg, #252525 0%, #1f2937 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 mat-sidenav-container{
@@ -36,8 +37,11 @@ mat-sidenav-container{
   -webkit-user-drag: none;
   height:100px;
   width: 180px;
-  padding-bottom: 10px;
-  border-radius: 3px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
 
 .pm{
@@ -45,10 +49,41 @@ mat-sidenav-container{
   width: 180px;
 }
 
+.gameIcons:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+}
+
+.gameIcons.active-game {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.35), 0 12px 20px rgba(0, 0, 0, 0.38);
+}
+
 .menu{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.quick-tip {
+  margin: 4px 8px 12px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.5);
+  color: #e5e7eb;
+  text-align: center;
+}
+
+.quick-tip-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.quick-tip-body {
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: 8px;
 }
 
 .playerDrop{
@@ -148,13 +183,14 @@ input{
 
 .menuOption{
   display: flex;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
+  font-size: 18px;
+  color: #f3f4f6;
   font-weight: bold;
   justify-content: center;
   text-align: center;
-  text-shadow: 1px 2px 10px black;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.3px;
 }
 
 .roomCode{
@@ -170,8 +206,26 @@ input{
 
 .other-opts-btn {
   margin: 10px;
+  min-height: 44px;
+  border-radius: 10px;
 }
 
 .center {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .sidenav {
+    width: 240px;
+  }
+
+  .gameIcons,
+  .pm {
+    width: 200px;
+  }
+
+  .charCount {
+    width: 170px;
+    padding-left: 35px;
+  }
 }
