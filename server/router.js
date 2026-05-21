@@ -32,7 +32,7 @@ router.get('/sessions', (req, res, next) => {
   res.json(sessions.list())
 })
 
-router.get('*', (req, res, next) => {
+router.get(/.*/, (req, res, next) => {
   let sessionId = req.query.session
 
   if (!sessionId) {
