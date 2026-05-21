@@ -1,4 +1,4 @@
-const uuid = require('uuid/v4')
+const { v4: uuid } = require('uuid')
 
 const SESSION_TIMEOUT = 1000 * 60 * 5 // 5min (in milliseconds)
 
