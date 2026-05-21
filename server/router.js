@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const sessions = require('./sessions.js')
 
-const buildDir = path.join(__dirname, '..', 'docs') // i think this might be fucked, it's on live its saying no page w\ index.html could be found
+const buildDir = path.join(__dirname, '..', 'docs', 'browser')
 
 const router = express.Router()
 module.exports = router
@@ -43,5 +43,5 @@ router.get(/.*/, (req, res, next) => {
   if (!sessions.get(sessionId)) {
     return res.status(400).render('nosession', { sessionId })
   }
-  res.sendFile(buildDir + '/index.html')
+  res.sendFile(path.join(buildDir, 'index.html'))
 })
