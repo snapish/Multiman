@@ -27,8 +27,12 @@
    padding: 5px;
 }
 .table{
-    display: flex;
-   justify-content: center; 
+   display: block;
+   width: 100%;
+   overflow-x: auto;
+   overflow-y: hidden;
+   white-space: nowrap;
+   -webkit-overflow-scrolling: touch;
 }
 
 #g{
@@ -43,6 +47,15 @@ table{
 tr{
     display: flex;
     justify-content: center;
+}
+
+.table table{
+   margin: 0 auto;
+   width: max-content;
+}
+
+.table tr{
+   white-space: nowrap;
 }
 #imgtest{
    padding: 0px;
